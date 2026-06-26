@@ -1,755 +1,438 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO: título mais descritivo e com keyword principal -->
-    <title>Agência Digital | Desenvolvimento Web, Marketing e Design Estratégico</title>
-    <meta name="description" content="Agência digital especializada em desenvolvimento web de alta conversão, gestão de mídias sociais e design estratégico. Mais de 100 projetos entregues. Solicite um orçamento.">
-
-    <!-- Open Graph para compartilhamento em redes sociais -->
-    <meta property="og:title" content="Agência Digital | Acelere seus Resultados">
-    <meta property="og:description" content="Desenvolvimento web, marketing digital e design estratégico para acelerar suas vendas.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-
-    <!-- Canonical para evitar conteúdo duplicado -->
-    <link rel="canonical" href="https://seudominio.com.br/">
-
-    <!-- Preconnect para carregamento mais rápido da fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="src/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Pro — Gestão de Mídias Sociais</title>
+    <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="src/responsivo.css">
-
-    <!-- [CORREÇÃO] Preferência por movimento reduzido — acessibilidade -->
-    <style>
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap"
+        rel="stylesheet" />
 </head>
 
-<!-- [CORREÇÃO] Removida classe "dark-mode" do body — o modo escuro deve ser controlado via CSS ou JS,
-     não hardcoded no HTML, para permitir alternância de tema no futuro -->
 <body>
 
-    <!-- [CORREÇÃO] role="banner" adicionado para acessibilidade com leitores de tela -->
-    <header class="navbar sticky-glass" role="banner">
-        <div class="container nav-content">
-            <!-- [CORREÇÃO] Logo como link para o início é boa prática de UX e acessibilidade -->
-            <a href="#inicio" class="logo-placeholder" aria-label="Agência Digital — Início">
-                Agência<span class="text-orange">.</span>
-            </a>
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="loader-logo">SM<span>.</span></div>
+            <div class="loader-bar">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+    </div>
 
-            <!-- [CORREÇÃO] aria-label descritivo na nav -->
-            <nav aria-label="Navegação principal">
-                <!-- [CORREÇÃO] role="list" adicionado para compatibilidade com leitores de tela -->
-                <ul class="nav-links" role="list">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#solucoes">Serviços</a></li>
-                    <li><a href="#portfolio">Portfólio</a></li>
-                    <li><a href="#resultados">Resultados</a></li>
-                    <li><a href="#depoimentos">Depoimentos</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </nav>
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5500000000000" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        <span class="wa-tooltip">Fale Conosco</span>
+    </a>
 
-            <a href="#contato" class="btn btn-primary nav-cta">Solicitar Orçamento</a>
-
-            <!-- [CORREÇÃO] aria-expanded e aria-controls adicionados para acessibilidade do menu mobile -->
-            <button
-                class="mobile-menu-toggle"
-                aria-label="Abrir menu de navegação"
-                aria-expanded="false"
-                aria-controls="mobile-nav"
-                type="button"
-            >
-                <span class="hamburger" aria-hidden="true"></span>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">SM<span class="dot">.</span></div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="#contato" class="btn-nav">Solicitar Orçamento</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
         </div>
-    </header>
+    </nav>
 
-    <!-- [CORREÇÃO] role="main" adicionado para landmark de acessibilidade -->
-    <main role="main">
-
-        <!-- ===================== HERO ===================== -->
-        <section class="hero" id="inicio" aria-labelledby="hero-heading">
-            <div class="animated-gradient-bg" aria-hidden="true"></div>
-            <div class="container hero-grid">
-                <div class="hero-content reveal fade-in">
-                    <!-- [CORREÇÃO] id adicionado para o aria-labelledby da section -->
-                    <h1 id="hero-heading">
-                        Sua Presença Digital Pode Vender
-                        <span class="text-orange text-glow">Muito Mais</span>
-                    </h1>
-                    <!-- [CORREÇÃO] <p> com classe mais semântica -->
-                    <p class="subheadline">
-                        Desenvolvimento web, marketing digital e design estratégico
-                        reunidos em uma única solução para acelerar seus resultados.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#contato" class="btn btn-primary btn-glow">Solicitar Orçamento</a>
-                        <a href="#portfolio" class="btn btn-secondary">Ver Portfólio</a>
-                    </div>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+        <div class="hero-bg">
+            <div class="hero-glow"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-text reveal">
+                <div class="hero-badge">✦ Gestão de Mídias Sociais</div>
+                <h1 class="hero-headline">Transformamos Redes Sociais em <span class="gradient-text">Máquinas de
+                        Autoridade</span> e Vendas</h1>
+                <p class="hero-sub">Enquanto você foca no seu negócio, nós construímos sua presença digital com
+                    estratégia, consistência e resultado. Seu próximo cliente já está no Instagram — nós vamos até ele.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#contato" class="btn-primary">Quero Crescer Meu Instagram</a>
+                    <a href="#servicos" class="btn-secondary">Ver Como Funciona</a>
                 </div>
-                <div class="hero-visual reveal parallax" aria-hidden="true">
-                    <div class="mockup-dashboard glass tilt-3d floating-element">
-                        <div class="mockup-header">
-                            <!-- [CORREÇÃO] aria-hidden nos elementos decorativos -->
-                            <span class="dot red" aria-hidden="true"></span>
-                            <span class="dot yellow" aria-hidden="true"></span>
-                            <span class="dot green" aria-hidden="true"></span>
-                        </div>
-                        <div class="mockup-body">
-                            <div class="chart-placeholder" aria-hidden="true"></div>
-                            <div class="stats-placeholder" aria-hidden="true"></div>
-                        </div>
-                    </div>
+                <div class="hero-stats">
+                    <div class="stat"><span class="count" data-target="300">0</span><span>%</span><small>Crescimento
+                            médio</small></div>
+                    <div class="stat-div"></div>
+                    <div class="stat"><span class="count" data-target="150">0</span><span>+</span><small>Clientes
+                            ativos</small></div>
+                    <div class="stat-div"></div>
+                    <div class="stat"><span class="count" data-target="5">0</span><span> anos</span><small>De
+                            experiência</small></div>
                 </div>
             </div>
-        </section>
-
-        <!-- ===================== LOGOS CLIENTES ===================== -->
-        <!-- [CORREÇÃO] aria-label e aria-hidden no elemento decorativo de marquee -->
-        <section class="client-logos" aria-label="Clientes atendidos">
-            <div class="marquee-container infinite-loop" aria-hidden="true">
-                <div class="marquee-track">
-                    <div class="logo-item">Logo Cliente 1</div>
-                    <div class="logo-item">Logo Cliente 2</div>
-                    <div class="logo-item">Logo Cliente 3</div>
-                    <div class="logo-item">Logo Cliente 4</div>
-                    <div class="logo-item">Logo Cliente 5</div>
-                    <!-- [CORREÇÃO] Duplicatas do marquee ficam ocultas de leitores de tela -->
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 1</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 2</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 3</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 4</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 5</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== PROBLEMAS ===================== -->
-        <section class="problems section-spacing" id="problemas" aria-labelledby="problems-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="problems-heading">Você sente que está deixando dinheiro na mesa?</h2>
-                    <p>
-                        O mercado digital não perdoa amadorismo. Se a sua marca apresenta
-                        estes sinais, você está perdendo vendas todos os dias.
-                    </p>
-                </div>
-                <!-- [CORREÇÃO] role="list" para cards que funcionam como lista -->
-                <div class="cards-grid" role="list">
-                    <div class="card glass hover-magnetic reveal" role="listitem">
-                        <!-- [CORREÇÃO] aria-hidden nos ícones decorativos de emoji -->
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Instagram não gera clientes</h3>
-                        <p>Você investe tempo criando conteúdo, mas não vê retorno em vendas reais.</p>
-                    </div>
-                    <div class="card glass hover-magnetic reveal delay-1" role="listitem">
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Seu site não converte</h3>
-                        <p>Visitantes entram na sua página e saem sem realizar nenhuma ação de compra.</p>
-                    </div>
-                    <div class="card glass hover-magnetic reveal delay-2" role="listitem">
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Falta de autoridade</h3>
-                        <p>Concorrentes com produtos inferiores vendem mais porque parecem mais profissionais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== HISTÓRIA ===================== -->
-        <section class="story section-spacing glass-section" aria-labelledby="story-heading">
-            <div class="container layout-split align-center reveal">
-                <div class="story-image">
-                    <!-- [CORREÇÃO] alt descritivo na imagem (quando for implementada) -->
-                    <div class="image-placeholder tilt-3d" role="img" aria-label="Foto da equipe da agência">
-                        Foto da Agência/Equipe
-                    </div>
-                </div>
-                <div class="story-content">
-                    <h2 id="story-heading">Deixamos o amadorismo no passado</h2>
-                    <p>
-                        Nós entendemos exatamente a sua frustração. A agência nasceu de uma necessidade
-                        real do mercado: a falta de profissionalismo e visão estratégica. Sob a direção
-                        de Gabriel Gomes, construímos uma metodologia focada exclusivamente em um pilar:
-                        <strong>conversão</strong>.
-                    </p>
-                    <p>
-                        Não entregamos apenas "postagens bonitas" ou "sites estáticos". Entregamos
-                        ecossistemas digitais projetados para escalar o seu faturamento.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== SOLUÇÕES ===================== -->
-        <section class="solutions section-spacing" id="solucoes" aria-labelledby="solutions-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="solutions-heading">
-                        Tudo o que sua marca precisa para
-                        <span class="text-orange">crescer online</span>
-                    </h2>
-                    <p>Ecossistema completo de soluções digitais de alto padrão.</p>
-                </div>
-
-                <!-- [CORREÇÃO] aria-label descritivo no carrossel -->
-                <div class="services-carousel drag-slider reveal" role="list" aria-label="Nossos serviços">
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon web-icon" aria-hidden="true"></div>
-                        <h3>Desenvolvimento Web</h3>
-                        <ul class="service-features">
-                            <li>Landing Pages de Alta Conversão</li>
-                            <li>Sites Institucionais Premium</li>
-                            <li>Páginas de Venda</li>
-                            <li>SEO Básico e Responsividade</li>
-                        </ul>
-                    </div>
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon social-icon" aria-hidden="true"></div>
-                        <h3>Gestão de Mídias Sociais</h3>
-                        <ul class="service-features">
-                            <li>Planejamento Estratégico</li>
-                            <li>Gestão Completa de Canais</li>
-                            <li>Calendário Editorial</li>
-                            <li>Crescimento Orgânico</li>
-                        </ul>
-                    </div>
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon design-icon" aria-hidden="true"></div>
-                        <h3>Pack de Postagens</h3>
-                        <ul class="service-features">
-                            <li>Artes Profissionais</li>
-                            <li>Templates Personalizados</li>
-                            <li>Conteúdo Estratégico</li>
-                            <li>Posts para Feed e Stories</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== BENEFÍCIOS ===================== -->
-        <section class="benefits bg-darker overflow-hidden" aria-label="Nossos diferenciais">
-            <!-- [CORREÇÃO] aria-hidden no marquee decorativo — conteúdo redundante com a seção de diferenciais -->
-            <div class="marquee-container marquee-benefits infinite-loop reveal" aria-hidden="true">
-                <div class="marquee-track">
-                    <span class="benefit-tag glass hover-3d">✓ Mais autoridade</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais clientes</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais vendas</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais visibilidade</span>
-                    <span class="benefit-tag glass hover-3d">✓ Melhor posicionamento</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== RESULTADOS ===================== -->
-        <section class="results section-spacing" id="resultados" aria-labelledby="results-heading">
-            <div class="container">
-                <!-- [CORREÇÃO] Heading visualmente oculto para dar contexto à seção via leitores de tela -->
-                <h2 id="results-heading" class="sr-only">Nossos resultados em números</h2>
-                <div class="stats-grid glass reveal animated-border" role="list">
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="100" aria-label="Mais de 100 projetos entregues">+0</span>
-                        <span class="stat-label">Projetos Entregues</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="50" aria-label="Mais de 50 clientes atendidos">+0</span>
-                        <span class="stat-label">Clientes Atendidos</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="1000000" aria-label="Mais de 1 milhão de impressões geradas">+0</span>
-                        <span class="stat-label">Impressões Geradas</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <!-- [CORREÇÃO] data-target="95" combinado com "%" no aria-label para clareza -->
-                        <span class="stat-number count-up text-orange" data-target="95" aria-label="95% de satisfação dos clientes">0%</span>
-                        <span class="stat-label">de Satisfação</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== PORTFÓLIO ===================== -->
-        <section class="portfolio section-spacing" id="portfolio" aria-labelledby="portfolio-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="portfolio-heading">Nosso <span class="text-orange">Portfólio</span></h2>
-                    <p>Arraste para explorar o padrão de excelência das nossas entregas.</p>
-                </div>
-
-                <!-- [CORREÇÃO] role="group" e aria-label nos filtros de portfólio -->
-                <div class="portfolio-filters reveal" role="group" aria-label="Filtrar portfólio por categoria">
-                    <button class="filter-btn active" data-filter="all" type="button" aria-pressed="true">Todos</button>
-                    <button class="filter-btn" data-filter="sites" type="button" aria-pressed="false">Sites</button>
-                    <button class="filter-btn" data-filter="lps" type="button" aria-pressed="false">Landing Pages</button>
-                    <button class="filter-btn" data-filter="social" type="button" aria-pressed="false">Social Media</button>
-                </div>
-
-                <div class="portfolio-slider drag-slider swipe-mobile reveal" role="list" aria-label="Projetos do portfólio">
-                    <article class="portfolio-card glass item-site" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <!-- [CORREÇÃO] <div> substituído por elemento mais semântico e com aria-label -->
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Site Institucional Tech">
-                                Projeto 1
+            <div class="hero-visual reveal">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="mock-profile">
+                            <div class="mock-avatar"></div>
+                            <div class="mock-info">
+                                <div class="mock-name"></div>
+                                <div class="mock-handle"></div>
                             </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
+                            <div class="mock-follow">Seguir</div>
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Site Institucional Tech</h3>
-                            <!-- [CORREÇÃO] h4 substituído por h3 — hierarquia correta dentro de <article> -->
+                        <div class="mock-stats">
+                            <div><strong>12.4K</strong><span>Seguidores</span></div>
+                            <div><strong>89</strong><span>Posts</span></div>
+                            <div><strong>4.2%</strong><span>Eng.</span></div>
                         </div>
-                    </article>
-                    <article class="portfolio-card glass item-lps" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Página de Vendas Info">
-                                Projeto 2
-                            </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
+                        <div class="mock-grid">
+                            <div class="mock-post p1"></div>
+                            <div class="mock-post p2"></div>
+                            <div class="mock-post p3"></div>
+                            <div class="mock-post p4"></div>
+                            <div class="mock-post p5"></div>
+                            <div class="mock-post p6"></div>
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Página de Vendas Info</h3>
-                        </div>
-                    </article>
-                    <article class="portfolio-card glass item-social" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Identidade Clínica Médica">
-                                Projeto 3
-                            </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Identidade Clínica Médica</h3>
-                        </div>
-                    </article>
+                    </div>
+                    <div class="phone-notch"></div>
+                </div>
+                <div class="float-card fc1">
+                    <div class="fc-icon">📈</div>
+                    <div><strong>+847</strong><small>Novos seguidores</small></div>
+                </div>
+                <div class="float-card fc2">
+                    <div class="fc-icon">💬</div>
+                    <div><strong>4.2%</strong><small>Taxa de engajamento</small></div>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="scroll-indicator"><span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-        <!-- ===================== DEPOIMENTOS ===================== -->
-        <section class="testimonials section-spacing bg-darker" id="depoimentos" aria-labelledby="testimonials-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="testimonials-heading">O que dizem nossos clientes</h2>
-                    <p>Avaliações de quem já transformou sua presença digital.</p>
-                </div>
-
-                <!-- [CORREÇÃO] aria-label no slider e role="list" para acessibilidade -->
-                <div class="testimonial-slider auto-play reveal" aria-label="Depoimentos de clientes" role="list">
-                    <div class="testimonial-track">
-                        <div class="testimonial-card glass" role="listitem">
-                            <!-- [CORREÇÃO] aria-label nas estrelas para leitores de tela -->
-                            <div class="stars text-orange" aria-label="Avaliação: 5 estrelas" role="img">★★★★★</div>
-                            <blockquote>
-                                <!-- [CORREÇÃO] <p> substituído por <blockquote> para semântica de citação -->
-                                <p>"Nossas vendas aumentaram 3x após a criação da nova Landing Page. Trabalho impecável e design sofisticado."</p>
-                            </blockquote>
-                            <footer class="client-info">
-                                <div class="client-photo round-img" aria-hidden="true">F</div>
-                                <div>
-                                    <cite><strong>CEO Startup</strong></cite>
-                                    <span>Tecnologia</span>
-                                </div>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
+    <!-- LOGO CAROUSEL -->
+    <section class="logos-section">
+        <p class="logos-label">Marcas que confiam no nosso trabalho</p>
+        <div class="logos-track">
+            <div class="logos-inner" id="logos-inner">
+                <span>TechStart</span><span>Bella Clínica</span><span>FitLife Academia</span><span>Sabor &
+                    Arte</span><span>ImovelPro</span><span>Dr. Silva &
+                    Cia</span><span>ModaVibe</span><span>ConnectHub</span><span>TechStart</span><span>Bella
+                    Clínica</span><span>FitLife Academia</span><span>Sabor & Arte</span><span>ImovelPro</span><span>Dr.
+                    Silva & Cia</span><span>ModaVibe</span><span>ConnectHub</span>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ===================== OFERTA / PREÇOS ===================== -->
-        <section class="offer section-spacing" id="oferta" aria-labelledby="offer-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="offer-heading">Soluções sob medida para sua marca</h2>
-                    <p>Escolha o plano que melhor atende o seu momento atual.</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card glass reveal hover-magnetic">
-                        <h3>Start</h3>
-                        <p class="plan-desc">Ideal para quem está começando.</p>
-                        <ul class="plan-features">
-                            <li>✓ Identidade Visual Básica</li>
-                            <li>✓ Setup de Redes Sociais</li>
-                            <li>✓ 8 Artes mensais</li>
-                        </ul>
-                        <!-- [CORREÇÃO] type="button" adicionado em todos os botões sem ação de submit -->
-                        <button class="btn btn-secondary w-100" type="button">Selecionar Start</button>
-                    </div>
-
-                    <!-- [CORREÇÃO] aria-label indicando plano mais popular -->
-                    <div class="pricing-card glass premium highlight-card reveal scale-up tilt-3d" aria-label="Plano Growth — Mais Escolhido">
-                        <div class="badge-popular" aria-hidden="true">Mais Escolhido</div>
-                        <h3 class="text-orange">Growth</h3>
-                        <p class="plan-desc">Para negócios em crescimento.</p>
-                        <ul class="plan-features">
-                            <li>✓ Landing Page Alta Conversão</li>
-                            <li>✓ Gestão Completa Redes Sociais</li>
-                            <li>✓ 15 Artes + Estratégia</li>
-                            <li>✓ SEO Básico</li>
-                        </ul>
-                        <button class="btn btn-primary btn-glow w-100" type="button">Quero Crescer Minha Marca</button>
-                    </div>
-
-                    <div class="pricing-card glass reveal hover-magnetic delay-2">
-                        <h3>Premium</h3>
-                        <p class="plan-desc">Solução completa Enterprise.</p>
-                        <ul class="plan-features">
-                            <li>✓ Site Institucional Completo</li>
-                            <li>✓ Tráfego Pago Integrado</li>
-                            <li>✓ Design e Social Media Full</li>
-                            <li>✓ Suporte Prioritário VIP</li>
-                        </ul>
-                        <button class="btn btn-secondary w-100" type="button">Falar com Consultor</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== DIFERENCIAIS ===================== -->
-        <section class="differentials section-spacing bg-darker" aria-labelledby="diff-heading">
-            <div class="container">
-                <h2 id="diff-heading" class="sr-only">Por que nos escolher</h2>
-                <!-- [CORREÇÃO] role="list" para que os itens sejam anunciados como lista -->
-                <div class="grid-icons reveal" role="list">
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Atendimento Humanizado</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Entrega Rápida</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Design Exclusivo</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Estratégia Personalizada</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Suporte Pós-Projeto</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Foco em Conversão</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== GARANTIA ===================== -->
-        <section class="guarantee section-spacing glass-section reveal" aria-labelledby="guarantee-heading">
-            <div class="container text-center">
-                <div class="guarantee-content glass">
-                    <h2 id="guarantee-heading" class="text-orange">Garantia de Qualidade</h2>
-                    <p>
-                        Nosso acordo é simples: trabalhamos incansavelmente até que a entrega supere
-                        suas expectativas e esteja perfeitamente alinhada com o escopo aprovado.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== FAQ ===================== -->
-        <section class="faq section-spacing" id="faq" aria-labelledby="faq-heading">
-            <div class="container layout-split reveal">
-                <div class="faq-header">
-                    <h2 id="faq-heading">Perguntas Frequentes</h2>
-                    <p>Tire suas dúvidas e dê o próximo passo com segurança.</p>
-                </div>
-                <!-- [CORREÇÃO] role="list" e aria-label no accordion -->
-                <div class="faq-accordion" role="list" aria-label="Perguntas frequentes">
-                    <div class="accordion-item glass" role="listitem">
-                        <!-- [CORREÇÃO] aria-expanded e aria-controls em cada botão de accordion -->
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-1"
-                        >
-                            Quanto tempo leva a entrega?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-1" hidden>
-                            <p>Depende do escopo do projeto, mas Landing Pages são entregues em média entre 7 a 15 dias úteis.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-2"
-                        >
-                            Como funciona o pagamento?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-2" hidden>
-                            <p>Trabalhamos com sinal de 50% para início do projeto e 50% na aprovação final, via PIX ou Cartão.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-3"
-                        >
-                            O site é responsivo?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-3" hidden>
-                            <p>Sim, 100% otimizado para celulares, tablets e computadores, seguindo a abordagem Mobile First.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-4"
-                        >
-                            Vocês fazem manutenção?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-4" hidden>
-                            <p>Oferecemos pacotes de manutenção mensal para manter seu site seguro e atualizado.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-5"
-                        >
-                            Posso contratar apenas um serviço?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-5" hidden>
-                            <p>Sim, nossos serviços podem ser contratados de forma avulsa ou em pacotes personalizados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== CTA FINAL / CONTATO ===================== -->
-        <section class="cta-final section-spacing relative" id="contato" aria-labelledby="contact-heading">
-            <div class="animated-gradient-bg pulse-animation" aria-hidden="true"></div>
-            <div class="container layout-split align-center reveal z-index-content">
-                <div class="cta-text">
-                    <h2 id="contact-heading">Pronto para transformar sua presença digital?</h2>
-                    <p>
-                        Chegou a hora de ter uma marca que realmente transmite autoridade
-                        e gera resultados constantes.
-                    </p>
-                    <div class="contact-methods mt-4">
-                        <!-- [CORREÇÃO] rel="noopener noreferrer" em links externos para segurança -->
-                        <a
-                            href="https://wa.me/5500000000000"
-                            class="btn btn-primary btn-glow"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Falar com a agência no WhatsApp (abre em nova aba)"
-                        >
-                            Falar no WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cta-form glass">
-                    <!-- [CORREÇÃO] novalidate removido — validação nativa do HTML é útil como fallback.
-                         action e method devem ser preenchidos com o endpoint real de backend/form service -->
-                    <form
-                        id="contactForm"
-                        class="modern-form"
-                        action="#"
-                        method="POST"
-                        novalidate
-                        aria-label="Formulário de solicitação de orçamento"
-                    >
-                        <h3>Solicite um Orçamento</h3>
-
-                        <!-- [CORREÇÃO] <label> adicionado a todos os campos — obrigatório para acessibilidade -->
-                        <div class="input-group">
-                            <label for="nome" class="sr-only">Seu Nome</label>
-                            <input
-                                type="text"
-                                id="nome"
-                                name="nome"
-                                required
-                                placeholder="Seu Nome"
-                                autocomplete="name"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <label for="telefone" class="sr-only">WhatsApp</label>
-                            <input
-                                type="tel"
-                                id="telefone"
-                                name="telefone"
-                                required
-                                placeholder="WhatsApp"
-                                autocomplete="tel"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <label for="email" class="sr-only">E-mail profissional</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                placeholder="E-mail profissional"
-                                autocomplete="email"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <!-- [CORREÇÃO] label para o select -->
-                            <label for="servico" class="sr-only">Serviço desejado</label>
-                            <select id="servico" name="servico" required aria-required="true">
-                                <option value="" disabled selected>Serviço desejado...</option>
-                                <option value="web">Desenvolvimento Web</option>
-                                <option value="social">Gestão de Mídias</option>
-                                <option value="pack">Pack de Postagens</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="mensagem" class="sr-only">Mensagem sobre o projeto</label>
-                            <textarea
-                                id="mensagem"
-                                name="mensagem"
-                                rows="4"
-                                placeholder="Fale um pouco sobre o seu projeto..."
-                            ></textarea>
-                        </div>
-
-                        <!-- [CORREÇÃO] type="submit" explícito -->
-                        <button type="submit" class="btn btn-secondary w-100 mt-2">Enviar Solicitação</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- [CORREÇÃO] role="contentinfo" para o footer — landmark de acessibilidade -->
-    <footer class="footer-premium bg-darker text-center section-spacing" role="contentinfo">
+    <!-- PROBLEMA / LEAD -->
+    <section id="problema" class="section-problema">
         <div class="container">
-            <a href="#inicio" class="logo-placeholder mb-2" aria-label="Agência Digital — Voltar ao topo">
-                Agência<span class="text-orange">.</span>
-            </a>
-            <p class="text-gray-mid mb-4">Elevando o padrão digital de marcas ambiciosas.</p>
+            <div class="section-tag reveal">O cenário atual</div>
+            <h2 class="section-title reveal">Seu concorrente já está crescendo.<br><span class="gradient-text">Você
+                    ainda está esperando?</span></h2>
+            <p class="section-sub reveal">Todo dia sem presença digital forte é um dia que seu concorrente está
+                conquistando clientes que deveriam ser seus.</p>
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <div class="p-icon">😓</div>
+                    <h3>Sem tempo para postar</h3>
+                    <p>Você tenta manter o perfil ativo, mas entre reuniões e entregas, as redes ficam abandonadas por
+                        dias.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="p-icon">📉</div>
+                    <h3>Engajamento no zero</h3>
+                    <p>Posts que não geram curtidas, comentários nem visitas. Investimento de tempo sem retorno visível.
+                    </p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="p-icon">🤷</div>
+                    <h3>Sem estratégia definida</h3>
+                    <p>Postar por postar não funciona. Sem calendário, identidade e estratégia, a conta não cresce.</p>
+                </div>
+                <div class="problem-card reveal">
+                    <div class="p-icon">👻</div>
+                    <h3>Invisível no digital</h3>
+                    <p>Clientes pesquisam online antes de comprar. Se você não aparece, eles escolhem seu concorrente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- [CORREÇÃO] nav com aria-label para as redes sociais -->
-            <nav aria-label="Redes sociais" class="social-links mb-4">
-                <a href="#" aria-label="Instagram da Agência" rel="noopener noreferrer" target="_blank">IG</a>
-                <a href="#" aria-label="LinkedIn da Agência" rel="noopener noreferrer" target="_blank">IN</a>
-                <a href="#" aria-label="Behance da Agência" rel="noopener noreferrer" target="_blank">BE</a>
-            </nav>
+    <!-- SOLUÇÃO -->
+    <section id="servicos" class="section-solucao">
+        <div class="container">
+            <div class="section-tag reveal">Nossa solução</div>
+            <h2 class="section-title reveal">Gestão completa que transforma<br><span class="gradient-text">seguidores em
+                    clientes</span></h2>
+            <div class="solution-grid">
+                <div class="sol-card reveal">
+                    <div class="sol-icon">📅</div>
+                    <h3>Calendário Editorial</h3>
+                    <p>Planejamento mensal de conteúdo estratégico, alinhado com seus objetivos de negócio e
+                        sazonalidades.</p>
+                    <div class="sol-tag">Estratégia</div>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-icon">🎨</div>
+                    <h3>Design Profissional</h3>
+                    <p>Identidade visual consistente em cada post. Arte que comunica autoridade e gera desejo nos
+                        seguidores.</p>
+                    <div class="sol-tag">Visual</div>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-icon">✍️</div>
+                    <h3>Copy Persuasiva</h3>
+                    <p>Legendas que vendem, CTAs que convertem e storytelling que conecta sua marca ao público.</p>
+                    <div class="sol-tag">Texto</div>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-icon">📊</div>
+                    <h3>Relatórios Mensais</h3>
+                    <p>Métricas detalhadas, insights acionáveis e ajuste de estratégia baseado em dados reais.</p>
+                    <div class="sol-tag">Dados</div>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-icon">🚀</div>
+                    <h3>Crescimento Orgânico</h3>
+                    <p>Técnicas de crescimento que atraem seguidores qualificados — pessoas que realmente compram.</p>
+                    <div class="sol-tag">Crescimento</div>
+                </div>
+                <div class="sol-card reveal">
+                    <div class="sol-icon">🎯</div>
+                    <h3>Posicionamento Digital</h3>
+                    <p>Seu perfil se torna referência no nicho. Clientes chegam até você com autoridade estabelecida.
+                    </p>
+                    <div class="sol-tag">Autoridade</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <!-- [CORREÇÃO] <small> para texto de copyright — semântica correta -->
-            <small class="copyright text-gray-darker">
-                &copy; <span id="current-year">2026</span> Agência Digital. Todos os direitos reservados.
-            </small>
+    <!-- BENEFÍCIOS CAROUSEL -->
+    <section id="beneficios" class="section-benefits">
+        <div class="container">
+            <div class="section-tag reveal">Por que nos escolher</div>
+            <h2 class="section-title reveal">Diferenciais que fazem<br><span class="gradient-text">a diferença
+                    real</span></h2>
+        </div>
+        <div class="benefits-track">
+            <div class="benefits-inner">
+                <div class="benefit-card">✓ Atendimento Humanizado</div>
+                <div class="benefit-card">✓ Design Exclusivo</div>
+                <div class="benefit-card">✓ Estratégia Personalizada</div>
+                <div class="benefit-card">✓ Entrega Rápida</div>
+                <div class="benefit-card">✓ Suporte Pós-Projeto</div>
+                <div class="benefit-card">✓ Foco em Conversão</div>
+                <div class="benefit-card">✓ Comunicação Transparente</div>
+                <div class="benefit-card">✓ Alta Qualidade Visual</div>
+                <div class="benefit-card">✓ Atendimento Humanizado</div>
+                <div class="benefit-card">✓ Design Exclusivo</div>
+                <div class="benefit-card">✓ Estratégia Personalizada</div>
+                <div class="benefit-card">✓ Entrega Rápida</div>
+                <div class="benefit-card">✓ Suporte Pós-Projeto</div>
+                <div class="benefit-card">✓ Foco em Conversão</div>
+                <div class="benefit-card">✓ Comunicação Transparente</div>
+                <div class="benefit-card">✓ Alta Qualidade Visual</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVIDÊNCIAS / DEPOIMENTOS -->
+    <section id="resultados" class="section-depoimentos">
+        <div class="container">
+            <div class="section-tag reveal">Resultados reais</div>
+            <h2 class="section-title reveal">O que nossos clientes<br><span class="gradient-text">estão dizendo</span>
+            </h2>
+            <div class="depo-slider" id="depo-slider">
+                <div class="depo-card active">
+                    <div class="depo-stars">★★★★★</div>
+                    <p>"Em 3 meses meu Instagram saiu de 800 para 9.200 seguidores. Mais que isso: triplicamos os
+                        agendamentos na clínica. O trabalho deles é impressionante."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">DR</div>
+                        <div><strong>Dr. Rodrigo Alves</strong><span>Clínica Odontológica</span></div>
+                    </div>
+                </div>
+                <div class="depo-card">
+                    <div class="depo-stars">★★★★★</div>
+                    <p>"Minha academia passou a ser referência na região. Os posts são profissionais, o engajamento
+                        explodiu e as matrículas aumentaram 40% no primeiro trimestre."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">MA</div>
+                        <div><strong>Marcos Andrade</strong><span>FitLife Academia</span></div>
+                    </div>
+                </div>
+                <div class="depo-card">
+                    <div class="depo-stars">★★★★★</div>
+                    <p>"Sou corretora e nunca imaginei que o Instagram poderia me trazer tantos leads qualificados.
+                        Fechei 3 imóveis em 2 meses, direto pelo DM."</p>
+                    <div class="depo-author">
+                        <div class="depo-avatar">CF</div>
+                        <div><strong>Carla Ferreira</strong><span>Corretora de Imóveis</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="depo-dots">
+                <button class="dot-btn active" data-index="0"></button>
+                <button class="dot-btn" data-index="1"></button>
+                <button class="dot-btn" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section class="section-planos">
+        <div class="container">
+            <div class="section-tag reveal">Investimento</div>
+            <h2 class="section-title reveal">Escolha o plano ideal<br><span class="gradient-text">para o seu
+                    negócio</span></h2>
+            <div class="planos-grid">
+                <div class="plano-card reveal">
+                    <div class="plano-nome">Essencial</div>
+                    <div class="plano-preco">R$ <span>997</span>/mês</div>
+                    <ul class="plano-items">
+                        <li>12 posts por mês</li>
+                        <li>3 stories/semana</li>
+                        <li>Calendário editorial</li>
+                        <li>Relatório mensal</li>
+                        <li>1 rede social</li>
+                    </ul>
+                    <a href="#contato" class="btn-secondary">Começar Agora</a>
+                </div>
+                <div class="plano-card destaque reveal">
+                    <div class="plano-badge">Mais Popular</div>
+                    <div class="plano-nome">Profissional</div>
+                    <div class="plano-preco">R$ <span>1.897</span>/mês</div>
+                    <ul class="plano-items">
+                        <li>20 posts por mês</li>
+                        <li>Stories diários</li>
+                        <li>Reels estratégicos</li>
+                        <li>Calendário editorial avançado</li>
+                        <li>Relatório semanal</li>
+                        <li>2 redes sociais</li>
+                        <li>Gestão de DMs</li>
+                    </ul>
+                    <a href="#contato" class="btn-primary">Quero Este Plano</a>
+                </div>
+                <div class="plano-card reveal">
+                    <div class="plano-nome">Elite</div>
+                    <div class="plano-preco">R$ <span>3.200</span>/mês</div>
+                    <ul class="plano-items">
+                        <li>Posts ilimitados</li>
+                        <li>Stories + Reels + Lives</li>
+                        <li>Estratégia 360°</li>
+                        <li>Tráfego pago integrado</li>
+                        <li>Reuniões semanais</li>
+                        <li>3+ redes sociais</li>
+                        <li>Gestor dedicado</li>
+                    </ul>
+                    <a href="#contato" class="btn-secondary">Falar com Especialista</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GARANTIA -->
+    <section class="section-garantia">
+        <div class="container">
+            <div class="garantia-inner reveal">
+                <div class="garantia-icon">🛡️</div>
+                <div class="garantia-content">
+                    <h2>Processo simples, resultado garantido</h2>
+                    <p>Começamos com uma reunião de onboarding para entender seu negócio. Em 7 dias, entregamos o
+                        primeiro calendário editorial. Se em 30 dias você não sentir evolução, revisamos a estratégia
+                        sem custo extra.</p>
+                    <div class="garantia-items">
+                        <span>✓ Onboarding em 48h</span>
+                        <span>✓ Suporte via WhatsApp</span>
+                        <span>✓ Reuniões de alinhamento</span>
+                        <span>✓ Relatórios transparentes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-faq">
+        <div class="container">
+            <div class="section-tag reveal">Dúvidas frequentes</div>
+            <h2 class="section-title reveal">Perguntas e <span class="gradient-text">Respostas</span></h2>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-q">Preciso ter muitos seguidores para começar? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Não. Começamos do zero e construímos uma base sólida de seguidores qualificados. O que
+                            importa não é quantidade, mas a qualidade do público que você atrai.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q">Quanto tempo leva para ver resultados? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Resultados iniciais de engajamento aparecem nas primeiras semanas. Crescimento de seguidores
+                            e geração de leads são evidentes a partir do segundo mês de estratégia consistente.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q">Vocês criam o conteúdo por completo? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Sim. Cuidamos de tudo: estratégia, design, copy das legendas, hashtags e publicação. Você só
+                            precisa aprovar antes de publicarmos.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q">Posso gerenciar minha conta ao mesmo tempo? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Sim, você mantém total controle. Trabalhamos em colaboração — você pode publicar conteúdos
+                            extras e nós cuidamos da estratégia principal.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q">Funciona para qualquer segmento? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Sim. Atendemos clínicas, academias, restaurantes, corretores, advogados, lojas físicas e
+                            virtuais. Adaptamos a estratégia para cada nicho.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q">Posso cancelar quando quiser? <span>+</span></button>
+                    <div class="faq-a">
+                        <p>Os planos têm fidelidade mínima de 3 meses para garantir resultados consistentes. Após isso,
+                            você pode cancelar com 30 dias de aviso prévio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">SM<span class="dot">.</span></div>
+            <p>© 2025 Social Media Pro. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+            </div>
         </div>
     </footer>
 
-    <!-- ===================== WHATSAPP FLUTUANTE ===================== -->
-    <!-- [CORREÇÃO] rel="noopener noreferrer" adicionado; aria-label mais descritivo -->
-    <div class="whatsapp-floating tooltip-container">
-        <span class="tooltip-text glass" role="tooltip" id="wpp-tooltip">Fale conosco!</span>
-        <a
-            href="https://wa.me/5500000000000"
-            class="btn-wpp pulse-infinite"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Conversar com a agência no WhatsApp (abre em nova aba)"
-            aria-describedby="wpp-tooltip"
-        >
-            <svg class="wpp-icon" viewBox="0 0 24 24" width="30" height="30" fill="#fff" role="img" aria-hidden="true" focusable="false">
-                <title>WhatsApp</title>
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-            </svg>
-        </a>
-    </div>
-
-    <!-- [CORREÇÃO] Classe sr-only via style inline para ser autossuficiente sem depender do CSS externo -->
-    <style>
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-    </style>
-
     <script src="script.js"></script>
-
-    <!-- [CORREÇÃO] Script inline mínimo para ano automático e accordion funcional
-         sem depender do script.js externo para funcionalidades críticas de acessibilidade -->
-    <script>
-        // Ano dinâmico no copyright
-        const yearEl = document.getElementById('current-year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-        // Accordion acessível: toggle aria-expanded + hidden
-        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
-            trigger.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                const targetId = this.getAttribute('aria-controls');
-                const content = document.getElementById(targetId);
-
-                this.setAttribute('aria-expanded', String(!expanded));
-                if (content) content.hidden = expanded;
-
-                // Fecha os outros itens (comportamento padrão de accordion)
-                document.querySelectorAll('.accordion-trigger').forEach(other => {
-                    if (other !== this) {
-                        other.setAttribute('aria-expanded', 'false');
-                        const otherId = other.getAttribute('aria-controls');
-                        const otherContent = document.getElementById(otherId);
-                        if (otherContent) otherContent.hidden = true;
-                    }
-                });
-            });
-        });
-
-        // Menu mobile: toggle aria-expanded
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                this.setAttribute('aria-expanded', String(!expanded));
-            });
-        }
-
-        // Filtros do portfólio: atualiza aria-pressed
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
-                this.setAttribute('aria-pressed', 'true');
-            });
-        });
-    </script>
-
 </body>
+
 </html>
