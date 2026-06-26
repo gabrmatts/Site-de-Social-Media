@@ -1,0 +1,375 @@
+/* ==========================================
+   RESPONSIVO — Mobile First
+   Breakpoints: 1024px | 768px | 480px
+   ========================================== */
+
+/* ==========================================
+   TABLET (≤ 1024px)
+   ========================================== */
+@media (max-width: 1024px) {
+
+    /* Layout */
+    .container {
+        padding: 0 2rem;
+    }
+
+    .section-spacing {
+        padding: 5rem 0;
+    }
+
+    /* Hero */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        letter-spacing: -2px;
+    }
+
+    .subheadline {
+        margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .mockup-dashboard {
+        height: 320px;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    /* Layout split */
+    .layout-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    /* Estatísticas */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 3rem 2rem;
+    }
+
+    .stat-item + .stat-item::before {
+        display: none;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 1.5rem;
+    }
+
+    .pricing-card.premium {
+        padding: 3.5rem 2rem;
+    }
+
+    /* FAQ */
+    .faq .layout-split {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-header {
+        text-align: center;
+    }
+
+    /* Story */
+    .story-image .image-placeholder {
+        height: 320px;
+    }
+
+    /* Garantia */
+    .guarantee-content {
+        padding: 2.5rem 2rem;
+    }
+}
+
+/* ==========================================
+   MOBILE (≤ 768px)
+   ========================================== */
+@media (max-width: 768px) {
+
+    /* Container */
+    .container {
+        padding: 0 1.25rem;
+    }
+
+    .section-spacing {
+        padding: 4rem 0;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Menu mobile aberto */
+    .nav-content.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        background: rgba(6, 6, 7, 0.97);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid rgba(232, 80, 2, 0.12);
+        z-index: 999;
+    }
+
+    .nav-content.menu-open .nav-links a {
+        font-size: 1.1rem;
+        color: var(--white);
+    }
+
+    .nav-content.menu-open .nav-cta {
+        display: inline-flex;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    /* Seção de headers */
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.8rem;
+        letter-spacing: -1px;
+    }
+
+    /* Hero */
+    .hero {
+        padding-top: 80px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.4rem;
+        letter-spacing: -1.5px;
+    }
+
+    .subheadline {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .mockup-dashboard {
+        height: 260px;
+    }
+
+    /* Cards */
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .card {
+        padding: 1.75rem;
+    }
+
+    /* Story */
+    .story-image .image-placeholder {
+        height: 240px;
+    }
+
+    .story-content h2 {
+        font-size: 1.75rem;
+    }
+
+    /* Serviços */
+    .service-card {
+        min-width: 280px;
+    }
+
+    /* Estatísticas */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    /* Portfólio */
+    .portfolio-filters {
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.82rem;
+    }
+
+    .portfolio-card {
+        min-width: 300px;
+    }
+
+    .portfolio-image {
+        height: 200px;
+    }
+
+    /* Depoimentos */
+    .testimonial-card {
+        min-width: 300px;
+        padding: 1.75rem;
+    }
+
+    /* Pricing */
+    .pricing-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .pricing-card.premium {
+        padding: 2.5rem 1.5rem;
+    }
+
+    /* Diferenciais */
+    .grid-icons {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    /* FAQ */
+    .accordion-trigger {
+        font-size: 0.95rem;
+        padding: 1.1rem;
+    }
+
+    /* CTA / Formulário */
+    .cta-text h2 {
+        font-size: 1.9rem;
+        letter-spacing: -1px;
+    }
+
+    .modern-form {
+        padding: 1.75rem 1.25rem;
+    }
+
+    /* Garantia */
+    .guarantee-content {
+        padding: 2rem 1.5rem;
+    }
+
+    /* WhatsApp */
+    .whatsapp-floating {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .btn-wpp {
+        width: 56px;
+        height: 56px;
+    }
+
+    .tooltip-text {
+        display: none;
+    }
+}
+
+/* ==========================================
+   MOBILE PEQUENO (≤ 480px)
+   ========================================== */
+@media (max-width: 480px) {
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section-spacing {
+        padding: 3.5rem 0;
+    }
+
+    /* Hero */
+    .hero-content h1 {
+        font-size: 2rem;
+        letter-spacing: -1px;
+    }
+
+    /* Stats — coluna única em telas muito pequenas */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.78rem;
+    }
+
+    /* Serviços */
+    .service-card {
+        min-width: 260px;
+    }
+
+    /* Portfólio */
+    .portfolio-card {
+        min-width: 260px;
+    }
+
+    /* Depoimentos */
+    .testimonial-card {
+        min-width: 260px;
+    }
+
+    /* Botões */
+    .btn {
+        padding: 13px 22px;
+        font-size: 0.9rem;
+    }
+
+    /* Logo */
+    .logo-placeholder {
+        font-size: 1.35rem;
+    }
+
+    /* Section headers */
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+
+    /* CTA */
+    .cta-text h2 {
+        font-size: 1.6rem;
+    }
+}
