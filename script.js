@@ -12,6 +12,21 @@
   const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
   /* -------------------------------------------------------------------
+     Utilitário: debounce
+     Evita que funções pesadas (ex: recalcular o canvas do hero) rodem
+     dezenas de vezes por segundo durante um resize. Isso importa
+     especialmente no mobile, onde o Safari/Chrome disparam "resize"
+     toda vez que a barra de endereço aparece/some durante o scroll.
+     ------------------------------------------------------------------- */
+  function debounce(fn, delay) {
+    let timer = null;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
+  /* -------------------------------------------------------------------
      MÓDULO: Loading Screen
      Exibe o loader até a página estar pronta, depois some suavemente.
      ------------------------------------------------------------------- */
@@ -27,11 +42,18 @@
 
       document.body.style.overflow = 'hidden';
 
-      window.addEventListener('load', () => {
-        setTimeout(hide, 900);
-      });
+      // Se a página já terminou de carregar antes deste script rodar
+      // (ex: recursos em cache carregando muito rápido), o evento 'load'
+      // já teria disparado e o listener abaixo nunca seria chamado.
+      // Este check cobre esse caso.
+      if (document.readyState === 'complete') {
+        setTimeout(hide, 400);
+      } else {
+        window.addEventListener('load', () => setTimeout(hide, 900));
+      }
 
-      // Fallback: caso o evento load demore demais, força o fim do loader.
+      // Fallback: caso o carregamento demore demais, força o fim do loader
+      // para nunca travar o usuário numa tela preta.
       setTimeout(hide, 3500);
     }
   };
@@ -55,7 +77,6 @@
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Pequeno atraso escalonado para cards no mesmo grupo
               entry.target.classList.add('is-visible');
               observer.unobserve(entry.target);
             }
@@ -86,30 +107,48 @@
   };
 
   /* -------------------------------------------------------------------
-     MÓDULO: Navbar Dinâmica
-     Adiciona fundo/blur na navbar conforme o scroll.
+     MÓDULO: Navbar Dinâmica + Botão Voltar ao Topo
+     Os dois dependem de scrollY, então dividem um único listener de
+     scroll (throttled via requestAnimationFrame) em vez de dois
+     listeners separados — menos trabalho por frame no mobile.
      ------------------------------------------------------------------- */
-  const NavbarModule = {
+  const ScrollStateModule = {
     init() {
       const navbar = document.getElementById('navbar');
-      if (!navbar) return;
+      const backToTop = document.getElementById('backToTop');
+      if (!navbar && !backToTop) return;
 
-      const toggleScrollState = () => {
-        if (window.scrollY > 40) {
-          navbar.classList.add('is-scrolled');
-        } else {
-          navbar.classList.remove('is-scrolled');
+      let ticking = false;
+
+      const update = () => {
+        const y = window.scrollY;
+        if (navbar) navbar.classList.toggle('is-scrolled', y > 40);
+        if (backToTop) backToTop.classList.toggle('is-visible', y > 600);
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
         }
       };
 
-      toggleScrollState();
-      window.addEventListener('scroll', toggleScrollState, { passive: true });
+      update();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      if (backToTop) {
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+      }
     }
   };
 
   /* -------------------------------------------------------------------
      MÓDULO: Menu Mobile
-     Abre/fecha o menu em telas pequenas e fecha ao clicar em um link.
+     Abre/fecha o menu em telas pequenas, fecha ao clicar em um link,
+     e trava o scroll do conteúdo por trás enquanto o menu está aberto.
      ------------------------------------------------------------------- */
   const MobileMenuModule = {
     init() {
@@ -120,11 +159,18 @@
       const closeMenu = () => {
         toggle.classList.remove('is-open');
         menu.classList.remove('is-open');
+        document.body.classList.remove('no-scroll');
+      };
+
+      const openMenu = () => {
+        toggle.classList.add('is-open');
+        menu.classList.add('is-open');
+        document.body.classList.add('no-scroll');
       };
 
       toggle.addEventListener('click', () => {
-        toggle.classList.toggle('is-open');
-        menu.classList.toggle('is-open');
+        const isOpen = menu.classList.contains('is-open');
+        isOpen ? closeMenu() : openMenu();
       });
 
       menu.querySelectorAll('a').forEach((link) => {
@@ -134,33 +180,9 @@
   };
 
   /* -------------------------------------------------------------------
-     MÓDULO: Botão Voltar ao Topo
-     ------------------------------------------------------------------- */
-  const BackToTopModule = {
-    init() {
-      const btn = document.getElementById('backToTop');
-      if (!btn) return;
-
-      const toggleVisibility = () => {
-        if (window.scrollY > 600) {
-          btn.classList.add('is-visible');
-        } else {
-          btn.classList.remove('is-visible');
-        }
-      };
-
-      toggleVisibility();
-      window.addEventListener('scroll', toggleVisibility, { passive: true });
-
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-      });
-    }
-  };
-
-  /* -------------------------------------------------------------------
      MÓDULO: Slider de Depoimentos
-     Slider automático com controle manual via dots, pausa no hover.
+     Slider automático com controle manual via dots, pausa no hover
+     (desktop) e também ao tocar/arrastar (mobile).
      ------------------------------------------------------------------- */
   const TestimonialSliderModule = {
     init() {
@@ -169,11 +191,12 @@
       if (!track || !dotsWrapper) return;
 
       const slides = Array.from(track.children);
+      if (slides.length <= 1) return;
+
       let current = 0;
       let intervalId = null;
       const AUTOPLAY_DELAY = 5500;
 
-      // Cria os dots dinamicamente
       slides.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.classList.add('slider-dot');
@@ -208,6 +231,10 @@
       const sliderEl = document.getElementById('testimonialSlider');
       sliderEl.addEventListener('mouseenter', stopAutoplay);
       sliderEl.addEventListener('mouseleave', startAutoplay);
+      // No touch, mouseenter/mouseleave não disparam — pausa ao tocar
+      // e retoma a autoplay depois de um tempo parado.
+      sliderEl.addEventListener('touchstart', stopAutoplay, { passive: true });
+      sliderEl.addEventListener('touchend', () => setTimeout(startAutoplay, 2000), { passive: true });
 
       startAutoplay();
     }
@@ -225,6 +252,7 @@
 
       let targetX = 0, targetY = 0;
       let currentX = 0, currentY = 0;
+      let rafId = null;
 
       window.addEventListener('mousemove', (e) => {
         targetX = e.clientX;
@@ -232,14 +260,22 @@
         glow.classList.add('is-active');
       });
 
-      // Suaviza o movimento com interpolação (lerp) via requestAnimationFrame
       function animate() {
         currentX += (targetX - currentX) * 0.12;
         currentY += (targetY - currentY) * 0.12;
         glow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
-        requestAnimationFrame(animate);
+        rafId = requestAnimationFrame(animate);
       }
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
+
+      // Pausa quando a aba não está visível, economizando CPU/bateria.
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+        } else {
+          rafId = requestAnimationFrame(animate);
+        }
+      });
     }
   };
 
@@ -247,7 +283,14 @@
      MÓDULO: Rede de Nós no Hero (elemento de assinatura visual)
      Canvas leve com pontos conectados por linhas finas, representando
      a interligação entre Marketing, Social Media e Web Design.
-     Reage sutilmente à posição do mouse (paralaxe suave).
+
+     Otimizações para mobile:
+     - Menos nós em telas estreitas (custo O(n²) cresce rápido)
+     - Pausa completamente quando o hero sai da viewport (IntersectionObserver)
+     - Pausa quando a aba fica em segundo plano (visibilitychange)
+     - Resize com debounce, para não recriar os nós dezenas de vezes
+       durante o scroll no iOS Safari (onde a barra de endereço
+       recolher/expandir dispara "resize")
      ------------------------------------------------------------------- */
   const HeroNetworkModule = {
     init() {
@@ -258,9 +301,19 @@
       const ctx = canvas.getContext('2d');
       let width, height, nodes;
       let mouseX = 0, mouseY = 0;
+      let rafId = null;
+      let isRunning = false;
 
-      const NODE_COUNT = 46;
       const MAX_DISTANCE = 150;
+
+      function getNodeCount() {
+        // Menos partículas em telas pequenas: o custo por par de nós
+        // é O(n²), então reduzir de 46 para 18 corta o trabalho por
+        // frame em quase 85%, o que é sensível em CPUs de celular.
+        if (window.innerWidth < 480) return 14;
+        if (window.innerWidth < 768) return 20;
+        return 46;
+      }
 
       function resize() {
         width = canvas.width = hero.offsetWidth;
@@ -268,7 +321,8 @@
       }
 
       function createNodes() {
-        nodes = Array.from({ length: NODE_COUNT }, () => ({
+        const count = getNodeCount();
+        nodes = Array.from({ length: count }, () => ({
           x: Math.random() * width,
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * 0.25,
@@ -277,16 +331,16 @@
       }
 
       function step() {
+        if (!isRunning) return;
+
         ctx.clearRect(0, 0, width, height);
 
-        // Leve deslocamento influenciado pelo mouse (paralaxe suave)
         const offsetX = (mouseX - width / 2) * 0.01;
         const offsetY = (mouseY - height / 2) * 0.01;
 
         nodes.forEach((node) => {
           node.x += node.vx;
           node.y += node.vy;
-
           if (node.x < 0 || node.x > width) node.vx *= -1;
           if (node.y < 0 || node.y > height) node.vy *= -1;
         });
@@ -318,17 +372,54 @@
           ctx.fill();
         });
 
-        requestAnimationFrame(step);
+        rafId = requestAnimationFrame(step);
+      }
+
+      function start() {
+        if (isRunning) return;
+        isRunning = true;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function stop() {
+        isRunning = false;
+        if (rafId) cancelAnimationFrame(rafId);
       }
 
       resize();
       createNodes();
-      requestAnimationFrame(step);
 
-      window.addEventListener('resize', () => {
+      // Só roda a animação enquanto o hero estiver de fato visível na tela.
+      // Assim que o usuário rola para as próximas seções, o canvas para
+      // completamente de consumir CPU/bateria.
+      const visibilityObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              start();
+            } else {
+              stop();
+            }
+          });
+        },
+        { threshold: 0 }
+      );
+      visibilityObserver.observe(hero);
+
+      // Pausa também quando a aba do navegador está em segundo plano.
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stop();
+        } else if (hero.getBoundingClientRect().top < window.innerHeight) {
+          start();
+        }
+      });
+
+      const onResize = debounce(() => {
         resize();
         createNodes();
-      });
+      }, 200);
+      window.addEventListener('resize', onResize);
 
       hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
@@ -339,17 +430,87 @@
   };
 
   /* -------------------------------------------------------------------
+     MÓDULO: Slider Antes/Depois (comparativo de auditoria)
+     Arraste com mouse, toque (Pointer Events cobre os dois) e teclado
+     (setas esquerda/direita), com suporte a leitor de tela via
+     role="slider" + aria-valuenow atualizado em tempo real.
+     ------------------------------------------------------------------- */
+  const CompareSliderModule = {
+    init() {
+      const wrapper = document.getElementById('compareSlider');
+      const frame = document.getElementById('compareFrame');
+      const handle = document.getElementById('compareHandle');
+      if (!wrapper || !frame || !handle) return;
+
+      let isDragging = false;
+
+      function setPosition(percent) {
+        const clamped = Math.min(100, Math.max(0, percent));
+        wrapper.style.setProperty('--pos', `${clamped}%`);
+        handle.setAttribute('aria-valuenow', Math.round(clamped));
+      }
+
+      function percentFromClientX(clientX) {
+        const rect = frame.getBoundingClientRect();
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      // Pointer Events unifica mouse, caneta e toque num único fluxo,
+      // evitando duplicar listeners de mouse e de touch separadamente.
+      handle.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        handle.setPointerCapture(e.pointerId);
+      });
+
+      handle.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        setPosition(percentFromClientX(e.clientX));
+      });
+
+      const stopDragging = (e) => {
+        isDragging = false;
+        if (handle.hasPointerCapture && e && e.pointerId !== undefined) {
+          try { handle.releasePointerCapture(e.pointerId); } catch (err) { /* noop */ }
+        }
+      };
+      handle.addEventListener('pointerup', stopDragging);
+      handle.addEventListener('pointercancel', stopDragging);
+
+      // Clicar em qualquer ponto do quadro também move o controle até lá,
+      // sem precisar acertar exatamente a alça.
+      frame.addEventListener('pointerdown', (e) => {
+        if (e.target === handle || handle.contains(e.target)) return;
+        setPosition(percentFromClientX(e.clientX));
+      });
+
+      // Acessibilidade: setas do teclado movem o controle em passos de 5%.
+      handle.addEventListener('keydown', (e) => {
+        const current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
+        if (e.key === 'ArrowLeft') {
+          setPosition(current - 5);
+          e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+          setPosition(current + 5);
+          e.preventDefault();
+        }
+      });
+
+      setPosition(50);
+    }
+  };
+
+  /* -------------------------------------------------------------------
      Inicialização geral
      ------------------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
     LoaderModule.init();
     ScrollRevealModule.init();
-    NavbarModule.init();
+    ScrollStateModule.init();
     MobileMenuModule.init();
-    BackToTopModule.init();
     TestimonialSliderModule.init();
     CursorGlowModule.init();
     HeroNetworkModule.init();
+    CompareSliderModule.init();
   });
 
 })();
