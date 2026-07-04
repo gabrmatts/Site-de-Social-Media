@@ -75,6 +75,8 @@ img {
 a {
     color: inherit;
     text-decoration: none;
+    /* Remove o flash cinza ao tocar em links no mobile (Android/iOS) */
+    -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -83,6 +85,7 @@ button {
     border: none;
     background: none;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 ul {
@@ -104,6 +107,12 @@ a:focus-visible,
 button:focus-visible {
     outline: 1px solid var(--white);
     outline-offset: 4px;
+}
+
+/* Trava o scroll do fundo quando o menu mobile está aberto (ver script.js) */
+body.no-scroll {
+    overflow: hidden;
+    height: 100%;
 }
 
 /* Respeita preferência do usuário por menos movimento */
@@ -184,6 +193,8 @@ button:focus-visible {
     letter-spacing: 0.01em;
     transition: transform var(--t-fast), background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
     white-space: nowrap;
+    /* Remove o atraso de ~300ms ao tocar em telas de toque */
+    touch-action: manipulation;
 }
 
 .btn-primary {
@@ -298,6 +309,8 @@ button:focus-visible {
 
 /* ---------------------------------------------------------------------
    5. CURSOR GLOW
+   Desativado por completo em telas de toque — ver responsivo.css
+   e a checagem "isTouchDevice" em script.js.
    --------------------------------------------------------------------- */
 .cursor-glow {
     position: fixed;
@@ -400,11 +413,17 @@ button:focus-visible {
     color: var(--black);
 }
 
+/* Botão do menu mobile — área de toque real de 44x44px (Apple HIG / Material),
+   maior que os 26px visuais, garantida via padding sem alterar o desenho. */
 .navbar-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    width: 26px;
+    width: 44px;
+    height: 44px;
+    padding: 9px;
+    margin: -9px;
 }
 
 .navbar-toggle span {
@@ -432,7 +451,10 @@ button:focus-visible {
    --------------------------------------------------------------------- */
 .hero {
     position: relative;
+    /* Fallback + unidade dinâmica: evita o "salto" de layout no mobile
+       quando a barra de endereço do navegador aparece/some durante o scroll */
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -860,6 +882,17 @@ button:focus-visible {
     transition: transform 0.8s var(--ease);
 }
 
+/* Imagens reais de projetos dentro do card (ver index.html) */
+.portfolio-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Filtro sutil para manter fotos coloridas alinhadas à paleta preto/branco/cinza */
+    filter: grayscale(100%) contrast(1.05);
+}
+
 .portfolio-overlay {
     position: absolute;
     inset: 0;
@@ -1078,7 +1111,257 @@ button:focus-visible {
 }
 
 /* ---------------------------------------------------------------------
-   16. BACK TO TOP
+   17. COMPARATIVO ANTES/DEPOIS (slider arrastável)
+   --------------------------------------------------------------------- */
+.comparativo {
+    padding: var(--section-padding) 0;
+    border-top: 1px solid var(--white-08);
+}
+
+.compare-slider {
+    max-width: 460px;
+    margin: 0 auto;
+    position: relative;
+    /* select:none evita selecionar texto sem querer durante o arraste */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.compare-frame {
+    position: relative;
+    height: 620px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--white-12);
+    background: var(--gray-dark);
+}
+
+.compare-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    /*
+      Fundo sólido é essencial aqui: sem isso, como os dois painéis
+      ficam exatamente empilhados um sobre o outro, o conteúdo de trás
+      (numeros, bio, avatar) "vaza" por baixo do conteúdo da frente e
+      os textos se misturam visualmente.
+    */
+    background: var(--gray-dark);
+}
+
+.compare-after {
+    z-index: 1;
+}
+
+.compare-before {
+    z-index: 2;
+    border-right: 1px solid var(--white-20);
+    /* --pos é atualizado via JS (0 a 100) conforme o arraste */
+    clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
+
+.compare-label {
+    position: absolute;
+    top: 18px;
+    z-index: 3;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: var(--black-60);
+    border: 1px solid var(--white-20);
+    backdrop-filter: blur(6px);
+}
+
+.label-before {
+    left: 18px;
+}
+
+.label-after {
+    right: 18px;
+}
+
+/*
+  Pronto para receber prints reais: quando o mockup em CSS (.ig-mock)
+  for trocado por uma <img> direto dentro de .compare-panel, esta regra
+  já faz a foto preencher o quadro inteiro corretamente.
+  Ex.: <div class="compare-panel compare-before">
+         <span class="compare-label label-before">Antes</span>
+         <img src="img/antes.jpg" alt="Perfil antes da auditoria">
+       </div>
+*/
+.compare-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Linha + alça central de arraste */
+.compare-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--pos, 50%);
+    transform: translateX(-50%);
+    z-index: 4;
+    width: 44px;
+    margin-left: -22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ew-resize;
+    /* impede o navegador de tentar rolar a página durante o arraste no toque */
+    touch-action: none;
+}
+
+.compare-handle-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--white);
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px var(--white-20);
+}
+
+.compare-handle-grip {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--t-fast);
+}
+
+.compare-handle-grip svg {
+    width: 18px;
+    height: 18px;
+}
+
+.compare-handle:hover .compare-handle-grip,
+.compare-handle:focus-visible .compare-handle-grip {
+    transform: scale(1.1);
+}
+
+.compare-handle:focus-visible {
+    outline: none;
+}
+
+.compare-hint {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13.5px;
+    color: var(--gray-light);
+}
+
+/* ---------------------------------------------------------------------
+   18. MOCKUP DE PERFIL DO INSTAGRAM (usado no comparativo acima)
+   Construído só com HTML/CSS — sem imagens reais — respeitando a
+   paleta preto/branco/cinza do projeto.
+   --------------------------------------------------------------------- */
+.ig-mock {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.ig-mock-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 52px 20px 16px;
+}
+
+.ig-avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gray-mid);
+    border: 1px solid var(--white-12);
+}
+
+.ig-stats {
+    display: flex;
+    gap: 22px;
+}
+
+.ig-stats strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.ig-stats span {
+    display: block;
+    color: var(--gray-light);
+    font-size: 11.5px;
+    margin-top: 2px;
+}
+
+.ig-bio {
+    padding: 0 20px 14px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.ig-bio strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13.5px;
+}
+
+.ig-bio p {
+    color: var(--gray-light);
+    white-space: pre-line;
+}
+
+.ig-growth-chip {
+    margin: 0 20px 14px;
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: var(--white);
+    color: var(--black);
+}
+
+.ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    flex: 1;
+    margin: 0 2px;
+}
+
+.ig-cell {
+    display: block;
+}
+
+.ig-quality-tag {
+    padding: 12px 20px 18px;
+    font-size: 12px;
+    color: var(--gray-light);
+}
+
+.tag-good {
+    color: var(--white);
+}
+
+/* ---------------------------------------------------------------------
+   19. BACK TO TOP
    --------------------------------------------------------------------- */
 .back-to-top {
     position: fixed;
@@ -1097,6 +1380,7 @@ button:focus-visible {
     visibility: hidden;
     transform: translateY(10px);
     transition: opacity var(--t-fast), visibility var(--t-fast), transform var(--t-fast);
+    touch-action: manipulation;
 }
 
 .back-to-top svg {

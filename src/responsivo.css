@@ -67,10 +67,14 @@
         top: 0;
         right: 0;
         height: 100vh;
+        height: 100svh;
+        /* fallback + unidade dinâmica, evita corte no iOS Safari */
         width: min(320px, 80vw);
         background: rgba(0, 0, 0, 0.97);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        /* Blur reduzido no mobile: metade do custo de GPU do valor desktop,
+           sem perda perceptível de qualidade em telas pequenas */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
@@ -92,6 +96,12 @@
 
     .nav-cta {
         margin-top: 10px;
+    }
+
+    /* Navbar: reduz blur no scroll também, mesmo motivo acima */
+    .navbar.is-scrolled {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     /* Hero */
@@ -163,9 +173,22 @@
         padding: 120px 0;
     }
 
-    /* Cursor glow desativado em telas de toque (ver script.js) */
+    /*
+      Cursor glow desativado em telas de toque.
+      Reforça em CSS o que o script.js já evita executar via
+      matchMedia('(hover: none)') — dupla proteção sem custo.
+    */
     .cursor-glow {
         display: none;
+    }
+
+    /* Comparativo antes/depois: reduz altura do frame */
+    .compare-frame {
+        height: 560px;
+    }
+
+    .ig-mock-header {
+        padding-top: 46px;
     }
 }
 
@@ -242,5 +265,63 @@
         height: 44px;
         bottom: 20px;
         right: 20px;
+        /* Respeita a área segura em iPhones com gesture bar / notch */
+        bottom: calc(20px + env(safe-area-inset-bottom));
+        right: calc(20px + env(safe-area-inset-right));
+    }
+
+    /* Comparativo antes/depois: encolhe mockup para caber em telas pequenas */
+    .compare-frame {
+        height: 480px;
+    }
+
+    .ig-mock-header {
+        padding: 44px 16px 12px;
+        gap: 14px;
+    }
+
+    .ig-avatar {
+        width: 52px;
+        height: 52px;
+    }
+
+    .ig-stats {
+        gap: 16px;
+    }
+
+    .ig-bio,
+    .ig-growth-chip {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .compare-label {
+        top: 12px;
+        font-size: 10.5px;
+        padding: 5px 11px;
+    }
+
+    .label-before {
+        left: 12px;
+    }
+
+    .label-after {
+        right: 12px;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   PREFERÊNCIA DE DADOS REDUZIDOS
+   Em conexões lentas/economizadoras (Android "Lite mode", Safari
+   "Reduce Data Use"), corta os dois efeitos mais caros da página:
+   o brilho do cursor e a animação de rede no hero.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-data: reduce) {
+    .cursor-glow {
+        display: none;
+    }
+
+    .hero-canvas {
+        display: none;
     }
 }
