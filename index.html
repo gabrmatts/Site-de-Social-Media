@@ -1,755 +1,489 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GS Company — Marketing Digital, Social Media e Web Design</title>
+    <meta name="description"
+        content="A GS Company transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
 
-    <!-- SEO: título mais descritivo e com keyword principal -->
-    <title>Agência Digital | Desenvolvimento Web, Marketing e Design Estratégico</title>
-    <meta name="description" content="Agência digital especializada em desenvolvimento web de alta conversão, gestão de mídias sociais e design estratégico. Mais de 100 projetos entregues. Solicite um orçamento.">
-
-    <!-- Open Graph para compartilhamento em redes sociais -->
-    <meta property="og:title" content="Agência Digital | Acelere seus Resultados">
-    <meta property="og:description" content="Desenvolvimento web, marketing digital e design estratégico para acelerar suas vendas.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-
-    <!-- Canonical para evitar conteúdo duplicado -->
-    <link rel="canonical" href="https://seudominio.com.br/">
-
-    <!-- Preconnect para carregamento mais rápido da fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tipografia: Cabinet Grotesk (display) + General Sans (texto) via Fontshare -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@600,500,400&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/responsivo.css">
-
-    <!-- [CORREÇÃO] Preferência por movimento reduzido — acessibilidade -->
-    <style>
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
 </head>
 
-<!-- [CORREÇÃO] Removida classe "dark-mode" do body — o modo escuro deve ser controlado via CSS ou JS,
-     não hardcoded no HTML, para permitir alternância de tema no futuro -->
 <body>
 
-    <!-- [CORREÇÃO] role="banner" adicionado para acessibilidade com leitores de tela -->
-    <header class="navbar sticky-glass" role="banner">
-        <div class="container nav-content">
-            <!-- [CORREÇÃO] Logo como link para o início é boa prática de UX e acessibilidade -->
-            <a href="#inicio" class="logo-placeholder" aria-label="Agência Digital — Início">
-                Agência<span class="text-orange">.</span>
+    <!-- ============================================= -->
+    <!-- LOADING SCREEN -->
+    <!-- ============================================= -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <img src="img/GS Company.png" alt="GS Company" class="loader-logo">
+            <div class="loader-bar"><span class="loader-bar-fill"></span></div>
+        </div>
+    </div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- ============================================= -->
+    <!-- NAVBAR -->
+    <!-- ============================================= -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <a href="#topo" class="navbar-logo">
+                <img src="img/GS Company.png" alt="GS Company">
             </a>
 
-            <!-- [CORREÇÃO] aria-label descritivo na nav -->
-            <nav aria-label="Navegação principal">
-                <!-- [CORREÇÃO] role="list" adicionado para compatibilidade com leitores de tela -->
-                <ul class="nav-links" role="list">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#solucoes">Serviços</a></li>
-                    <li><a href="#portfolio">Portfólio</a></li>
-                    <li><a href="#resultados">Resultados</a></li>
-                    <li><a href="#depoimentos">Depoimentos</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
+            <nav class="navbar-menu" id="navbarMenu">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#servicos" class="nav-link">Serviços</a>
+                <a href="#processo" class="nav-link">Processo</a>
+                <a href="#portfolio" class="nav-link">Portfólio</a>
+                <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="#contato" class="nav-link nav-cta">Orçamento</a>
             </nav>
 
-            <a href="#contato" class="btn btn-primary nav-cta">Solicitar Orçamento</a>
-
-            <!-- [CORREÇÃO] aria-expanded e aria-controls adicionados para acessibilidade do menu mobile -->
-            <button
-                class="mobile-menu-toggle"
-                aria-label="Abrir menu de navegação"
-                aria-expanded="false"
-                aria-controls="mobile-nav"
-                type="button"
-            >
-                <span class="hamburger" aria-hidden="true"></span>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
-    <!-- [CORREÇÃO] role="main" adicionado para landmark de acessibilidade -->
-    <main role="main">
+    <!-- ============================================= -->
+    <!-- HERO -->
+    <!-- ============================================= -->
+    <section class="hero" id="topo">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
 
-        <!-- ===================== HERO ===================== -->
-        <section class="hero" id="inicio" aria-labelledby="hero-heading">
-            <div class="animated-gradient-bg" aria-hidden="true"></div>
-            <div class="container hero-grid">
-                <div class="hero-content reveal fade-in">
-                    <!-- [CORREÇÃO] id adicionado para o aria-labelledby da section -->
-                    <h1 id="hero-heading">
-                        Sua Presença Digital Pode Vender
-                        <span class="text-orange text-glow">Muito Mais</span>
-                    </h1>
-                    <!-- [CORREÇÃO] <p> com classe mais semântica -->
-                    <p class="subheadline">
-                        Desenvolvimento web, marketing digital e design estratégico
-                        reunidos em uma única solução para acelerar seus resultados.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#contato" class="btn btn-primary btn-glow">Solicitar Orçamento</a>
-                        <a href="#portfolio" class="btn btn-secondary">Ver Portfólio</a>
+        <div class="container hero-content">
+            <img src="img/GS Company.png" alt="GS Company" class="hero-logo reveal" data-reveal>
+
+            <span class="eyebrow reveal" data-reveal>Agência de Performance Digital</span>
+
+            <h1 class="hero-title reveal" data-reveal>
+                Transformamos presença digital<br> em resultados.
+            </h1>
+
+            <p class="hero-subtitle reveal" data-reveal>
+                Marketing, Social Media e Web Design para empresas que querem crescer de verdade.
+            </p>
+
+            <div class="hero-buttons reveal" data-reveal>
+                <a href="#contato" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- SOBRE -->
+    <!-- ============================================= -->
+    <section class="sobre" id="sobre">
+        <div class="container sobre-grid">
+
+            <div class="sobre-texto reveal" data-reveal>
+                <span class="section-label">Quem Somos</span>
+                <h2 class="section-title">
+                    Uma agência construída<br> para gerar crescimento real.
+                </h2>
+                <p class="section-text">
+                    A GS Company nasceu para resolver um problema simples: empresas investem em
+                    presença digital sem estratégia e sem resultado. Unimos marketing de performance,
+                    gestão de redes sociais e desenvolvimento web em um único processo, pensado
+                    para transformar atenção em receita.
+                </p>
+                <p class="section-text">
+                    Trabalhamos com método, dados e design — sem fórmulas genéricas. Cada projeto
+                    é construído sob medida para o momento e os objetivos do seu negócio.
+                </p>
+                <a href="#contato" class="link-arrow">Fale com a nossa equipe <span>→</span></a>
+            </div>
+
+            <div class="sobre-cards">
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M15 7h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
                     </div>
+                    <h3>Marketing Estratégico</h3>
+                    <p>Planejamento orientado a dados, com foco em aquisição e retorno sobre investimento.</p>
                 </div>
-                <div class="hero-visual reveal parallax" aria-hidden="true">
-                    <div class="mockup-dashboard glass tilt-3d floating-element">
-                        <div class="mockup-header">
-                            <!-- [CORREÇÃO] aria-hidden nos elementos decorativos -->
-                            <span class="dot red" aria-hidden="true"></span>
-                            <span class="dot yellow" aria-hidden="true"></span>
-                            <span class="dot green" aria-hidden="true"></span>
-                        </div>
-                        <div class="mockup-body">
-                            <div class="chart-placeholder" aria-hidden="true"></div>
-                            <div class="stats-placeholder" aria-hidden="true"></div>
-                        </div>
+
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
                     </div>
+                    <h3>Gestão de Redes Sociais</h3>
+                    <p>Conteúdo, identidade e consistência para marcas que querem ser lembradas.</p>
+                </div>
+
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="4" width="18" height="14" rx="1.5" stroke="currentColor"
+                                stroke-width="1.5" />
+                            <path d="M8 21h8M12 18v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Sites e plataformas rápidas, elegantes e construídas para converter.</p>
                 </div>
             </div>
-        </section>
 
-        <!-- ===================== LOGOS CLIENTES ===================== -->
-        <!-- [CORREÇÃO] aria-label e aria-hidden no elemento decorativo de marquee -->
-        <section class="client-logos" aria-label="Clientes atendidos">
-            <div class="marquee-container infinite-loop" aria-hidden="true">
-                <div class="marquee-track">
-                    <div class="logo-item">Logo Cliente 1</div>
-                    <div class="logo-item">Logo Cliente 2</div>
-                    <div class="logo-item">Logo Cliente 3</div>
-                    <div class="logo-item">Logo Cliente 4</div>
-                    <div class="logo-item">Logo Cliente 5</div>
-                    <!-- [CORREÇÃO] Duplicatas do marquee ficam ocultas de leitores de tela -->
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 1</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 2</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 3</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 4</div>
-                    <div class="logo-item" aria-hidden="true">Logo Cliente 5</div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ===================== PROBLEMAS ===================== -->
-        <section class="problems section-spacing" id="problemas" aria-labelledby="problems-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="problems-heading">Você sente que está deixando dinheiro na mesa?</h2>
-                    <p>
-                        O mercado digital não perdoa amadorismo. Se a sua marca apresenta
-                        estes sinais, você está perdendo vendas todos os dias.
-                    </p>
-                </div>
-                <!-- [CORREÇÃO] role="list" para cards que funcionam como lista -->
-                <div class="cards-grid" role="list">
-                    <div class="card glass hover-magnetic reveal" role="listitem">
-                        <!-- [CORREÇÃO] aria-hidden nos ícones decorativos de emoji -->
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Instagram não gera clientes</h3>
-                        <p>Você investe tempo criando conteúdo, mas não vê retorno em vendas reais.</p>
-                    </div>
-                    <div class="card glass hover-magnetic reveal delay-1" role="listitem">
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Seu site não converte</h3>
-                        <p>Visitantes entram na sua página e saem sem realizar nenhuma ação de compra.</p>
-                    </div>
-                    <div class="card glass hover-magnetic reveal delay-2" role="listitem">
-                        <div class="icon-error" aria-hidden="true">❌</div>
-                        <h3>Falta de autoridade</h3>
-                        <p>Concorrentes com produtos inferiores vendem mais porque parecem mais profissionais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== HISTÓRIA ===================== -->
-        <section class="story section-spacing glass-section" aria-labelledby="story-heading">
-            <div class="container layout-split align-center reveal">
-                <div class="story-image">
-                    <!-- [CORREÇÃO] alt descritivo na imagem (quando for implementada) -->
-                    <div class="image-placeholder tilt-3d" role="img" aria-label="Foto da equipe da agência">
-                        Foto da Agência/Equipe
-                    </div>
-                </div>
-                <div class="story-content">
-                    <h2 id="story-heading">Deixamos o amadorismo no passado</h2>
-                    <p>
-                        Nós entendemos exatamente a sua frustração. A agência nasceu de uma necessidade
-                        real do mercado: a falta de profissionalismo e visão estratégica. Sob a direção
-                        de Gabriel Gomes, construímos uma metodologia focada exclusivamente em um pilar:
-                        <strong>conversão</strong>.
-                    </p>
-                    <p>
-                        Não entregamos apenas "postagens bonitas" ou "sites estáticos". Entregamos
-                        ecossistemas digitais projetados para escalar o seu faturamento.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== SOLUÇÕES ===================== -->
-        <section class="solutions section-spacing" id="solucoes" aria-labelledby="solutions-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="solutions-heading">
-                        Tudo o que sua marca precisa para
-                        <span class="text-orange">crescer online</span>
-                    </h2>
-                    <p>Ecossistema completo de soluções digitais de alto padrão.</p>
-                </div>
-
-                <!-- [CORREÇÃO] aria-label descritivo no carrossel -->
-                <div class="services-carousel drag-slider reveal" role="list" aria-label="Nossos serviços">
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon web-icon" aria-hidden="true"></div>
-                        <h3>Desenvolvimento Web</h3>
-                        <ul class="service-features">
-                            <li>Landing Pages de Alta Conversão</li>
-                            <li>Sites Institucionais Premium</li>
-                            <li>Páginas de Venda</li>
-                            <li>SEO Básico e Responsividade</li>
-                        </ul>
-                    </div>
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon social-icon" aria-hidden="true"></div>
-                        <h3>Gestão de Mídias Sociais</h3>
-                        <ul class="service-features">
-                            <li>Planejamento Estratégico</li>
-                            <li>Gestão Completa de Canais</li>
-                            <li>Calendário Editorial</li>
-                            <li>Crescimento Orgânico</li>
-                        </ul>
-                    </div>
-                    <div class="service-card glass" role="listitem">
-                        <div class="service-icon design-icon" aria-hidden="true"></div>
-                        <h3>Pack de Postagens</h3>
-                        <ul class="service-features">
-                            <li>Artes Profissionais</li>
-                            <li>Templates Personalizados</li>
-                            <li>Conteúdo Estratégico</li>
-                            <li>Posts para Feed e Stories</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== BENEFÍCIOS ===================== -->
-        <section class="benefits bg-darker overflow-hidden" aria-label="Nossos diferenciais">
-            <!-- [CORREÇÃO] aria-hidden no marquee decorativo — conteúdo redundante com a seção de diferenciais -->
-            <div class="marquee-container marquee-benefits infinite-loop reveal" aria-hidden="true">
-                <div class="marquee-track">
-                    <span class="benefit-tag glass hover-3d">✓ Mais autoridade</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais clientes</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais vendas</span>
-                    <span class="benefit-tag glass hover-3d">✓ Mais visibilidade</span>
-                    <span class="benefit-tag glass hover-3d">✓ Melhor posicionamento</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== RESULTADOS ===================== -->
-        <section class="results section-spacing" id="resultados" aria-labelledby="results-heading">
-            <div class="container">
-                <!-- [CORREÇÃO] Heading visualmente oculto para dar contexto à seção via leitores de tela -->
-                <h2 id="results-heading" class="sr-only">Nossos resultados em números</h2>
-                <div class="stats-grid glass reveal animated-border" role="list">
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="100" aria-label="Mais de 100 projetos entregues">+0</span>
-                        <span class="stat-label">Projetos Entregues</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="50" aria-label="Mais de 50 clientes atendidos">+0</span>
-                        <span class="stat-label">Clientes Atendidos</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <span class="stat-number count-up text-orange" data-target="1000000" aria-label="Mais de 1 milhão de impressões geradas">+0</span>
-                        <span class="stat-label">Impressões Geradas</span>
-                    </div>
-                    <div class="stat-item" role="listitem">
-                        <!-- [CORREÇÃO] data-target="95" combinado com "%" no aria-label para clareza -->
-                        <span class="stat-number count-up text-orange" data-target="95" aria-label="95% de satisfação dos clientes">0%</span>
-                        <span class="stat-label">de Satisfação</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== PORTFÓLIO ===================== -->
-        <section class="portfolio section-spacing" id="portfolio" aria-labelledby="portfolio-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="portfolio-heading">Nosso <span class="text-orange">Portfólio</span></h2>
-                    <p>Arraste para explorar o padrão de excelência das nossas entregas.</p>
-                </div>
-
-                <!-- [CORREÇÃO] role="group" e aria-label nos filtros de portfólio -->
-                <div class="portfolio-filters reveal" role="group" aria-label="Filtrar portfólio por categoria">
-                    <button class="filter-btn active" data-filter="all" type="button" aria-pressed="true">Todos</button>
-                    <button class="filter-btn" data-filter="sites" type="button" aria-pressed="false">Sites</button>
-                    <button class="filter-btn" data-filter="lps" type="button" aria-pressed="false">Landing Pages</button>
-                    <button class="filter-btn" data-filter="social" type="button" aria-pressed="false">Social Media</button>
-                </div>
-
-                <div class="portfolio-slider drag-slider swipe-mobile reveal" role="list" aria-label="Projetos do portfólio">
-                    <article class="portfolio-card glass item-site" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <!-- [CORREÇÃO] <div> substituído por elemento mais semântico e com aria-label -->
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Site Institucional Tech">
-                                Projeto 1
-                            </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Site Institucional Tech</h3>
-                            <!-- [CORREÇÃO] h4 substituído por h3 — hierarquia correta dentro de <article> -->
-                        </div>
-                    </article>
-                    <article class="portfolio-card glass item-lps" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Página de Vendas Info">
-                                Projeto 2
-                            </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Página de Vendas Info</h3>
-                        </div>
-                    </article>
-                    <article class="portfolio-card glass item-social" role="listitem">
-                        <div class="portfolio-image image-zoom">
-                            <div class="placeholder-img" role="img" aria-label="Captura de tela do projeto Identidade Clínica Médica">
-                                Projeto 3
-                            </div>
-                            <div class="portfolio-overlay" aria-hidden="true">
-                                <span>Ver Detalhes</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Identidade Clínica Médica</h3>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== DEPOIMENTOS ===================== -->
-        <section class="testimonials section-spacing bg-darker" id="depoimentos" aria-labelledby="testimonials-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="testimonials-heading">O que dizem nossos clientes</h2>
-                    <p>Avaliações de quem já transformou sua presença digital.</p>
-                </div>
-
-                <!-- [CORREÇÃO] aria-label no slider e role="list" para acessibilidade -->
-                <div class="testimonial-slider auto-play reveal" aria-label="Depoimentos de clientes" role="list">
-                    <div class="testimonial-track">
-                        <div class="testimonial-card glass" role="listitem">
-                            <!-- [CORREÇÃO] aria-label nas estrelas para leitores de tela -->
-                            <div class="stars text-orange" aria-label="Avaliação: 5 estrelas" role="img">★★★★★</div>
-                            <blockquote>
-                                <!-- [CORREÇÃO] <p> substituído por <blockquote> para semântica de citação -->
-                                <p>"Nossas vendas aumentaram 3x após a criação da nova Landing Page. Trabalho impecável e design sofisticado."</p>
-                            </blockquote>
-                            <footer class="client-info">
-                                <div class="client-photo round-img" aria-hidden="true">F</div>
-                                <div>
-                                    <cite><strong>CEO Startup</strong></cite>
-                                    <span>Tecnologia</span>
-                                </div>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== OFERTA / PREÇOS ===================== -->
-        <section class="offer section-spacing" id="oferta" aria-labelledby="offer-heading">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 id="offer-heading">Soluções sob medida para sua marca</h2>
-                    <p>Escolha o plano que melhor atende o seu momento atual.</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card glass reveal hover-magnetic">
-                        <h3>Start</h3>
-                        <p class="plan-desc">Ideal para quem está começando.</p>
-                        <ul class="plan-features">
-                            <li>✓ Identidade Visual Básica</li>
-                            <li>✓ Setup de Redes Sociais</li>
-                            <li>✓ 8 Artes mensais</li>
-                        </ul>
-                        <!-- [CORREÇÃO] type="button" adicionado em todos os botões sem ação de submit -->
-                        <button class="btn btn-secondary w-100" type="button">Selecionar Start</button>
-                    </div>
-
-                    <!-- [CORREÇÃO] aria-label indicando plano mais popular -->
-                    <div class="pricing-card glass premium highlight-card reveal scale-up tilt-3d" aria-label="Plano Growth — Mais Escolhido">
-                        <div class="badge-popular" aria-hidden="true">Mais Escolhido</div>
-                        <h3 class="text-orange">Growth</h3>
-                        <p class="plan-desc">Para negócios em crescimento.</p>
-                        <ul class="plan-features">
-                            <li>✓ Landing Page Alta Conversão</li>
-                            <li>✓ Gestão Completa Redes Sociais</li>
-                            <li>✓ 15 Artes + Estratégia</li>
-                            <li>✓ SEO Básico</li>
-                        </ul>
-                        <button class="btn btn-primary btn-glow w-100" type="button">Quero Crescer Minha Marca</button>
-                    </div>
-
-                    <div class="pricing-card glass reveal hover-magnetic delay-2">
-                        <h3>Premium</h3>
-                        <p class="plan-desc">Solução completa Enterprise.</p>
-                        <ul class="plan-features">
-                            <li>✓ Site Institucional Completo</li>
-                            <li>✓ Tráfego Pago Integrado</li>
-                            <li>✓ Design e Social Media Full</li>
-                            <li>✓ Suporte Prioritário VIP</li>
-                        </ul>
-                        <button class="btn btn-secondary w-100" type="button">Falar com Consultor</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== DIFERENCIAIS ===================== -->
-        <section class="differentials section-spacing bg-darker" aria-labelledby="diff-heading">
-            <div class="container">
-                <h2 id="diff-heading" class="sr-only">Por que nos escolher</h2>
-                <!-- [CORREÇÃO] role="list" para que os itens sejam anunciados como lista -->
-                <div class="grid-icons reveal" role="list">
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Atendimento Humanizado</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Entrega Rápida</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Design Exclusivo</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Estratégia Personalizada</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Suporte Pós-Projeto</div>
-                    <div class="diff-item" role="listitem"><span class="icon-check" aria-hidden="true">✓</span> Foco em Conversão</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== GARANTIA ===================== -->
-        <section class="guarantee section-spacing glass-section reveal" aria-labelledby="guarantee-heading">
-            <div class="container text-center">
-                <div class="guarantee-content glass">
-                    <h2 id="guarantee-heading" class="text-orange">Garantia de Qualidade</h2>
-                    <p>
-                        Nosso acordo é simples: trabalhamos incansavelmente até que a entrega supere
-                        suas expectativas e esteja perfeitamente alinhada com o escopo aprovado.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== FAQ ===================== -->
-        <section class="faq section-spacing" id="faq" aria-labelledby="faq-heading">
-            <div class="container layout-split reveal">
-                <div class="faq-header">
-                    <h2 id="faq-heading">Perguntas Frequentes</h2>
-                    <p>Tire suas dúvidas e dê o próximo passo com segurança.</p>
-                </div>
-                <!-- [CORREÇÃO] role="list" e aria-label no accordion -->
-                <div class="faq-accordion" role="list" aria-label="Perguntas frequentes">
-                    <div class="accordion-item glass" role="listitem">
-                        <!-- [CORREÇÃO] aria-expanded e aria-controls em cada botão de accordion -->
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-1"
-                        >
-                            Quanto tempo leva a entrega?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-1" hidden>
-                            <p>Depende do escopo do projeto, mas Landing Pages são entregues em média entre 7 a 15 dias úteis.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-2"
-                        >
-                            Como funciona o pagamento?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-2" hidden>
-                            <p>Trabalhamos com sinal de 50% para início do projeto e 50% na aprovação final, via PIX ou Cartão.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-3"
-                        >
-                            O site é responsivo?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-3" hidden>
-                            <p>Sim, 100% otimizado para celulares, tablets e computadores, seguindo a abordagem Mobile First.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-4"
-                        >
-                            Vocês fazem manutenção?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-4" hidden>
-                            <p>Oferecemos pacotes de manutenção mensal para manter seu site seguro e atualizado.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item glass" role="listitem">
-                        <button
-                            class="accordion-trigger"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="faq-answer-5"
-                        >
-                            Posso contratar apenas um serviço?
-                            <span class="icon-plus" aria-hidden="true">+</span>
-                        </button>
-                        <div class="accordion-content" id="faq-answer-5" hidden>
-                            <p>Sim, nossos serviços podem ser contratados de forma avulsa ou em pacotes personalizados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================== CTA FINAL / CONTATO ===================== -->
-        <section class="cta-final section-spacing relative" id="contato" aria-labelledby="contact-heading">
-            <div class="animated-gradient-bg pulse-animation" aria-hidden="true"></div>
-            <div class="container layout-split align-center reveal z-index-content">
-                <div class="cta-text">
-                    <h2 id="contact-heading">Pronto para transformar sua presença digital?</h2>
-                    <p>
-                        Chegou a hora de ter uma marca que realmente transmite autoridade
-                        e gera resultados constantes.
-                    </p>
-                    <div class="contact-methods mt-4">
-                        <!-- [CORREÇÃO] rel="noopener noreferrer" em links externos para segurança -->
-                        <a
-                            href="https://wa.me/5500000000000"
-                            class="btn btn-primary btn-glow"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Falar com a agência no WhatsApp (abre em nova aba)"
-                        >
-                            Falar no WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cta-form glass">
-                    <!-- [CORREÇÃO] novalidate removido — validação nativa do HTML é útil como fallback.
-                         action e method devem ser preenchidos com o endpoint real de backend/form service -->
-                    <form
-                        id="contactForm"
-                        class="modern-form"
-                        action="#"
-                        method="POST"
-                        novalidate
-                        aria-label="Formulário de solicitação de orçamento"
-                    >
-                        <h3>Solicite um Orçamento</h3>
-
-                        <!-- [CORREÇÃO] <label> adicionado a todos os campos — obrigatório para acessibilidade -->
-                        <div class="input-group">
-                            <label for="nome" class="sr-only">Seu Nome</label>
-                            <input
-                                type="text"
-                                id="nome"
-                                name="nome"
-                                required
-                                placeholder="Seu Nome"
-                                autocomplete="name"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <label for="telefone" class="sr-only">WhatsApp</label>
-                            <input
-                                type="tel"
-                                id="telefone"
-                                name="telefone"
-                                required
-                                placeholder="WhatsApp"
-                                autocomplete="tel"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <label for="email" class="sr-only">E-mail profissional</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                placeholder="E-mail profissional"
-                                autocomplete="email"
-                                aria-required="true"
-                            >
-                        </div>
-
-                        <div class="input-group">
-                            <!-- [CORREÇÃO] label para o select -->
-                            <label for="servico" class="sr-only">Serviço desejado</label>
-                            <select id="servico" name="servico" required aria-required="true">
-                                <option value="" disabled selected>Serviço desejado...</option>
-                                <option value="web">Desenvolvimento Web</option>
-                                <option value="social">Gestão de Mídias</option>
-                                <option value="pack">Pack de Postagens</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="mensagem" class="sr-only">Mensagem sobre o projeto</label>
-                            <textarea
-                                id="mensagem"
-                                name="mensagem"
-                                rows="4"
-                                placeholder="Fale um pouco sobre o seu projeto..."
-                            ></textarea>
-                        </div>
-
-                        <!-- [CORREÇÃO] type="submit" explícito -->
-                        <button type="submit" class="btn btn-secondary w-100 mt-2">Enviar Solicitação</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- [CORREÇÃO] role="contentinfo" para o footer — landmark de acessibilidade -->
-    <footer class="footer-premium bg-darker text-center section-spacing" role="contentinfo">
+    <!-- ============================================= -->
+    <!-- SERVIÇOS -->
+    <!-- ============================================= -->
+    <section class="servicos" id="servicos">
         <div class="container">
-            <a href="#inicio" class="logo-placeholder mb-2" aria-label="Agência Digital — Voltar ao topo">
-                Agência<span class="text-orange">.</span>
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Serviços</span>
+                <h2 class="section-title">O que fazemos por você</h2>
+            </div>
+
+            <div class="servicos-grid">
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">01</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12l4-4 4 4 4-6 6 8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Marketing Digital</h3>
+                    <p>Campanhas de tráfego, funis e estratégias de aquisição desenhadas para gerar clientes de forma
+                        previsível.</p>
+                </article>
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">02</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="12" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M8 16h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Social Media</h3>
+                    <p>Planejamento de conteúdo, identidade visual e gestão completa de perfis para fortalecer sua
+                        marca.</p>
+                </article>
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">03</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Sites institucionais, landing pages e plataformas de alta performance, feitas para converter
+                        visitas em vendas.</p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- PROCESSO -->
+    <!-- ============================================= -->
+    <section class="processo" id="processo">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Como Trabalhamos</span>
+                <h2 class="section-title">Processo de Trabalho</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-line"><span class="timeline-line-fill"></span></div>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">01</span>
+                    <h3>Planejamento</h3>
+                    <p>Diagnóstico completo do negócio, do mercado e dos objetivos de crescimento.</p>
+                </div>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">02</span>
+                    <h3>Estratégia</h3>
+                    <p>Definição de canais, posicionamento e metas claras de curto e longo prazo.</p>
+                </div>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">03</span>
+                    <h3>Execução</h3>
+                    <p>Produção de conteúdo, campanhas e desenvolvimento com padrão de qualidade premium.</p>
+                </div>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">04</span>
+                    <h3>Crescimento</h3>
+                    <p>Análise de resultados, otimização contínua e escala sustentável.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- DIFERENCIAIS -->
+    <!-- ============================================= -->
+    <section class="diferenciais" id="diferenciais">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Diferenciais</span>
+                <h2 class="section-title">Por que a GS Company</h2>
+            </div>
+
+            <div class="diferenciais-grid">
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Atendimento Personalizado</h3>
+                    <p>Relacionamento próximo, direto e sem burocracia com sua equipe.</p>
+                </div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <h3>Estratégias Inteligentes</h3>
+                    <p>Decisões orientadas por dados reais, não por achismos de mercado.</p>
+                </div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Design Profissional</h3>
+                    <p>Identidade visual e interfaces que elevam a percepção da sua marca.</p>
+                </div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M15 7h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Foco em Resultados</h3>
+                    <p>Cada ação é medida — o que importa é o impacto no seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- PORTFÓLIO -->
+    <!-- ============================================= -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Portfólio</span>
+                <h2 class="section-title">Projetos que já fizemos crescer</h2>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item item-tall reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Web Design</span>
+                        <h3>Studio Nord</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Social Media</span>
+                        <h3>Vértice Coffee</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Marketing Digital</span>
+                        <h3>Órbita Fit</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item-wide reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Web Design</span>
+                        <h3>Lumen Arquitetura</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Marketing Digital</span>
+                        <h3>Nova Capital</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- DEPOIMENTOS -->
+    <!-- ============================================= -->
+    <section class="depoimentos" id="depoimentos">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Depoimentos</span>
+                <h2 class="section-title">Quem trabalhou com a gente</h2>
+            </div>
+
+            <div class="slider" id="testimonialSlider">
+                <div class="slider-track" id="sliderTrack">
+
+                    <div class="slide">
+                        <p class="slide-quote">"A GS Company reorganizou toda a nossa presença digital. Em três meses,
+                            triplicamos os leads qualificados."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Marina Cardoso</span>
+                            <span class="slide-company">Studio Nord</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"Profissionalismo raro. Cada entrega parecia ter sido pensada
+                            exclusivamente para o nosso negócio."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Rafael Teixeira</span>
+                            <span class="slide-company">Vértice Coffee</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"O novo site aumentou nossa taxa de conversão em mais de 40%. Resultado
+                            muito acima do esperado."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Camila Duarte</span>
+                            <span class="slide-company">Órbita Fit</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"Equipe extremamente atenta aos detalhes. Sentimos que temos um time de
+                            marketing interno, não uma agência terceirizada."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Eduardo Lins</span>
+                            <span class="slide-company">Nova Capital</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- CTA -->
+    <!-- ============================================= -->
+    <section class="cta" id="contato">
+        <div class="cta-glow"></div>
+        <div class="container cta-content reveal" data-reveal>
+            <h2>Pronto para levar sua empresa<br> para outro nível?</h2>
+            <p>Fale agora com a nossa equipe e receba uma proposta sob medida para o seu negócio.</p>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                Falar no WhatsApp
             </a>
-            <p class="text-gray-mid mb-4">Elevando o padrão digital de marcas ambiciosas.</p>
+        </div>
+    </section>
 
-            <!-- [CORREÇÃO] nav com aria-label para as redes sociais -->
-            <nav aria-label="Redes sociais" class="social-links mb-4">
-                <a href="#" aria-label="Instagram da Agência" rel="noopener noreferrer" target="_blank">IG</a>
-                <a href="#" aria-label="LinkedIn da Agência" rel="noopener noreferrer" target="_blank">IN</a>
-                <a href="#" aria-label="Behance da Agência" rel="noopener noreferrer" target="_blank">BE</a>
-            </nav>
+    <!-- ============================================= -->
+    <!-- FOOTER -->
+    <!-- ============================================= -->
+    <footer class="footer">
+        <div class="container footer-grid">
 
-            <!-- [CORREÇÃO] <small> para texto de copyright — semântica correta -->
-            <small class="copyright text-gray-darker">
-                &copy; <span id="current-year">2026</span> Agência Digital. Todos os direitos reservados.
-            </small>
+            <div class="footer-brand">
+                <img src="img/GS Company.png" alt="GS Company" class="footer-logo">
+                <p>Marketing, Social Media e Web Design para empresas que querem crescer de verdade.</p>
+            </div>
+
+            <div class="footer-menu">
+                <h4>Menu</h4>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#processo">Processo</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#depoimentos">Depoimentos</a>
+            </div>
+
+            <div class="footer-social">
+                <h4>Redes Sociais</h4>
+                <a href="#" target="_blank" rel="noopener">Instagram</a>
+                <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="#" target="_blank" rel="noopener">Behance</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GS Company. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- ===================== WHATSAPP FLUTUANTE ===================== -->
-    <!-- [CORREÇÃO] rel="noopener noreferrer" adicionado; aria-label mais descritivo -->
-    <div class="whatsapp-floating tooltip-container">
-        <span class="tooltip-text glass" role="tooltip" id="wpp-tooltip">Fale conosco!</span>
-        <a
-            href="https://wa.me/5500000000000"
-            class="btn-wpp pulse-infinite"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Conversar com a agência no WhatsApp (abre em nova aba)"
-            aria-describedby="wpp-tooltip"
-        >
-            <svg class="wpp-icon" viewBox="0 0 24 24" width="30" height="30" fill="#fff" role="img" aria-hidden="true" focusable="false">
-                <title>WhatsApp</title>
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-            </svg>
-        </a>
-    </div>
-
-    <!-- [CORREÇÃO] Classe sr-only via style inline para ser autossuficiente sem depender do CSS externo -->
-    <style>
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-    </style>
+    <!-- Botão Voltar ao Topo -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
 
     <script src="script.js"></script>
-
-    <!-- [CORREÇÃO] Script inline mínimo para ano automático e accordion funcional
-         sem depender do script.js externo para funcionalidades críticas de acessibilidade -->
-    <script>
-        // Ano dinâmico no copyright
-        const yearEl = document.getElementById('current-year');
-        if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-        // Accordion acessível: toggle aria-expanded + hidden
-        document.querySelectorAll('.accordion-trigger').forEach(trigger => {
-            trigger.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                const targetId = this.getAttribute('aria-controls');
-                const content = document.getElementById(targetId);
-
-                this.setAttribute('aria-expanded', String(!expanded));
-                if (content) content.hidden = expanded;
-
-                // Fecha os outros itens (comportamento padrão de accordion)
-                document.querySelectorAll('.accordion-trigger').forEach(other => {
-                    if (other !== this) {
-                        other.setAttribute('aria-expanded', 'false');
-                        const otherId = other.getAttribute('aria-controls');
-                        const otherContent = document.getElementById(otherId);
-                        if (otherContent) otherContent.hidden = true;
-                    }
-                });
-            });
-        });
-
-        // Menu mobile: toggle aria-expanded
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function () {
-                const expanded = this.getAttribute('aria-expanded') === 'true';
-                this.setAttribute('aria-expanded', String(!expanded));
-            });
-        }
-
-        // Filtros do portfólio: atualiza aria-pressed
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.filter-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
-                this.setAttribute('aria-pressed', 'true');
-            });
-        });
-    </script>
-
 </body>
+
 </html>

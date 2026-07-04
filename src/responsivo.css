@@ -1,375 +1,246 @@
-/* ==========================================
-   RESPONSIVO — Mobile First
-   Breakpoints: 1024px | 768px | 480px
-   ========================================== */
+/* =====================================================================
+   GS COMPANY — RESPONSIVIDADE
+   Breakpoints: 1024px (notebook/tablet paisagem), 768px (tablet retrato),
+   480px (celular)
+   ===================================================================== */
 
-/* ==========================================
-   TABLET (≤ 1024px)
-   ========================================== */
+/* ---------------------------------------------------------------------
+   NOTEBOOK / TABLET PAISAGEM (<= 1024px)
+   --------------------------------------------------------------------- */
 @media (max-width: 1024px) {
 
-    /* Layout */
+    :root {
+        --section-padding: 110px;
+    }
+
     .container {
-        padding: 0 2rem;
+        padding: 0 28px;
     }
 
-    .section-spacing {
-        padding: 5rem 0;
+    /* Sobre: mantém duas colunas, mas reduz gap */
+    .sobre-grid {
+        gap: 60px;
     }
 
-    /* Hero */
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: center;
+    /* Serviços: 3 colunas continuam, ajusta padding */
+    .service-card {
+        padding: 36px 28px;
     }
 
-    .hero-content h1 {
-        font-size: clamp(2.5rem, 6vw, 3.5rem);
-        letter-spacing: -2px;
-    }
-
-    .subheadline {
-        margin: 0 auto 2rem;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
-    .hero-visual {
-        order: -1;
-    }
-
-    .mockup-dashboard {
-        height: 320px;
-        max-width: 480px;
-        margin: 0 auto;
-    }
-
-    /* Layout split */
-    .layout-split {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    /* Estatísticas */
-    .stats-grid {
+    /* Diferenciais: passa para 2 colunas */
+    .diferenciais-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-        padding: 3rem 2rem;
     }
 
-    .stat-item + .stat-item::before {
-        display: none;
+    /* Portfólio: passa para 2 colunas */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Pricing */
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 480px;
-        margin: 0 auto;
-        gap: 1.5rem;
+    .item-wide {
+        grid-column: span 2;
     }
 
-    .pricing-card.premium {
-        padding: 3.5rem 2rem;
+    .item-tall {
+        grid-row: span 2;
     }
 
-    /* FAQ */
-    .faq .layout-split {
-        grid-template-columns: 1fr;
-    }
-
-    .faq-header {
-        text-align: center;
-    }
-
-    /* Story */
-    .story-image .image-placeholder {
-        height: 320px;
-    }
-
-    /* Garantia */
-    .guarantee-content {
-        padding: 2.5rem 2rem;
+    /* Footer: 2 colunas */
+    .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 40px;
     }
 }
 
-/* ==========================================
-   MOBILE (≤ 768px)
-   ========================================== */
+/* ---------------------------------------------------------------------
+   TABLET RETRATO (<= 768px)
+   --------------------------------------------------------------------- */
 @media (max-width: 768px) {
 
-    /* Container */
-    .container {
-        padding: 0 1.25rem;
+    :root {
+        --section-padding: 90px;
     }
 
-    .section-spacing {
-        padding: 4rem 0;
-    }
-
-    /* Navbar */
-    .navbar {
-        padding: 16px 0;
-    }
-
-    .nav-links,
-    .nav-cta {
-        display: none;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Menu mobile aberto */
-    .nav-content.menu-open .nav-links {
-        display: flex;
-        flex-direction: column;
+    /* Navbar mobile */
+    .navbar-menu {
         position: fixed;
-        top: 64px;
-        left: 0;
-        width: 100%;
-        background: rgba(6, 6, 7, 0.97);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        padding: 2rem 1.5rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid rgba(232, 80, 2, 0.12);
-        z-index: 999;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(320px, 80vw);
+        background: rgba(0, 0, 0, 0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 30px;
+        padding: 40px;
+        transform: translateX(100%);
+        transition: transform 0.5s var(--ease);
+        border-left: 1px solid var(--white-08);
     }
 
-    .nav-content.menu-open .nav-links a {
-        font-size: 1.1rem;
-        color: var(--white);
+    .navbar-menu.is-open {
+        transform: translateX(0);
     }
 
-    .nav-content.menu-open .nav-cta {
-        display: inline-flex;
-        margin-top: 0.5rem;
-        width: 100%;
+    .navbar-toggle {
+        display: flex;
+        z-index: 1001;
     }
 
-    /* Seção de headers */
-    .section-header {
-        margin-bottom: 2.5rem;
-    }
-
-    .section-header h2 {
-        font-size: 1.8rem;
-        letter-spacing: -1px;
+    .nav-cta {
+        margin-top: 10px;
     }
 
     /* Hero */
-    .hero {
-        padding-top: 80px;
+    .hero-title {
+        font-size: clamp(30px, 7vw, 44px);
     }
 
-    .hero-content h1 {
-        font-size: 2.4rem;
-        letter-spacing: -1.5px;
-    }
-
-    .subheadline {
-        font-size: 1rem;
-    }
-
-    .hero-actions {
+    .hero-buttons {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-actions .btn {
         width: 100%;
         max-width: 320px;
-        justify-content: center;
     }
 
-    .mockup-dashboard {
-        height: 260px;
+    .hero-buttons .btn {
+        width: 100%;
     }
 
-    /* Cards */
-    .cards-grid {
+    /* Sobre: empilha colunas */
+    .sobre-grid {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: 56px;
     }
 
-    .card {
-        padding: 1.75rem;
+    .section-text {
+        max-width: 100%;
     }
 
-    /* Story */
-    .story-image .image-placeholder {
-        height: 240px;
-    }
-
-    .story-content h2 {
-        font-size: 1.75rem;
-    }
-
-    /* Serviços */
-    .service-card {
-        min-width: 280px;
-    }
-
-    /* Estatísticas */
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-        padding: 2rem 1rem;
-        gap: 1.5rem;
-    }
-
-    .stat-number {
-        font-size: 2.5rem;
-    }
-
-    /* Portfólio */
-    .portfolio-filters {
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .filter-btn {
-        padding: 8px 16px;
-        font-size: 0.82rem;
-    }
-
-    .portfolio-card {
-        min-width: 300px;
-    }
-
-    .portfolio-image {
-        height: 200px;
-    }
-
-    /* Depoimentos */
-    .testimonial-card {
-        min-width: 300px;
-        padding: 1.75rem;
-    }
-
-    /* Pricing */
-    .pricing-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .pricing-card.premium {
-        padding: 2.5rem 1.5rem;
-    }
-
-    /* Diferenciais */
-    .grid-icons {
+    /* Serviços: 1 coluna */
+    .servicos-grid {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
     }
 
-    /* FAQ */
-    .accordion-trigger {
-        font-size: 0.95rem;
-        padding: 1.1rem;
+    /* Timeline: 2 colunas, linha oculta (perde sentido em grid quebrado) */
+    .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px 32px;
     }
 
-    /* CTA / Formulário */
-    .cta-text h2 {
-        font-size: 1.9rem;
-        letter-spacing: -1px;
-    }
-
-    .modern-form {
-        padding: 1.75rem 1.25rem;
-    }
-
-    /* Garantia */
-    .guarantee-content {
-        padding: 2rem 1.5rem;
-    }
-
-    /* WhatsApp */
-    .whatsapp-floating {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .btn-wpp {
-        width: 56px;
-        height: 56px;
-    }
-
-    .tooltip-text {
+    .timeline-line {
         display: none;
     }
-}
 
-/* ==========================================
-   MOBILE PEQUENO (≤ 480px)
-   ========================================== */
-@media (max-width: 480px) {
-
-    .container {
-        padding: 0 1rem;
+    /* Diferenciais: 2 colunas mantidas */
+    .diferenciais-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
     }
 
-    .section-spacing {
-        padding: 3.5rem 0;
+    /* Portfólio: 1 coluna, todas as áreas normais */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 260px;
     }
 
-    /* Hero */
-    .hero-content h1 {
-        font-size: 2rem;
-        letter-spacing: -1px;
+    .item-wide,
+    .item-tall {
+        grid-column: span 1;
+        grid-row: span 1;
     }
 
-    /* Stats — coluna única em telas muito pequenas */
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .stat-number {
-        font-size: 2rem;
-    }
-
-    .stat-label {
-        font-size: 0.78rem;
-    }
-
-    /* Serviços */
-    .service-card {
-        min-width: 260px;
-    }
-
-    /* Portfólio */
-    .portfolio-card {
-        min-width: 260px;
-    }
-
-    /* Depoimentos */
-    .testimonial-card {
-        min-width: 260px;
-    }
-
-    /* Botões */
-    .btn {
-        padding: 13px 22px;
-        font-size: 0.9rem;
-    }
-
-    /* Logo */
-    .logo-placeholder {
-        font-size: 1.35rem;
-    }
-
-    /* Section headers */
-    .section-header h2 {
-        font-size: 1.6rem;
+    /* Footer: empilha */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 44px;
     }
 
     /* CTA */
-    .cta-text h2 {
-        font-size: 1.6rem;
+    .cta {
+        padding: 120px 0;
+    }
+
+    /* Cursor glow desativado em telas de toque (ver script.js) */
+    .cursor-glow {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   CELULAR (<= 480px)
+   --------------------------------------------------------------------- */
+@media (max-width: 480px) {
+
+    :root {
+        --section-padding: 70px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .navbar-logo img {
+        height: 26px;
+    }
+
+    .hero {
+        padding-top: 70px;
+    }
+
+    .hero-logo {
+        height: 34px;
+        margin-bottom: 28px;
+    }
+
+    .eyebrow {
+        font-size: 11.5px;
+        padding: 7px 14px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: clamp(24px, 7vw, 32px);
+    }
+
+    .mini-card,
+    .service-card,
+    .dif-card {
+        padding: 26px 22px;
+    }
+
+    /* Timeline: 1 coluna em celular */
+    .timeline {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    /* Diferenciais: 1 coluna em celular pequeno */
+    .diferenciais-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .slide-quote {
+        font-size: 19px;
+    }
+
+    .cta {
+        padding: 90px 0;
+    }
+
+    .cta .btn {
+        width: 100%;
+    }
+
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+        bottom: 20px;
+        right: 20px;
     }
 }

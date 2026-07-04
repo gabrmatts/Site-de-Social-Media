@@ -1,450 +1,355 @@
-/**
- * Agência Digital — script.js
- * Melhorias: acessibilidade, performance, robustez, UX
- */
+/* =====================================================================
+   GS COMPANY — SCRIPT PRINCIPAL
+   JavaScript puro, modular, sem bibliotecas externas.
+   Módulos: Loader, ScrollReveal, Navbar, MobileMenu, BackToTop,
+            TestimonialSlider, CursorGlow, HeroNetworkCanvas
+   ===================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+  'use strict';
 
-    // ─────────────────────────────────────────────
-    // 1. NAVBAR — sticky com efeito scrolled
-    // ─────────────────────────────────────────────
-    const navbar = document.querySelector(".navbar");
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
-    if (navbar) {
-        const onScroll = () => {
-            navbar.classList.toggle("scrolled", window.scrollY > 50);
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll(); // estado inicial caso já esteja rolado
+  /* -------------------------------------------------------------------
+     MÓDULO: Loading Screen
+     Exibe o loader até a página estar pronta, depois some suavemente.
+     ------------------------------------------------------------------- */
+  const LoaderModule = {
+    init() {
+      const loader = document.getElementById('loader');
+      if (!loader) return;
+
+      const hide = () => {
+        loader.classList.add('is-hidden');
+        document.body.style.overflow = '';
+      };
+
+      document.body.style.overflow = 'hidden';
+
+      window.addEventListener('load', () => {
+        setTimeout(hide, 900);
+      });
+
+      // Fallback: caso o evento load demore demais, força o fim do loader.
+      setTimeout(hide, 3500);
     }
+  };
 
+  /* -------------------------------------------------------------------
+     MÓDULO: Scroll Reveal
+     Observa elementos com [data-reveal] e adiciona a classe is-visible
+     quando entram na viewport. Também dispara a timeline do processo.
+     ------------------------------------------------------------------- */
+  const ScrollRevealModule = {
+    init() {
+      const items = document.querySelectorAll('[data-reveal]');
+      if (!items.length) return;
 
-    // ─────────────────────────────────────────────
-    // 2. MENU MOBILE — toggle acessível
-    // ─────────────────────────────────────────────
-    const menuToggle = document.querySelector(".mobile-menu-toggle");
-    const navContent = document.querySelector(".nav-content");
+      if (prefersReducedMotion) {
+        items.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
 
-    if (menuToggle && navContent) {
-        menuToggle.addEventListener("click", () => {
-            const isOpen = navContent.classList.toggle("menu-open");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"
-            );
-        });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Pequeno atraso escalonado para cards no mesmo grupo
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      );
 
-        // Fecha o menu ao clicar num link
-        navContent.querySelectorAll(".nav-links a").forEach(link => {
-            link.addEventListener("click", () => {
-                navContent.classList.remove("menu-open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Abrir menu de navegação");
+      items.forEach((el) => observer.observe(el));
+
+      // Timeline: ativa o preenchimento da linha quando visível
+      const timeline = document.querySelector('.timeline');
+      if (timeline) {
+        const timelineObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                timeline.classList.add('is-visible');
+                timelineObserver.unobserve(timeline);
+              }
             });
-        });
-
-        // Fecha o menu ao pressionar Escape
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && navContent.classList.contains("menu-open")) {
-                navContent.classList.remove("menu-open");
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.setAttribute("aria-label", "Abrir menu de navegação");
-                menuToggle.focus();
-            }
-        });
-    }
-
-
-    // ─────────────────────────────────────────────
-    // 3. SCROLL REVEAL — Intersection Observer
-    // ─────────────────────────────────────────────
-    const revealElements = document.querySelectorAll(".reveal");
-
-    if (revealElements.length) {
-        // Respeita preferência por redução de movimento
-        const prefersReducedMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        if (prefersReducedMotion) {
-            // Revela tudo imediatamente sem animação
-            revealElements.forEach(el => el.classList.add("active"));
-        } else {
-            const revealObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("active");
-                            revealObserver.unobserve(entry.target); // para de observar após revelar
-                        }
-                    });
-                },
-                { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-            );
-            revealElements.forEach(el => revealObserver.observe(el));
-        }
-    }
-
-
-    // ─────────────────────────────────────────────
-    // 4. COUNT-UP — animação dos números
-    // ─────────────────────────────────────────────
-    const counters = document.querySelectorAll(".count-up");
-
-    if (counters.length) {
-        const formatValue = (el, value) => {
-            const target = +el.getAttribute("data-target");
-            const isPercent = el.getAttribute("data-suffix") === "%" ||
-                              el.closest(".stat-item")?.querySelector(".stat-label")
-                                ?.textContent.includes("Satisfação");
-
-            if (target >= 1_000_000) {
-                // Exibe como "1M" quando chegar ao final
-                const millions = value / 1_000_000;
-                return "+" + (millions >= 1 ? "1M" : millions.toFixed(1) + "M");
-            }
-
-            return isPercent ? value + "%" : "+" + value;
-        };
-
-        const animateCounter = (el) => {
-            const target = +el.getAttribute("data-target");
-            const duration = 1800; // ms
-            const steps = 60;
-            const interval = duration / steps;
-            let current = 0;
-
-            const timer = setInterval(() => {
-                current += target / steps;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                el.textContent = formatValue(el, Math.ceil(current));
-            }, interval);
-        };
-
-        const counterObserver = new IntersectionObserver(
-            (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounter(entry.target);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.5 }
+          },
+          { threshold: 0.3 }
         );
-
-        counters.forEach(counter => counterObserver.observe(counter));
+        timelineObserver.observe(timeline);
+      }
     }
+  };
 
+  /* -------------------------------------------------------------------
+     MÓDULO: Navbar Dinâmica
+     Adiciona fundo/blur na navbar conforme o scroll.
+     ------------------------------------------------------------------- */
+  const NavbarModule = {
+    init() {
+      const navbar = document.getElementById('navbar');
+      if (!navbar) return;
 
-    // ─────────────────────────────────────────────
-    // 5. DRAG CAROUSEL — mouse e touch
-    // ─────────────────────────────────────────────
-    document.querySelectorAll(".drag-slider").forEach(carousel => {
-        let isDragging = false;
-        let startX = 0;
-        let scrollOrigin = 0;
-        let hasDragged = false;
+      const toggleScrollState = () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('is-scrolled');
+        } else {
+          navbar.classList.remove('is-scrolled');
+        }
+      };
 
-        const dragStart = (x) => {
-            isDragging = true;
-            hasDragged = false;
-            startX = x - carousel.offsetLeft;
-            scrollOrigin = carousel.scrollLeft;
-            carousel.style.cursor = "grabbing";
-        };
+      toggleScrollState();
+      window.addEventListener('scroll', toggleScrollState, { passive: true });
+    }
+  };
 
-        const dragMove = (x) => {
-            if (!isDragging) return;
-            const currentX = x - carousel.offsetLeft;
-            const walk = (currentX - startX) * 1.8;
-            if (Math.abs(walk) > 5) hasDragged = true;
-            carousel.scrollLeft = scrollOrigin - walk;
-        };
+  /* -------------------------------------------------------------------
+     MÓDULO: Menu Mobile
+     Abre/fecha o menu em telas pequenas e fecha ao clicar em um link.
+     ------------------------------------------------------------------- */
+  const MobileMenuModule = {
+    init() {
+      const toggle = document.getElementById('navbarToggle');
+      const menu = document.getElementById('navbarMenu');
+      if (!toggle || !menu) return;
 
-        const dragEnd = () => {
-            isDragging = false;
-            carousel.style.cursor = "grab";
-        };
+      const closeMenu = () => {
+        toggle.classList.remove('is-open');
+        menu.classList.remove('is-open');
+      };
 
-        // Mouse
-        carousel.addEventListener("mousedown", (e) => dragStart(e.pageX));
-        carousel.addEventListener("mousemove", (e) => { if (isDragging) { e.preventDefault(); dragMove(e.pageX); } });
-        carousel.addEventListener("mouseup", dragEnd);
-        carousel.addEventListener("mouseleave", dragEnd);
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('is-open');
+        menu.classList.toggle('is-open');
+      });
 
-        // Evita que cliques após drag ativem links/botões
-        carousel.addEventListener("click", (e) => {
-            if (hasDragged) e.preventDefault();
-        }, true);
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+  };
 
-        // Touch
-        carousel.addEventListener("touchstart", (e) => {
-            dragStart(e.touches[0].pageX);
-        }, { passive: true });
+  /* -------------------------------------------------------------------
+     MÓDULO: Botão Voltar ao Topo
+     ------------------------------------------------------------------- */
+  const BackToTopModule = {
+    init() {
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
 
-        carousel.addEventListener("touchmove", (e) => {
-            dragMove(e.touches[0].pageX);
-        }, { passive: true });
+      const toggleVisibility = () => {
+        if (window.scrollY > 600) {
+          btn.classList.add('is-visible');
+        } else {
+          btn.classList.remove('is-visible');
+        }
+      };
 
-        carousel.addEventListener("touchend", dragEnd);
-    });
+      toggleVisibility();
+      window.addEventListener('scroll', toggleVisibility, { passive: true });
 
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      });
+    }
+  };
 
-    // ─────────────────────────────────────────────
-    // 6. FAQ ACCORDION — acessível com aria
-    // ─────────────────────────────────────────────
-    const accordionTriggers = document.querySelectorAll(".accordion-trigger");
+  /* -------------------------------------------------------------------
+     MÓDULO: Slider de Depoimentos
+     Slider automático com controle manual via dots, pausa no hover.
+     ------------------------------------------------------------------- */
+  const TestimonialSliderModule = {
+    init() {
+      const track = document.getElementById('sliderTrack');
+      const dotsWrapper = document.getElementById('sliderDots');
+      if (!track || !dotsWrapper) return;
 
-    accordionTriggers.forEach(trigger => {
-        // Estado inicial: garante que todos fechados
-        const panel = document.getElementById(trigger.getAttribute("aria-controls"));
-        if (panel) {
-            panel.style.maxHeight = "0";
-            panel.style.overflow = "hidden";
-            panel.removeAttribute("hidden"); // remove hidden — usamos CSS para animar
+      const slides = Array.from(track.children);
+      let current = 0;
+      let intervalId = null;
+      const AUTOPLAY_DELAY = 5500;
+
+      // Cria os dots dinamicamente
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('slider-dot');
+        dot.setAttribute('aria-label', `Ir para depoimento ${index + 1}`);
+        if (index === 0) dot.classList.add('is-active');
+        dot.addEventListener('click', () => goTo(index));
+        dotsWrapper.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsWrapper.children);
+
+      function goTo(index) {
+        current = index;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+      }
+
+      function next() {
+        goTo((current + 1) % slides.length);
+      }
+
+      function startAutoplay() {
+        if (prefersReducedMotion) return;
+        stopAutoplay();
+        intervalId = setInterval(next, AUTOPLAY_DELAY);
+      }
+
+      function stopAutoplay() {
+        if (intervalId) clearInterval(intervalId);
+      }
+
+      const sliderEl = document.getElementById('testimonialSlider');
+      sliderEl.addEventListener('mouseenter', stopAutoplay);
+      sliderEl.addEventListener('mouseleave', startAutoplay);
+
+      startAutoplay();
+    }
+  };
+
+  /* -------------------------------------------------------------------
+     MÓDULO: Cursor Glow
+     Brilho discreto que segue o cursor. Desativado em dispositivos
+     de toque, onde não há cursor.
+     ------------------------------------------------------------------- */
+  const CursorGlowModule = {
+    init() {
+      const glow = document.getElementById('cursorGlow');
+      if (!glow || isTouchDevice || prefersReducedMotion) return;
+
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        glow.classList.add('is-active');
+      });
+
+      // Suaviza o movimento com interpolação (lerp) via requestAnimationFrame
+      function animate() {
+        currentX += (targetX - currentX) * 0.12;
+        currentY += (targetY - currentY) * 0.12;
+        glow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    }
+  };
+
+  /* -------------------------------------------------------------------
+     MÓDULO: Rede de Nós no Hero (elemento de assinatura visual)
+     Canvas leve com pontos conectados por linhas finas, representando
+     a interligação entre Marketing, Social Media e Web Design.
+     Reage sutilmente à posição do mouse (paralaxe suave).
+     ------------------------------------------------------------------- */
+  const HeroNetworkModule = {
+    init() {
+      const canvas = document.getElementById('heroCanvas');
+      const hero = document.querySelector('.hero');
+      if (!canvas || !hero || prefersReducedMotion) return;
+
+      const ctx = canvas.getContext('2d');
+      let width, height, nodes;
+      let mouseX = 0, mouseY = 0;
+
+      const NODE_COUNT = 46;
+      const MAX_DISTANCE = 150;
+
+      function resize() {
+        width = canvas.width = hero.offsetWidth;
+        height = canvas.height = hero.offsetHeight;
+      }
+
+      function createNodes() {
+        nodes = Array.from({ length: NODE_COUNT }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25
+        }));
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Leve deslocamento influenciado pelo mouse (paralaxe suave)
+        const offsetX = (mouseX - width / 2) * 0.01;
+        const offsetY = (mouseY - height / 2) * 0.01;
+
+        nodes.forEach((node) => {
+          node.x += node.vx;
+          node.y += node.vy;
+
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+        });
+
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i];
+            const b = nodes[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < MAX_DISTANCE) {
+              const opacity = (1 - dist / MAX_DISTANCE) * 0.25;
+              ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x + offsetX, a.y + offsetY);
+              ctx.lineTo(b.x + offsetX, b.y + offsetY);
+              ctx.stroke();
+            }
+          }
         }
 
-        trigger.addEventListener("click", () => {
-            const isExpanded = trigger.getAttribute("aria-expanded") === "true";
-            const parentItem = trigger.closest(".accordion-item");
-
-            // Fecha todos os outros
-            accordionTriggers.forEach(other => {
-                if (other === trigger) return;
-                other.setAttribute("aria-expanded", "false");
-                other.closest(".accordion-item")?.classList.remove("active");
-                const otherPanel = document.getElementById(other.getAttribute("aria-controls"));
-                if (otherPanel) otherPanel.style.maxHeight = "0";
-            });
-
-            // Alterna o atual
-            const nextState = !isExpanded;
-            trigger.setAttribute("aria-expanded", String(nextState));
-            parentItem?.classList.toggle("active", nextState);
-
-            if (panel) {
-                panel.style.maxHeight = nextState ? panel.scrollHeight + "px" : "0";
-            }
+        nodes.forEach((node) => {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.55)';
+          ctx.beginPath();
+          ctx.arc(node.x + offsetX, node.y + offsetY, 1.6, 0, Math.PI * 2);
+          ctx.fill();
         });
 
-        // Navegar com teclado: setas entre perguntas
-        trigger.addEventListener("keydown", (e) => {
-            const items = [...accordionTriggers];
-            const idx = items.indexOf(trigger);
-            if (e.key === "ArrowDown") {
-                e.preventDefault();
-                items[(idx + 1) % items.length]?.focus();
-            } else if (e.key === "ArrowUp") {
-                e.preventDefault();
-                items[(idx - 1 + items.length) % items.length]?.focus();
-            } else if (e.key === "Home") {
-                e.preventDefault();
-                items[0]?.focus();
-            } else if (e.key === "End") {
-                e.preventDefault();
-                items[items.length - 1]?.focus();
-            }
-        });
-    });
+        requestAnimationFrame(step);
+      }
 
+      resize();
+      createNodes();
+      requestAnimationFrame(step);
 
-    // ─────────────────────────────────────────────
-    // 7. PORTFOLIO FILTER — com animação de saída
-    // ─────────────────────────────────────────────
-    const filterBtns = document.querySelectorAll(".filter-btn");
-    const portfolioCards = document.querySelectorAll(".portfolio-card");
+      window.addEventListener('resize', () => {
+        resize();
+        createNodes();
+      });
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            // Atualiza botões
-            filterBtns.forEach(b => {
-                b.classList.remove("active");
-                b.setAttribute("aria-pressed", "false");
-            });
-            btn.classList.add("active");
-            btn.setAttribute("aria-pressed", "true");
-
-            const filter = btn.getAttribute("data-filter");
-
-            portfolioCards.forEach(card => {
-                const matches = filter === "all" || card.classList.contains("item-" + filter);
-
-                // Transição suave de opacidade
-                card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-
-                if (matches) {
-                    card.style.display = "block";
-                    // Pequeno delay para o display:block pegar antes de animar
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            card.style.opacity = "1";
-                            card.style.transform = "scale(1)";
-                        });
-                    });
-                } else {
-                    card.style.opacity = "0";
-                    card.style.transform = "scale(0.96)";
-                    const onEnd = () => {
-                        card.style.display = "none";
-                        card.removeEventListener("transitionend", onEnd);
-                    };
-                    card.addEventListener("transitionend", onEnd);
-                }
-            });
-        });
-    });
-
-
-    // ─────────────────────────────────────────────
-    // 8. TILT 3D — somente em dispositivos com mouse
-    // ─────────────────────────────────────────────
-    const hasPointer = window.matchMedia("(pointer: fine)").matches;
-    const prefersNoMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (hasPointer && !prefersNoMotion) {
-        document.querySelectorAll(".tilt-3d").forEach(el => {
-            el.addEventListener("mousemove", (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const rotateY = ((x / rect.width) - 0.5) * 8;
-                const rotateX = ((y / rect.height) - 0.5) * -8;
-                el.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-            });
-
-            el.addEventListener("mouseleave", () => {
-                el.style.transition = "transform 0.5s ease";
-                el.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-            });
-
-            el.addEventListener("mouseenter", () => {
-                el.style.transition = "transform 0.1s ease";
-            });
-        });
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
     }
+  };
 
+  /* -------------------------------------------------------------------
+     Inicialização geral
+     ------------------------------------------------------------------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    LoaderModule.init();
+    ScrollRevealModule.init();
+    NavbarModule.init();
+    MobileMenuModule.init();
+    BackToTopModule.init();
+    TestimonialSliderModule.init();
+    CursorGlowModule.init();
+    HeroNetworkModule.init();
+  });
 
-    // ─────────────────────────────────────────────
-    // 9. FORMULÁRIO — envio via WhatsApp com validação
-    // ─────────────────────────────────────────────
-    const contactForm = document.getElementById("contactForm");
-
-    if (contactForm) {
-        // Feedback visual em tempo real
-        const showError = (input, msg) => {
-            let err = input.parentElement.querySelector(".field-error");
-            if (!err) {
-                err = document.createElement("span");
-                err.className = "field-error";
-                err.setAttribute("role", "alert");
-                err.style.cssText = "color:#E85002;font-size:0.8rem;margin-top:4px;display:block;";
-                input.parentElement.appendChild(err);
-            }
-            err.textContent = msg;
-            input.setAttribute("aria-invalid", "true");
-            input.style.borderColor = "#E85002";
-        };
-
-        const clearError = (input) => {
-            const err = input.parentElement.querySelector(".field-error");
-            if (err) err.remove();
-            input.removeAttribute("aria-invalid");
-            input.style.borderColor = "";
-        };
-
-        // Validação ao sair do campo
-        contactForm.querySelectorAll("input, select, textarea").forEach(field => {
-            field.addEventListener("blur", () => {
-                if (field.required && !field.value.trim()) {
-                    showError(field, "Este campo é obrigatório.");
-                } else if (field.type === "email" && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
-                    showError(field, "Informe um e-mail válido.");
-                } else if (field.type === "tel" && field.value && !/^\+?[\d\s\(\)\-]{8,}$/.test(field.value)) {
-                    showError(field, "Informe um número válido.");
-                } else {
-                    clearError(field);
-                }
-            });
-        });
-
-        contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            // Valida todos antes de enviar
-            let hasErrors = false;
-            contactForm.querySelectorAll("[required]").forEach(field => {
-                if (!field.value.trim()) {
-                    showError(field, "Este campo é obrigatório.");
-                    hasErrors = true;
-                }
-            });
-
-            if (hasErrors) {
-                // Foca o primeiro campo com erro
-                const firstError = contactForm.querySelector("[aria-invalid='true']");
-                firstError?.focus();
-                return;
-            }
-
-            const nome    = contactForm.querySelector("#nome")?.value.trim() ?? "";
-            const servico = contactForm.querySelector("#servico")?.value ?? "";
-            const msg     = contactForm.querySelector("#mensagem")?.value.trim() ?? "";
-
-            const servicoLabel = {
-                web:    "Desenvolvimento Web",
-                social: "Gestão de Mídias Sociais",
-                pack:   "Pack de Postagens",
-            }[servico] ?? servico;
-
-            const whatsappMsg =
-                `Olá! Me chamo *${nome}* e tenho interesse em: *${servicoLabel}*.\n` +
-                (msg ? `\nMensagem: ${msg}` : "");
-
-            // Feedback visual de envio
-            const submitBtn = contactForm.querySelector("[type='submit']");
-            if (submitBtn) {
-                submitBtn.textContent = "Redirecionando...";
-                submitBtn.disabled = true;
-                setTimeout(() => {
-                    submitBtn.textContent = "Enviar Solicitação";
-                    submitBtn.disabled = false;
-                }, 3000);
-            }
-
-            window.open(
-                `https://wa.me/5500000000000?text=${encodeURIComponent(whatsappMsg)}`,
-                "_blank",
-                "noopener,noreferrer"
-            );
-        });
-    }
-
-
-    // ─────────────────────────────────────────────
-    // 10. ANO DINÂMICO no footer
-    // ─────────────────────────────────────────────
-    const yearEl = document.getElementById("current-year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-
-    // ─────────────────────────────────────────────
-    // 11. SMOOTH SCROLL para links âncora
-    //     (fallback para browsers sem suporte nativo)
-    // ─────────────────────────────────────────────
-    if (!CSS.supports("scroll-behavior", "smooth")) {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener("click", (e) => {
-                const target = document.querySelector(anchor.getAttribute("href"));
-                if (!target) return;
-                e.preventDefault();
-                target.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-        });
-    }
-
-}); // fim DOMContentLoaded
+})();
