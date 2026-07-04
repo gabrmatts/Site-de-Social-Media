@@ -2,435 +2,486 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Pro — Gestão de Mídias Sociais</title>
-    <link rel="stylesheet" href="src/style.css" />
-    <link rel="stylesheet" href="src/responsivo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GS Company — Marketing Digital, Social Media e Web Design</title>
+    <meta name="description"
+        content="A GS Company transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
+
+    <!-- Tipografia: Cabinet Grotesk (display) + General Sans (texto) via Fontshare -->
+    <link rel="preconnect" href="https://api.fontshare.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap"
-        rel="stylesheet" />
+        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@600,500,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/responsivo.css">
 </head>
 
 <body>
 
+    <!-- ============================================= -->
     <!-- LOADING SCREEN -->
-    <div id="loader">
+    <!-- ============================================= -->
+    <div class="loader" id="loader">
         <div class="loader-inner">
-            <div class="loader-logo">SM<span>.</span></div>
-            <div class="loader-bar">
-                <div class="loader-fill"></div>
-            </div>
+            <img src="img/GS Company.png" alt="GS Company" class="loader-logo">
+            <div class="loader-bar"><span class="loader-bar-fill"></span></div>
         </div>
     </div>
 
-    <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/5500000000000" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-        </svg>
-        <span class="wa-tooltip">Fale Conosco</span>
-    </a>
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
 
+    <!-- ============================================= -->
     <!-- NAVBAR -->
-    <nav id="navbar">
-        <div class="nav-inner">
-            <div class="nav-logo">SM<span class="dot">.</span></div>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#beneficios">Benefícios</a></li>
-                <li><a href="#resultados">Resultados</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-            <a href="#contato" class="btn-nav">Solicitar Orçamento</a>
-            <button class="hamburger" id="hamburger" aria-label="Menu">
+    <!-- ============================================= -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <a href="#topo" class="navbar-logo">
+                <img src="img/GS Company.png" alt="GS Company">
+            </a>
+
+            <nav class="navbar-menu" id="navbarMenu">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#servicos" class="nav-link">Serviços</a>
+                <a href="#processo" class="nav-link">Processo</a>
+                <a href="#portfolio" class="nav-link">Portfólio</a>
+                <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="#contato" class="nav-link nav-cta">Orçamento</a>
+            </nav>
+
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
-    </nav>
+    </header>
 
+    <!-- ============================================= -->
     <!-- HERO -->
-    <section id="inicio" class="hero">
-        <div class="hero-bg">
-            <div class="hero-glow"></div>
-            <div class="grid-overlay"></div>
-        </div>
+    <!-- ============================================= -->
+    <section class="hero" id="topo">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+
         <div class="container hero-content">
-            <div class="hero-text reveal">
-                <div class="hero-badge">✦ Gestão de Mídias Sociais</div>
-                <h1 class="hero-headline">Transformamos Redes Sociais em <span class="gradient-text">Máquinas de
-                        Autoridade</span> e Vendas</h1>
-                <p class="hero-sub">Enquanto você foca no seu negócio, nós construímos sua presença digital com
-                    estratégia, consistência e resultado. Seu próximo cliente já está no Instagram — nós vamos até ele.
+            <img src="img/GS Company.png" alt="GS Company" class="hero-logo reveal" data-reveal>
+
+            <span class="eyebrow reveal" data-reveal>Agência de Performance Digital</span>
+
+            <h1 class="hero-title reveal" data-reveal>
+                Transformamos presença digital<br> em resultados.
+            </h1>
+
+            <p class="hero-subtitle reveal" data-reveal>
+                Marketing, Social Media e Web Design para empresas que querem crescer de verdade.
+            </p>
+
+            <div class="hero-buttons reveal" data-reveal>
+                <a href="#contato" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- SOBRE -->
+    <!-- ============================================= -->
+    <section class="sobre" id="sobre">
+        <div class="container sobre-grid">
+
+            <div class="sobre-texto reveal" data-reveal>
+                <span class="section-label">Quem Somos</span>
+                <h2 class="section-title">
+                    Uma agência construída<br> para gerar crescimento real.
+                </h2>
+                <p class="section-text">
+                    A GS Company nasceu para resolver um problema simples: empresas investem em
+                    presença digital sem estratégia e sem resultado. Unimos marketing de performance,
+                    gestão de redes sociais e desenvolvimento web em um único processo, pensado
+                    para transformar atenção em receita.
                 </p>
-                <div class="hero-ctas">
-                    <a href="#contato" class="btn-primary">Quero Crescer Meu Instagram</a>
-                    <a href="#servicos" class="btn-secondary">Ver Como Funciona</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><span class="count" data-target="300">0</span><span>%</span><small>Crescimento
-                            médio</small></div>
-                    <div class="stat-div"></div>
-                    <div class="stat"><span class="count" data-target="150">0</span><span>+</span><small>Clientes
-                            ativos</small></div>
-                    <div class="stat-div"></div>
-                    <div class="stat"><span class="count" data-target="5">0</span><span> anos</span><small>De
-                            experiência</small></div>
-                </div>
+                <p class="section-text">
+                    Trabalhamos com método, dados e design — sem fórmulas genéricas. Cada projeto
+                    é construído sob medida para o momento e os objetivos do seu negócio.
+                </p>
+                <a href="#contato" class="link-arrow">Fale com a nossa equipe <span>→</span></a>
             </div>
-            <div class="hero-visual reveal">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="mock-profile">
-                            <div class="mock-avatar"></div>
-                            <div class="mock-info">
-                                <div class="mock-name"></div>
-                                <div class="mock-handle"></div>
-                            </div>
-                            <div class="mock-follow">Seguir</div>
-                        </div>
-                        <div class="mock-stats">
-                            <div><strong>12.4K</strong><span>Seguidores</span></div>
-                            <div><strong>89</strong><span>Posts</span></div>
-                            <div><strong>4.2%</strong><span>Eng.</span></div>
-                        </div>
-                        <div class="mock-grid">
-                            <div class="mock-post p1"></div>
-                            <div class="mock-post p2"></div>
-                            <div class="mock-post p3"></div>
-                            <div class="mock-post p4"></div>
-                            <div class="mock-post p5"></div>
-                            <div class="mock-post p6"></div>
-                        </div>
+
+            <div class="sobre-cards">
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M15 7h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
                     </div>
-                    <div class="phone-notch"></div>
+                    <h3>Marketing Estratégico</h3>
+                    <p>Planejamento orientado a dados, com foco em aquisição e retorno sobre investimento.</p>
                 </div>
-                <div class="float-card fc1">
-                    <div class="fc-icon">📈</div>
-                    <div><strong>+847</strong><small>Novos seguidores</small></div>
+
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Gestão de Redes Sociais</h3>
+                    <p>Conteúdo, identidade e consistência para marcas que querem ser lembradas.</p>
                 </div>
-                <div class="float-card fc2">
-                    <div class="fc-icon">💬</div>
-                    <div><strong>4.2%</strong><small>Taxa de engajamento</small></div>
+
+                <div class="mini-card reveal" data-reveal>
+                    <div class="mini-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="4" width="18" height="14" rx="1.5" stroke="currentColor"
+                                stroke-width="1.5" />
+                            <path d="M8 21h8M12 18v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Sites e plataformas rápidas, elegantes e construídas para converter.</p>
                 </div>
             </div>
-        </div>
-        <div class="scroll-indicator"><span>Scroll</span>
-            <div class="scroll-line"></div>
+
         </div>
     </section>
 
-    <!-- LOGO CAROUSEL -->
-    <section class="logos-section">
-        <p class="logos-label">Marcas que confiam no nosso trabalho</p>
-        <div class="logos-track">
-            <div class="logos-inner" id="logos-inner">
-                <span>TechStart</span><span>Bella Clínica</span><span>FitLife Academia</span><span>Sabor &
-                    Arte</span><span>ImovelPro</span><span>Dr. Silva &
-                    Cia</span><span>ModaVibe</span><span>ConnectHub</span><span>TechStart</span><span>Bella
-                    Clínica</span><span>FitLife Academia</span><span>Sabor & Arte</span><span>ImovelPro</span><span>Dr.
-                    Silva & Cia</span><span>ModaVibe</span><span>ConnectHub</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROBLEMA / LEAD -->
-    <section id="problema" class="section-problema">
+    <!-- ============================================= -->
+    <!-- SERVIÇOS -->
+    <!-- ============================================= -->
+    <section class="servicos" id="servicos">
         <div class="container">
-            <div class="section-tag reveal">O cenário atual</div>
-            <h2 class="section-title reveal">Seu concorrente já está crescendo.<br><span class="gradient-text">Você
-                    ainda está esperando?</span></h2>
-            <p class="section-sub reveal">Todo dia sem presença digital forte é um dia que seu concorrente está
-                conquistando clientes que deveriam ser seus.</p>
-            <div class="problem-grid">
-                <div class="problem-card reveal">
-                    <div class="p-icon">😓</div>
-                    <h3>Sem tempo para postar</h3>
-                    <p>Você tenta manter o perfil ativo, mas entre reuniões e entregas, as redes ficam abandonadas por
-                        dias.</p>
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Serviços</span>
+                <h2 class="section-title">O que fazemos por você</h2>
+            </div>
+
+            <div class="servicos-grid">
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">01</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 12l4-4 4 4 4-6 6 8" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Marketing Digital</h3>
+                    <p>Campanhas de tráfego, funis e estratégias de aquisição desenhadas para gerar clientes de forma
+                        previsível.</p>
+                </article>
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">02</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.5" />
+                            <circle cx="12" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M8 16h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Social Media</h3>
+                    <p>Planejamento de conteúdo, identidade visual e gestão completa de perfis para fortalecer sua
+                        marca.</p>
+                </article>
+
+                <article class="service-card reveal" data-reveal>
+                    <div class="service-card-glow"></div>
+                    <span class="service-index">03</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Web Design</h3>
+                    <p>Sites institucionais, landing pages e plataformas de alta performance, feitas para converter
+                        visitas em vendas.</p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- PROCESSO -->
+    <!-- ============================================= -->
+    <section class="processo" id="processo">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Como Trabalhamos</span>
+                <h2 class="section-title">Processo de Trabalho</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-line"><span class="timeline-line-fill"></span></div>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">01</span>
+                    <h3>Planejamento</h3>
+                    <p>Diagnóstico completo do negócio, do mercado e dos objetivos de crescimento.</p>
                 </div>
-                <div class="problem-card reveal">
-                    <div class="p-icon">📉</div>
-                    <h3>Engajamento no zero</h3>
-                    <p>Posts que não geram curtidas, comentários nem visitas. Investimento de tempo sem retorno visível.
-                    </p>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">02</span>
+                    <h3>Estratégia</h3>
+                    <p>Definição de canais, posicionamento e metas claras de curto e longo prazo.</p>
                 </div>
-                <div class="problem-card reveal">
-                    <div class="p-icon">🤷</div>
-                    <h3>Sem estratégia definida</h3>
-                    <p>Postar por postar não funciona. Sem calendário, identidade e estratégia, a conta não cresce.</p>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">03</span>
+                    <h3>Execução</h3>
+                    <p>Produção de conteúdo, campanhas e desenvolvimento com padrão de qualidade premium.</p>
                 </div>
-                <div class="problem-card reveal">
-                    <div class="p-icon">👻</div>
-                    <h3>Invisível no digital</h3>
-                    <p>Clientes pesquisam online antes de comprar. Se você não aparece, eles escolhem seu concorrente.
-                    </p>
+
+                <div class="timeline-item reveal" data-reveal>
+                    <span class="timeline-number">04</span>
+                    <h3>Crescimento</h3>
+                    <p>Análise de resultados, otimização contínua e escala sustentável.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SOLUÇÃO -->
-    <section id="servicos" class="section-solucao">
+    <!-- ============================================= -->
+    <!-- DIFERENCIAIS -->
+    <!-- ============================================= -->
+    <section class="diferenciais" id="diferenciais">
         <div class="container">
-            <div class="section-tag reveal">Nossa solução</div>
-            <h2 class="section-title reveal">Gestão completa que transforma<br><span class="gradient-text">seguidores em
-                    clientes</span></h2>
-            <div class="solution-grid">
-                <div class="sol-card reveal">
-                    <div class="sol-icon">📅</div>
-                    <h3>Calendário Editorial</h3>
-                    <p>Planejamento mensal de conteúdo estratégico, alinhado com seus objetivos de negócio e
-                        sazonalidades.</p>
-                    <div class="sol-tag">Estratégia</div>
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Diferenciais</span>
+                <h2 class="section-title">Por que a GS Company</h2>
+            </div>
+
+            <div class="diferenciais-grid">
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3>Atendimento Personalizado</h3>
+                    <p>Relacionamento próximo, direto e sem burocracia com sua equipe.</p>
                 </div>
-                <div class="sol-card reveal">
-                    <div class="sol-icon">🎨</div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <h3>Estratégias Inteligentes</h3>
+                    <p>Decisões orientadas por dados reais, não por achismos de mercado.</p>
+                </div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
                     <h3>Design Profissional</h3>
-                    <p>Identidade visual consistente em cada post. Arte que comunica autoridade e gera desejo nos
-                        seguidores.</p>
-                    <div class="sol-tag">Visual</div>
+                    <p>Identidade visual e interfaces que elevam a percepção da sua marca.</p>
                 </div>
-                <div class="sol-card reveal">
-                    <div class="sol-icon">✍️</div>
-                    <h3>Copy Persuasiva</h3>
-                    <p>Legendas que vendem, CTAs que convertem e storytelling que conecta sua marca ao público.</p>
-                    <div class="sol-tag">Texto</div>
-                </div>
-                <div class="sol-card reveal">
-                    <div class="sol-icon">📊</div>
-                    <h3>Relatórios Mensais</h3>
-                    <p>Métricas detalhadas, insights acionáveis e ajuste de estratégia baseado em dados reais.</p>
-                    <div class="sol-tag">Dados</div>
-                </div>
-                <div class="sol-card reveal">
-                    <div class="sol-icon">🚀</div>
-                    <h3>Crescimento Orgânico</h3>
-                    <p>Técnicas de crescimento que atraem seguidores qualificados — pessoas que realmente compram.</p>
-                    <div class="sol-tag">Crescimento</div>
-                </div>
-                <div class="sol-card reveal">
-                    <div class="sol-icon">🎯</div>
-                    <h3>Posicionamento Digital</h3>
-                    <p>Seu perfil se torna referência no nicho. Clientes chegam até você com autoridade estabelecida.
-                    </p>
-                    <div class="sol-tag">Autoridade</div>
+
+                <div class="dif-card reveal" data-reveal>
+                    <div class="dif-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M15 7h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3>Foco em Resultados</h3>
+                    <p>Cada ação é medida — o que importa é o impacto no seu negócio.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BENEFÍCIOS CAROUSEL -->
-    <section id="beneficios" class="section-benefits">
+    <!-- ============================================= -->
+    <!-- PORTFÓLIO -->
+    <!-- ============================================= -->
+    <section class="portfolio" id="portfolio">
         <div class="container">
-            <div class="section-tag reveal">Por que nos escolher</div>
-            <h2 class="section-title reveal">Diferenciais que fazem<br><span class="gradient-text">a diferença
-                    real</span></h2>
-        </div>
-        <div class="benefits-track">
-            <div class="benefits-inner">
-                <div class="benefit-card">✓ Atendimento Humanizado</div>
-                <div class="benefit-card">✓ Design Exclusivo</div>
-                <div class="benefit-card">✓ Estratégia Personalizada</div>
-                <div class="benefit-card">✓ Entrega Rápida</div>
-                <div class="benefit-card">✓ Suporte Pós-Projeto</div>
-                <div class="benefit-card">✓ Foco em Conversão</div>
-                <div class="benefit-card">✓ Comunicação Transparente</div>
-                <div class="benefit-card">✓ Alta Qualidade Visual</div>
-                <div class="benefit-card">✓ Atendimento Humanizado</div>
-                <div class="benefit-card">✓ Design Exclusivo</div>
-                <div class="benefit-card">✓ Estratégia Personalizada</div>
-                <div class="benefit-card">✓ Entrega Rápida</div>
-                <div class="benefit-card">✓ Suporte Pós-Projeto</div>
-                <div class="benefit-card">✓ Foco em Conversão</div>
-                <div class="benefit-card">✓ Comunicação Transparente</div>
-                <div class="benefit-card">✓ Alta Qualidade Visual</div>
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Portfólio</span>
+                <h2 class="section-title">Projetos que já fizemos crescer</h2>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item item-tall reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Web Design</span>
+                        <h3>Studio Nord</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Social Media</span>
+                        <h3>Vértice Coffee</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Marketing Digital</span>
+                        <h3>Órbita Fit</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item item-wide reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Web Design</span>
+                        <h3>Lumen Arquitetura</h3>
+                    </div>
+                </div>
+
+                <div class="portfolio-item reveal" data-reveal>
+                    <div class="portfolio-media"></div>
+                    <div class="portfolio-overlay">
+                        <span class="portfolio-tag">Marketing Digital</span>
+                        <h3>Nova Capital</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- EVIDÊNCIAS / DEPOIMENTOS -->
-    <section id="resultados" class="section-depoimentos">
+    <!-- ============================================= -->
+    <!-- DEPOIMENTOS -->
+    <!-- ============================================= -->
+    <section class="depoimentos" id="depoimentos">
         <div class="container">
-            <div class="section-tag reveal">Resultados reais</div>
-            <h2 class="section-title reveal">O que nossos clientes<br><span class="gradient-text">estão dizendo</span>
-            </h2>
-            <div class="depo-slider" id="depo-slider">
-                <div class="depo-card active">
-                    <div class="depo-stars">★★★★★</div>
-                    <p>"Em 3 meses meu Instagram saiu de 800 para 9.200 seguidores. Mais que isso: triplicamos os
-                        agendamentos na clínica. O trabalho deles é impressionante."</p>
-                    <div class="depo-author">
-                        <div class="depo-avatar">DR</div>
-                        <div><strong>Dr. Rodrigo Alves</strong><span>Clínica Odontológica</span></div>
-                    </div>
-                </div>
-                <div class="depo-card">
-                    <div class="depo-stars">★★★★★</div>
-                    <p>"Minha academia passou a ser referência na região. Os posts são profissionais, o engajamento
-                        explodiu e as matrículas aumentaram 40% no primeiro trimestre."</p>
-                    <div class="depo-author">
-                        <div class="depo-avatar">MA</div>
-                        <div><strong>Marcos Andrade</strong><span>FitLife Academia</span></div>
-                    </div>
-                </div>
-                <div class="depo-card">
-                    <div class="depo-stars">★★★★★</div>
-                    <p>"Sou corretora e nunca imaginei que o Instagram poderia me trazer tantos leads qualificados.
-                        Fechei 3 imóveis em 2 meses, direto pelo DM."</p>
-                    <div class="depo-author">
-                        <div class="depo-avatar">CF</div>
-                        <div><strong>Carla Ferreira</strong><span>Corretora de Imóveis</span></div>
-                    </div>
-                </div>
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Depoimentos</span>
+                <h2 class="section-title">Quem trabalhou com a gente</h2>
             </div>
-            <div class="depo-dots">
-                <button class="dot-btn active" data-index="0"></button>
-                <button class="dot-btn" data-index="1"></button>
-                <button class="dot-btn" data-index="2"></button>
+
+            <div class="slider" id="testimonialSlider">
+                <div class="slider-track" id="sliderTrack">
+
+                    <div class="slide">
+                        <p class="slide-quote">"A GS Company reorganizou toda a nossa presença digital. Em três meses,
+                            triplicamos os leads qualificados."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Marina Cardoso</span>
+                            <span class="slide-company">Studio Nord</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"Profissionalismo raro. Cada entrega parecia ter sido pensada
+                            exclusivamente para o nosso negócio."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Rafael Teixeira</span>
+                            <span class="slide-company">Vértice Coffee</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"O novo site aumentou nossa taxa de conversão em mais de 40%. Resultado
+                            muito acima do esperado."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Camila Duarte</span>
+                            <span class="slide-company">Órbita Fit</span>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <p class="slide-quote">"Equipe extremamente atenta aos detalhes. Sentimos que temos um time de
+                            marketing interno, não uma agência terceirizada."</p>
+                        <div class="slide-author">
+                            <span class="slide-name">Eduardo Lins</span>
+                            <span class="slide-company">Nova Capital</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="slider-dots" id="sliderDots"></div>
             </div>
         </div>
     </section>
 
-    <!-- PLANOS -->
-    <section class="section-planos">
-        <div class="container">
-            <div class="section-tag reveal">Investimento</div>
-            <h2 class="section-title reveal">Escolha o plano ideal<br><span class="gradient-text">para o seu
-                    negócio</span></h2>
-            <div class="planos-grid">
-                <div class="plano-card reveal">
-                    <div class="plano-nome">Essencial</div>
-                    <div class="plano-preco">R$ <span>997</span>/mês</div>
-                    <ul class="plano-items">
-                        <li>12 posts por mês</li>
-                        <li>3 stories/semana</li>
-                        <li>Calendário editorial</li>
-                        <li>Relatório mensal</li>
-                        <li>1 rede social</li>
-                    </ul>
-                    <a href="#contato" class="btn-secondary">Começar Agora</a>
-                </div>
-                <div class="plano-card destaque reveal">
-                    <div class="plano-badge">Mais Popular</div>
-                    <div class="plano-nome">Profissional</div>
-                    <div class="plano-preco">R$ <span>1.897</span>/mês</div>
-                    <ul class="plano-items">
-                        <li>20 posts por mês</li>
-                        <li>Stories diários</li>
-                        <li>Reels estratégicos</li>
-                        <li>Calendário editorial avançado</li>
-                        <li>Relatório semanal</li>
-                        <li>2 redes sociais</li>
-                        <li>Gestão de DMs</li>
-                    </ul>
-                    <a href="#contato" class="btn-primary">Quero Este Plano</a>
-                </div>
-                <div class="plano-card reveal">
-                    <div class="plano-nome">Elite</div>
-                    <div class="plano-preco">R$ <span>3.200</span>/mês</div>
-                    <ul class="plano-items">
-                        <li>Posts ilimitados</li>
-                        <li>Stories + Reels + Lives</li>
-                        <li>Estratégia 360°</li>
-                        <li>Tráfego pago integrado</li>
-                        <li>Reuniões semanais</li>
-                        <li>3+ redes sociais</li>
-                        <li>Gestor dedicado</li>
-                    </ul>
-                    <a href="#contato" class="btn-secondary">Falar com Especialista</a>
-                </div>
-            </div>
+    <!-- ============================================= -->
+    <!-- CTA -->
+    <!-- ============================================= -->
+    <section class="cta" id="contato">
+        <div class="cta-glow"></div>
+        <div class="container cta-content reveal" data-reveal>
+            <h2>Pronto para levar sua empresa<br> para outro nível?</h2>
+            <p>Fale agora com a nossa equipe e receba uma proposta sob medida para o seu negócio.</p>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                Falar no WhatsApp
+            </a>
         </div>
     </section>
 
-    <!-- GARANTIA -->
-    <section class="section-garantia">
-        <div class="container">
-            <div class="garantia-inner reveal">
-                <div class="garantia-icon">🛡️</div>
-                <div class="garantia-content">
-                    <h2>Processo simples, resultado garantido</h2>
-                    <p>Começamos com uma reunião de onboarding para entender seu negócio. Em 7 dias, entregamos o
-                        primeiro calendário editorial. Se em 30 dias você não sentir evolução, revisamos a estratégia
-                        sem custo extra.</p>
-                    <div class="garantia-items">
-                        <span>✓ Onboarding em 48h</span>
-                        <span>✓ Suporte via WhatsApp</span>
-                        <span>✓ Reuniões de alinhamento</span>
-                        <span>✓ Relatórios transparentes</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section-faq">
-        <div class="container">
-            <div class="section-tag reveal">Dúvidas frequentes</div>
-            <h2 class="section-title reveal">Perguntas e <span class="gradient-text">Respostas</span></h2>
-            <div class="faq-list">
-                <div class="faq-item reveal">
-                    <button class="faq-q">Preciso ter muitos seguidores para começar? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Não. Começamos do zero e construímos uma base sólida de seguidores qualificados. O que
-                            importa não é quantidade, mas a qualidade do público que você atrai.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q">Quanto tempo leva para ver resultados? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Resultados iniciais de engajamento aparecem nas primeiras semanas. Crescimento de seguidores
-                            e geração de leads são evidentes a partir do segundo mês de estratégia consistente.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q">Vocês criam o conteúdo por completo? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Sim. Cuidamos de tudo: estratégia, design, copy das legendas, hashtags e publicação. Você só
-                            precisa aprovar antes de publicarmos.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q">Posso gerenciar minha conta ao mesmo tempo? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Sim, você mantém total controle. Trabalhamos em colaboração — você pode publicar conteúdos
-                            extras e nós cuidamos da estratégia principal.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q">Funciona para qualquer segmento? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Sim. Atendemos clínicas, academias, restaurantes, corretores, advogados, lojas físicas e
-                            virtuais. Adaptamos a estratégia para cada nicho.</p>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-q">Posso cancelar quando quiser? <span>+</span></button>
-                    <div class="faq-a">
-                        <p>Os planos têm fidelidade mínima de 3 meses para garantir resultados consistentes. Após isso,
-                            você pode cancelar com 30 dias de aviso prévio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- ============================================= -->
     <!-- FOOTER -->
+    <!-- ============================================= -->
     <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-logo">SM<span class="dot">.</span></div>
-            <p>© 2025 Social Media Pro. Todos os direitos reservados.</p>
-            <div class="footer-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <img src="img/GS Company.png" alt="GS Company" class="footer-logo">
+                <p>Marketing, Social Media e Web Design para empresas que querem crescer de verdade.</p>
             </div>
+
+            <div class="footer-menu">
+                <h4>Menu</h4>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#processo">Processo</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#depoimentos">Depoimentos</a>
+            </div>
+
+            <div class="footer-social">
+                <h4>Redes Sociais</h4>
+                <a href="#" target="_blank" rel="noopener">Instagram</a>
+                <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="#" target="_blank" rel="noopener">Behance</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GS Company. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>
