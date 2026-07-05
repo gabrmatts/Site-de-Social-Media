@@ -55,6 +55,16 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    /*
+      Trava horizontal também no <html> (não só no <body>). Isso é o que
+      evita o bug de "abrir como versão desktop espremida" no celular:
+      se qualquer elemento filho ficar mais largo que a tela (ex: um
+      carrossel mal contido), o motor do navegador mobile pode expandir
+      a "viewport de layout" inteira para caber esse conteúdo, fazendo
+      a página inteira parecer zoomada/achatada. Isso fecha essa porta.
+    */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -65,6 +75,8 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 img {
@@ -930,188 +942,106 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------------------
-   13. DEPOIMENTOS / SLIDER
+   13. CLIENTES / PARCEIROS (carrossel infinito de logos)
+   Seção clara (fundo branco) intencionalmente, como "respiro" visual
+   entre o Portfólio e os Depoimentos — mas com contenção de largura
+   reforçada para nunca vazar horizontalmente no mobile.
    --------------------------------------------------------------------- */
-.depoimentos {
-    padding: var(--section-padding) 0;
-    border-top: 1px solid var(--white-08);
-}
-
-.slider {
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.7s var(--ease);
-}
-
-.slide {
-    min-width: 100%;
-    padding: 0 20px;
-}
-
-.slide-quote {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 2.4vw, 28px);
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-}
-
-.slide-author {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 32px;
-}
-
-.slide-name {
-    font-weight: 600;
-    font-size: 15px;
-}
-
-.slide-company {
-    color: var(--gray-light);
-    font-size: 14px;
-}
-
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 48px;
-}
-
-.slider-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--white-20);
-    transition: background var(--t-fast), transform var(--t-fast);
-}
-
-.slider-dot.is-active {
-    background: var(--white);
-    transform: scale(1.3);
-}
-
-/* ---------------------------------------------------------------------
-   14. CTA
-   --------------------------------------------------------------------- */
-.cta {
-    position: relative;
-    padding: 180px 0;
+.secao-parceiros {
+    padding: 100px 0;
+    background-color: var(--white);
     text-align: center;
     overflow: hidden;
-    border-top: 1px solid var(--white-08);
-}
-
-.cta-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 700px;
-    height: 700px;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, var(--white-08) 0%, transparent 70%);
-    z-index: 0;
-}
-
-.cta-content {
     position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* Garante ao navegador que nada aqui dentro afeta o layout/scroll
+       do resto da página — é a proteção mais forte contra o carrossel
+       "vazar" e forçar o zoom automático no mobile. */
+    contain: layout paint;
+    width: 100%;
+    max-width: 100vw;
 }
 
-.cta h2 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(30px, 4.4vw, 50px);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-}
-
-.cta p {
-    color: var(--gray-light);
-    font-size: 17px;
-    margin-top: 22px;
-    max-width: 480px;
-}
-
-.cta .btn {
-    margin-top: 44px;
-}
-
-/* ---------------------------------------------------------------------
-   15. FOOTER
-   --------------------------------------------------------------------- */
-.footer {
-    padding: 90px 0 0;
-    border-top: 1px solid var(--white-08);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 70px;
-}
-
-.footer-logo {
-    height: 28px;
-    margin-bottom: 20px;
-}
-
-.footer-brand p {
-    color: var(--gray-light);
+.parceiros-label {
+    display: inline-block;
+    font-family: var(--font-body);
     font-size: 14px;
-    max-width: 320px;
-    line-height: 1.7;
-}
-
-.footer-menu h4,
-.footer-social h4 {
-    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-dark);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-light);
-    margin-bottom: 20px;
-    font-weight: 500;
+    letter-spacing: 0.2em;
+    margin-bottom: 56px;
 }
 
-.footer-menu a,
-.footer-social a {
+.container-parceiros {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+
+    /* Máscara suave nas laterais, para o logo não "cortar seco" */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.trilha-parceiros {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    width: max-content;
+    animation: rolar 32s linear infinite;
+}
+
+.trilha-parceiros:hover {
+    animation-play-state: paused;
+}
+
+@keyframes rolar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        /*
+          Exatamente -50%: como o conjunto de logos está duplicado
+          (mesmos 8 logos repetidos, com o mesmo espaçamento "gap" em
+          toda a trilha, inclusive na costura entre o fim do 1º
+          conjunto e o início do 2º), metade exata da largura total
+          sempre cai no ponto perfeito para o loop, sem "pulo" visual.
+          Não é necessário nenhum ajuste extra em pixels aqui.
+        */
+        transform: translateX(-50%);
+    }
+}
+
+.item-parceiro {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.item-parceiro img {
+    height: 64px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
     display: block;
-    color: var(--white);
-    font-size: 14.5px;
-    margin-bottom: 14px;
-    transition: color var(--t-fast), transform var(--t-fast);
+    filter: grayscale(100%) contrast(115%);
+    opacity: 0.75;
+    transition: opacity var(--t-mid), filter var(--t-mid), transform var(--t-mid);
 }
 
-.footer-menu a:hover,
-.footer-social a:hover {
-    color: var(--gray-light);
-    transform: translateX(4px);
-}
-
-.footer-bottom {
-    border-top: 1px solid var(--white-08);
-    padding: 26px 0;
-    text-align: center;
-}
-
-.footer-bottom p {
-    color: var(--gray-light);
-    font-size: 13px;
+.item-parceiro:hover img {
+    opacity: 1;
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.08);
 }
 
 /* ---------------------------------------------------------------------
-   17. COMPARATIVO ANTES/DEPOIS (slider arrastável)
+   14. COMPARATIVO ANTES/DEPOIS (slider arrastável)
    --------------------------------------------------------------------- */
 .comparativo {
     padding: var(--section-padding) 0;
@@ -1122,7 +1052,6 @@ body.no-scroll {
     max-width: 460px;
     margin: 0 auto;
     position: relative;
-    /* select:none evita selecionar texto sem querer durante o arraste */
     user-select: none;
     -webkit-user-select: none;
 }
@@ -1134,6 +1063,8 @@ body.no-scroll {
     overflow: hidden;
     border: 1px solid var(--white-12);
     background: var(--gray-dark);
+    /* Força renderização na placa de vídeo (GPU) */
+    transform: translateZ(0);
 }
 
 .compare-panel {
@@ -1141,12 +1072,6 @@ body.no-scroll {
     inset: 0;
     display: flex;
     flex-direction: column;
-    /*
-      Fundo sólido é essencial aqui: sem isso, como os dois painéis
-      ficam exatamente empilhados um sobre o outro, o conteúdo de trás
-      (numeros, bio, avatar) "vaza" por baixo do conteúdo da frente e
-      os textos se misturam visualmente.
-    */
     background: var(--gray-dark);
 }
 
@@ -1157,10 +1082,22 @@ body.no-scroll {
 .compare-before {
     z-index: 2;
     border-right: 1px solid var(--white-20);
-    /* --pos é atualizado via JS (0 a 100) conforme o arraste */
+    /* Recorte acelerado via variável CSS */
     clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+    will-change: clip-path;
 }
 
+/* Evita arrastar a imagem em si no navegador desktop */
+.compare-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    pointer-events: none;
+    display: block;
+}
+
+/* --- LABELS --- */
 .compare-label {
     position: absolute;
     top: 18px;
@@ -1172,8 +1109,13 @@ body.no-scroll {
     padding: 6px 14px;
     border-radius: 100px;
     background: var(--black-60);
+    color: var(--white);
     border: 1px solid var(--white-20);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+    /* Deixa o clique "vazar" para a foto abaixo */
+    transition: opacity var(--t-fast);
 }
 
 .label-before {
@@ -1184,38 +1126,22 @@ body.no-scroll {
     right: 18px;
 }
 
-/*
-  Pronto para receber prints reais: quando o mockup em CSS (.ig-mock)
-  for trocado por uma <img> direto dentro de .compare-panel, esta regra
-  já faz a foto preencher o quadro inteiro corretamente.
-  Ex.: <div class="compare-panel compare-before">
-         <span class="compare-label label-before">Antes</span>
-         <img src="img/antes.jpg" alt="Perfil antes da auditoria">
-       </div>
-*/
-.compare-panel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-}
-
-/* Linha + alça central de arraste */
+/* --- BOTÃO CENTRAL E LINHA (HANDLE) --- */
 .compare-handle {
     position: absolute;
     top: 0;
     bottom: 0;
     left: var(--pos, 50%);
+    /* CORREÇÃO DO BUG: Apenas o transform alinha ao centro perfeito do eixo X */
     transform: translateX(-50%);
     z-index: 4;
     width: 44px;
-    margin-left: -22px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: ew-resize;
-    /* impede o navegador de tentar rolar a página durante o arraste no toque */
     touch-action: none;
+    will-change: left;
 }
 
 .compare-handle-line {
@@ -1226,7 +1152,8 @@ body.no-scroll {
     width: 2px;
     background: var(--white);
     transform: translateX(-50%);
-    box-shadow: 0 0 12px var(--white-20);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
 }
 
 .compare-handle-grip {
@@ -1239,23 +1166,50 @@ body.no-scroll {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--t-fast);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
 }
 
 .compare-handle-grip svg {
     width: 18px;
     height: 18px;
+    pointer-events: none;
 }
 
+/* Estados de Interação */
 .compare-handle:hover .compare-handle-grip,
 .compare-handle:focus-visible .compare-handle-grip {
-    transform: scale(1.1);
+    transform: scale(1.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
 .compare-handle:focus-visible {
     outline: none;
 }
 
+.compare-handle:focus-visible .compare-handle-grip {
+    outline: 3px solid #3b82f6;
+    /* Indicador de foco claro para acessibilidade */
+    outline-offset: 2px;
+}
+
+/* --- ESTADO DE ARRASTE ATIVO (Elimina o lag junto com o JS) --- */
+.compare-slider.is-dragging .compare-before {
+    will-change: clip-path;
+}
+
+.compare-slider.is-dragging .compare-handle-grip {
+    transform: scale(0.95);
+    /* Feedback tátil visual ao segurar o botão */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Oculta suavemente os labels se o botão passar muito perto deles (opcional) */
+.compare-slider.is-dragging .compare-label {
+    opacity: 0.75;
+}
+
+/* --- TEXTO DE AJUDA --- */
 .compare-hint {
     text-align: center;
     margin-top: 24px;
@@ -1264,9 +1218,7 @@ body.no-scroll {
 }
 
 /* ---------------------------------------------------------------------
-   18. MOCKUP DE PERFIL DO INSTAGRAM (usado no comparativo acima)
-   Construído só com HTML/CSS — sem imagens reais — respeitando a
-   paleta preto/branco/cinza do projeto.
+   15. MOCKUP DE PERFIL DO INSTAGRAM (usado no comparativo acima)
    --------------------------------------------------------------------- */
 .ig-mock {
     display: flex;
@@ -1358,6 +1310,262 @@ body.no-scroll {
 
 .tag-good {
     color: var(--white);
+}
+
+/* ---------------------------------------------------------------------
+   16. DEPOIMENTOS / SLIDER
+   --------------------------------------------------------------------- */
+.depoimentos {
+    padding: var(--section-padding) 0;
+    border-top: 1px solid var(--white-08);
+}
+
+.slider {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.slider-viewport {
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.6s var(--ease);
+    /* JS desliga essa transição durante o arraste, para o slide seguir o dedo */
+}
+
+.slide {
+    min-width: 100%;
+    padding: 0 60px;
+}
+
+.slide-quote-mark {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--white-20);
+    margin-bottom: -6px;
+}
+
+.slide-quote {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+}
+
+.slide-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;
+}
+
+.slide-avatar {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-dark);
+    border: 1px solid var(--white-12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.slide-author>div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.slide-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.slide-company {
+    color: var(--gray-light);
+    font-size: 14px;
+}
+
+/* Setas de navegação (desktop e mobile) */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--white-20);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+    touch-action: manipulation;
+}
+
+.slider-arrow svg {
+    width: 18px;
+    height: 18px;
+}
+
+.slider-arrow:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+}
+
+.slider-arrow-prev {
+    left: 0;
+}
+
+.slider-arrow-next {
+    right: 0;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 48px;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--white-20);
+    transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.slider-dot.is-active {
+    background: var(--white);
+    transform: scale(1.3);
+}
+
+/* ---------------------------------------------------------------------
+   17. CTA
+   --------------------------------------------------------------------- */
+.cta {
+    position: relative;
+    padding: 180px 0;
+    text-align: center;
+    overflow: hidden;
+    border-top: 1px solid var(--white-08);
+}
+
+.cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--white-08) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(30px, 4.4vw, 50px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.cta p {
+    color: var(--gray-light);
+    font-size: 17px;
+    margin-top: 22px;
+    max-width: 480px;
+}
+
+.cta .btn {
+    margin-top: 44px;
+}
+
+/* ---------------------------------------------------------------------
+   18. FOOTER
+   --------------------------------------------------------------------- */
+.footer {
+    padding: 90px 0 0;
+    border-top: 1px solid var(--white-08);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 70px;
+}
+
+.footer-logo {
+    height: 28px;
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    color: var(--gray-light);
+    font-size: 14px;
+    max-width: 320px;
+    line-height: 1.7;
+}
+
+.footer-menu h4,
+.footer-social h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-light);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-menu a,
+.footer-social a {
+    display: block;
+    color: var(--white);
+    font-size: 14.5px;
+    margin-bottom: 14px;
+    transition: color var(--t-fast), transform var(--t-fast);
+}
+
+.footer-menu a:hover,
+.footer-social a:hover {
+    color: var(--gray-light);
+    transform: translateX(4px);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--white-08);
+    padding: 26px 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--gray-light);
+    font-size: 13px;
 }
 
 /* ---------------------------------------------------------------------

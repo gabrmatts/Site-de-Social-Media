@@ -50,6 +50,24 @@
         grid-template-columns: 1.4fr 1fr 1fr;
         gap: 40px;
     }
+
+    /* Clientes/parceiros: logos e espaçamento um pouco menores */
+    .secao-parceiros {
+        padding: 80px 0;
+    }
+
+    .trilha-parceiros {
+        gap: 60px;
+    }
+
+    .item-parceiro img {
+        height: 52px;
+    }
+
+    /* Depoimentos: encosta menos as setas para não invadir o texto */
+    .slide {
+        padding: 0 50px;
+    }
 }
 
 /* ---------------------------------------------------------------------
@@ -190,6 +208,39 @@
     .ig-mock-header {
         padding-top: 46px;
     }
+
+    /* Clientes/parceiros */
+    .secao-parceiros {
+        padding: 64px 0;
+    }
+
+    .parceiros-label {
+        font-size: 12.5px;
+        letter-spacing: 0.16em;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .trilha-parceiros {
+        gap: 44px;
+        animation-duration: 22s;
+    }
+
+    .item-parceiro img {
+        height: 40px;
+        max-width: 120px;
+    }
+
+    /* Depoimentos no mobile: as setas saem de cena — a navegação por
+       arraste (swipe) e pelos dots já cobre bem o uso por toque, e
+       assim as setas não competem com o texto do depoimento */
+    .slide {
+        padding: 0 8px;
+    }
+
+    .slider-arrow {
+        display: none;
+    }
 }
 
 /* ---------------------------------------------------------------------
@@ -248,10 +299,6 @@
         grid-template-columns: 1fr;
     }
 
-    .slide-quote {
-        font-size: 19px;
-    }
-
     .cta {
         padding: 90px 0;
     }
@@ -308,13 +355,52 @@
     .label-after {
         right: 12px;
     }
+
+    /* Clientes/parceiros: logos ainda menores, giro mais rápido */
+    .secao-parceiros {
+        padding: 48px 0;
+    }
+
+    .parceiros-label {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        margin-bottom: 32px;
+    }
+
+    .trilha-parceiros {
+        gap: 32px;
+        animation-duration: 18s;
+    }
+
+    .item-parceiro img {
+        height: 32px;
+        max-width: 96px;
+    }
+
+    /* Depoimentos */
+    .slide-quote-mark {
+        font-size: 48px;
+    }
+
+    .slide-quote {
+        font-size: 18px;
+    }
+
+    .slide-author {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .slide-author>div {
+        align-items: center;
+    }
 }
 
 /* ---------------------------------------------------------------------
    PREFERÊNCIA DE DADOS REDUZIDOS
    Em conexões lentas/economizadoras (Android "Lite mode", Safari
-   "Reduce Data Use"), corta os dois efeitos mais caros da página:
-   o brilho do cursor e a animação de rede no hero.
+   "Reduce Data Use"), corta os efeitos mais caros da página: o brilho
+   do cursor, a animação de rede no hero e o carrossel de logos.
    --------------------------------------------------------------------- */
 @media (prefers-reduced-data: reduce) {
     .cursor-glow {
@@ -323,5 +409,9 @@
 
     .hero-canvas {
         display: none;
+    }
+
+    .trilha-parceiros {
+        animation: none;
     }
 }

@@ -337,88 +337,28 @@
             <div class="compare-slider reveal" data-reveal id="compareSlider">
                 <div class="compare-frame" id="compareFrame">
 
+                    <!--
+                      COMO ADICIONAR SEUS PRINTS:
+                      1. Tire (ou peça) um print de celular do perfil ANTES e outro DEPOIS
+                         da auditoria — formato vertical, do jeito que aparece na tela do celular.
+                      2. Salve os dois arquivos em img/ (ex: img/antes.jpg e img/depois.jpg).
+                      3. Troque o "src" das duas tags <img> abaixo pelos nomes dos seus arquivos.
+                      Enquanto isso, aparece um retângulo cinza no lugar — é só um placeholder.
+                    -->
+
                     <!-- Camada de baixo: sempre visível por completo -->
                     <div class="compare-panel compare-after">
                         <span class="compare-label label-after">Depois</span>
-
-                        <div class="ig-mock ig-mock-after">
-                            <div class="ig-mock-header">
-                                <div class="ig-avatar"></div>
-                                <div class="ig-stats">
-                                    <div><strong>486</strong><span>posts</span></div>
-                                    <div><strong>8.400</strong><span>seguidores</span></div>
-                                    <div><strong>612</strong><span>seguindo</span></div>
-                                </div>
-                            </div>
-                            <div class="ig-bio">
-                                <strong>@marcaexemplo</strong>
-                                <p>Loja de roupas autoral, feita à mão ✕ Novidades toda quinta
-                                    — Entrega para todo o Brasil
-                                    — Fale com a gente pelo link abaixo 👇</p>
-                            </div>
-                            <div class="ig-growth-chip">↑ +7.200 seguidores em 90 dias</div>
-                            <div class="ig-grid ig-grid-after" aria-hidden="true">
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.22), rgba(255,255,255,.05));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.28), rgba(255,255,255,.08));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.34), rgba(255,255,255,.1));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.4), rgba(255,255,255,.12));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.46), rgba(255,255,255,.14));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.52), rgba(255,255,255,.16));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.58), rgba(255,255,255,.18));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.64), rgba(255,255,255,.2));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(160deg, rgba(255,255,255,.7), rgba(255,255,255,.22));"></span>
-                            </div>
-                            <span class="ig-quality-tag tag-good">✓ Grade com identidade visual consistente</span>
+                        <div class="compare-media">
+                            <img src="img/Depois.jpeg" alt="Print do perfil depois da auditoria">
                         </div>
                     </div>
 
                     <!-- Camada de cima: recortada pelo arraste (mostra o "antes") -->
                     <div class="compare-panel compare-before" id="compareBefore">
                         <span class="compare-label label-before">Antes</span>
-
-                        <div class="ig-mock ig-mock-before">
-                            <div class="ig-mock-header">
-                                <div class="ig-avatar"></div>
-                                <div class="ig-stats">
-                                    <div><strong>342</strong><span>posts</span></div>
-                                    <div><strong>1.200</strong><span>seguidores</span></div>
-                                    <div><strong>890</strong><span>seguindo</span></div>
-                                </div>
-                            </div>
-                            <div class="ig-bio">
-                                <strong>@marcaexemplo</strong>
-                                <p>loja de roupas venda direta pelo whats seg a sex horario comercial att rapido</p>
-                            </div>
-                            <div class="ig-grid ig-grid-before" aria-hidden="true">
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(35deg, rgba(255,255,255,.3), rgba(255,255,255,.02));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(190deg, rgba(255,255,255,.1), rgba(255,255,255,.28));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(300deg, rgba(255,255,255,.4), rgba(255,255,255,.05));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.22));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(250deg, rgba(255,255,255,.32), rgba(255,255,255,.08));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(10deg, rgba(255,255,255,.15), rgba(255,255,255,.36));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(220deg, rgba(255,255,255,.05), rgba(255,255,255,.2));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(140deg, rgba(255,255,255,.36), rgba(255,255,255,.04));"></span>
-                                <span class="ig-cell"
-                                    style="background:linear-gradient(70deg, rgba(255,255,255,.12), rgba(255,255,255,.3));"></span>
-                            </div>
-                            <span class="ig-quality-tag tag-bad">✕ Feed sem padrão nem identidade visual</span>
+                        <div class="compare-media">
+                            <img src="img/Antes.jpeg" alt="Print do perfil antes da auditoria">
                         </div>
                     </div>
 
@@ -514,6 +454,37 @@
     </section>
 
     <!-- ============================================= -->
+    <!-- CLIENTES / PARCEIROS (carrossel infinito de logos) -->
+    <!-- ============================================= -->
+    <section class="secao-parceiros" id="clientes">
+        <span class="parceiros-label reveal" data-reveal>Marcas que impulsionamos</span>
+
+        <div class="container-parceiros">
+            <div class="trilha-parceiros">
+                <div class="item-parceiro"><img src="img/1.png" alt="Marca 1" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/2.png" alt="Marca 2" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/3.png" alt="Marca 3" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/4.png" alt="Marca 4" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/5.png" alt="Marca 5" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/6.png" alt="Marca 6" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/7.png" alt="Marca 7" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/8.png" alt="Marca 8" loading="lazy"></div>
+
+                <!-- Conjunto duplicado (aria-hidden, pois é só repetição visual)
+                     para o loop do carrossel ficar contínuo, sem "salto" no fim -->
+                <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/3.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/6.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/7.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/8.png" alt="" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
     <!-- DEPOIMENTOS -->
     <!-- ============================================= -->
     <section class="depoimentos" id="depoimentos">
@@ -523,27 +494,78 @@
                 <h2 class="section-title">Quem trabalhou com a gente</h2>
             </div>
 
-            <div class="slider" id="testimonialSlider">
-                <div class="slider-track" id="sliderTrack">
+            <div class="slider reveal" data-reveal id="testimonialSlider">
+                <button class="slider-arrow slider-arrow-prev" id="sliderPrev" aria-label="Depoimento anterior">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
 
-                    <div class="slide">
-                        <p class="slide-quote">"A GS Company reorganizou toda a nossa presença digital. Em três meses,
-                            triplicamos os leads qualificados."</p>
-                        <div class="slide-author">
-                            <span class="slide-name">Marina Cardoso</span>
-                            <span class="slide-company">Studio Nord</span>
-                        </div>
-                    </div>
+                <div class="slider-viewport">
+                    <div class="slider-track" id="sliderTrack" aria-live="polite">
 
-                    <div class="slide">
-                        <p class="slide-quote">"Profissionalismo raro. Cada entrega parecia ter sido pensada
-                            exclusivamente para o nosso negócio."</p>
-                        <div class="slide-author">
-                            <span class="slide-name">Rafael Teixeira</span>
-                            <span class="slide-company">Vértice Coffee</span>
+                        <div class="slide">
+                            <span class="slide-quote-mark" aria-hidden="true">“</span>
+                            <p class="slide-quote">A GS Company reorganizou toda a nossa presença digital. Em três
+                                meses, triplicamos os leads qualificados.</p>
+                            <div class="slide-author">
+                                <span class="slide-avatar" aria-hidden="true">MC</span>
+                                <div>
+                                    <span class="slide-name">Marina Cardoso</span>
+                                    <span class="slide-company">Studio Nord</span>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="slide">
+                            <span class="slide-quote-mark" aria-hidden="true">“</span>
+                            <p class="slide-quote">Profissionalismo raro. Cada entrega parecia ter sido pensada
+                                exclusivamente para o nosso negócio.</p>
+                            <div class="slide-author">
+                                <span class="slide-avatar" aria-hidden="true">RT</span>
+                                <div>
+                                    <span class="slide-name">Rafael Teixeira</span>
+                                    <span class="slide-company">Vértice Coffee</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <span class="slide-quote-mark" aria-hidden="true">“</span>
+                            <p class="slide-quote">O novo site aumentou nossa taxa de conversão em mais de 40%.
+                                Resultado muito acima do esperado.</p>
+                            <div class="slide-author">
+                                <span class="slide-avatar" aria-hidden="true">CD</span>
+                                <div>
+                                    <span class="slide-name">Camila Duarte</span>
+                                    <span class="slide-company">Órbita Fit</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide">
+                            <span class="slide-quote-mark" aria-hidden="true">“</span>
+                            <p class="slide-quote">Equipe extremamente atenta aos detalhes. Sentimos que temos um time
+                                de marketing interno, não uma agência terceirizada.</p>
+                            <div class="slide-author">
+                                <span class="slide-avatar" aria-hidden="true">EL</span>
+                                <div>
+                                    <span class="slide-name">Eduardo Lins</span>
+                                    <span class="slide-company">Nova Capital</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
+                <button class="slider-arrow slider-arrow-next" id="sliderNext" aria-label="Próximo depoimento">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
 
                 <div class="slider-dots" id="sliderDots"></div>
             </div>
@@ -587,9 +609,9 @@
 
             <div class="footer-social">
                 <h4>Redes Sociais</h4>
-                <a href="#" target="_blank" rel="noopener">Instagram</a>
-                <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="#" target="_blank" rel="noopener">Behance</a>
+                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener">Behance</a>
             </div>
 
         </div>
