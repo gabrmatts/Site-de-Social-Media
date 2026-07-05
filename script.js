@@ -130,6 +130,9 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Menu Mobile
+     CORREÇÃO: agora com focus trap (Tab não escapa mais do menu aberto),
+     fechamento com Esc, e aria-expanded refletindo o estado real do
+     botão — problemas de acessibilidade identificados na auditoria.
      ------------------------------------------------------------------- */
   const MobileMenuModule = {
     init() {
@@ -137,17 +140,55 @@
       const menu = document.getElementById('navbarMenu');
       if (!toggle || !menu) return;
 
+      let lastFocusedEl = null;
+
+      const getFocusableEls = () =>
+        Array.from(menu.querySelectorAll('a[href], button:not([disabled])'));
+
       const closeMenu = () => {
         toggle.classList.remove('is-open');
         menu.classList.remove('is-open');
         document.body.classList.remove('no-scroll');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('keydown', onKeydown);
+        if (lastFocusedEl) lastFocusedEl.focus();
       };
 
       const openMenu = () => {
+        lastFocusedEl = document.activeElement;
         toggle.classList.add('is-open');
         menu.classList.add('is-open');
         document.body.classList.add('no-scroll');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.addEventListener('keydown', onKeydown);
+
+        const focusable = getFocusableEls();
+        if (focusable.length) focusable[0].focus();
       };
+
+      function onKeydown(e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+          return;
+        }
+
+        // Focus trap: mantém o Tab circulando dentro do menu aberto
+        if (e.key === 'Tab') {
+          const focusable = getFocusableEls();
+          if (!focusable.length) return;
+
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
 
       toggle.addEventListener('click', () => {
         const isOpen = menu.classList.contains('is-open');
@@ -165,6 +206,9 @@
      Autoplay + dots + setas (desktop) + arraste/swipe (mouse e toque,
      via Pointer Events) — o slide acompanha o dedo em tempo real
      durante o arraste, e solta pro lado certo ao final.
+     CORREÇÃO: adicionada navegação por teclado (ArrowLeft/ArrowRight)
+     quando o slider está em foco, para paridade com o slider de
+     comparação antes/depois, que já suportava isso.
      ------------------------------------------------------------------- */
   const TestimonialSliderModule = {
     init() {
@@ -232,6 +276,19 @@
 
       sliderEl.addEventListener('mouseenter', stopAutoplay);
       sliderEl.addEventListener('mouseleave', startAutoplay);
+
+      // Navegação por teclado quando o slider está em foco
+      sliderEl.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          prev();
+          restartAutoplayAfterInteraction();
+          e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+          next();
+          restartAutoplayAfterInteraction();
+          e.preventDefault();
+        }
+      });
 
       // --- Arraste / swipe (mouse e toque via Pointer Events) ---
       let isDragging = false;
