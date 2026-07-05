@@ -2,7 +2,7 @@
    GS COMPANY — SCRIPT PRINCIPAL
    JavaScript puro, modular, sem bibliotecas externas.
    Módulos: Loader, ScrollReveal, Navbar, MobileMenu, BackToTop,
-            TestimonialSlider, CursorGlow, HeroNetworkCanvas
+            TestimonialSlider, CursorGlow, HeroNetworkCanvas, CompareSlider
    ===================================================================== */
 
 (function () {
@@ -13,10 +13,6 @@
 
   /* -------------------------------------------------------------------
      Utilitário: debounce
-     Evita que funções pesadas (ex: recalcular o canvas do hero) rodem
-     dezenas de vezes por segundo durante um resize. Isso importa
-     especialmente no mobile, onde o Safari/Chrome disparam "resize"
-     toda vez que a barra de endereço aparece/some durante o scroll.
      ------------------------------------------------------------------- */
   function debounce(fn, delay) {
     let timer = null;
@@ -28,7 +24,6 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Loading Screen
-     Exibe o loader até a página estar pronta, depois some suavemente.
      ------------------------------------------------------------------- */
   const LoaderModule = {
     init() {
@@ -42,26 +37,18 @@
 
       document.body.style.overflow = 'hidden';
 
-      // Se a página já terminou de carregar antes deste script rodar
-      // (ex: recursos em cache carregando muito rápido), o evento 'load'
-      // já teria disparado e o listener abaixo nunca seria chamado.
-      // Este check cobre esse caso.
       if (document.readyState === 'complete') {
         setTimeout(hide, 400);
       } else {
         window.addEventListener('load', () => setTimeout(hide, 900));
       }
 
-      // Fallback: caso o carregamento demore demais, força o fim do loader
-      // para nunca travar o usuário numa tela preta.
       setTimeout(hide, 3500);
     }
   };
 
   /* -------------------------------------------------------------------
      MÓDULO: Scroll Reveal
-     Observa elementos com [data-reveal] e adiciona a classe is-visible
-     quando entram na viewport. Também dispara a timeline do processo.
      ------------------------------------------------------------------- */
   const ScrollRevealModule = {
     init() {
@@ -87,7 +74,6 @@
 
       items.forEach((el) => observer.observe(el));
 
-      // Timeline: ativa o preenchimento da linha quando visível
       const timeline = document.querySelector('.timeline');
       if (timeline) {
         const timelineObserver = new IntersectionObserver(
@@ -108,9 +94,6 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Navbar Dinâmica + Botão Voltar ao Topo
-     Os dois dependem de scrollY, então dividem um único listener de
-     scroll (throttled via requestAnimationFrame) em vez de dois
-     listeners separados — menos trabalho por frame no mobile.
      ------------------------------------------------------------------- */
   const ScrollStateModule = {
     init() {
@@ -147,8 +130,6 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Menu Mobile
-     Abre/fecha o menu em telas pequenas, fecha ao clicar em um link,
-     e trava o scroll do conteúdo por trás enquanto o menu está aberto.
      ------------------------------------------------------------------- */
   const MobileMenuModule = {
     init() {
@@ -181,14 +162,19 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Slider de Depoimentos
-     Slider automático com controle manual via dots, pausa no hover
-     (desktop) e também ao tocar/arrastar (mobile).
+     Autoplay + dots + setas (desktop) + arraste/swipe (mouse e toque,
+     via Pointer Events) — o slide acompanha o dedo em tempo real
+     durante o arraste, e solta pro lado certo ao final.
      ------------------------------------------------------------------- */
   const TestimonialSliderModule = {
     init() {
+      const sliderEl = document.getElementById('testimonialSlider');
       const track = document.getElementById('sliderTrack');
+      const viewport = track ? track.closest('.slider-viewport') : null;
       const dotsWrapper = document.getElementById('sliderDots');
-      if (!track || !dotsWrapper) return;
+      const prevBtn = document.getElementById('sliderPrev');
+      const nextBtn = document.getElementById('sliderNext');
+      if (!sliderEl || !track || !dotsWrapper) return;
 
       const slides = Array.from(track.children);
       if (slides.length <= 1) return;
@@ -197,25 +183,33 @@
       let intervalId = null;
       const AUTOPLAY_DELAY = 5500;
 
+      // Dots dinâmicos
       slides.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.classList.add('slider-dot');
         dot.setAttribute('aria-label', `Ir para depoimento ${index + 1}`);
         if (index === 0) dot.classList.add('is-active');
-        dot.addEventListener('click', () => goTo(index));
+        dot.addEventListener('click', () => {
+          goTo(index);
+          restartAutoplayAfterInteraction();
+        });
         dotsWrapper.appendChild(dot);
       });
 
       const dots = Array.from(dotsWrapper.children);
 
       function goTo(index) {
-        current = index;
+        current = (index + slides.length) % slides.length;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
       }
 
       function next() {
-        goTo((current + 1) % slides.length);
+        goTo(current + 1);
+      }
+
+      function prev() {
+        goTo(current - 1);
       }
 
       function startAutoplay() {
@@ -228,22 +222,70 @@
         if (intervalId) clearInterval(intervalId);
       }
 
-      const sliderEl = document.getElementById('testimonialSlider');
+      function restartAutoplayAfterInteraction() {
+        stopAutoplay();
+        setTimeout(startAutoplay, 2500);
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); restartAutoplayAfterInteraction(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { next(); restartAutoplayAfterInteraction(); });
+
       sliderEl.addEventListener('mouseenter', stopAutoplay);
       sliderEl.addEventListener('mouseleave', startAutoplay);
-      // No touch, mouseenter/mouseleave não disparam — pausa ao tocar
-      // e retoma a autoplay depois de um tempo parado.
-      sliderEl.addEventListener('touchstart', stopAutoplay, { passive: true });
-      sliderEl.addEventListener('touchend', () => setTimeout(startAutoplay, 2000), { passive: true });
 
+      // --- Arraste / swipe (mouse e toque via Pointer Events) ---
+      let isDragging = false;
+      let startX = 0;
+      let deltaX = 0;
+
+      const dragTarget = viewport || track;
+
+      dragTarget.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        deltaX = 0;
+        stopAutoplay();
+        track.style.transition = 'none';
+        try { dragTarget.setPointerCapture(e.pointerId); } catch (err) { /* noop */ }
+      });
+
+      dragTarget.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = `translateX(calc(-${current * 100}% + ${deltaX}px))`;
+      });
+
+      const endDrag = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.transition = '';
+
+        const threshold = dragTarget.clientWidth * 0.15;
+        if (deltaX < -threshold) {
+          next();
+        } else if (deltaX > threshold) {
+          prev();
+        } else {
+          goTo(current); // volta pro mesmo slide, com transição suave
+        }
+        deltaX = 0;
+        restartAutoplayAfterInteraction();
+      };
+
+      dragTarget.addEventListener('pointerup', endDrag);
+      dragTarget.addEventListener('pointercancel', endDrag);
+      // Se o ponteiro sair da área arrastando, também encerra o arraste
+      dragTarget.addEventListener('pointerleave', () => {
+        if (isDragging) endDrag();
+      });
+
+      goTo(0);
       startAutoplay();
     }
   };
 
   /* -------------------------------------------------------------------
      MÓDULO: Cursor Glow
-     Brilho discreto que segue o cursor. Desativado em dispositivos
-     de toque, onde não há cursor.
      ------------------------------------------------------------------- */
   const CursorGlowModule = {
     init() {
@@ -268,7 +310,6 @@
       }
       rafId = requestAnimationFrame(animate);
 
-      // Pausa quando a aba não está visível, economizando CPU/bateria.
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           cancelAnimationFrame(rafId);
@@ -280,17 +321,7 @@
   };
 
   /* -------------------------------------------------------------------
-     MÓDULO: Rede de Nós no Hero (elemento de assinatura visual)
-     Canvas leve com pontos conectados por linhas finas, representando
-     a interligação entre Marketing, Social Media e Web Design.
-
-     Otimizações para mobile:
-     - Menos nós em telas estreitas (custo O(n²) cresce rápido)
-     - Pausa completamente quando o hero sai da viewport (IntersectionObserver)
-     - Pausa quando a aba fica em segundo plano (visibilitychange)
-     - Resize com debounce, para não recriar os nós dezenas de vezes
-       durante o scroll no iOS Safari (onde a barra de endereço
-       recolher/expandir dispara "resize")
+     MÓDULO: Rede de Nós no Hero
      ------------------------------------------------------------------- */
   const HeroNetworkModule = {
     init() {
@@ -307,9 +338,6 @@
       const MAX_DISTANCE = 150;
 
       function getNodeCount() {
-        // Menos partículas em telas pequenas: o custo por par de nós
-        // é O(n²), então reduzir de 46 para 18 corta o trabalho por
-        // frame em quase 85%, o que é sensível em CPUs de celular.
         if (window.innerWidth < 480) return 14;
         if (window.innerWidth < 768) return 20;
         return 46;
@@ -389,9 +417,6 @@
       resize();
       createNodes();
 
-      // Só roda a animação enquanto o hero estiver de fato visível na tela.
-      // Assim que o usuário rola para as próximas seções, o canvas para
-      // completamente de consumir CPU/bateria.
       const visibilityObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -406,7 +431,6 @@
       );
       visibilityObserver.observe(hero);
 
-      // Pausa também quando a aba do navegador está em segundo plano.
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           stop();
@@ -431,73 +455,86 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Slider Antes/Depois (comparativo de auditoria)
-     Arraste com mouse, toque (Pointer Events cobre os dois) e teclado
-     (setas esquerda/direita), com suporte a leitor de tela via
-     role="slider" + aria-valuenow atualizado em tempo real.
-     ------------------------------------------------------------------- */
-  const CompareSliderModule = {
-    init() {
-      const wrapper = document.getElementById('compareSlider');
-      const frame = document.getElementById('compareFrame');
-      const handle = document.getElementById('compareHandle');
-      if (!wrapper || !frame || !handle) return;
+   ------------------------------------------------------------------- */
+const CompareSliderModule = {
+  init() {
+    const wrapper = document.getElementById('compareSlider');
+    const frame = document.getElementById('compareFrame');
+    const handle = document.getElementById('compareHandle');
+    if (!wrapper || !frame || !handle) return;
 
-      let isDragging = false;
+    let isDragging = false;
+    let rafPending = false;
+    let currentX = 0;
+    let cachedRect = null;
 
-      function setPosition(percent) {
-        const clamped = Math.min(100, Math.max(0, percent));
-        wrapper.style.setProperty('--pos', `${clamped}%`);
-        handle.setAttribute('aria-valuenow', Math.round(clamped));
-      }
-
-      function percentFromClientX(clientX) {
-        const rect = frame.getBoundingClientRect();
-        return ((clientX - rect.left) / rect.width) * 100;
-      }
-
-      // Pointer Events unifica mouse, caneta e toque num único fluxo,
-      // evitando duplicar listeners de mouse e de touch separadamente.
-      handle.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        handle.setPointerCapture(e.pointerId);
-      });
-
-      handle.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        setPosition(percentFromClientX(e.clientX));
-      });
-
-      const stopDragging = (e) => {
-        isDragging = false;
-        if (handle.hasPointerCapture && e && e.pointerId !== undefined) {
-          try { handle.releasePointerCapture(e.pointerId); } catch (err) { /* noop */ }
-        }
-      };
-      handle.addEventListener('pointerup', stopDragging);
-      handle.addEventListener('pointercancel', stopDragging);
-
-      // Clicar em qualquer ponto do quadro também move o controle até lá,
-      // sem precisar acertar exatamente a alça.
-      frame.addEventListener('pointerdown', (e) => {
-        if (e.target === handle || handle.contains(e.target)) return;
-        setPosition(percentFromClientX(e.clientX));
-      });
-
-      // Acessibilidade: setas do teclado movem o controle em passos de 5%.
-      handle.addEventListener('keydown', (e) => {
-        const current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
-        if (e.key === 'ArrowLeft') {
-          setPosition(current - 5);
-          e.preventDefault();
-        } else if (e.key === 'ArrowRight') {
-          setPosition(current + 5);
-          e.preventDefault();
-        }
-      });
-
-      setPosition(50);
+    // Atualiza a tela apenas no tempo certo do navegador (60 FPS)
+    function updateUI() {
+      if (!cachedRect) return;
+      const percent = ((currentX - cachedRect.left) / cachedRect.width) * 100;
+      const clamped = Math.min(100, Math.max(0, percent));
+      
+      wrapper.style.setProperty('--pos', `${clamped}%`);
+      handle.setAttribute('aria-valuenow', Math.round(clamped));
+      rafPending = false;
     }
-  };
+
+    function setPositionDirect(percent) {
+      const clamped = Math.min(100, Math.max(0, percent));
+      wrapper.style.setProperty('--pos', `${clamped}%`);
+      handle.setAttribute('aria-valuenow', Math.round(clamped));
+    }
+
+    handle.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      cachedRect = frame.getBoundingClientRect(); // Cache para evitar lag
+      wrapper.classList.add('is-dragging'); // Remove animações CSS durante o arraste
+      handle.setPointerCapture(e.pointerId);
+    });
+
+    handle.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      currentX = e.clientX;
+      if (!rafPending) {
+        rafPending = true;
+        requestAnimationFrame(updateUI);
+      }
+    });
+
+    const stopDragging = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      wrapper.classList.remove('is-dragging');
+      if (handle.hasPointerCapture && e && e.pointerId !== undefined) {
+        try { handle.releasePointerCapture(e.pointerId); } catch (err) { /* noop */ }
+      }
+    };
+
+    handle.addEventListener('pointerup', stopDragging);
+    handle.addEventListener('pointercancel', stopDragging);
+
+    // Clique direto na imagem salta para a posição suavemente
+    frame.addEventListener('pointerdown', (e) => {
+      if (e.target === handle || handle.contains(e.target)) return;
+      const rect = frame.getBoundingClientRect();
+      const percent = ((e.clientX - rect.left) / rect.width) * 100;
+      setPositionDirect(percent);
+    });
+
+    handle.addEventListener('keydown', (e) => {
+      const current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
+      if (e.key === 'ArrowLeft') {
+        setPositionDirect(current - 5);
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight') {
+        setPositionDirect(current + 5);
+        e.preventDefault();
+      }
+    });
+
+    setPositionDirect(50);
+  }
+};
 
   /* -------------------------------------------------------------------
      Inicialização geral
