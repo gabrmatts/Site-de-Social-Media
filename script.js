@@ -24,23 +24,62 @@
 
   /* -------------------------------------------------------------------
      MÓDULO: Loading Screen
+     Anel de progresso (SVG) + contador de porcentagem, sincronizados via
+     JS: o progresso "cresce" sozinho até ~92% enquanto a página carrega
+     de verdade, e só fecha em 100% quando o load real acontece (ou no
+     teto de 3.5s) — efeito comum em loaders premium, sem fingir uma
+     barra que anda sem relação com o carregamento real.
      ------------------------------------------------------------------- */
   const LoaderModule = {
     init() {
       const loader = document.getElementById('loader');
       if (!loader) return;
 
-      const hide = () => {
-        loader.classList.add('is-hidden');
-        document.body.style.overflow = '';
-      };
+      const ring = document.getElementById('loaderRing');
+      const percentEl = document.getElementById('loaderPercent');
+      const circumference = 339.292; // 2 * PI * 54 (raio do círculo no SVG)
+
+      let progress = 0;
+      let rafId = null;
+      let done = false;
+
+      function paint(p) {
+        progress = Math.min(100, Math.max(0, p));
+        if (ring) ring.style.strokeDashoffset = circumference * (1 - progress / 100);
+        if (percentEl) percentEl.textContent = Math.round(progress) + '%';
+      }
+
+      function tick() {
+        if (done) return;
+        // Aproxima de 92% com desaceleração; nunca completa sozinho
+        progress += (92 - progress) * 0.02 + 0.12;
+        paint(progress);
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function hide() {
+        if (done) return;
+        done = true;
+        if (rafId) cancelAnimationFrame(rafId);
+        paint(100);
+        setTimeout(() => {
+          loader.classList.add('is-hidden');
+          document.body.style.overflow = '';
+        }, 280);
+      }
 
       document.body.style.overflow = 'hidden';
+
+      if (prefersReducedMotion) {
+        paint(100);
+      } else {
+        rafId = requestAnimationFrame(tick);
+      }
 
       if (document.readyState === 'complete') {
         setTimeout(hide, 400);
       } else {
-        window.addEventListener('load', () => setTimeout(hide, 900));
+        window.addEventListener('load', () => setTimeout(hide, 600));
       }
 
       setTimeout(hide, 3500);
@@ -48,7 +87,50 @@
   };
 
   /* -------------------------------------------------------------------
+     Utilitário: efeito de texto "decodificando" (scramble-in)
+     Usado nos rótulos curtos (eyebrow / section-label) no momento em
+     que entram na tela — reforça a identidade "tech/dados" do site
+     sem exagerar (só em textos pequenos, não nos títulos principais).
+     ------------------------------------------------------------------- */
+  function scrambleText(el) {
+    if (!el || el.dataset.scrambled) return;
+    el.dataset.scrambled = 'true';
+
+    const original = el.textContent;
+    const chars = '!<>-_\\/[]{}—=+*^?#';
+    const length = original.length;
+    const totalFrames = 26;
+    let frame = 0;
+
+    function update() {
+      let output = '';
+      for (let i = 0; i < length; i++) {
+        const charStart = Math.floor((i / length) * totalFrames * 0.55);
+        if (frame >= charStart + 7) {
+          output += original[i];
+        } else if (frame >= charStart) {
+          output += original[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+        } else {
+          output += '\u00A0';
+        }
+      }
+      el.textContent = output;
+      frame++;
+      if (frame <= totalFrames + 7) {
+        requestAnimationFrame(update);
+      } else {
+        el.textContent = original;
+      }
+    }
+    update();
+  }
+
+  /* -------------------------------------------------------------------
      MÓDULO: Scroll Reveal
+     CORREÇÃO/EXTRA: cards de um mesmo grid agora entram em cascata
+     (delay incremental por item, até um teto de 360ms) em vez de todos
+     de uma vez, e o rótulo (eyebrow/section-label) de cada bloco ganha
+     o efeito de decodificação assim que aparece.
      ------------------------------------------------------------------- */
   const ScrollRevealModule = {
     init() {
@@ -57,15 +139,34 @@
 
       if (prefersReducedMotion) {
         items.forEach((el) => el.classList.add('is-visible'));
+        document.querySelectorAll('.eyebrow, .section-label').forEach((el) => {
+          el.dataset.scrambled = 'true'; // pula o efeito, mantém o texto direto
+        });
         return;
       }
+
+      items.forEach((el) => {
+        const siblings = Array.from(el.parentElement.children).filter((c) =>
+          c.hasAttribute('data-reveal')
+        );
+        const localIndex = siblings.indexOf(el);
+        el.style.transitionDelay = `${Math.min(localIndex * 90, 360)}ms`;
+      });
 
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
+              const target = entry.target;
+              target.classList.add('is-visible');
+              observer.unobserve(target);
+
+              if (target.classList.contains('eyebrow')) {
+                scrambleText(target);
+              } else {
+                const label = target.querySelector('.section-label');
+                if (label) scrambleText(label);
+              }
             }
           });
         },
@@ -511,6 +612,143 @@
   };
 
   /* -------------------------------------------------------------------
+     MÓDULO: Botões Magnéticos
+     O botão "puxa" sutilmente na direção do cursor enquanto o ponteiro
+     está sobre ele, e volta suavemente ao soltar (usa a mesma transição
+     de transform que já existe no CSS do .btn). Desativado em toque e
+     com "reduzir movimento", onde não faz sentido.
+     ------------------------------------------------------------------- */
+  const MagneticButtonModule = {
+    init() {
+      if (isTouchDevice || prefersReducedMotion) return;
+
+      const targets = [
+        { selector: '.btn', strength: 0.25, cap: 10, lift: -3 },
+        { selector: '.nav-cta', strength: 0.2, cap: 6, lift: 0 }
+      ];
+
+      targets.forEach(({ selector, strength, cap, lift }) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          function onMove(e) {
+            const rect = el.getBoundingClientRect();
+            const relX = e.clientX - (rect.left + rect.width / 2);
+            const relY = e.clientY - (rect.top + rect.height / 2);
+            const x = Math.max(-cap, Math.min(cap, relX * strength));
+            const y = Math.max(-cap, Math.min(cap, relY * strength));
+            el.style.transform = `translate(${x}px, ${y + lift}px)`;
+          }
+
+          function onLeave() {
+            el.style.transform = '';
+          }
+
+          el.addEventListener('pointermove', onMove);
+          el.addEventListener('pointerleave', onLeave);
+        });
+      });
+    }
+  };
+
+  /* -------------------------------------------------------------------
+     MÓDULO: Tilt 3D nos Cards
+     Inclinação leve seguindo a posição do cursor dentro do card, com
+     suavização via lerp (sem saltos). Desativado em toque e com
+     "reduzir movimento".
+     ------------------------------------------------------------------- */
+  const TiltCardModule = {
+    init() {
+      if (isTouchDevice || prefersReducedMotion) return;
+
+      const targets = [
+        { selector: '.service-card', lift: -8, maxTilt: 5 },
+        { selector: '.dif-card', lift: -8, maxTilt: 5 },
+        { selector: '.mini-card', lift: -8, maxTilt: 5 },
+        { selector: '.portfolio-item', lift: 0, maxTilt: 4 }
+      ];
+
+      targets.forEach(({ selector, lift, maxTilt }) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+          let rafId = null;
+          let active = false;
+
+          function update() {
+            currentX += (targetX - currentX) * 0.15;
+            currentY += (targetY - currentY) * 0.15;
+            el.style.transform =
+              `perspective(700px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateY(${lift}px)`;
+
+            if (!active && Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05) {
+              el.style.transform = '';
+              rafId = null;
+              return;
+            }
+            rafId = requestAnimationFrame(update);
+          }
+
+          function onMove(e) {
+            const rect = el.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width;
+            const py = (e.clientY - rect.top) / rect.height;
+            targetY = (px - 0.5) * maxTilt * 2;
+            targetX = (0.5 - py) * maxTilt * 2;
+            active = true;
+            if (!rafId) rafId = requestAnimationFrame(update);
+          }
+
+          function onLeave() {
+            active = false;
+            targetX = 0;
+            targetY = 0;
+            if (!rafId) rafId = requestAnimationFrame(update);
+          }
+
+          el.addEventListener('pointermove', onMove);
+          el.addEventListener('pointerleave', onLeave);
+        });
+      });
+    }
+  };
+
+  /* -------------------------------------------------------------------
+     MÓDULO: Título da Aba (chamada quando o usuário sai)
+     Quando a pessoa troca de aba/minimiza, o título do navegador passa
+     a "piscar" entre uma chamada de atenção e o título original — ao
+     voltar para a aba, tudo volta ao normal automaticamente.
+     ------------------------------------------------------------------- */
+  const TabAttentionModule = {
+    init() {
+      const originalTitle = document.title;
+      const awayMessages = ['👋 Ei, volte aqui', 'Sua decisão pode esperar?'];
+      let intervalId = null;
+      let step = 0;
+
+      function startFlashing() {
+        if (intervalId) return;
+        step = 0;
+        intervalId = setInterval(() => {
+          document.title = step % 2 === 0 ? awayMessages[(step / 2) % awayMessages.length] : originalTitle;
+          step++;
+        }, 1400);
+      }
+
+      function stopFlashing() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = null;
+        document.title = originalTitle;
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          startFlashing();
+        } else {
+          stopFlashing();
+        }
+      });
+    }
+  };
+
+  /* -------------------------------------------------------------------
      MÓDULO: Slider Antes/Depois (comparativo de auditoria)
    ------------------------------------------------------------------- */
 const CompareSliderModule = {
@@ -605,6 +843,9 @@ const CompareSliderModule = {
     CursorGlowModule.init();
     HeroNetworkModule.init();
     CompareSliderModule.init();
+    MagneticButtonModule.init();
+    TiltCardModule.init();
+    TabAttentionModule.init();
   });
 
 })();

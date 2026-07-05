@@ -24,8 +24,8 @@
     --black-60: rgba(0, 0, 0, 0.6);
 
     /* Tipografia */
-    --font-display: 'Cabinet Grotesk', 'General Sans', sans-serif;
-    --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Espaçamento */
     --section-padding: 160px;
@@ -282,40 +282,84 @@ body.no-scroll {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
+}
+
+.loader-ring-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-ring-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -22px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0%, var(--white-20) 50%, transparent 100%);
+    filter: blur(14px);
+    animation: loaderSpin 2.2s linear infinite;
+}
+
+.loader-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.loader-ring-track {
+    fill: none;
+    stroke: var(--white-08);
+    stroke-width: 2;
+}
+
+.loader-ring-fill {
+    fill: none;
+    stroke: var(--white);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
 .loader-logo {
-    width: 120px;
+    width: 60px;
     opacity: 0;
-    animation: loaderFade 1s var(--ease) forwards 0.2s;
+    animation: loaderLogoIn 0.9s var(--ease) forwards 0.15s;
 }
 
-.loader-bar {
-    width: 160px;
-    height: 2px;
-    background: var(--white-08);
-    border-radius: 2px;
-    overflow: hidden;
+.loader-percent {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--gray-light);
+    font-variant-numeric: tabular-nums;
 }
 
-.loader-bar-fill {
-    display: block;
-    height: 100%;
-    width: 0%;
-    background: var(--white);
-    animation: loaderBar 1.4s var(--ease) forwards 0.3s;
-}
+@keyframes loaderLogoIn {
+    from {
+        opacity: 0;
+        transform: scale(0.82);
+        filter: blur(6px);
+    }
 
-@keyframes loaderFade {
     to {
         opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
     }
 }
 
-@keyframes loaderBar {
+@keyframes loaderSpin {
     to {
-        width: 100%;
+        transform: rotate(360deg);
     }
 }
 
@@ -901,8 +945,33 @@ body.no-scroll {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Filtro sutil para manter fotos coloridas alinhadas à paleta preto/branco/cinza */
+    object-position: center;
+    /* Preto e branco em repouso; revela cor sutilmente no hover
+       (efeito "premium" consistente com a paleta monocromática) */
     filter: grayscale(100%) contrast(1.05);
+    transition: filter var(--t-mid);
+}
+
+.portfolio-item:hover .portfolio-media img {
+    filter: grayscale(35%) contrast(1.1);
+}
+
+.portfolio-index {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    background: var(--black-40);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 5px 11px;
+    border-radius: 100px;
+    border: 1px solid var(--white-20);
 }
 
 .portfolio-overlay {
@@ -939,6 +1008,20 @@ body.no-scroll {
 .portfolio-item:hover .portfolio-overlay {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* CORREÇÃO: em telas de toque não existe ":hover" confiável — sem isso,
+   o nome do projeto nunca aparecia para quem visita pelo celular. */
+@media (hover: none) {
+    .portfolio-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(180deg, transparent 55%, var(--black-60) 100%);
+    }
+
+    .portfolio-item:hover .portfolio-media img {
+        filter: grayscale(100%) contrast(1.05);
+    }
 }
 
 /* ---------------------------------------------------------------------
