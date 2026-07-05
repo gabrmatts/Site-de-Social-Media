@@ -210,13 +210,7 @@
     }
 
     /* Clientes/parceiros */
-    .secao-parceiros {
-        padding: 64px 0;
-    }
-
-    .parceiros-label {
-        font-size: 12.5px;
-        letter-spacing: 0.16em;
+    .parceiros-head {
         margin-bottom: 40px;
         padding: 0 20px;
     }
@@ -357,13 +351,7 @@
     }
 
     /* Clientes/parceiros: logos ainda menores, giro mais rápido */
-    .secao-parceiros {
-        padding: 48px 0;
-    }
-
-    .parceiros-label {
-        font-size: 11px;
-        letter-spacing: 0.12em;
+    .parceiros-head {
         margin-bottom: 32px;
     }
 
