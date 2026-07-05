@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>GS Company — Marketing Digital, Social Media e Web Design</title>
+    <title>GS Company Marketing Digital, Social Media e Web Design</title>
     <meta name="description"
         content="A GS Company transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
 
@@ -20,10 +20,12 @@
     <meta property="og:image" content="img/GS Company.png">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Tipografia: Cabinet Grotesk (display) + General Sans (texto) via Fontshare -->
-    <link rel="preconnect" href="https://api.fontshare.com">
+    <!-- Tipografia: Manrope (única família, variando peso) — sans-serif
+         geométrica e minimalista, para casar com o traço enxuto da logo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,500,400&f[]=general-sans@600,500,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="src/style.css">
@@ -37,8 +39,14 @@
     <!-- ============================================= -->
     <div class="loader" id="loader">
         <div class="loader-inner">
-            <img src="img/GS Company.png" alt="GS Company" class="loader-logo">
-            <div class="loader-bar"><span class="loader-bar-fill"></span></div>
+            <div class="loader-ring-wrap">
+                <svg class="loader-ring" viewBox="0 0 120 120" aria-hidden="true">
+                    <circle class="loader-ring-track" cx="60" cy="60" r="54"></circle>
+                    <circle class="loader-ring-fill" id="loaderRing" cx="60" cy="60" r="54"></circle>
+                </svg>
+                <img src="img/GS Company.png" alt="GS Company" class="loader-logo">
+            </div>
+            <span class="loader-percent" id="loaderPercent">0%</span>
         </div>
     </div>
 
@@ -417,6 +425,7 @@
                     <div class="portfolio-media">
                         <img src="img/portfolio/projeto-01.jpg" alt="Projeto Studio Nord" loading="eager">
                     </div>
+                    <span class="portfolio-index">01</span>
                     <div class="portfolio-overlay">
                         <span class="portfolio-tag">Web Design</span>
                         <h3>Studio Nord</h3>
@@ -427,6 +436,7 @@
                     <div class="portfolio-media">
                         <img src="img/portfolio/projeto-02.jpg" alt="Projeto Vértice Coffee" loading="lazy">
                     </div>
+                    <span class="portfolio-index">02</span>
                     <div class="portfolio-overlay">
                         <span class="portfolio-tag">Social Media</span>
                         <h3>Vértice Coffee</h3>
@@ -437,6 +447,7 @@
                     <div class="portfolio-media">
                         <img src="img/portfolio/projeto-03.jpg" alt="Projeto Órbita Fit" loading="lazy">
                     </div>
+                    <span class="portfolio-index">03</span>
                     <div class="portfolio-overlay">
                         <span class="portfolio-tag">Marketing Digital</span>
                         <h3>Órbita Fit</h3>
@@ -447,6 +458,7 @@
                     <div class="portfolio-media">
                         <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy">
                     </div>
+                    <span class="portfolio-index">04</span>
                     <div class="portfolio-overlay">
                         <span class="portfolio-tag">Web Design</span>
                         <h3>Lumen Arquitetura</h3>
@@ -457,6 +469,7 @@
                     <div class="portfolio-media">
                         <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy">
                     </div>
+                    <span class="portfolio-index">05</span>
                     <div class="portfolio-overlay">
                         <span class="portfolio-tag">Marketing Digital</span>
                         <h3>Nova Capital</h3>
