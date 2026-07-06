@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>GS Company Marketing Digital, Social Media e Web Design</title>
+    <title>GS Company — Marketing Digital, Social Media e Web Design</title>
     <meta name="description"
         content="A GS Company transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
 
@@ -20,19 +20,27 @@
     <meta property="og:image" content="img/GS Company.png">
     <meta name="twitter:card" content="summary_large_image">
 
+    <!-- Preload da logo: usada no loading, navbar, hero e rodapé —
+         prioriza o download já que aparece imediatamente na tela -->
+    <link rel="preload" as="image" href="img/GS Company.png">
+
     <!-- Tipografia: Manrope (única família, variando peso) — sans-serif
          geométrica e minimalista, para casar com o traço enxuto da logo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/responsivo.css">
 </head>
 
 <body>
+
+    <!-- Acessibilidade: permite pular a navegação repetida via teclado -->
+    <a href="#topo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Barra de progresso de leitura da página -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- ============================================= -->
     <!-- LOADING SCREEN -->
@@ -96,7 +104,8 @@
             </h1>
 
             <p class="hero-subtitle reveal" data-reveal>
-                Marketing, redes sociais e web design integrados em uma só operação, para empresas que buscam crescimento consistente.
+                Marketing, redes sociais e web design integrados em uma só operação, para empresas que buscam
+                crescimento consistente.
             </p>
 
             <div class="hero-buttons reveal" data-reveal>
@@ -292,7 +301,8 @@
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M8 12h8M8 8h5M8 16h4" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" />
-                            <path d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z"
+                            <path
+                                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z"
                                 stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
                         </svg>
                     </div>
@@ -371,7 +381,8 @@
                     <div class="compare-panel compare-after">
                         <span class="compare-label label-after">Depois</span>
                         <div class="compare-media">
-                            <img src="img/Depois.jpeg" alt="Print do perfil depois da auditoria" loading="lazy">
+                            <img src="img/Depois.jpeg" alt="Print do perfil depois da auditoria" loading="lazy"
+                                decoding="async">
                         </div>
                     </div>
 
@@ -379,7 +390,8 @@
                     <div class="compare-panel compare-before" id="compareBefore">
                         <span class="compare-label label-before">Antes</span>
                         <div class="compare-media">
-                            <img src="img/Antes.jpeg" alt="Print do perfil antes da auditoria" loading="lazy">
+                            <img src="img/Antes.jpeg" alt="Print do perfil antes da auditoria" loading="lazy"
+                                decoding="async">
                         </div>
                     </div>
 
@@ -421,9 +433,10 @@
               Tamanho recomendado: imagens retangulares, mínimo 800px de largura, mesma proporção entre elas.
             -->
             <div class="portfolio-grid">
-                <div class="portfolio-item item-tall reveal" data-reveal>
+                <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/portfolio/projeto-01.jpg" alt="Projeto Studio Nord" loading="eager">
+                        <img src="img/portfolio/projeto-01.jpg" alt="Projeto Studio Nord" loading="eager"
+                            decoding="async">
                     </div>
                     <span class="portfolio-index">01</span>
                     <div class="portfolio-overlay">
@@ -434,7 +447,8 @@
 
                 <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/portfolio/projeto-02.jpg" alt="Projeto Vértice Coffee" loading="lazy">
+                        <img src="img/portfolio/projeto-02.jpg" alt="Projeto Vértice Coffee" loading="lazy"
+                            decoding="async">
                     </div>
                     <span class="portfolio-index">02</span>
                     <div class="portfolio-overlay">
@@ -445,7 +459,8 @@
 
                 <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/portfolio/projeto-03.jpg" alt="Projeto Órbita Fit" loading="lazy">
+                        <img src="img/portfolio/projeto-03.jpg" alt="Projeto Órbita Fit" loading="lazy"
+                            decoding="async">
                     </div>
                     <span class="portfolio-index">03</span>
                     <div class="portfolio-overlay">
@@ -454,9 +469,10 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item item-wide reveal" data-reveal>
+                <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy">
+                        <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy"
+                            decoding="async">
                     </div>
                     <span class="portfolio-index">04</span>
                     <div class="portfolio-overlay">
@@ -467,7 +483,8 @@
 
                 <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy">
+                        <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy"
+                            decoding="async">
                     </div>
                     <span class="portfolio-index">05</span>
                     <div class="portfolio-overlay">
@@ -476,6 +493,8 @@
                     </div>
                 </div>
             </div>
+
+            <p class="portfolio-hint">← Arraste para ver mais projetos →</p>
         </div>
     </section>
 
@@ -494,25 +513,94 @@
 
         <div class="container-parceiros">
             <div class="trilha-parceiros">
-                <div class="item-parceiro"><img src="img/1.png" alt="Marca 1" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/2.png" alt="Marca 2" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/3.png" alt="Marca 3" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/4.png" alt="Marca 4" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/5.png" alt="Marca 5" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/6.png" alt="Marca 6" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/7.png" alt="Marca 7" loading="lazy"></div>
-                <div class="item-parceiro"><img src="img/8.png" alt="Marca 8" loading="lazy"></div>
+                <div class="item-parceiro"><img src="img/1.png" alt="Marca 1" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/2.png" alt="Marca 2" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/3.png" alt="Marca 3" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/4.png" alt="Marca 4" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/5.png" alt="Marca 5" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/6.png" alt="Marca 6" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/7.png" alt="Marca 7" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/8.png" alt="Marca 8" loading="lazy" decoding="async"></div>
 
                 <!-- Conjunto duplicado (aria-hidden, pois é só repetição visual)
                      para o loop do carrossel ficar contínuo, sem "salto" no fim -->
-                <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/3.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/6.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/7.png" alt="" loading="lazy"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/8.png" alt="" loading="lazy"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/3.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/6.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/7.png" alt="" loading="lazy"
+                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img src="img/8.png" alt="" loading="lazy"
+                        decoding="async"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- CERTIFICAÇÕES -->
+    <!-- Cartão claro com o texto à esquerda e um carrossel de logos
+         arrastável à direita.
+
+         COMO ADICIONAR SUAS LOGOS DE CERTIFICAÇÃO:
+         1. Salve os arquivos em img/certificados/ (ex: img/certificados/google-ads.png)
+         2. Troque o "src" de cada <img> abaixo pelo nome do seu arquivo
+         3. Apague ou duplique os blocos <div class="cert-item"> conforme
+            o número de certificações que você tiver
+         Tamanho recomendado: PNG com fundo transparente, ~300px de
+         altura (a logo é exibida pequena, mas em alta resolução fica
+         nítida em qualquer tela). -->
+    <!-- ============================================= -->
+    <section class="certificacoes" id="certificacoes">
+        <div class="container">
+            <div class="cert-card reveal" data-reveal>
+                <h3 class="cert-text">Certificamos<br>nossa experiência.</h3>
+
+                <button class="cert-arrow cert-arrow-prev" id="certPrev" aria-label="Certificação anterior">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <div class="cert-track-wrap">
+                    <div class="cert-track" id="certTrack">
+                        <div class="cert-item">
+                            <img src="img/senac-logo.png" alt="Certificação Senac" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-item">
+                            <img src="img/logo_santander.png" alt="Certificação Santander Open Academy" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-item">
+                            <img src="img/logo_canva.png" alt="Certificação Canva" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-item">
+                            <img src="img/ebac3.png" alt="Certificação Ebac" loading="lazy"
+                                decoding="async">
+                        </div>
+                        <div class="cert-item">
+                            <img src="img/alura_logo.png" alt="Certificação Alura" loading="lazy"
+                                decoding="async">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="cert-arrow cert-arrow-next" id="certNext" aria-label="Próxima certificação">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -627,7 +715,8 @@
 
             <div class="footer-brand">
                 <img src="img/GS Company.png" alt="GS Company" class="footer-logo">
-                <p>Marketing, redes sociais e web design integrados em uma só operação, para empresas que buscam crescimento consistente.</p>
+                <p>Marketing, redes sociais e web design integrados em uma só operação, para empresas que buscam
+                    crescimento consistente.</p>
             </div>
 
             <div class="footer-menu">
@@ -643,7 +732,8 @@
             <div class="footer-social">
                 <h4>Redes Sociais</h4>
                 <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener">Instagram</a>
-                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank"
+                    rel="noopener">LinkedIn</a>
                 <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener">Behance</a>
             </div>
 
