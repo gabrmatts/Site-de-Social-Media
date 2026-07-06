@@ -37,14 +37,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .item-wide {
-        grid-column: span 2;
-    }
-
-    .item-tall {
-        grid-row: span 2;
-    }
-
     /* Footer: 2 colunas */
     .footer-grid {
         grid-template-columns: 1.4fr 1fr 1fr;
@@ -137,6 +129,15 @@
         width: 100%;
     }
 
+    /* CORREÇÃO: no mobile os botões empilham (ficam mais altos) e o
+       indicador de scroll — fixo a 40px do fundo — passava a colidir
+       com o botão "Conhecer Serviços". Como é só um enfeite decorativo
+       (dica de "role para baixo"), some no mobile em vez de arriscar
+       sobreposição. */
+    .hero-scroll-indicator {
+        display: none;
+    }
+
     /* Sobre: empilha colunas */
     .sobre-grid {
         grid-template-columns: 1fr;
@@ -168,16 +169,53 @@
         gap: 18px;
     }
 
-    /* Portfólio: 1 coluna, todas as áreas normais */
+    /* Portfólio: em vez de empilhar 5 cards verticalmente, vira um
+       carrossel horizontal de arrastar — mais natural no toque e evita
+       uma seção enorme de rolagem no mobile. */
     .portfolio-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 260px;
+        display: flex;
+        grid-template-columns: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
 
-    .item-wide,
-    .item-tall {
-        grid-column: span 1;
-        grid-row: span 1;
+    .portfolio-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .portfolio-item {
+        flex: 0 0 78%;
+        scroll-snap-align: center;
+    }
+
+    .portfolio-hint {
+        display: block;
+    }
+
+    /* Certificações: empilha texto em cima, selos arrastáveis embaixo */
+    .certificacoes {
+        padding: 56px 0;
+    }
+
+    .cert-card {
+        flex-wrap: wrap;
+        padding: 22px 20px;
+        border-radius: var(--radius-md);
+        gap: 16px;
+    }
+
+    .cert-text {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .cert-track-wrap {
+        order: 3;
+        width: 100%;
     }
 
     /* Footer: empilha */
@@ -291,6 +329,18 @@
     /* Diferenciais: 1 coluna em celular pequeno */
     .diferenciais-grid {
         grid-template-columns: 1fr;
+    }
+
+    .portfolio-item {
+        flex-basis: 84%;
+    }
+
+    .cert-card {
+        padding: 18px 16px;
+    }
+
+    .cert-text {
+        font-size: 14px;
     }
 
     .cta {

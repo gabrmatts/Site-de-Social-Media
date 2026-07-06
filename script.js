@@ -200,7 +200,8 @@
     init() {
       const navbar = document.getElementById('navbar');
       const backToTop = document.getElementById('backToTop');
-      if (!navbar && !backToTop) return;
+      const progressBar = document.getElementById('scrollProgress');
+      if (!navbar && !backToTop && !progressBar) return;
 
       let ticking = false;
 
@@ -208,6 +209,13 @@
         const y = window.scrollY;
         if (navbar) navbar.classList.toggle('is-scrolled', y > 40);
         if (backToTop) backToTop.classList.toggle('is-visible', y > 600);
+
+        if (progressBar) {
+          const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = scrollable > 0 ? Math.min(100, (y / scrollable) * 100) : 0;
+          progressBar.style.width = pct + '%';
+        }
+
         ticking = false;
       };
 
@@ -226,6 +234,49 @@
           window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
       }
+    }
+  };
+
+  /* -------------------------------------------------------------------
+     MÓDULO: Link Ativo da Navbar (scroll-spy)
+     Destaca no menu qual seção está sendo vista no momento — ajuda a
+     pessoa a se orientar dentro da página de rolagem única, em vez de
+     depender só da memória de onde clicou.
+     ------------------------------------------------------------------- */
+  const ActiveNavModule = {
+    init() {
+      const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+      if (!navLinks.length) return;
+
+      const linkBySectionId = new Map();
+      const sections = [];
+
+      navLinks.forEach((link) => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section) {
+          linkBySectionId.set(section.id, link);
+          sections.push(section);
+        }
+      });
+
+      if (!sections.length) return;
+
+      const setActive = (id) => {
+        navLinks.forEach((link) => link.classList.remove('is-active'));
+        const activeLink = linkBySectionId.get(id);
+        if (activeLink) activeLink.classList.add('is-active');
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        },
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+      );
+
+      sections.forEach((section) => observer.observe(section));
     }
   };
 
@@ -749,6 +800,31 @@
   };
 
   /* -------------------------------------------------------------------
+     MÓDULO: Carrossel de Certificações
+     Setas simplesmente rolam a trilha de selos (scroll nativo, suave),
+     sem reinventar um slider — igual ao gesto de arrastar, só que
+     também clicável.
+     ------------------------------------------------------------------- */
+  const CertCarouselModule = {
+    init() {
+      const track = document.getElementById('certTrack');
+      const prevBtn = document.getElementById('certPrev');
+      const nextBtn = document.getElementById('certNext');
+      if (!track || !prevBtn || !nextBtn) return;
+
+      const scrollByAmount = () => Math.min(240, track.clientWidth * 0.6);
+
+      prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -scrollByAmount(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: scrollByAmount(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      });
+    }
+  };
+
+  /* -------------------------------------------------------------------
      MÓDULO: Slider Antes/Depois (comparativo de auditoria)
    ------------------------------------------------------------------- */
 const CompareSliderModule = {
@@ -838,6 +914,7 @@ const CompareSliderModule = {
     LoaderModule.init();
     ScrollRevealModule.init();
     ScrollStateModule.init();
+    ActiveNavModule.init();
     MobileMenuModule.init();
     TestimonialSliderModule.init();
     CursorGlowModule.init();
@@ -846,6 +923,7 @@ const CompareSliderModule = {
     MagneticButtonModule.init();
     TiltCardModule.init();
     TabAttentionModule.init();
+    CertCarouselModule.init();
   });
 
 })();
