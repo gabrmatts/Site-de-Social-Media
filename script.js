@@ -2,7 +2,8 @@
    GS COMPANY — SCRIPT PRINCIPAL
    JavaScript puro, modular, sem bibliotecas externas.
    Módulos: Loader, ScrollReveal, Navbar, MobileMenu, BackToTop,
-            TestimonialSlider, CursorGlow, HeroNetworkCanvas, CompareSlider
+            TestimonialSlider, CursorGlow, HeroNetworkCanvas, CompareSlider,
+            CertCarousel, CertStats
    ===================================================================== */
 
 (function () {
@@ -800,31 +801,6 @@
   };
 
   /* -------------------------------------------------------------------
-     MÓDULO: Carrossel de Certificações
-     Setas simplesmente rolam a trilha de selos (scroll nativo, suave),
-     sem reinventar um slider — igual ao gesto de arrastar, só que
-     também clicável.
-     ------------------------------------------------------------------- */
-  const CertCarouselModule = {
-    init() {
-      const track = document.getElementById('certTrack');
-      const prevBtn = document.getElementById('certPrev');
-      const nextBtn = document.getElementById('certNext');
-      if (!track || !prevBtn || !nextBtn) return;
-
-      const scrollByAmount = () => Math.min(240, track.clientWidth * 0.6);
-
-      prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -scrollByAmount(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-      });
-
-      nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: scrollByAmount(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-      });
-    }
-  };
-
-  /* -------------------------------------------------------------------
      MÓDULO: Slider Antes/Depois (comparativo de auditoria)
    ------------------------------------------------------------------- */
 const CompareSliderModule = {
@@ -923,7 +899,6 @@ const CompareSliderModule = {
     MagneticButtonModule.init();
     TiltCardModule.init();
     TabAttentionModule.init();
-    CertCarouselModule.init();
   });
 
 })();
