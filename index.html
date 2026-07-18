@@ -24,14 +24,17 @@
          prioriza o download já que aparece imediatamente na tela -->
     <link rel="preload" as="image" href="img/GS Company.png">
 
-    <!-- Tipografia: Manrope (única família, variando peso) — sans-serif
-         geométrica e minimalista, para casar com o traço enxuto da logo -->
+    <!-- Tipografia: Manrope para leitura (sans geométrica, herdada do
+         projeto original) + Fraunces reservada só para o acento
+         editorial (eyebrows, aspas, itálico no título) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="src/responsivo.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/responsive.css">
 </head>
 
 <body>
@@ -67,7 +70,7 @@
     <header class="navbar" id="navbar">
         <div class="container navbar-inner">
             <a href="#topo" class="navbar-logo">
-                <img src="img/GS Company.png" alt="GS Company">
+                <img src="img/GS Company (1).png" alt="GS Company">
             </a>
 
             <nav class="navbar-menu" id="navbarMenu">
@@ -94,13 +97,33 @@
         <div class="hero-grid"></div>
         <div class="hero-glow"></div>
 
+        <!-- Chips flutuantes em glassmorphism — cada um nomeia um
+             resultado real que a operação entrega -->
+        <div class="hero-float hero-float-1" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" /></svg>
+            Leads +3x
+        </div>
+        <div class="hero-float hero-float-2" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2" />
+                <path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" /></svg>
+            Comunidade em alta
+        </div>
+        <div class="hero-float hero-float-3" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="1.5"
+                    stroke="currentColor" stroke-width="2" /><path d="M8 21h8M12 18v3" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" /></svg>
+            Conversão +40%
+        </div>
+
         <div class="container hero-content">
-            <img src="img/GS Company.png" alt="GS Company" class="hero-logo reveal" data-reveal>
+            <img src="img/GS Company (1).png" alt="GS Company" class="hero-logo reveal" data-reveal>
 
             <span class="eyebrow reveal" data-reveal>Time Especializado em Performance Digital</span>
 
             <h1 class="hero-title reveal" data-reveal>
-                Transformamos presença digital<br> em resultados.
+                Transformamos presença digital<br> em <em>resultados</em>.
             </h1>
 
             <p class="hero-subtitle reveal" data-reveal>
@@ -351,8 +374,6 @@
 
     <!-- ============================================= -->
     <!-- ANTES E DEPOIS — AUDITORIA DE INSTAGRAM -->
-    <!-- Slider arrastável (mouse e toque) comparando um perfil real -->
-    <!-- antes e depois da nossa auditoria de redes sociais. -->
     <!-- ============================================= -->
     <section class="comparativo" id="comparativo">
         <div class="container">
@@ -374,10 +395,8 @@
                          da auditoria — formato vertical, do jeito que aparece na tela do celular.
                       2. Salve os dois arquivos em img/ (ex: img/antes.jpg e img/depois.jpg).
                       3. Troque o "src" das duas tags <img> abaixo pelos nomes dos seus arquivos.
-                      Enquanto isso, aparece um retângulo cinza no lugar — é só um placeholder.
                     -->
 
-                    <!-- Camada de baixo: sempre visível por completo -->
                     <div class="compare-panel compare-after">
                         <span class="compare-label label-after">Depois</span>
                         <div class="compare-media">
@@ -386,7 +405,6 @@
                         </div>
                     </div>
 
-                    <!-- Camada de cima: recortada pelo arraste (mostra o "antes") -->
                     <div class="compare-panel compare-before" id="compareBefore">
                         <span class="compare-label label-before">Antes</span>
                         <div class="compare-media">
@@ -397,7 +415,6 @@
 
                 </div>
 
-                <!-- Controle arrastável -->
                 <div class="compare-handle" id="compareHandle" role="slider" tabindex="0"
                     aria-label="Arraste para comparar o perfil antes e depois da auditoria" aria-valuemin="0"
                     aria-valuemax="100" aria-valuenow="50">
@@ -435,8 +452,7 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item reveal" data-reveal>
                     <div class="portfolio-media">
-                        <img src="img/projeto_1.png" alt="Projeto Studio Nord" loading="eager"
-                            decoding="async">
+                        <img src="img/projeto_1.png" alt="Projeto Studio Nord" loading="eager" decoding="async">
                     </div>
                     <span class="portfolio-index">01</span>
                     <div class="portfolio-overlay">
@@ -500,9 +516,6 @@
 
     <!-- ============================================= -->
     <!-- CLIENTES / PARCEIROS -->
-    <!-- Carrossel infinito de logos das marcas atendidas. Seção de
-         prova social pura — sem métricas soltas, deixando o peso da
-         mensagem nas próprias marcas e no texto de apresentação. -->
     <!-- ============================================= -->
     <section class="secao-parceiros" id="clientes">
         <div class="container">
@@ -517,17 +530,24 @@
 
         <div class="container-parceiros">
             <div class="trilha-parceiros">
-                <div class="item-parceiro"><img src="img/1.png" alt="Marca 1" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/2.png" alt="Marca 2" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/3.png" alt="Marca 3" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/4.png" alt="Marca 4" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/5.png" alt="Marca 5" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/6.png" alt="Marca 6" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/7.png" alt="Marca 7" loading="lazy" decoding="async"></div>
-                <div class="item-parceiro"><img src="img/8.png" alt="Marca 8" loading="lazy" decoding="async"></div>
+                <div class="item-parceiro"><img src="img/1.png" alt="Marca 1" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/2.png" alt="Marca 2" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/3.png" alt="Marca 3" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/4.png" alt="Marca 4" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/5.png" alt="Marca 5" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/6.png" alt="Marca 6" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/7.png" alt="Marca 7" loading="lazy" decoding="async">
+                </div>
+                <div class="item-parceiro"><img src="img/8.png" alt="Marca 8" loading="lazy" decoding="async">
+                </div>
 
-                <!-- Conjunto duplicado (aria-hidden, pois é só repetição visual)
-                     para o loop do carrossel ficar contínuo, sem "salto" no fim -->
+                <!-- Conjunto duplicado (aria-hidden) para o loop contínuo -->
                 <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"
                         decoding="async"></div>
                 <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
@@ -657,7 +677,7 @@
         <div class="container footer-grid">
 
             <div class="footer-brand">
-                <img src="img/GS Company.png" alt="GS Company" class="footer-logo">
+                <img src="img/GS Company (1).png" alt="GS Company" class="footer-logo">
                 <p>Marketing, redes sociais e web design integrados em uma só operação, para empresas que buscam
                     crescimento consistente.</p>
             </div>
@@ -696,7 +716,8 @@
         </svg>
     </button>
 
-    <script src="script.js"></script>
+    <script src="src/js/main.js"></script>
+    <script src="src/js/animations.js"></script>
 </body>
 
 </html>
