@@ -83,6 +83,20 @@
         <div class="hero-grid"></div>
         <div class="hero-glow"></div>
 
+        <!-- Estrelinhas -->
+        <div class="hero-stars" aria-hidden="true">
+            <span class="spark" style="--x:8%;--y:18%;--s:12px;--d:0s"></span>
+            <span class="spark" style="--x:16%;--y:52%;--s:8px;--d:1.2s"></span>
+            <span class="spark" style="--x:24%;--y:12%;--s:9px;--d:2.1s"></span>
+            <span class="spark" style="--x:31%;--y:64%;--s:7px;--d:0.6s"></span>
+            <span class="spark" style="--x:70%;--y:10%;--s:10px;--d:1.7s"></span>
+            <span class="spark" style="--x:78%;--y:58%;--s:8px;--d:2.6s"></span>
+            <span class="spark" style="--x:86%;--y:22%;--s:13px;--d:0.3s"></span>
+            <span class="spark" style="--x:92%;--y:46%;--s:8px;--d:3.1s"></span>
+            <span class="spark" style="--x:45%;--y:8%;--s:7px;--d:2.3s"></span>
+            <span class="spark" style="--x:58%;--y:70%;--s:7px;--d:1.0s"></span>
+        </div>
+
         <div class="hero-float hero-float-1" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
                 <path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -109,8 +123,6 @@
         <div class="container hero-content">
             <img src="img/GS Company (1).png" alt="GS Company" class="hero-logo reveal" data-reveal>
 
-            <span class="eyebrow reveal" data-reveal>Time Especializado em Performance Digital</span>
-
             <h1 class="hero-title reveal" data-reveal>
                 Transformamos presença digital<br> em <em>resultados</em>.
             </h1>
@@ -124,6 +136,9 @@
                 <a href="#contato" class="btn btn-primary">Solicitar Orçamento</a>
                 <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
             </div>
+
+            <!-- Horizonte com brilho (entre os botões e as marcas) -->
+            <div class="hero-horizon" aria-hidden="true"></div>
 
             <!-- Marcas + números (antes era a seção #clientes) -->
             <div class="hero-clients reveal" data-reveal>
@@ -192,7 +207,8 @@
 
             <figure class="quem-foto reveal" data-reveal>
                 <!-- ⚠ Troque pelo nome da sua foto (vertical, ao menos 900px de largura) -->
-                <img src="img/Gabriel.jpg" alt="Gabriel Gomes, fundador da GS Company" loading="lazy" decoding="async">
+                <img src="img/Gabriel.jpg" alt="Gabriel Gomes, fundador da GS Company" loading="lazy" decoding="async"
+                    onerror="this.style.display='none'">
                 <figcaption class="quem-foto-caption">
                     <strong>Gabriel Gomes</strong>
                     <span>Fundador da GS Company</span>
@@ -272,9 +288,11 @@
                     <div class="service-card-glow"></div>
                     <span class="service-index">01</span>
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M3 12l4-4 4 4 4-6 6 8" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 3v18h18" />
+                            <path d="M7 15l4-5 3 3 5-7" />
+                            <path d="M15 6h4v4" />
                         </svg>
                     </div>
                     <h3>Marketing Digital</h3>
@@ -286,10 +304,11 @@
                     <div class="service-card-glow"></div>
                     <span class="service-index">02</span>
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.5" />
-                            <circle cx="12" cy="9" r="2" stroke="currentColor" stroke-width="1.5" />
-                            <path d="M8 16h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" />
+                            <path
+                                d="M12 16.6s-3.6-2.1-3.6-4.8a2 2 0 013.6-1.3 2 2 0 013.6 1.3c0 2.7-3.6 4.8-3.6 4.8z" />
                         </svg>
                     </div>
                     <h3>Social Media</h3>
@@ -301,9 +320,11 @@
                     <div class="service-card-glow"></div>
                     <span class="service-index">03</span>
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="16" rx="2.5" />
+                            <path d="M3 9h18" />
+                            <path d="M10 13l-2 2 2 2M14 13l2 2-2 2" />
                         </svg>
                     </div>
                     <h3>Web Design</h3>
@@ -364,12 +385,11 @@
             <div class="diferenciais-grid">
                 <div class="dif-card reveal" data-reveal>
                     <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M8 12h8M8 8h5M8 16h4" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path
-                                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z"
-                                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
+                            <path d="M8 11.5h8M8 14.5h5" />
                         </svg>
                     </div>
                     <h3>Atendimento Personalizado</h3>
@@ -378,11 +398,10 @@
 
                 <div class="dif-card reveal" data-reveal>
                     <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path
-                                d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
-                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M9 18h6M10 21h4" />
+                            <path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z" />
                         </svg>
                     </div>
                     <h3>Estratégias Inteligentes</h3>
@@ -391,9 +410,13 @@
 
                 <div class="dif-card reveal" data-reveal>
                     <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path
+                                d="M12 3a9 9 0 100 18c1.4 0 2-.9 2-2 0-.6-.3-1-.6-1.4-.3-.4-.4-.8-.4-1.2 0-1 .8-1.9 2-1.9H17a4 4 0 004-4c0-4.4-4-7.5-9-7.5z" />
+                            <circle cx="7.5" cy="11" r="1" />
+                            <circle cx="10.5" cy="7" r="1" />
+                            <circle cx="15" cy="7.5" r="1" />
                         </svg>
                     </div>
                     <h3>Design Profissional</h3>
@@ -402,9 +425,10 @@
 
                 <div class="dif-card reveal" data-reveal>
                     <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" />
-                            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5" />
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <circle cx="12" cy="12" r="4.5" />
                             <circle cx="12" cy="12" r="1" fill="currentColor" />
                         </svg>
                     </div>
@@ -817,21 +841,6 @@
                 <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"
                     class="btn btn-secondary btn-lg">@gabrielgomes.social</a>
             </div>
-
-            <div class="cta-steps">
-                <div class="cta-step">
-                    <span class="cta-step-num">01</span>
-                    <span>Você manda uma mensagem</span>
-                </div>
-                <div class="cta-step">
-                    <span class="cta-step-num">02</span>
-                    <span>Conversamos sobre o seu momento</span>
-                </div>
-                <div class="cta-step">
-                    <span class="cta-step-num">03</span>
-                    <span>Você recebe uma proposta sob medida</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -885,42 +894,30 @@
         </div>
     </footer>
 
-    <!-- OFERTA PARA NOVOS CLIENTES (pop-up) -->
+    <!-- OFERTA PARA NOVOS CLIENTES (pop-up compacto) -->
     <!-- ⚠ Edite aqui: porcentagem, cupom e regras. Lembre-se de honrar o que anunciar. -->
     <aside class="promo" id="promo" role="dialog" aria-label="Oferta para novos clientes" aria-hidden="true">
         <button class="promo-close" id="promoClose" aria-label="Fechar oferta">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
             </svg>
         </button>
 
         <button class="promo-body" id="promoCopy" data-code="GS10" type="button">
-            <span class="promo-head">
-                <span class="promo-badge">10% OFF</span>
-                <span class="promo-kicker">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M12 3l9 9-9 9-9-9 9-9z" stroke="currentColor" stroke-width="1.8"
-                            stroke-linejoin="round" />
-                        <path d="M8.5 12l3.5-3.5 3.5 3.5-3.5 3.5z" fill="currentColor" />
-                    </svg>
-                    Pagando no PIX
-                </span>
+            <span class="promo-badge">10%<small>OFF</small></span>
+            <span class="promo-info">
+                <strong class="promo-title">Desconto no PIX</strong>
+                <span class="promo-sub"><span id="promoActionText">Copiar cupom <b>GS10</b></span></span>
             </span>
-            <strong class="promo-title">Feche à vista e economize</strong>
-            <span class="promo-sub">Ganhe 10% de desconto no seu 1º projeto pagando via PIX.
-                Use o cupom <b>GS10</b>.</span>
-            <span class="promo-action" id="promoAction">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8" />
-                    <path d="M5 15V6a2 2 0 012-2h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                </svg>
-                <span id="promoActionText">Clique para copiar o cupom</span>
-            </span>
+            <svg class="promo-copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8" />
+                <path d="M5 15V6a2 2 0 012-2h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
         </button>
 
         <a class="promo-cta" id="promoCta" target="_blank" rel="noopener"
             href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Quero%20fechar%20meu%20projeto%20pagando%20no%20PIX%20com%20o%20cupom%20GS10.">
-            Garantir meu desconto no WhatsApp <span aria-hidden="true">→</span>
+            Usar no WhatsApp <span aria-hidden="true">→</span>
         </a>
     </aside>
 
@@ -1014,10 +1011,15 @@
             var closeBtn = document.getElementById('promoClose');
             var copyBtn = document.getElementById('promoCopy');
             var actionText = document.getElementById('promoActionText');
-            var KEY = 'gsPromoClosed';
+            var KEY = 'gsPromoClosedV2';
             var shown = false;
 
-            function wasClosed() { try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+            // ?promo=1 na URL força o pop-up a aparecer (útil para testar)
+            var force = /[?&]promo=1/.test(window.location.search);
+            function wasClosed() {
+                if (force) return false;
+                try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; }
+            }
             function calm() { promo.classList.remove('is-attention'); }
 
             function show() {
@@ -1064,6 +1066,50 @@
                 }
             });
             closeBtn.addEventListener('click', hide);
+        })();
+    </script>
+
+    <script>
+        // Holofote que segue o mouse nos cards (só em dispositivos com mouse)
+        (function () {
+            if (window.matchMedia('(hover: none)').matches) return;
+            document.querySelectorAll('.service-card, .dif-card').forEach(function (card) {
+                card.addEventListener('pointermove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            });
+        })();
+    </script>
+
+    <script>
+        // Números das estatísticas contam de 0 até o valor quando aparecem na tela
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var els = document.querySelectorAll('.hero-stat strong, .quem-stat strong');
+            if (!els.length || !('IntersectionObserver' in window)) return;
+
+            function run(el) {
+                var m = el.textContent.trim().match(/^(\D*)(\d+(?:[.,]\d+)?)(\D*)$/);
+                if (!m) return;
+                var target = parseFloat(m[2].replace(',', '.')), dec = (m[2].split(/[.,]/)[1] || '').length;
+                var start = null, dur = 1400;
+                function tick(t) {
+                    if (!start) start = t;
+                    var p = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+                    el.textContent = m[1] + (target * e).toFixed(dec).replace('.', ',') + m[3];
+                    if (p < 1) requestAnimationFrame(tick); else el.textContent = m[1] + m[2] + m[3];
+                }
+                requestAnimationFrame(tick);
+            }
+
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
+                });
+            }, { threshold: 0.6 });
+            els.forEach(function (el) { io.observe(el); });
         })();
     </script>
 
