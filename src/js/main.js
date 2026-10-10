@@ -9,9 +9,6 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Loading Screen
-     ------------------------------------------------------------------- */
   const LoaderModule = {
     init() {
       const loader = document.getElementById('loader');
@@ -67,9 +64,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Navbar Dinâmica + Barra de Progresso + Voltar ao Topo
-     ------------------------------------------------------------------- */
   const ScrollStateModule = {
     init() {
       const navbar = document.getElementById('navbar');
@@ -111,9 +105,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Link Ativo da Navbar (scroll-spy)
-     ------------------------------------------------------------------- */
   const ActiveNavModule = {
     init() {
       const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
@@ -151,9 +142,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Menu Mobile (com focus trap e fechamento por Esc)
-     ------------------------------------------------------------------- */
   const MobileMenuModule = {
     init() {
       const toggle = document.getElementById('navbarToggle');
@@ -220,9 +208,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Slider de Depoimentos
-     ------------------------------------------------------------------- */
   const TestimonialSliderModule = {
     init() {
       const sliderEl = document.getElementById('testimonialSlider');
@@ -350,9 +335,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Slider Antes/Depois (comparativo de auditoria)
-     ------------------------------------------------------------------- */
   const CompareSliderModule = {
     init() {
       const wrapper = document.getElementById('compareSlider');
@@ -431,9 +413,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Título da Aba (chamada quando o usuário sai)
-     ------------------------------------------------------------------- */
   const TabAttentionModule = {
     init() {
       const originalTitle = document.title;
@@ -466,9 +445,33 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     Inicialização
-     ------------------------------------------------------------------- */
+  const FaqAccordionModule = {
+    init() {
+      const items = Array.from(document.querySelectorAll('.faq-item'));
+      if (!items.length) return;
+
+      items.forEach((item) => {
+        const question = item.querySelector('.faq-question');
+        if (!question) return;
+
+        question.addEventListener('click', () => {
+          const isOpen = item.classList.contains('is-open');
+
+          items.forEach((other) => {
+            other.classList.remove('is-open');
+            const otherQuestion = other.querySelector('.faq-question');
+            if (otherQuestion) otherQuestion.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            item.classList.add('is-open');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    }
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
     LoaderModule.init();
     ScrollStateModule.init();
@@ -476,6 +479,7 @@
     MobileMenuModule.init();
     TestimonialSliderModule.init();
     CompareSliderModule.init();
+    FaqAccordionModule.init();
     TabAttentionModule.init();
   });
 

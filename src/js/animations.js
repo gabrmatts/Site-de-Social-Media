@@ -18,9 +18,6 @@
     };
   }
 
-  /* -------------------------------------------------------------------
-     Utilitário: efeito de texto "decodificando" (scramble-in)
-     ------------------------------------------------------------------- */
   function scrambleText(el) {
     if (!el || el.dataset.scrambled) return;
     el.dataset.scrambled = 'true';
@@ -54,9 +51,6 @@
     update();
   }
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Scroll Reveal (cascata + decodificação de rótulos)
-     ------------------------------------------------------------------- */
   const ScrollRevealModule = {
     init() {
       const items = document.querySelectorAll('[data-reveal]');
@@ -118,9 +112,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Cursor Glow
-     ------------------------------------------------------------------- */
   const CursorGlowModule = {
     init() {
       const glow = document.getElementById('cursorGlow');
@@ -154,12 +145,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Rede de Nós no Hero
-     Paleta clara: traços em tinta escura translúcida sobre o fundo
-     off-white do hero — mesma leitura de "dados conectados", agora
-     coerente com o restante da página.
-     ------------------------------------------------------------------- */
   const HeroNetworkModule = {
     init() {
       const canvas = document.getElementById('heroCanvas');
@@ -290,9 +275,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Botões Magnéticos
-     ------------------------------------------------------------------- */
   const MagneticButtonModule = {
     init() {
       if (isTouchDevice || prefersReducedMotion) return;
@@ -324,9 +306,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Tilt 3D nos Cards
-     ------------------------------------------------------------------- */
   const TiltCardModule = {
     init() {
       if (isTouchDevice || prefersReducedMotion) return;
@@ -382,12 +361,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     MÓDULO: Ripple Effect nos Botões
-     Efeito de onda a partir do ponto exato de clique/toque — reforça
-     a sensação de "resposta imediata" pedida no briefing, sem depender
-     de biblioteca externa.
-     ------------------------------------------------------------------- */
   const RippleEffectModule = {
     init() {
       if (prefersReducedMotion) return;
@@ -408,9 +381,6 @@
     }
   };
 
-  /* -------------------------------------------------------------------
-     Inicialização
-     ------------------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
     ScrollRevealModule.init();
     CursorGlowModule.init();
