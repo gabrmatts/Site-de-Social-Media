@@ -62,7 +62,7 @@
         height: 100vh;
         height: 100svh;
         width: min(320px, 82vw);
-        background: rgba(17, 17, 17, 0.98);
+        background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         flex-direction: column;
@@ -90,8 +90,8 @@
     }
 
     .navbar.is-scrolled {
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
     .hero {
@@ -463,5 +463,21 @@
 
     .trilha-parceiros {
         animation: none;
+    }
+}
+
+/* Hero nova (cortinas de luz) e navegação em pílula — celular */
+@media (max-width: 768px) {
+    .hero-rings {
+        top: 30%;
+    }
+
+    .hero-clients {
+        margin-top: 56px;
+    }
+
+    .navbar .navbar-inner {
+        width: calc(100% - 28px);
+        padding: 8px 8px 8px 20px;
     }
 }

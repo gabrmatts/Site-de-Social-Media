@@ -79,23 +79,20 @@
 
     <!-- HERO -->
     <section class="hero" id="topo">
-        <canvas class="hero-canvas" id="heroCanvas"></canvas>
-        <div class="hero-grid"></div>
-        <div class="hero-glow"></div>
-
-        <!-- Estrelinhas -->
-        <div class="hero-stars" aria-hidden="true">
-            <span class="spark" style="--x:8%;--y:18%;--s:12px;--d:0s"></span>
-            <span class="spark" style="--x:16%;--y:52%;--s:8px;--d:1.2s"></span>
-            <span class="spark" style="--x:24%;--y:12%;--s:9px;--d:2.1s"></span>
-            <span class="spark" style="--x:31%;--y:64%;--s:7px;--d:0.6s"></span>
-            <span class="spark" style="--x:70%;--y:10%;--s:10px;--d:1.7s"></span>
-            <span class="spark" style="--x:78%;--y:58%;--s:8px;--d:2.6s"></span>
-            <span class="spark" style="--x:86%;--y:22%;--s:13px;--d:0.3s"></span>
-            <span class="spark" style="--x:92%;--y:46%;--s:8px;--d:3.1s"></span>
-            <span class="spark" style="--x:45%;--y:8%;--s:7px;--d:2.3s"></span>
-            <span class="spark" style="--x:58%;--y:70%;--s:7px;--d:1.0s"></span>
+        <!-- Fundo: halo de luz + anéis orbitais -->
+        <div class="hero-bg" aria-hidden="true">
+            <div class="hero-halo"></div>
+            <div class="hero-rings">
+                <span class="ring"></span>
+                <span class="ring"></span>
+                <span class="ring"></span>
+                <span class="ring"></span>
+                <span class="orbit orbit-1"></span>
+                <span class="orbit orbit-2"></span>
+            </div>
+            <div class="hero-vignette"></div>
         </div>
+
 
         <div class="hero-float hero-float-1" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -137,9 +134,6 @@
                 <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
             </div>
 
-            <!-- Horizonte com brilho (entre os botões e as marcas) -->
-            <div class="hero-horizon" aria-hidden="true"></div>
-
             <!-- Marcas + números (antes era a seção #clientes) -->
             <div class="hero-clients reveal" data-reveal>
                 <span class="hero-clients-label">Marcas que já confiaram na gente</span>
@@ -150,8 +144,8 @@
                                 decoding="async"></div>
                         <div class="item-parceiro"><img src="img/2.png" alt="Logo do cliente 2" loading="lazy"
                                 decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/3.png" alt="Logo do cliente 3" loading="lazy"
-                                decoding="async"></div>
+                        <div class="item-parceiro"><img class="is-solid" src="img/3.png" alt="Logo do cliente 3"
+                                loading="lazy" decoding="async"></div>
                         <div class="item-parceiro"><img src="img/4.png" alt="Logo do cliente 4" loading="lazy"
                                 decoding="async"></div>
                         <div class="item-parceiro"><img src="img/5.png" alt="Logo do cliente 5" loading="lazy"
@@ -167,8 +161,8 @@
                                 decoding="async"></div>
                         <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
                                 decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/3.png" alt="" loading="lazy"
-                                decoding="async"></div>
+                        <div class="item-parceiro" aria-hidden="true"><img class="is-solid" src="img/3.png" alt=""
+                                loading="lazy" decoding="async"></div>
                         <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"
                                 decoding="async"></div>
                         <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"
@@ -586,8 +580,8 @@
                 </div>
                 <div class="item-parceiro"><img src="img/2.png" alt="Logo do cliente 2" loading="lazy" decoding="async">
                 </div>
-                <div class="item-parceiro"><img src="img/3.png" alt="Logo do cliente 3" loading="lazy" decoding="async">
-                </div>
+                <div class="item-parceiro"><img class="is-solid" src="img/3.png" alt="Logo do cliente 3" loading="lazy"
+                        decoding="async"></div>
                 <div class="item-parceiro"><img src="img/4.png" alt="Logo do cliente 4" loading="lazy" decoding="async">
                 </div>
                 <div class="item-parceiro"><img src="img/5.png" alt="Logo do cliente 5" loading="lazy" decoding="async">
@@ -603,8 +597,8 @@
                         decoding="async"></div>
                 <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
                         decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/3.png" alt="" loading="lazy"
-                        decoding="async"></div>
+                <div class="item-parceiro" aria-hidden="true"><img class="is-solid" src="img/3.png" alt=""
+                        loading="lazy" decoding="async"></div>
                 <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"
                         decoding="async"></div>
                 <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"
