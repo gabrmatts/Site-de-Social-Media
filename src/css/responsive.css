@@ -62,7 +62,7 @@
         height: 100vh;
         height: 100svh;
         width: min(320px, 82vw);
-        background: rgba(10, 10, 10, 0.98);
+        background: rgba(10, 9, 15, 0.98);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         flex-direction: column;
@@ -502,8 +502,8 @@
         gap: 0;
         counter-reset: nav;
         background:
-            radial-gradient(ellipse 90% 34% at 100% 0%, rgba(191, 233, 63, .16), transparent 70%),
-            rgba(8, 8, 8, .975);
+            radial-gradient(ellipse 90% 34% at 100% 0%, rgba(254, 104, 7, .16), transparent 70%),
+            rgba(8, 7, 13, .975);
         backdrop-filter: blur(26px) saturate(150%);
         -webkit-backdrop-filter: blur(26px) saturate(150%);
         border-left: 1px solid var(--border-strong);
@@ -601,5 +601,43 @@
 
     .navbar-menu.is-open .nav-link:nth-child(7) {
         transition-delay: .50s;
+    }
+}
+
+
+/* Botões no celular: largura total, texto à esquerda e seta no círculo à direita */
+@media (max-width: 768px) {
+    .hero-actions {
+        width: 100%;
+        gap: 18px;
+    }
+
+    .hero-actions .hero-buttons {
+        max-width: 340px;
+    }
+
+    .hero .btn,
+    .cta .btn {
+        justify-content: space-between;
+        padding: 0 8px 0 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 136px;
+    }
+
+    .hero-note .dot {
+        display: none;
+    }
+
+    .hero-note {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .hero-note svg {
+        display: none;
     }
 }
