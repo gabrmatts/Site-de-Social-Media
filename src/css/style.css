@@ -4531,3 +4531,1123 @@ p {
 .promo-sub b {
     color: var(--brand-text);
 }
+
+/* Quem Sou — botões dos certificados: dividem a linha por igual, sem lacuna */
+.quem-actions {
+    gap: 12px;
+}
+
+.quem-actions .btn {
+    flex: 1 1 240px;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+
+/* =====================================================================
+   BLUEPRINT DE VENDAS — vídeo, cenário (lead), oferta e acordo
+   ===================================================================== */
+
+/* ---------- Vídeo (VSL) ---------- */
+.vsl {
+    padding: calc(var(--section-padding) * .7) 0 0;
+}
+
+.vsl[hidden] {
+    display: none;
+}
+
+.vsl-inner {
+    max-width: 980px;
+}
+
+.vsl-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        radial-gradient(ellipse 60% 70% at 50% 100%, rgba(0, 71, 255, .30), transparent 70%) padding-box,
+        linear-gradient(180deg, #101010, #0A0A0A) padding-box,
+        linear-gradient(155deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .04) 45%, rgba(92, 138, 255, .30)) border-box;
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow-lg), 0 40px 100px rgba(0, 71, 255, .12);
+}
+
+.vsl-play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.vsl-play-btn {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    padding: 28px 26px 28px 30px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: 0 16px 50px rgba(0, 71, 255, .5);
+    transition: transform var(--t-mid);
+}
+
+.vsl-play-btn::after {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(92, 138, 255, .55);
+    animation: vslPulse 2.4s ease-out infinite;
+}
+
+@keyframes vslPulse {
+    from {
+        transform: scale(.9);
+        opacity: .9;
+    }
+
+    to {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+}
+
+.vsl-play:hover .vsl-play-btn {
+    transform: scale(1.08);
+}
+
+.vsl-play-text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.vsl-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
+}
+
+/* ---------- Lead / cenário ---------- */
+.momento {
+    padding: var(--section-padding) 0;
+}
+
+.momento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.momento-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 28px 28px 28px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    background:
+        linear-gradient(180deg, #151515, #0E0E0E) padding-box,
+        linear-gradient(155deg, rgba(255, 255, 255, .20), rgba(255, 255, 255, .04) 40%, rgba(255, 255, 255, .02)) border-box;
+    transition: transform var(--t-mid);
+}
+
+.momento-item:hover {
+    transform: translateY(-5px);
+}
+
+.momento-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    padding: 12px;
+    border-radius: 14px;
+    color: var(--brand-text);
+    background: radial-gradient(circle at 30% 18%, rgba(26, 92, 255, .30), rgba(26, 92, 255, .05) 72%);
+    border: 1px solid var(--accent-2-line);
+}
+
+.momento-item p {
+    font-size: 17.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding-top: 2px;
+}
+
+.momento-item p strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.momento-bridge {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.momento-bridge p {
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+
+.momento-bridge p strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+/* ---------- Oferta + acordo ---------- */
+.oferta {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+    background: linear-gradient(180deg, #070707 0%, #0B0B0B 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, .16), transparent) 1;
+}
+
+.oferta::before {
+    content: '';
+    position: absolute;
+    width: 640px;
+    height: 640px;
+    top: -260px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(0, 71, 255, .22), transparent 70%);
+    pointer-events: none;
+}
+
+.oferta .container {
+    position: relative;
+}
+
+.oferta-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.oferta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.oferta-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 22px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .025);
+    transition: border-color var(--t-mid), background var(--t-mid);
+}
+
+.oferta-list li:hover {
+    border-color: var(--accent-2-line);
+    background: rgba(26, 92, 255, .06);
+}
+
+.oferta-check {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 7px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: 0 6px 18px rgba(0, 71, 255, .35);
+}
+
+.oferta-list li strong {
+    display: block;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+
+.oferta-list li div span {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.oferta-card {
+    position: relative;
+    padding: 36px 34px 34px;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 71, 255, .22), transparent 70%) padding-box,
+        linear-gradient(180deg, #151515, #0C0C0C) padding-box,
+        linear-gradient(155deg, rgba(92, 138, 255, .75), rgba(255, 255, 255, .06) 50%, rgba(0, 71, 255, .35)) border-box;
+    box-shadow: var(--shadow-lg), 0 30px 90px rgba(0, 71, 255, .14);
+}
+
+.oferta-tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--brand-text);
+    background: var(--accent-2-soft);
+    border: 1px solid var(--accent-2-line);
+}
+
+.oferta-card h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--ink);
+}
+
+.oferta-card>p {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.oferta-perks {
+    margin: 26px 0 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.oferta-perks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+.oferta-perks li svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    color: var(--brand-text);
+}
+
+.oferta-perks li strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.oferta-perks li b {
+    color: var(--brand-text);
+    letter-spacing: .04em;
+}
+
+.oferta-card .btn {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.oferta-note {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+}
+
+/* ---------- Aviso na seção final ---------- */
+.cta .cta-warning {
+    margin-top: 18px;
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--brand-text);
+}
+
+/* =====================================================================
+   PÁGINA DE VENDAS — ajustes do novo fluxo (oferta única, CTAs de seção)
+   ===================================================================== */
+.section-head--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.section-head--center .section-text {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+}
+
+/* Oferta: um cartão central */
+.oferta .oferta-card {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 44px 46px 40px;
+}
+
+.oferta .oferta-tag {
+    margin-bottom: 26px;
+}
+
+.oferta-checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 36px;
+}
+
+.oferta-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.oferta-checklist li svg {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    padding: 6px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--grad-brand);
+    box-shadow: 0 6px 18px rgba(0, 71, 255, .35);
+}
+
+.oferta-checklist li span {
+    padding-top: 2px;
+}
+
+.oferta-perks p {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+.oferta-perks p svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    color: var(--brand-text);
+}
+
+.oferta-perks p strong {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.oferta-perks p b {
+    color: var(--brand-text);
+    letter-spacing: .04em;
+}
+
+.oferta .oferta-perks {
+    margin: 30px 0 34px;
+}
+
+.oferta-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.oferta-cta .btn {
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
+}
+
+.oferta-cta small {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+}
+
+/* =====================================================================
+   ESTRUTURA 2 — hero à esquerda, grade de projetos, cartões, rodapé colorido
+   ===================================================================== */
+
+/* ---------- Navegação: botão "Ver portfólio" ---------- */
+.navbar-menu .nav-ghost {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-left: 10px;
+    padding: 0 20px;
+    border: 1px solid rgba(245, 247, 250, .22);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    transition: border-color var(--t-fast), background var(--t-fast);
+}
+
+.navbar-menu .nav-ghost:hover {
+    border-color: var(--brand-text);
+    background: rgba(26, 92, 255, .12);
+}
+
+.navbar-menu .nav-ghost+.nav-cta {
+    margin-left: 8px;
+}
+
+@media (max-width: 1279px) {
+    .navbar-menu .nav-ghost {
+        display: none;
+    }
+}
+
+/* ---------- Hero alinhada à esquerda ---------- */
+.hero-content {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    padding: 9px 18px;
+    border: 1px solid var(--accent-2-line);
+    border-radius: 100px;
+    background: rgba(0, 71, 255, .10);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brand-text);
+}
+
+.hero-tag i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-text);
+    box-shadow: 0 0 12px var(--brand-text);
+}
+
+.hero-title {
+    max-width: 860px;
+}
+
+.hero-subtitle {
+    max-width: 600px;
+}
+
+.hero-subtitle::after {
+    margin: 30px 0 0;
+    background: linear-gradient(90deg, var(--brand-text), transparent);
+}
+
+.hero-actions {
+    align-items: flex-start;
+}
+
+.hero-micro {
+    max-width: 560px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+}
+
+.hero-clients {
+    align-self: center;
+}
+
+/* a luz do fundo acompanha o texto à esquerda */
+.hero-beam,
+.hero-source {
+    left: 66%;
+}
+
+.hero-vignette {
+    background:
+        linear-gradient(to top, #0A0A0A 0%, rgba(10, 10, 10, 0) 16%),
+        radial-gradient(ellipse 46% 52% at 30% 36%, rgba(5, 5, 5, .55) 0%, transparent 78%);
+}
+
+/* ---------- Botões em linha (seções) ---------- */
+.section-cta {
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* ---------- A verdade incômoda: cartão com número grande ---------- */
+.leak-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 44px;
+    margin-bottom: 24px;
+    padding: 38px 48px;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        radial-gradient(ellipse 60% 130% at 0% 50%, rgba(0, 71, 255, .30), transparent 70%) padding-box,
+        linear-gradient(180deg, #131313, #0C0C0C) padding-box,
+        linear-gradient(155deg, rgba(92, 138, 255, .75), rgba(255, 255, 255, .06) 50%, rgba(0, 71, 255, .30)) border-box;
+    box-shadow: var(--shadow-lg), 0 30px 90px rgba(0, 71, 255, .12);
+}
+
+.leak-num {
+    font-family: var(--font-display);
+    font-size: clamp(96px, 13vw, 168px);
+    font-weight: 800;
+    line-height: .86;
+    letter-spacing: -.05em;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.leak-text strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--ink);
+}
+
+.leak-text span {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+/* ---------- Compromisso ---------- */
+.compromisso {
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+    background: linear-gradient(180deg, #070707 0%, #0B0B0B 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, .16), transparent) 1;
+}
+
+.compromisso::before {
+    content: '';
+    position: absolute;
+    width: 680px;
+    height: 680px;
+    top: -240px;
+    right: -220px;
+    background: radial-gradient(circle, rgba(0, 71, 255, .24), transparent 70%);
+    pointer-events: none;
+}
+
+.comp-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+}
+
+.comp-text .section-text {
+    max-width: 540px;
+}
+
+.comp-text .section-text strong {
+    color: var(--ink);
+}
+
+.comp-text .btn {
+    margin-top: 34px;
+}
+
+.comp-code {
+    color: var(--brand-text);
+    letter-spacing: .05em;
+}
+
+.comp-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.comp-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 24px 28px;
+    border-radius: var(--radius-md);
+    background: var(--grad-brand);
+    color: #fff;
+    font-size: 17.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    box-shadow: 0 16px 44px rgba(0, 71, 255, .28);
+    transition: transform var(--t-mid);
+}
+
+.comp-card:hover {
+    transform: translateX(6px);
+}
+
+.comp-card svg {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .2);
+}
+
+/* ---------- Sobre: chips de especialidades ---------- */
+.quem-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.quem-chips span {
+    padding: 8px 16px;
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.quem-chips span.is-main {
+    color: var(--brand-text);
+    border-color: var(--accent-2-line);
+    background: var(--accent-2-soft);
+}
+
+.quem-actions {
+    margin-top: 28px;
+}
+
+/* ---------- Portfólio: grade de cases ---------- */
+.pf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    counter-reset: pf;
+    align-items: stretch;
+}
+
+.pf-card {
+    counter-increment: pf;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        linear-gradient(180deg, #151515, #0E0E0E) padding-box,
+        linear-gradient(155deg, rgba(255, 255, 255, .20), rgba(255, 255, 255, .04) 40%, rgba(255, 255, 255, .02)) border-box;
+    transition: transform var(--t-mid), box-shadow var(--t-mid);
+}
+
+.pf-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg), 0 24px 70px rgba(0, 71, 255, .14);
+    background:
+        linear-gradient(180deg, #171717, #0E0E0E) padding-box,
+        linear-gradient(155deg, rgba(92, 138, 255, .85), rgba(0, 71, 255, .25) 50%, rgba(255, 255, 255, .03)) border-box;
+}
+
+.pf-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #101010;
+}
+
+.pf-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform .8s var(--ease);
+}
+
+.pf-card:hover .pf-media img {
+    transform: scale(1.05);
+}
+
+.pf-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--accent-2-line);
+    background: rgba(8, 8, 8, .72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--brand-text);
+}
+
+.pf-index {
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+}
+
+.pf-index::before {
+    content: counter(pf, decimal-leading-zero);
+}
+
+.pf-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 26px 26px;
+}
+
+.pf-body h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--brand-text);
+}
+
+.pf-body p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.pf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.pf-arrow {
+    width: 28px;
+    height: 28px;
+    padding: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-2-line);
+    color: var(--brand-text);
+    transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+}
+
+.pf-arrow .btn-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.pf-link:hover .pf-arrow {
+    background: var(--brand-1);
+    border-color: var(--brand-1);
+    color: #fff;
+    transform: rotate(45deg);
+}
+
+.pf-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 36px;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        radial-gradient(ellipse 90% 70% at 20% 0%, rgba(0, 71, 255, .30), transparent 70%) padding-box,
+        linear-gradient(180deg, #131313, #0C0C0C) padding-box,
+        linear-gradient(155deg, rgba(92, 138, 255, .75), rgba(255, 255, 255, .05) 50%, rgba(0, 71, 255, .30)) border-box;
+}
+
+.pf-cta .section-label {
+    margin-bottom: 0;
+}
+
+.pf-cta h3 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    color: var(--ink);
+}
+
+.pf-cta h3 em {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 500;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pf-cta p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+/* ---------- Depoimentos: cartões ---------- */
+.depo-grid {
+    columns: 2;
+    column-gap: 22px;
+}
+
+.depo-card {
+    break-inside: avoid;
+    margin: 0 0 22px;
+    padding: 34px 34px 28px;
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    background:
+        linear-gradient(180deg, #151515, #0E0E0E) padding-box,
+        linear-gradient(155deg, rgba(255, 255, 255, .20), rgba(255, 255, 255, .04) 40%, rgba(92, 138, 255, .20)) border-box;
+}
+
+.depo-mark {
+    display: block;
+    font-family: var(--font-accent);
+    font-size: 54px;
+    line-height: .8;
+    color: var(--brand-text);
+    opacity: .7;
+}
+
+.depo-card blockquote {
+    margin-top: 10px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink);
+}
+
+.depo-card figcaption {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+.depo-avatar {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--accent-2-line);
+    background: var(--accent-2-soft);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brand-text);
+}
+
+.depo-card figcaption strong {
+    display: block;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+.depo-card figcaption small {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+/* ---------- CTA final ---------- */
+.cta h2 {
+    max-width: 920px;
+}
+
+.cta .cta-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cta-socials {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    margin-top: 52px;
+}
+
+.cta-socials a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    transition: color var(--t-fast), transform var(--t-fast);
+}
+
+.cta-socials a span {
+    width: 46px;
+    height: 46px;
+    display: block;
+}
+
+.cta-socials a:hover {
+    color: var(--ink);
+    transform: translateY(-4px);
+}
+
+/* ---------- Rodapé: bloco colorido ---------- */
+.footer {
+    position: relative;
+    padding: 84px 0 0;
+    background: linear-gradient(135deg, #0047FF 0%, #0036C9 100%);
+    border-top: none;
+    border-image: none;
+    color: #fff;
+}
+
+.footer::before {
+    display: none;
+}
+
+.footer .footer-inner {
+    padding-bottom: 56px;
+}
+
+.footer .brand {
+    color: #fff;
+}
+
+.footer .brand-icon {
+    color: #fff;
+    filter: none;
+}
+
+.footer .brand-name {
+    color: #fff;
+}
+
+.footer .brand-sub {
+    color: rgba(255, 255, 255, .75);
+}
+
+.footer .footer-brand {
+    transform: scale(1.25);
+    transform-origin: center;
+    margin-bottom: 30px;
+}
+
+.footer .footer-tagline {
+    max-width: 560px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, .95);
+}
+
+.footer .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .22);
+}
+
+.footer .footer-bottom p {
+    color: rgba(255, 255, 255, .8);
+}
+
+/* ---------- WhatsApp flutuante ---------- */
+.wa-float {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 920;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 22px 0 16px;
+    border-radius: 100px;
+    background: #25D366;
+    color: #06210F;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 14px 36px rgba(37, 211, 102, .35);
+    transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+
+.wa-float:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px rgba(37, 211, 102, .5);
+}
+
+.wa-float svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* o botão de voltar ao topo sobe para não colidir com o WhatsApp */
+.back-to-top {
+    bottom: 92px;
+}

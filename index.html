@@ -36,20 +36,6 @@
 
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- LOADING SCREEN -->
-    <div class="loader" id="loader">
-        <div class="loader-inner">
-            <div class="loader-ring-wrap">
-                <svg class="loader-ring" viewBox="0 0 120 120" aria-hidden="true">
-                    <circle class="loader-ring-track" cx="60" cy="60" r="54"></circle>
-                    <circle class="loader-ring-fill" id="loaderRing" cx="60" cy="60" r="54"></circle>
-                </svg>
-                <span class="loader-mark" aria-hidden="true">GG</span>
-            </div>
-            <span class="loader-percent" id="loaderPercent">0%</span>
-        </div>
-    </div>
-
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- NAVBAR -->
@@ -71,12 +57,12 @@
             </a>
 
             <nav class="navbar-menu" id="navbarMenu">
-                <a href="#quem-sou" class="nav-link">Quem Sou</a>
                 <a href="#servicos" class="nav-link">Serviços</a>
-                <a href="#processo" class="nav-link">Processo</a>
+                <a href="#metodo" class="nav-link">Método</a>
                 <a href="#portfolio" class="nav-link">Portfólio</a>
-                <a href="#comparativo" class="nav-link">Resultados</a>
                 <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#portfolio" class="nav-ghost">Ver portfólio</a>
                 <a href="#contato" class="nav-link nav-cta">Orçamento <svg class="btn-icon" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" aria-hidden="true">
@@ -133,33 +119,10 @@
             <div class="hero-vignette"></div>
         </div>
 
-
-        <div class="hero-float hero-float-1" aria-hidden="true">
-            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 17l6-6 4 4 8-8" />
-                    <path d="M15 7h6v6" />
-                </svg></span>
-            <span class="chip-text"><strong>+3x</strong><small>mais leads</small></span>
-        </div>
-        <div class="hero-float hero-float-2" aria-hidden="true">
-            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 12c0 4.4-3.6 8-8 8-1.2 0-2.4-.3-3.4-.8L4 20l1.2-4.1A8 8 0 1120 12z" />
-                    <path d="M9 11.5h6M9 14.5h4" />
-                </svg></span>
-            <span class="chip-text"><strong>Redes</strong><small>com comunidade ativa</small></span>
-        </div>
-        <div class="hero-float hero-float-3" aria-hidden="true">
-            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="12" rx="2" />
-                    <path d="M8 20h8M12 16v4" />
-                </svg></span>
-            <span class="chip-text"><strong>+40%</strong><small>em conversão</small></span>
-        </div>
-
         <div class="container hero-content">
+
+            <span class="hero-tag reveal" data-reveal><i aria-hidden="true"></i>Web site · Marketing · Redes
+                sociais</span>
 
             <h1 class="hero-title reveal" data-reveal>
                 Sites que vendem e marketing que <em>traz clientes</em>.
@@ -178,26 +141,21 @@
                             <path d="M7 17L17 7" />
                             <path d="M8 7h9v9" />
                         </svg></a>
-                    <a href="#servicos" class="btn btn-secondary">Ver meus serviços <svg class="btn-icon"
+                    <a href="#portfolio" class="btn btn-secondary">Ver meus projetos <svg class="btn-icon"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M7 17L17 7" />
                             <path d="M8 7h9v9" />
                         </svg></a>
                 </div>
-                <p class="hero-note">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
-                    </svg>
-                    <span>Orçamento sem compromisso</span> <span class="dot" aria-hidden="true">·</span>
-                    <span>Atendimento direto comigo</span>
-                </p>
+                <p class="hero-micro">Me conte sobre o seu negócio no WhatsApp. Orçamento sem compromisso, atendimento
+                    direto comigo.</p>
             </div>
+
 
             <!-- Marcas + números (antes era a seção #clientes) -->
             <div class="hero-clients reveal" data-reveal>
-                <span class="hero-clients-label">Marcas que já confiaram na gente</span>
+                <span class="hero-clients-label">Marcas que já confiaram em mim</span>
 
                 <div class="container-parceiros">
                     <div class="trilha-parceiros trilha-parceiros--left">
@@ -256,74 +214,25 @@
         </div>
     </section>
 
-    <!-- QUEM SOU -->
-    <section class="quem-sou" id="quem-sou">
-        <div class="container quem-sou-grid">
-
-            <figure class="quem-foto reveal" data-reveal>
-                <!-- ⚠ Troque pelo nome da sua foto (vertical, ao menos 900px de largura) -->
-                <img src="img/foto-profissional.jpeg" alt="Gabriel Gomes" loading="lazy" decoding="async"
-                    onerror="this.style.display='none'">
-                <figcaption class="quem-foto-caption">
-                    <strong>Gabriel Gomes</strong>
-                    <span>Marketing, Social Media e Web Design</span>
-                </figcaption>
-            </figure>
-
-            <div class="quem-texto reveal" data-reveal>
-                <span class="section-label">Quem Sou</span>
-                <h2 class="section-title">
-                    Presença digital não é sorte.<br> <em>É estratégia.</em>
-                </h2>
-
-                <!-- ⚠ Ajuste os textos e números abaixo para a sua história real -->
-                <p class="section-text">
-                    Olá! Sou o Gabriel Gomes. Trabalho para resolver um problema
-                    recorrente: empresas investem em presença digital sem direção clara e sem retorno
-                    mensurável.
-                </p>
-                <p class="section-text">
-                    Reúno marketing de performance, redes sociais e web design em um processo único.
-                    As decisões seguem método e dados, não fórmulas genéricas, e eu acompanho cada
-                    projeto de perto, do diagnóstico à otimização.
-                </p>
-
-                <div class="quem-actions">
-                    <!-- ⚠ Salve os certificados em img/ (PNG ou JPG) e ajuste os nomes em href e data-cert-alt se precisar -->
-                    <a href="img/Certificado-front-end.png" target="_blank" rel="noopener" class="btn btn-secondary"
-                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Front-End">
-                        Ver certificado Front-End <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
-                        </svg></a>
-                    <a href="img/cerrtificado-marketing.png" target="_blank" rel="noopener" class="btn btn-secondary"
-                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Marketing">
-                        Ver certificado Marketing <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
-                        </svg></a>
-                </div>
-
-                <div class="quem-stats">
-                    <div class="quem-stat">
-                        <strong>3</strong>
-                        <span>Frentes integradas</span>
-                    </div>
-                    <div class="quem-stat">
-                        <strong>+3x</strong>
-                        <span>Leads qualificados</span>
-                    </div>
-                    <div class="quem-stat">
-                        <strong>+40%</strong>
-                        <span>Conversão em sites</span>
-                    </div>
-                </div>
+    <!-- VÍDEO (VSL) — aparece sozinho quando você preencher o data-video -->
+    <!-- ⚠ Cole em data-video o link de EMBED do YouTube/Vimeo (ex.: https://www.youtube.com/embed/SEU_ID) ou o caminho de um .mp4 (ex.: img/apresentacao.mp4).
+         Opcional: data-poster="img/capa-video.jpg" para uma capa. Sem link, a seção fica oculta. -->
+    <section class="vsl" id="video" hidden>
+        <div class="container vsl-inner">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Veja como funciona</span>
+                <h2 class="section-title">Assista e entenda como eu <em>trabalho</em></h2>
             </div>
 
+            <div class="vsl-frame reveal" data-reveal id="vslFrame" data-video="" data-poster="">
+                <button class="vsl-play" id="vslPlay" type="button" aria-label="Assistir ao vídeo">
+                    <span class="vsl-play-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none" />
+                        </svg></span>
+                    <span class="vsl-play-text">Assistir agora</span>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -331,8 +240,10 @@
     <section class="servicos" id="servicos">
         <div class="container">
             <div class="section-head reveal" data-reveal>
-                <span class="section-label">Serviços</span>
-                <h2 class="section-title">O que fazemos por você</h2>
+                <span class="section-label">O que eu faço</span>
+                <h2 class="section-title">Três frentes que trabalham juntas para <em>trazer clientes</em>.</h2>
+                <p class="section-text">O que une as três é o método: decisões baseadas em dados, aplicadas ao canal
+                    certo para o seu objetivo.</p>
             </div>
 
             <div class="servicos-grid">
@@ -386,15 +297,98 @@
                 </article>
 
             </div>
+            <div class="section-cta reveal" data-reveal>
+                <a href="#contato" class="btn btn-primary">Quero meu orçamento <svg class="btn-icon" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+                <a href="#portfolio" class="btn btn-secondary">Ver meus projetos <svg class="btn-icon"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+            </div>
         </div>
     </section>
 
-    <!-- PROCESSO -->
-    <section class="processo" id="processo">
+    <!-- A VERDADE INCÔMODA — onde o digital costuma vazar -->
+    <section class="momento" id="momento">
         <div class="container">
             <div class="section-head reveal" data-reveal>
-                <span class="section-label">Como Trabalhamos</span>
-                <h2 class="section-title">Processo de Trabalho</h2>
+                <span class="section-label">A verdade incômoda</span>
+                <h2 class="section-title">Quando o digital não vende, o prejuízo chega <em>aos poucos</em>.</h2>
+                <p class="section-text">Você investe em conteúdo, site e anúncio para levar gente até o seu negócio. O
+                    problema costuma estar no que acontece depois que a pessoa chega.</p>
+            </div>
+
+            <div class="leak-card reveal" data-reveal>
+                <span class="leak-num">4</span>
+                <div class="leak-text">
+                    <strong>Pontos onde o digital de um negócio costuma deixar clientes escaparem.</strong>
+                    <span>Veja se algum deles parece com o seu momento:</span>
+                </div>
+            </div>
+
+            <div class="momento-grid">
+                <div class="momento-item reveal" data-reveal>
+                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 7l6 6 4-4 8 8" />
+                            <path d="M15 17h6v-6" />
+                        </svg></span>
+                    <p>Você posta toda semana, mas as <strong>vendas não aparecem</strong>.</p>
+                </div>
+                <div class="momento-item reveal" data-reveal>
+                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="16" rx="2.5" />
+                            <path d="M3 9h18" />
+                            <path d="M9.5 13.5l5 5M14.5 13.5l-5 5" />
+                        </svg></span>
+                    <p>Seu site existe, mas <strong>quase ninguém entra em contato</strong> por ele.</p>
+                </div>
+                <div class="momento-item reveal" data-reveal>
+                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v10M9.5 9.8h3.6a1.7 1.7 0 010 3.4h-2.6a1.7 1.7 0 000 3.4h3.9" />
+                        </svg></span>
+                    <p>Você investe em anúncios sem saber <strong>o que realmente volta</strong>.</p>
+                </div>
+                <div class="momento-item reveal" data-reveal>
+                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M10 14a4 4 0 005.7 0l2.6-2.6a4 4 0 00-5.7-5.7l-1 1" />
+                            <path d="M14 10a4 4 0 00-5.7 0l-2.6 2.6a4 4 0 005.7 5.7l1-1" />
+                            <path d="M4 4l16 16" />
+                        </svg></span>
+                    <p>Site, redes e marketing funcionam <strong>cada um por conta própria</strong>.</p>
+                </div>
+            </div>
+
+            <div class="momento-bridge reveal" data-reveal>
+                <p>Se você se identificou com pelo menos um, <strong>vale uma conversa comigo.</strong></p>
+                <a href="#contato" class="btn btn-primary">Quero resolver isso <svg class="btn-icon" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÉTODO — as 4 etapas -->
+    <section class="processo" id="metodo">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-label">Método</span>
+                <h2 class="section-title">Aqui nada é no improviso. <em>Cada etapa tem um motivo</em>.</h2>
+                <p class="section-text">Eu não faço só algo bonito. Cada projeto segue uma sequência de decisões
+                    baseadas em dados, não em gosto e não em fórmulas genéricas.</p>
             </div>
 
             <div class="timeline">
@@ -424,83 +418,134 @@
                     <p>Análise de resultados, otimização contínua e escala sustentável.</p>
                 </div>
             </div>
+            <div class="section-cta reveal" data-reveal>
+                <a href="#contato" class="btn btn-primary">Quero esse método no meu negócio <svg class="btn-icon"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+            </div>
         </div>
     </section>
 
-    <!-- DIFERENCIAIS -->
-    <section class="diferenciais" id="diferenciais">
-        <div class="container">
-            <div class="section-head reveal" data-reveal>
-                <span class="section-label">Diferenciais</span>
-                <h2 class="section-title">Por que trabalhar comigo</h2>
+    <!-- COMPROMISSO — o que você recebe, sem risco e com o próximo passo -->
+    <section class="compromisso" id="compromisso">
+        <div class="container comp-grid">
+            <div class="comp-text reveal" data-reveal>
+                <span class="section-label">Compromisso</span>
+                <h2 class="section-title">Você sabe o que está contratando. <em>Antes, durante e depois</em>.</h2>
+                <p class="section-text">Cada proposta é montada de acordo com o escopo, sem tabela fixa e sem letras
+                    miúdas. Se o projeto não fizer sentido para o seu momento, eu te digo.</p>
+                <p class="section-text">Fechando pagando no PIX, você ganha <strong>10% de desconto</strong> com o cupom
+                    <b class="comp-code">GS10</b>.</p>
+                <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
+                    target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp <svg class="btn-icon"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
             </div>
 
-            <div class="diferenciais-grid">
-                <div class="dif-card reveal" data-reveal>
-                    <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path
-                                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
-                            <path d="M8 11.5h8M8 14.5h5" />
-                        </svg>
-                    </div>
-                    <h3>Atendimento Personalizado</h3>
-                    <p>Relacionamento próximo, direto e sem burocracia com sua equipe.</p>
+            <div class="comp-cards reveal" data-reveal>
+                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg><span>Diagnóstico do negócio, do mercado e dos objetivos.</span></div>
+                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg><span>Plano estratégico com canais, posicionamento e metas claras.</span></div>
+                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg><span>Acompanhamento direto comigo, sem intermediários.</span></div>
+                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                    </svg><span>Resultados analisados e ajustes contínuos.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE — por que confiar em mim -->
+    <section class="quem-sou" id="sobre">
+        <div class="container quem-sou-grid">
+
+            <figure class="quem-foto reveal" data-reveal>
+                <!-- ⚠ Troque pelo nome da sua foto (vertical, ao menos 900px de largura) -->
+                <img src="img/foto-profissional.jpeg" alt="Gabriel Gomes" loading="lazy" decoding="async"
+                    onerror="this.style.display='none'">
+                <figcaption class="quem-foto-caption">
+                    <strong>Gabriel Gomes</strong>
+                    <span>Marketing, Social Media e Web Design</span>
+                </figcaption>
+            </figure>
+
+            <div class="quem-texto reveal" data-reveal>
+                <span class="section-label">Por que confiar em mim</span>
+                <h2 class="section-title">
+                    Gabriel Gomes<br> <em>Web site e marketing</em>
+                </h2>
+
+                <!-- ⚠ Ajuste os textos e números abaixo para a sua história real -->
+                <p class="section-text">
+                    Olá! Sou o Gabriel Gomes. Trabalho para resolver um problema
+                    recorrente: empresas investem em presença digital sem direção clara e sem retorno
+                    mensurável.
+                </p>
+                <p class="section-text">
+                    Reúno marketing de performance, redes sociais e web design em um processo único.
+                    As decisões seguem método e dados, não fórmulas genéricas, e eu acompanho cada
+                    projeto de perto, do diagnóstico à otimização.
+                </p>
+
+                <div class="quem-chips">
+                    <span class="is-main">Web design</span>
+                    <span>Sites institucionais</span>
+                    <span>Landing pages</span>
+                    <span>Front-end</span>
+                    <span>Marketing digital</span>
+                    <span>Campanhas de tráfego</span>
+                    <span>Social media</span>
+                    <span>Identidade visual</span>
+                    <span>Gestão de perfis</span>
                 </div>
 
-                <div class="dif-card reveal" data-reveal>
-                    <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M9 18h6M10 21h4" />
-                            <path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z" />
-                        </svg>
-                    </div>
-                    <h3>Estratégias Inteligentes</h3>
-                    <p>Decisões orientadas por dados reais, não por achismos de mercado.</p>
-                </div>
-
-                <div class="dif-card reveal" data-reveal>
-                    <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path
-                                d="M12 3a9 9 0 100 18c1.4 0 2-.9 2-2 0-.6-.3-1-.6-1.4-.3-.4-.4-.8-.4-1.2 0-1 .8-1.9 2-1.9H17a4 4 0 004-4c0-4.4-4-7.5-9-7.5z" />
-                            <circle cx="7.5" cy="11" r="1" />
-                            <circle cx="10.5" cy="7" r="1" />
-                            <circle cx="15" cy="7.5" r="1" />
-                        </svg>
-                    </div>
-                    <h3>Design Profissional</h3>
-                    <p>Identidade visual e interfaces que elevam a percepção da sua marca.</p>
-                </div>
-
-                <div class="dif-card reveal" data-reveal>
-                    <div class="dif-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9" />
-                            <circle cx="12" cy="12" r="4.5" />
-                            <circle cx="12" cy="12" r="1" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <h3>Foco em Resultados</h3>
-                    <p>Cada ação é medida — o que importa é o impacto no seu negócio.</p>
+                <div class="quem-actions">
+                    <!-- ⚠ Salve os certificados em img/ (PNG ou JPG) e ajuste os nomes em href e data-cert-alt se precisar -->
+                    <a href="img/Certificado-front-end.png" target="_blank" rel="noopener" class="btn btn-secondary"
+                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Front-End">
+                        Ver certificado Front-End <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M7 17L17 7" />
+                            <path d="M8 7h9v9" />
+                        </svg></a>
+                    <a href="img/cerrtificado-marketing.png" target="_blank" rel="noopener" class="btn btn-secondary"
+                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Marketing">
+                        Ver certificado Marketing <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M7 17L17 7" />
+                            <path d="M8 7h9v9" />
+                        </svg></a>
                 </div>
             </div>
+
         </div>
     </section>
 
     <!-- ANTES E DEPOIS — AUDITORIA DE INSTAGRAM -->
-    <section class="comparativo" id="comparativo">
+    <section class="comparativo" id="prova">
         <div class="container">
             <div class="section-head reveal" data-reveal>
-                <span class="section-label">Prova Real</span>
-                <h2 class="section-title">O antes e depois de uma auditoria de Instagram</h2>
+                <span class="section-label">A prova real</span>
+                <h2 class="section-title">Ficou na dúvida? <em>Veja o antes e depois</em>.</h2>
                 <p class="section-text" style="max-width:600px">
                     Arraste o controle abaixo para comparar um perfil real antes e depois
-                    da nossa auditoria completa de redes sociais.
+                    da minha auditoria completa de redes sociais.
                 </p>
             </div>
 
@@ -542,218 +587,191 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO -->
+    <!-- PORTFÓLIO — grade de projetos + cartão do próximo case -->
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">Portfólio</span>
                 <h2 class="section-title">Projetos que <em>falam por si</em></h2>
-                <p class="section-text">Confira alguns projetos desenvolvidos com muito amor e dedicação.<br>
-                    Cada um é reflexo do empenho em cada detalhe.</p>
+                <p class="section-text">Confira alguns projetos desenvolvidos com muito amor e dedicação. Cada um é
+                    reflexo do empenho em cada detalhe.</p>
             </div>
 
-            <div class="portfolio-carousel reveal" data-reveal id="portfolioCarousel">
-                <button class="portfolio-arrow portfolio-arrow-prev" id="portfolioPrev"
-                    aria-label="Projetos anteriores">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-
-                <div class="portfolio-track" id="portfolioTrack" tabindex="0">
-                    <div class="portfolio-item">
-                        <div class="portfolio-media">
-                            <img src="img/projeto_1.png" alt="Projeto Fisioterapia" loading="eager" decoding="async">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Postagens</span>
-                            <h3>Fisioterapia</h3>
-                        </div>
+            <div class="pf-grid">
+                <article class="pf-card reveal" data-reveal>
+                    <div class="pf-media">
+                        <img src="img/projeto_1.png" alt="Projeto Fisioterapia" loading="lazy" decoding="async"
+                            onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Postagens</span>
+                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
-
-                    <div class="portfolio-item">
-                        <div class="portfolio-media">
-                            <img src="img/Site Personal Trainer.png" alt="Projeto Site Personal Trainer" loading="lazy"
-                                decoding="async">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Web Design</span>
-                            <h3>Site Personal Trainer</h3>
-                        </div>
+                    <div class="pf-body">
+                        <h3>Fisioterapia</h3>
+                        <p>Posts para as redes sociais de uma clínica de fisioterapia.</p>
+                        <a class="pf-link"
+                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Fisioterapia%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 17L17 7" />
+                                    <path d="M8 7h9v9" />
+                                </svg></span></a>
                     </div>
+                </article>
 
-                    <div class="portfolio-item">
-                        <div class="portfolio-media">
-                            <img src="img/Site Consultor de Imoves.png" alt="Projeto Site Consultor de Imóveis"
-                                loading="lazy" decoding="async">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Web Design</span>
-                            <h3>Consultor de Imóveis</h3>
-                        </div>
+                <article class="pf-card reveal" data-reveal>
+                    <div class="pf-media">
+                        <img src="img/Site Personal Trainer.png" alt="Projeto Site Personal Trainer" loading="lazy"
+                            decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Web Design</span>
+                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
-
-                    <div class="portfolio-item">
-                        <div class="portfolio-media">
-                            <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy"
-                                decoding="async">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Social Media</span>
-                            <h3>Lumen Arquitetura</h3>
-                        </div>
+                    <div class="pf-body">
+                        <h3>Site Personal Trainer</h3>
+                        <p>Site para um profissional de educação física.</p>
+                        <a class="pf-link"
+                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Site%20Personal%20Trainer%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 17L17 7" />
+                                    <path d="M8 7h9v9" />
+                                </svg></span></a>
                     </div>
+                </article>
 
-                    <div class="portfolio-item">
-                        <div class="portfolio-media">
-                            <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy"
-                                decoding="async">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Marketing Digital</span>
-                            <h3>Nova Capital</h3>
-                        </div>
+                <article class="pf-card reveal" data-reveal>
+                    <div class="pf-media">
+                        <img src="img/Site Consultor de Imoves.png" alt="Projeto Site Consultor de Imóveis"
+                            loading="lazy" decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Web Design</span>
+                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
-                </div>
+                    <div class="pf-body">
+                        <h3>Consultor de Imóveis</h3>
+                        <p>Site para um consultor de imóveis.</p>
+                        <a class="pf-link"
+                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Consultor%20de%20Im%C3%B3veis%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 17L17 7" />
+                                    <path d="M8 7h9v9" />
+                                </svg></span></a>
+                    </div>
+                </article>
 
-                <button class="portfolio-arrow portfolio-arrow-next" id="portfolioNext" aria-label="Próximos projetos">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
+                <article class="pf-card reveal" data-reveal>
+                    <div class="pf-media">
+                        <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy"
+                            decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Social Media</span>
+                        <span class="pf-index" aria-hidden="true"></span>
+                    </div>
+                    <div class="pf-body">
+                        <h3>Lumen Arquitetura</h3>
+                        <p>Gestão de redes sociais, conteúdo e identidade.</p>
+                        <a class="pf-link"
+                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Lumen%20Arquitetura%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 17L17 7" />
+                                    <path d="M8 7h9v9" />
+                                </svg></span></a>
+                    </div>
+                </article>
+
+                <article class="pf-card reveal" data-reveal>
+                    <div class="pf-media">
+                        <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy"
+                            decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Marketing Digital</span>
+                        <span class="pf-index" aria-hidden="true"></span>
+                    </div>
+                    <div class="pf-body">
+                        <h3>Nova Capital</h3>
+                        <p>Estratégia e campanhas de marketing digital.</p>
+                        <a class="pf-link"
+                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Nova%20Capital%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 17L17 7" />
+                                    <path d="M8 7h9v9" />
+                                </svg></span></a>
+                    </div>
+                </article>
+
+                <aside class="pf-cta reveal" data-reveal>
+                    <span class="section-label">O próximo case</span>
+                    <h3>O seu negócio pode ser <em>o próximo</em>.</h3>
+                    <p>Me conte o que você precisa e eu te mostro o melhor caminho, sem compromisso.</p>
+                    <a href="#contato" class="btn btn-primary">Quero o meu orçamento <svg class="btn-icon"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 17L17 7" />
+                            <path d="M8 7h9v9" />
+                        </svg></a>
+                </aside>
             </div>
         </div>
     </section>
 
-    <!-- MARCAS QUE CONFIARAM -->
-    <section class="marcas" id="clientes">
-        <div class="container">
-            <span class="marcas-label reveal" data-reveal>Marcas que já confiaram na gente</span>
-        </div>
-
-        <div class="container-parceiros marcas-marquee reveal" data-reveal>
-            <div class="trilha-parceiros trilha-parceiros--left">
-                <div class="item-parceiro"><img src="img/1.png" alt="Logo do cliente 1" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img src="img/2.png" alt="Logo do cliente 2" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img class="is-solid" src="img/3.png" alt="Logo do cliente 3" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro"><img src="img/4.png" alt="Logo do cliente 4" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img src="img/5.png" alt="Logo do cliente 5" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img src="img/6.png" alt="Logo do cliente 6" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img src="img/7.png" alt="Logo do cliente 7" loading="lazy" decoding="async">
-                </div>
-                <div class="item-parceiro"><img src="img/8.png" alt="Logo do cliente 8" loading="lazy" decoding="async">
-                </div>
-                <!-- Cópia para o loop infinito -->
-                <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img class="is-solid" src="img/3.png" alt=""
-                        loading="lazy" decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/6.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/7.png" alt="" loading="lazy"
-                        decoding="async"></div>
-                <div class="item-parceiro" aria-hidden="true"><img src="img/8.png" alt="" loading="lazy"
-                        decoding="async"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEPOIMENTOS -->
+    <!-- DEPOIMENTOS — cartões -->
     <section class="depoimentos" id="depoimentos">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">Depoimentos</span>
-                <h2 class="section-title">Quem trabalhou com a gente</h2>
+                <h2 class="section-title">O que dizem <em>quem já trabalhou comigo</em></h2>
             </div>
 
-            <div class="slider reveal" data-reveal id="testimonialSlider" tabindex="0">
-                <button class="slider-arrow slider-arrow-prev" id="sliderPrev" aria-label="Depoimento anterior">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
+            <div class="depo-grid">
+                <figure class="depo-card reveal" data-reveal>
+                    <span class="depo-mark" aria-hidden="true">“</span>
+                    <blockquote>O Gabriel reorganizou toda a nossa presença digital. Em três meses, triplicamos os leads
+                        qualificados.</blockquote>
+                    <figcaption>
+                        <span class="depo-avatar" aria-hidden="true">MC</span>
+                        <span><strong>Marina Cardoso</strong><small>Studio Nord</small></span>
+                    </figcaption>
+                </figure>
+                <figure class="depo-card reveal" data-reveal>
+                    <span class="depo-mark" aria-hidden="true">“</span>
+                    <blockquote>Profissionalismo raro. Cada entrega parecia ter sido pensada exclusivamente para o nosso
+                        negócio.</blockquote>
+                    <figcaption>
+                        <span class="depo-avatar" aria-hidden="true">RT</span>
+                        <span><strong>Rafael Teixeira</strong><small>Vértice Coffee</small></span>
+                    </figcaption>
+                </figure>
+                <figure class="depo-card reveal" data-reveal>
+                    <span class="depo-mark" aria-hidden="true">“</span>
+                    <blockquote>O novo site aumentou nossa taxa de conversão em mais de 40%. Resultado muito acima do
+                        esperado.</blockquote>
+                    <figcaption>
+                        <span class="depo-avatar" aria-hidden="true">CD</span>
+                        <span><strong>Camila Duarte</strong><small>Órbita Fit</small></span>
+                    </figcaption>
+                </figure>
+                <figure class="depo-card reveal" data-reveal>
+                    <span class="depo-mark" aria-hidden="true">“</span>
+                    <blockquote>Extremamente atento aos detalhes. A parceria funciona como uma extensão do nosso próprio
+                        time de marketing.</blockquote>
+                    <figcaption>
+                        <span class="depo-avatar" aria-hidden="true">EL</span>
+                        <span><strong>Eduardo Lins</strong><small>Nova Capital</small></span>
+                    </figcaption>
+                </figure>
+            </div>
 
-                <div class="slider-viewport">
-                    <div class="slider-track" id="sliderTrack" aria-live="polite">
-
-                        <div class="slide">
-                            <span class="slide-quote-mark" aria-hidden="true">"</span>
-                            <p class="slide-quote">O Gabriel reorganizou toda a nossa presença digital. Em três
-                                meses, triplicamos os leads qualificados.</p>
-                            <div class="slide-author">
-                                <span class="slide-avatar" aria-hidden="true">MC</span>
-                                <div>
-                                    <span class="slide-name">Marina Cardoso</span>
-                                    <span class="slide-company">Studio Nord</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="slide">
-                            <span class="slide-quote-mark" aria-hidden="true">"</span>
-                            <p class="slide-quote">Profissionalismo raro. Cada entrega parecia ter sido pensada
-                                exclusivamente para o nosso negócio.</p>
-                            <div class="slide-author">
-                                <span class="slide-avatar" aria-hidden="true">RT</span>
-                                <div>
-                                    <span class="slide-name">Rafael Teixeira</span>
-                                    <span class="slide-company">Vértice Coffee</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="slide">
-                            <span class="slide-quote-mark" aria-hidden="true">"</span>
-                            <p class="slide-quote">O novo site aumentou nossa taxa de conversão em mais de 40%.
-                                Resultado muito acima do esperado.</p>
-                            <div class="slide-author">
-                                <span class="slide-avatar" aria-hidden="true">CD</span>
-                                <div>
-                                    <span class="slide-name">Camila Duarte</span>
-                                    <span class="slide-company">Órbita Fit</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="slide">
-                            <span class="slide-quote-mark" aria-hidden="true">"</span>
-                            <p class="slide-quote">Equipe extremamente atenta aos detalhes. A parceria funciona como
-                                uma extensão do nosso próprio time de marketing.</p>
-                            <div class="slide-author">
-                                <span class="slide-avatar" aria-hidden="true">EL</span>
-                                <div>
-                                    <span class="slide-name">Eduardo Lins</span>
-                                    <span class="slide-company">Nova Capital</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <button class="slider-arrow slider-arrow-next" id="sliderNext" aria-label="Próximo depoimento">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-
-                <div class="slider-dots" id="sliderDots"></div>
+            <div class="section-cta reveal" data-reveal>
+                <a href="#contato" class="btn btn-primary">Quero resultados assim <svg class="btn-icon"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
             </div>
         </div>
     </section>
@@ -762,10 +780,9 @@
     <section class="faq" id="faq">
         <div class="container faq-inner">
             <div class="section-head reveal" data-reveal>
-                <span class="section-label">Dúvidas Frequentes</span>
-                <h2 class="section-title">Antes de você chamar no WhatsApp</h2>
-                <p class="section-text">As perguntas mais comuns de quem está avaliando começar um projeto com a
-                    gente.</p>
+                <span class="section-label">Dúvidas frequentes</span>
+                <h2 class="section-title">Antes de me chamar, <em>vale tirar as dúvidas</em>.</h2>
+                <p class="section-text">As perguntas mais comuns de quem está avaliando começar um projeto comigo.</p>
             </div>
 
             <div class="faq-list reveal" data-reveal>
@@ -794,8 +811,8 @@
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Seguimos as quatro etapas descritas em <a href="#processo">Processo de Trabalho</a>:
-                            planejamento, estratégia, execução e crescimento. Antes de qualquer entrega, entendemos
+                        <p>Sigo as quatro etapas descritas em <a href="#metodo">Método</a>:
+                            planejamento, estratégia, execução e crescimento. Antes de qualquer entrega, entendo
                             o momento do seu negócio para desenhar um plano sob medida — não um pacote genérico.</p>
                     </div>
                 </div>
@@ -839,7 +856,7 @@
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>O investimento é definido conforme o escopo do seu projeto — por isso não trabalhamos
+                        <p>O investimento é definido conforme o escopo do seu projeto — por isso não trabalho
                             com tabela fixa. As condições de pagamento são alinhadas junto com a proposta, de forma
                             transparente.</p>
                     </div>
@@ -854,7 +871,7 @@
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Sim. O acompanhamento é próximo e direto com a equipe responsável pelo seu projeto em
+                        <p>Sim. O acompanhamento é próximo e direto comigo, em
                             todas as etapas — sem intermediários nem burocracia.</p>
                     </div>
                 </div>
@@ -874,35 +891,65 @@
                 </div>
 
             </div>
+            <div class="section-cta reveal" data-reveal>
+                <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
+                    target="_blank" rel="noopener" class="btn btn-primary">Ainda com dúvidas? Chama no WhatsApp <svg
+                        class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+            </div>
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA FINAL -->
     <section class="cta" id="contato">
         <div class="cta-watermark" aria-hidden="true">GABRIEL GOMES</div>
         <div class="cta-glow"></div>
 
         <div class="container cta-content reveal" data-reveal>
-            <span class="section-label">Vamos começar?</span>
-            <h2>Sua presença digital<br> <em>começa aqui.</em></h2>
-            <p>Ao fechar seu projeto, você investe em presença digital estratégica,
-                com direção clara e acompanhamento próximo do início ao fim.</p>
+            <span class="section-label">Vamos começar</span>
+            <h2>Tem alguém procurando o que você vende agora. <em>O seu digital está pronto para receber essa
+                    pessoa?</em></h2>
+            <p>Me conte sobre o seu negócio no WhatsApp. Orçamento sem compromisso, atendimento direto comigo.</p>
+            <p class="cta-warning">Cada mês sem estratégia é mais um mês de clientes escolhendo o concorrente.</p>
 
             <div class="cta-buttons">
                 <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
-                    target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp <svg class="btn-icon"
+                    target="_blank" rel="noopener" class="btn btn-primary">Quero meu orçamento no WhatsApp <svg
+                        class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7" />
+                        <path d="M8 7h9v9" />
+                    </svg></a>
+                <a href="#portfolio" class="btn btn-secondary">Ou ver meus projetos <svg class="btn-icon"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" aria-hidden="true">
                         <path d="M7 17L17 7" />
                         <path d="M8 7h9v9" />
                     </svg></a>
-                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"
-                    class="btn btn-secondary">@gabrielgomes.social <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
+            </div>
+
+            <div class="cta-socials">
+                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener"><span><svg
+                            viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.7" />
+                            <path d="M8 10.5V16M8 7.8v.2M12 16v-5.5M12 13c0-1.5 1-2.5 2.3-2.5S16.5 11.4 16.5 13v3"
+                                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg></span>LinkedIn</a>
+                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"><span><svg
+                            viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7" />
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
+                            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
+                        </svg></span>Instagram</a>
+                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener"><span><svg
+                            viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+                        </svg></span>Behance</a>
             </div>
         </div>
     </section>
@@ -922,51 +969,26 @@
                     <span class="brand-sub">Web site e marketing</span>
                 </span>
             </span>
-            <p class="footer-tagline">Marketing, redes sociais e web design integrados em uma só operação,
-                para empresas que buscam crescimento consistente.</p>
-
-            <nav class="footer-nav" aria-label="Rodapé">
-                <a href="#quem-sou">Quem Sou</a>
-                <a href="#servicos">Serviços</a>
-                <a href="#processo">Processo</a>
-                <a href="#portfolio">Portfólio</a>
-                <a href="#comparativo">Resultados</a>
-                <a href="#clientes">Clientes</a>
-                <a href="#depoimentos">Depoimentos</a>
-                <a href="#faq">Dúvidas</a>
-            </nav>
-
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"
-                    aria-label="Instagram" title="Instagram">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7" />
-                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
-                        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener"
-                    aria-label="LinkedIn" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.7" />
-                        <path d="M8 10.5V16M8 7.8v.2M12 16v-5.5M12 13c0-1.5 1-2.5 2.3-2.5S16.5 11.4 16.5 13v3"
-                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
-                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener" aria-label="Behance"
-                    title="Behance">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-                    </svg>
-                </a>
-            </div>
+            <p class="footer-tagline">Sites que vendem e marketing que traz clientes.</p>
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2026 Gabriel Gomes. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <a class="wa-float"
+        href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
+        target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path
+                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
+            <path
+                d="M9 10.5c.4 1.6 1.9 3.1 3.5 3.5l1-1 1.6.7v1.1c-.5.9-1.6 1.2-2.7.9-2.4-.7-4.4-2.7-5.1-5.1-.3-1.1 0-2.2.9-2.7h1.1l.7 1.6z" />
+        </svg>
+        <span>WhatsApp</span>
+    </a>
 
     <!-- OFERTA PARA NOVOS CLIENTES (pop-up compacto) -->
     <!-- ⚠ Edite aqui: porcentagem, cupom e regras. Lembre-se de honrar o que anunciar. -->
@@ -1049,32 +1071,6 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
             });
-        })();
-    </script>
-
-    <script>
-        (function () {
-            var track = document.getElementById('portfolioTrack');
-            var prev = document.getElementById('portfolioPrev');
-            var next = document.getElementById('portfolioNext');
-            if (!track) return;
-
-            function step() { return track.clientWidth * 0.8; }
-            function update() {
-                var max = track.scrollWidth - track.clientWidth - 2;
-                prev.disabled = track.scrollLeft <= 2;
-                next.disabled = track.scrollLeft >= max;
-            }
-
-            prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-            next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-            track.addEventListener('scroll', update, { passive: true });
-            window.addEventListener('resize', update);
-            track.addEventListener('keydown', function (e) {
-                if (e.key === 'ArrowRight') { e.preventDefault(); next.click(); }
-                if (e.key === 'ArrowLeft') { e.preventDefault(); prev.click(); }
-            });
-            update();
         })();
     </script>
 
@@ -1184,6 +1180,38 @@
                 });
             }, { threshold: 0.6 });
             els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+
+    <script>
+        // VSL: a seção só aparece se houver um link em data-video; o player carrega ao clicar
+        (function () {
+            var frame = document.getElementById('vslFrame');
+            if (!frame) return;
+            var url = (frame.getAttribute('data-video') || '').trim();
+            var section = frame.closest('section');
+            if (!url) return;                      // sem vídeo: seção continua oculta
+            section.hidden = false;
+
+            var poster = (frame.getAttribute('data-poster') || '').trim();
+            if (poster) frame.style.backgroundImage = 'url("' + poster + '")';
+
+            document.getElementById('vslPlay').addEventListener('click', function () {
+                var el;
+                if (/\.mp4(\?|$)/i.test(url)) {
+                    el = document.createElement('video');
+                    el.src = url; el.controls = true; el.autoplay = true; el.playsInline = true;
+                } else {
+                    el = document.createElement('iframe');
+                    el.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1&rel=0';
+                    el.allow = 'autoplay; fullscreen; picture-in-picture';
+                    el.allowFullscreen = true;
+                    el.title = 'Vídeo de apresentação';
+                }
+                el.className = 'vsl-media';
+                frame.innerHTML = '';
+                frame.appendChild(el);
+            });
         })();
     </script>
 
