@@ -1,393 +1,188 @@
 /* =====================================================================
-   GS COMPANY — ANIMATIONS.JS
-   Módulos de movimento: ScrollReveal, CursorGlow, HeroNetworkCanvas,
-   MagneticButtons, TiltCards, RippleEffect
+   ANIMATIONS.JS — movimento: reveal ao rolar, brilho do cursor,
+   contador dos números, botões magnéticos, tilt dos cards e ripple
    ===================================================================== */
-
 (function () {
   'use strict';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fineHover = matchMedia('(hover: hover) and (pointer: fine)').matches;   // só mouse de verdade
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  function debounce(fn, delay) {
-    let timer = null;
-    return function (...args) {
-      clearTimeout(timer);
-      timer = setTimeout(() => fn.apply(this, args), delay);
-    };
-  }
-
-  function scrambleText(el) {
+  /* ---------- Texto "embaralhando" nos rótulos de seção ---------- */
+  function scramble(el) {
     if (!el || el.dataset.scrambled) return;
     el.dataset.scrambled = 'true';
-
-    const original = el.textContent;
+    const original = el.textContent, len = original.length, total = 26;
     const chars = '!<>-_\\/[]{}—=+*^?#';
-    const length = original.length;
-    const totalFrames = 26;
     let frame = 0;
-
-    function update() {
-      let output = '';
-      for (let i = 0; i < length; i++) {
-        const charStart = Math.floor((i / length) * totalFrames * 0.55);
-        if (frame >= charStart + 7) {
-          output += original[i];
-        } else if (frame >= charStart) {
-          output += original[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
-        } else {
-          output += '\u00A0';
-        }
+    (function tick() {
+      let out = '';
+      for (let i = 0; i < len; i++) {
+        const start = Math.floor((i / len) * total * 0.55);
+        if (frame >= start + 7) out += original[i];
+        else if (frame >= start) out += original[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
+        else out += '\u00A0';
       }
-      el.textContent = output;
-      frame++;
-      if (frame <= totalFrames + 7) {
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = original;
-      }
-    }
-    update();
+      el.textContent = out;
+      if (++frame <= total + 7) requestAnimationFrame(tick); else el.textContent = original;
+    })();
   }
 
-  const ScrollRevealModule = {
-    init() {
-      const items = document.querySelectorAll('[data-reveal]');
-      if (!items.length) return;
+  /* ---------- Reveal ao rolar ---------- */
+  function initReveal() {
+    const items = $$('[data-reveal]');
+    if (!items.length) return;
 
-      if (prefersReducedMotion) {
-        items.forEach((el) => el.classList.add('is-visible'));
-        document.querySelectorAll('.eyebrow, .section-label').forEach((el) => {
-          el.dataset.scrambled = 'true';
-        });
-        return;
-      }
-
-      items.forEach((el) => {
-        const siblings = Array.from(el.parentElement.children).filter((c) =>
-          c.hasAttribute('data-reveal')
-        );
-        const localIndex = siblings.indexOf(el);
-        el.style.transitionDelay = `${Math.min(localIndex * 90, 360)}ms`;
-      });
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const target = entry.target;
-              target.classList.add('is-visible');
-              observer.unobserve(target);
-
-              if (target.classList.contains('eyebrow')) {
-                scrambleText(target);
-              } else {
-                const label = target.querySelector('.section-label');
-                if (label) scrambleText(label);
-              }
-            }
-          });
-        },
-        { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
-      );
-
-      items.forEach((el) => observer.observe(el));
-
-      const timeline = document.querySelector('.timeline');
-      if (timeline) {
-        const timelineObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                timeline.classList.add('is-visible');
-                timelineObserver.unobserve(timeline);
-              }
-            });
-          },
-          { threshold: 0.3 }
-        );
-        timelineObserver.observe(timeline);
-      }
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      items.forEach((el) => el.classList.add('is-visible'));
+      return;
     }
-  };
 
-  const CursorGlowModule = {
-    init() {
-      const glow = document.getElementById('cursorGlow');
-      if (!glow || isTouchDevice || prefersReducedMotion) return;
+    // escalonamento entre irmãos (o atraso é removido depois, para não atrasar o hover dos cards)
+    items.forEach((el) => {
+      const sibs = Array.from(el.parentElement.children).filter((c) => c.hasAttribute('data-reveal'));
+      el.style.transitionDelay = Math.min(sibs.indexOf(el) * 90, 360) + 'ms';
+    });
 
-      let targetX = 0, targetY = 0;
-      let currentX = 0, currentY = 0;
-      let rafId = null;
-
-      window.addEventListener('mousemove', (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-        glow.classList.add('is-active');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        el.classList.add('is-visible');
+        io.unobserve(el);
+        setTimeout(() => { el.style.transitionDelay = ''; }, 1400);
+        const label = el.classList.contains('section-label') ? el : el.querySelector('.section-label');
+        scramble(label);
       });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-      function animate() {
-        currentX += (targetX - currentX) * 0.12;
-        currentY += (targetY - currentY) * 0.12;
-        glow.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
-        rafId = requestAnimationFrame(animate);
-      }
-      rafId = requestAnimationFrame(animate);
+    items.forEach((el) => io.observe(el));
+  }
 
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          cancelAnimationFrame(rafId);
-        } else {
-          rafId = requestAnimationFrame(animate);
+  /* ---------- Pausa as animações do hero quando ele sai da tela ---------- */
+  function initHeroPause() {
+    const hero = document.querySelector('.hero');
+    if (!hero || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(([en]) => hero.classList.toggle('is-paused', !en.isIntersecting))
+      .observe(hero);
+  }
+
+  /* ---------- Contador dos números (+3, +5, +10) ---------- */
+  function initCountUp() {
+    const els = $$('.hero-stat strong, .quem-stat strong');
+    if (!els.length || reduceMotion || !('IntersectionObserver' in window)) return;
+
+    function run(el) {
+      const m = el.textContent.trim().match(/^(\D*)(\d+(?:[.,]\d+)?)(\D*)$/);
+      if (!m) return;
+      const target = parseFloat(m[2].replace(',', '.'));
+      const dec = (m[2].split(/[.,]/)[1] || '').length;
+      const dur = 1400; let t0 = null;
+      (function tick(t) {
+        if (!t0) t0 = t;
+        const p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = m[1] + (target * e).toFixed(dec).replace('.', ',') + m[3];
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = m[1] + m[2] + m[3];
+      })(performance.now());
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    els.forEach((el) => io.observe(el));
+  }
+
+  /* ---------- Brilho que segue o cursor (só anima enquanto se move) ---------- */
+  function initCursorGlow() {
+    const glow = document.getElementById('cursorGlow');
+    if (!glow || !fineHover || reduceMotion) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+
+    function frame() {
+      cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14;
+      glow.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+      raf = (Math.abs(tx - cx) > 0.5 || Math.abs(ty - cy) > 0.5) ? requestAnimationFrame(frame) : 0;
+    }
+    window.addEventListener('mousemove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+      glow.classList.add('is-active');
+      if (!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => glow.classList.remove('is-active'));
+  }
+
+  /* ---------- Botões magnéticos ---------- */
+  function initMagnetic() {
+    if (!fineHover || reduceMotion) return;
+    [{ sel: '.btn', k: 0.25, cap: 10, lift: -3 }, { sel: '.nav-cta', k: 0.2, cap: 6, lift: 0 }]
+      .forEach(({ sel, k, cap, lift }) => $$(sel).forEach((el) => {
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          const x = Math.max(-cap, Math.min(cap, (e.clientX - r.left - r.width / 2) * k));
+          const y = Math.max(-cap, Math.min(cap, (e.clientY - r.top - r.height / 2) * k));
+          el.style.transform = `translate(${x}px, ${y + lift}px)`;
+        });
+        el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+      }));
+  }
+
+  /* ---------- Tilt 3D dos cards ---------- */
+  function initTilt() {
+    if (!fineHover || reduceMotion) return;
+    const EASE = 'cubic-bezier(.16,1,.3,1)';
+
+    $$('.service-card').forEach((el) => {
+      const max = 4, lift = -6;
+      let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0, active = false;
+
+      function frame() {
+        cx += (tx - cx) * 0.15; cy += (ty - cy) * 0.15;
+        el.style.transform = `perspective(700px) rotateX(${cx}deg) rotateY(${cy}deg) translateY(${lift}px)`;
+        if (!active && Math.abs(tx - cx) < 0.05 && Math.abs(ty - cy) < 0.05) {
+          el.style.transform = ''; el.style.transition = ''; raf = 0; return;
         }
-      });
-    }
-  };
-
-  const HeroNetworkModule = {
-    init() {
-      const canvas = document.getElementById('heroCanvas');
-      const hero = document.querySelector('.hero');
-      if (!canvas || !hero || prefersReducedMotion) return;
-
-      const ctx = canvas.getContext('2d');
-      let width, height, nodes;
-      let mouseX = 0, mouseY = 0;
-      let rafId = null;
-      let isRunning = false;
-
-      const MAX_DISTANCE = 150;
-
-      function getNodeCount() {
-        if (window.innerWidth < 480) return 14;
-        if (window.innerWidth < 768) return 20;
-        return 46;
+        raf = requestAnimationFrame(frame);
       }
 
-      function resize() {
-        width = canvas.width = hero.offsetWidth;
-        height = canvas.height = hero.offsetHeight;
-      }
-
-      function createNodes() {
-        const count = getNodeCount();
-        nodes = Array.from({ length: count }, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25
-        }));
-      }
-
-      function step() {
-        if (!isRunning) return;
-
-        ctx.clearRect(0, 0, width, height);
-
-        const offsetX = (mouseX - width / 2) * 0.01;
-        const offsetY = (mouseY - height / 2) * 0.01;
-
-        nodes.forEach((node) => {
-          node.x += node.vx;
-          node.y += node.vy;
-          if (node.x < 0 || node.x > width) node.vx *= -1;
-          if (node.y < 0 || node.y > height) node.vy *= -1;
-        });
-
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            const a = nodes[i];
-            const b = nodes[j];
-            const dx = a.x - b.x;
-            const dy = a.y - b.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < MAX_DISTANCE) {
-              const opacity = (1 - dist / MAX_DISTANCE) * 0.16;
-              ctx.strokeStyle = `rgba(17, 24, 39, ${opacity})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(a.x + offsetX, a.y + offsetY);
-              ctx.lineTo(b.x + offsetX, b.y + offsetY);
-              ctx.stroke();
-            }
-          }
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        ty = ((e.clientX - r.left) / r.width - 0.5) * max * 2;
+        tx = (0.5 - (e.clientY - r.top) / r.height) * max * 2;
+        if (!active) {
+          active = true;
+          // o CSS já anima transform; durante o tilt só sombra/fundo mantêm transição (evita "dupla suavização")
+          el.style.transition = `box-shadow .6s ${EASE}, background .6s ${EASE}`;
         }
-
-        nodes.forEach((node) => {
-          ctx.fillStyle = 'rgba(17, 24, 39, 0.32)';
-          ctx.beginPath();
-          ctx.arc(node.x + offsetX, node.y + offsetY, 1.6, 0, Math.PI * 2);
-          ctx.fill();
-        });
-
-        rafId = requestAnimationFrame(step);
-      }
-
-      function start() {
-        if (isRunning) return;
-        isRunning = true;
-        rafId = requestAnimationFrame(step);
-      }
-
-      function stop() {
-        isRunning = false;
-        if (rafId) cancelAnimationFrame(rafId);
-      }
-
-      resize();
-      createNodes();
-
-      const visibilityObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              start();
-            } else {
-              stop();
-            }
-          });
-        },
-        { threshold: 0 }
-      );
-      visibilityObserver.observe(hero);
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          stop();
-        } else if (hero.getBoundingClientRect().top < window.innerHeight) {
-          start();
-        }
+        if (!raf) raf = requestAnimationFrame(frame);
       });
-
-      const onResize = debounce(() => {
-        resize();
-        createNodes();
-      }, 200);
-      window.addEventListener('resize', onResize);
-
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
+      el.addEventListener('pointerleave', () => {
+        active = false; tx = 0; ty = 0;
+        if (!raf) raf = requestAnimationFrame(frame);
       });
-    }
-  };
+    });
+  }
 
-  const MagneticButtonModule = {
-    init() {
-      if (isTouchDevice || prefersReducedMotion) return;
-
-      const targets = [
-        { selector: '.btn', strength: 0.25, cap: 10, lift: -3 },
-        { selector: '.nav-cta', strength: 0.2, cap: 6, lift: 0 }
-      ];
-
-      targets.forEach(({ selector, strength, cap, lift }) => {
-        document.querySelectorAll(selector).forEach((el) => {
-          function onMove(e) {
-            const rect = el.getBoundingClientRect();
-            const relX = e.clientX - (rect.left + rect.width / 2);
-            const relY = e.clientY - (rect.top + rect.height / 2);
-            const x = Math.max(-cap, Math.min(cap, relX * strength));
-            const y = Math.max(-cap, Math.min(cap, relY * strength));
-            el.style.transform = `translate(${x}px, ${y + lift}px)`;
-          }
-
-          function onLeave() {
-            el.style.transform = '';
-          }
-
-          el.addEventListener('pointermove', onMove);
-          el.addEventListener('pointerleave', onLeave);
-        });
-      });
-    }
-  };
-
-  const TiltCardModule = {
-    init() {
-      if (isTouchDevice || prefersReducedMotion) return;
-
-      const targets = [
-        { selector: '.service-card', lift: -8, maxTilt: 5 },
-        { selector: '.dif-card', lift: -8, maxTilt: 5 },
-        { selector: '.mini-card', lift: -8, maxTilt: 5 },
-        { selector: '.portfolio-item', lift: 0, maxTilt: 4 }
-      ];
-
-      targets.forEach(({ selector, lift, maxTilt }) => {
-        document.querySelectorAll(selector).forEach((el) => {
-          let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-          let rafId = null;
-          let active = false;
-
-          function update() {
-            currentX += (targetX - currentX) * 0.15;
-            currentY += (targetY - currentY) * 0.15;
-            el.style.transform =
-              `perspective(700px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateY(${lift}px)`;
-
-            if (!active && Math.abs(targetX - currentX) < 0.05 && Math.abs(targetY - currentY) < 0.05) {
-              el.style.transform = '';
-              rafId = null;
-              return;
-            }
-            rafId = requestAnimationFrame(update);
-          }
-
-          function onMove(e) {
-            const rect = el.getBoundingClientRect();
-            const px = (e.clientX - rect.left) / rect.width;
-            const py = (e.clientY - rect.top) / rect.height;
-            targetY = (px - 0.5) * maxTilt * 2;
-            targetX = (0.5 - py) * maxTilt * 2;
-            active = true;
-            if (!rafId) rafId = requestAnimationFrame(update);
-          }
-
-          function onLeave() {
-            active = false;
-            targetX = 0;
-            targetY = 0;
-            if (!rafId) rafId = requestAnimationFrame(update);
-          }
-
-          el.addEventListener('pointermove', onMove);
-          el.addEventListener('pointerleave', onLeave);
-        });
-      });
-    }
-  };
-
-  const RippleEffectModule = {
-    init() {
-      if (prefersReducedMotion) return;
-
-      document.querySelectorAll('.btn').forEach((btn) => {
-        btn.addEventListener('pointerdown', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const ripple = document.createElement('span');
-          ripple.className = 'ripple';
-          ripple.style.width = ripple.style.height = `${size}px`;
-          ripple.style.left = `${(e.clientX ?? rect.left + rect.width / 2) - rect.left - size / 2}px`;
-          ripple.style.top = `${(e.clientY ?? rect.top + rect.height / 2) - rect.top - size / 2}px`;
-          btn.appendChild(ripple);
-          ripple.addEventListener('animationend', () => ripple.remove());
-        });
-      });
-    }
-  };
+  /* ---------- Ripple nos botões ---------- */
+  function initRipple() {
+    if (reduceMotion) return;
+    $$('.btn').forEach((btn) => btn.addEventListener('pointerdown', (e) => {
+      const r = btn.getBoundingClientRect(), size = Math.max(r.width, r.height);
+      const s = document.createElement('span');
+      s.className = 'ripple';
+      s.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+      btn.appendChild(s);
+      s.addEventListener('animationend', () => s.remove());
+    }));
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
-    ScrollRevealModule.init();
-    CursorGlowModule.init();
-    HeroNetworkModule.init();
-    MagneticButtonModule.init();
-    TiltCardModule.init();
-    RippleEffectModule.init();
+    initReveal();
+    initHeroPause();
+    initCountUp();
+    initCursorGlow();
+    initMagnetic();
+    initTilt();
+    initRipple();
   });
-
 })();
