@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Gabriel Gomes — Marketing Digital, Social Media e Web Design</title>
     <meta name="description"
-        content="Gabriel Gomes transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
+        content="Sites que vendem e marketing que traz clientes. Marketing Digital, Gestão de Redes Sociais e Web Design com método e acompanhamento direto.">
+    <meta name="theme-color" content="#0B1226">
 
-    <!-- Favicon (monograma GG) -->
+    <script>document.documentElement.classList.add('js')</script>
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0A'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%230047FF'%3EGG%3C/text%3E%3C/svg%3E">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1226'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='800' font-size='30' text-anchor='middle' fill='%232B4593'%3EGG%3C/text%3E%3C/svg%3E">
 
-    <!-- Open Graph / compartilhamento em redes sociais -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Gabriel Gomes">
     <meta property="og:title" content="Gabriel Gomes — Marketing Digital, Social Media e Web Design">
-    <meta property="og:description"
-        content="Gabriel Gomes transforma presença digital em resultados através de Marketing Digital, Gestão de Redes Sociais e Web Design de alta performance.">
+    <meta property="og:description" content="Sites que vendem e marketing que traz clientes.">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,42 +31,43 @@
 
 <body>
 
+    <!-- Ícones reutilizáveis (definidos uma única vez) -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+            <path d="M7 17L17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+            <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 32 32">
+            <path d="M11.5 9.5L4.5 16l7 6.5M20.5 9.5l7 6.5-7 6.5M17.8 7.2L14.2 24.8" fill="none" stroke="currentColor"
+                stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+    </svg>
+
     <a href="#topo" class="skip-link">Pular para o conteúdo</a>
-
     <div class="scroll-progress" id="scrollProgress"></div>
-
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- NAVBAR -->
     <header class="navbar" id="navbar">
         <div class="container navbar-inner">
-            <a href="#topo" class="navbar-logo">
-                <span class="brand">
-                    <svg class="brand-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M11.5 9.5L4.5 16l7 6.5" />
-                        <path d="M20.5 9.5l7 6.5-7 6.5" />
-                        <path d="M17.8 7.2L14.2 24.8" />
-                    </svg>
-                    <span class="brand-text">
-                        <span class="brand-name">Gabriel Gomes</span>
-                        <span class="brand-sub">Web site e marketing</span>
-                    </span>
-                </span>
+            <a href="#topo" class="navbar-logo" aria-label="Gabriel Gomes — início">
+                <img class="brand-logo" src="img/logo.png" alt="Gabriel Gomes — Web site e marketing" height="36"
+                    onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-name',textContent:'Gabriel Gomes'}))">
             </a>
 
-            <nav class="navbar-menu" id="navbarMenu">
-                <a href="#servicos" class="nav-link">Serviços</a>
-                <a href="#metodo" class="nav-link">Método</a>
-                <a href="#portfolio" class="nav-link">Portfólio</a>
-                <a href="#depoimentos" class="nav-link">Depoimentos</a>
-                <a href="#sobre" class="nav-link">Sobre</a>
-                <a href="#portfolio" class="nav-ghost">Ver portfólio</a>
-                <a href="#contato" class="nav-link nav-cta">Orçamento <svg class="btn-icon" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
+            <nav class="navbar-menu" id="navbarMenu" aria-label="Principal">
+                <div class="nav-links">
+                    <a href="#servicos" class="nav-link">Serviços</a>
+                    <a href="#metodo" class="nav-link">Método</a>
+                    <a href="#portfolio" class="nav-link">Portfólio</a>
+                    <a href="#sobre" class="nav-link">Sobre</a>
+                </div>
+                <a href="#contato" class="nav-link nav-cta">Orçamento <svg class="btn-icon" aria-hidden="true">
+                        <use href="#i-arrow" />
                     </svg></a>
             </nav>
 
@@ -79,159 +79,82 @@
 
     <!-- HERO -->
     <section class="hero" id="topo">
-        <!-- Fundo: feixe de luz + partículas flutuando -->
         <div class="hero-bg" aria-hidden="true">
-            <div class="hero-floor"></div>
-            <div class="hero-beam"></div>
-            <div class="hero-source"></div>
+            <div class="hero-mesh"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
+            <div class="hero-rays"></div>
             <div class="hero-dust">
-                <span style="--x:35.2%;--s:1.7px;--t:27.7s;--d:-2.2s;--o:0.64;--dx:-11px"></span>
-                <span style="--x:12.9%;--s:2.3px;--t:16.7s;--d:-13.0s;--o:0.39;--dx:-33px"></span>
-                <span style="--x:43.7%;--s:2.9px;--t:18.2s;--d:-6.7s;--o:0.7;--dx:36px"></span>
-                <span style="--x:56.5%;--s:2.1px;--t:33.6s;--d:-1.4s;--o:0.82;--dx:-17px"></span>
-                <span style="--x:20.1%;--s:1.6px;--t:21.6s;--d:-24.5s;--o:0.45;--dx:7px"></span>
-                <span style="--x:61.7%;--s:2.1px;--t:25.9s;--d:-1.9s;--o:0.38;--dx:-24px"></span>
-                <span style="--x:65.2%;--s:2.2px;--t:21.7s;--d:-17.6s;--o:0.6;--dx:-16px"></span>
-                <span style="--x:74.7%;--s:2.7px;--t:20.4s;--d:-17.2s;--o:0.64;--dx:30px"></span>
-                <span style="--x:69.3%;--s:1.9px;--t:33.6s;--d:-3.5s;--o:0.58;--dx:21px"></span>
-                <span style="--x:20.8%;--s:2.3px;--t:16.7s;--d:-20.0s;--o:0.77;--dx:6px"></span>
-                <span style="--x:81.5%;--s:2.0px;--t:28.5s;--d:-17.8s;--o:0.67;--dx:-4px"></span>
-                <span style="--x:78.6%;--s:3.1px;--t:24.5s;--d:-19.9s;--o:0.38;--dx:16px"></span>
-                <span style="--x:62.4%;--s:3.2px;--t:30.8s;--d:-8.5s;--o:0.56;--dx:13px"></span>
-                <span style="--x:9.9%;--s:2.2px;--t:19.0s;--d:-3.5s;--o:0.38;--dx:21px"></span>
-                <span style="--x:18.9%;--s:1.8px;--t:23.0s;--d:-26.1s;--o:0.39;--dx:-4px"></span>
-                <span style="--x:54.2%;--s:3.0px;--t:30.7s;--d:-25.9s;--o:0.5;--dx:-7px"></span>
-                <span style="--x:38.1%;--s:3.0px;--t:33.2s;--d:-4.5s;--o:0.45;--dx:-21px"></span>
-                <span style="--x:27.6%;--s:2.3px;--t:26.6s;--d:-7.9s;--o:0.35;--dx:-6px"></span>
-                <span style="--x:39.0%;--s:2.4px;--t:33.2s;--d:-20.7s;--o:0.63;--dx:9px"></span>
-                <span style="--x:64.8%;--s:1.5px;--t:32.2s;--d:-23.4s;--o:0.83;--dx:24px"></span>
-                <span style="--x:41.0%;--s:2.1px;--t:17.9s;--d:-19.0s;--o:0.38;--dx:-35px"></span>
-                <span style="--x:25.5%;--s:1.7px;--t:22.1s;--d:-1.6s;--o:0.35;--dx:-28px"></span>
-                <span style="--x:16.5%;--s:2.1px;--t:16.5s;--d:-26.2s;--o:0.69;--dx:-28px"></span>
-                <span style="--x:29.2%;--s:2.0px;--t:22.6s;--d:-3.7s;--o:0.82;--dx:39px"></span>
-                <span style="--x:47.1%;--s:2.3px;--t:17.5s;--d:-3.1s;--o:0.54;--dx:-19px"></span>
-                <span style="--x:77.6%;--s:1.7px;--t:16.4s;--d:-28.5s;--o:0.64;--dx:-28px"></span>
-                <span style="--x:53.6%;--s:1.4px;--t:25.5s;--d:-29.4s;--o:0.82;--dx:16px"></span>
-                <span style="--x:29.9%;--s:2.1px;--t:19.0s;--d:-23.2s;--o:0.64;--dx:22px"></span>
-                <span style="--x:35.7%;--s:1.8px;--t:30.6s;--d:-29.5s;--o:0.82;--dx:24px"></span>
-                <span style="--x:76.7%;--s:2.7px;--t:20.1s;--d:-15.5s;--o:0.55;--dx:-38px"></span>
+                <span style="--x:18%;--s:2px;--t:24s;--d:-4s;--o:0.5;--dx:-20px"></span>
+                <span style="--x:32%;--s:2.5px;--t:29s;--d:-13s;--o:0.6;--dx:26px"></span>
+                <span style="--x:44%;--s:2px;--t:20s;--d:-8s;--o:0.55;--dx:-12px"></span>
+                <span style="--x:57%;--s:3px;--t:32s;--d:-21s;--o:0.45;--dx:18px"></span>
+                <span style="--x:66%;--s:2px;--t:25s;--d:-16s;--o:0.6;--dx:-24px"></span>
+                <span style="--x:74%;--s:2.5px;--t:28s;--d:-6s;--o:0.5;--dx:30px"></span>
+                <span style="--x:82%;--s:2px;--t:22s;--d:-19s;--o:0.4;--dx:-8px"></span>
+                <span style="--x:26%;--s:1.8px;--t:34s;--d:-26s;--o:0.55;--dx:12px"></span>
             </div>
-            <div class="hero-vignette"></div>
+            <div class="hero-spot"></div>
+            <div class="hero-noise"></div>
         </div>
 
         <div class="container hero-content">
-
-            <span class="hero-tag reveal" data-reveal><i aria-hidden="true"></i>Web site · Marketing · Redes
-                sociais</span>
 
             <h1 class="hero-title reveal" data-reveal>
                 Sites que vendem e marketing que <em>traz clientes</em>.
             </h1>
 
             <p class="hero-subtitle reveal" data-reveal>
-                Eu crio sites rápidos e estratégias de marketing digital para o seu negócio ser encontrado,
-                lembrado e escolhido, com método, dados e acompanhamento de perto.
+                Sites rápidos e marketing digital para o seu negócio ser encontrado e escolhido.
             </p>
 
             <div class="hero-actions reveal" data-reveal>
                 <div class="hero-buttons">
                     <a href="#contato" class="btn btn-primary">Quero meu orçamento <svg class="btn-icon"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
+                            aria-hidden="true">
+                            <use href="#i-arrow" />
                         </svg></a>
                     <a href="#portfolio" class="btn btn-secondary">Ver meus projetos <svg class="btn-icon"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
+                            aria-hidden="true">
+                            <use href="#i-arrow" />
                         </svg></a>
                 </div>
-                <p class="hero-micro">Me conte sobre o seu negócio no WhatsApp. Orçamento sem compromisso, atendimento
-                    direto comigo.</p>
             </div>
 
-
-            <!-- Marcas + números (antes era a seção #clientes) -->
             <div class="hero-clients reveal" data-reveal>
                 <span class="hero-clients-label">Marcas que já confiaram em mim</span>
 
                 <div class="container-parceiros">
                     <div class="trilha-parceiros trilha-parceiros--left">
-                        <div class="item-parceiro"><img src="img/1.png" alt="Logo do cliente 1" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/2.png" alt="Logo do cliente 2" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img class="is-solid" src="img/3.png" alt="Logo do cliente 3"
-                                loading="lazy" decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/4.png" alt="Logo do cliente 4" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/5.png" alt="Logo do cliente 5" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/6.png" alt="Logo do cliente 6" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/7.png" alt="Logo do cliente 7" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro"><img src="img/8.png" alt="Logo do cliente 8" loading="lazy"
-                                decoding="async"></div>
-                        <!-- Cópia para o loop infinito -->
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/1.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/2.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img class="is-solid" src="img/3.png" alt=""
-                                loading="lazy" decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/4.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/5.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/6.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/7.png" alt="" loading="lazy"
-                                decoding="async"></div>
-                        <div class="item-parceiro" aria-hidden="true"><img src="img/8.png" alt="" loading="lazy"
-                                decoding="async"></div>
+                        <div class="item-parceiro"><img src="img/2.png" alt="Logo do cliente 1" loading="lazy"
+                                decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img class="is-solid" src="img/3.png" alt="Logo do cliente 2"
+                                loading="lazy" decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/4.png" alt="Logo do cliente 3" loading="lazy"
+                                decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/6.png" alt="Logo do cliente 4" loading="lazy"
+                                decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/7.png" alt="Logo do cliente 5" loading="lazy"
+                                decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/8.png" alt="Logo do cliente 6" loading="lazy"
+                                decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/logo%20de%20clientes%20(1).png" alt="Logo do cliente 7"
+                                loading="lazy" decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/logo%20de%20clientes%20(2).png" alt="Logo do cliente 8"
+                                loading="lazy" decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/logo%20de%20clientes%20(3).png" alt="Logo do cliente 9"
+                                loading="lazy" decoding="async" onerror="this.closest('.item-parceiro').remove()"></div>
+                        <div class="item-parceiro"><img src="img/logo%20de%20clientes%20(4).png"
+                                alt="Logo do cliente 10" loading="lazy" decoding="async"
+                                onerror="this.closest('.item-parceiro').remove()"></div>
+                        <!-- a cópia para o loop infinito é criada pelo main.js -->
                     </div>
                 </div>
 
-                <!-- ⚠ Troque pelos SEUS números reais -->
+                <!-- ⚠ Confirme se estes números são reais -->
                 <div class="hero-stats">
-                    <div class="hero-stat">
-                        <strong>+3</strong>
-                        <span>Anos ativo</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>+5</strong>
-                        <span>Midias Gerenciadas </span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>+10</strong>
-                        <span>Sites Entregues</span>
-                    </div>
+                    <div class="hero-stat"><strong>+3</strong><span>Anos de atuação</span></div>
+                    <div class="hero-stat"><strong>+5</strong><span>Mídias gerenciadas</span></div>
+                    <div class="hero-stat"><strong>+10</strong><span>Sites entregues</span></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VÍDEO (VSL) — aparece sozinho quando você preencher o data-video -->
-    <!-- ⚠ Cole em data-video o link de EMBED do YouTube/Vimeo (ex.: https://www.youtube.com/embed/SEU_ID) ou o caminho de um .mp4 (ex.: img/apresentacao.mp4).
-         Opcional: data-poster="img/capa-video.jpg" para uma capa. Sem link, a seção fica oculta. -->
-    <section class="vsl" id="video" hidden>
-        <div class="container vsl-inner">
-            <div class="section-head reveal" data-reveal>
-                <span class="section-label">Veja como funciona</span>
-                <h2 class="section-title">Assista e entenda como eu <em>trabalho</em></h2>
-            </div>
-
-            <div class="vsl-frame reveal" data-reveal id="vslFrame" data-video="" data-poster="">
-                <button class="vsl-play" id="vslPlay" type="button" aria-label="Assistir ao vídeo">
-                    <span class="vsl-play-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none" />
-                        </svg></span>
-                    <span class="vsl-play-text">Assistir agora</span>
-                </button>
             </div>
         </div>
     </section>
@@ -242,26 +165,20 @@
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">O que eu faço</span>
                 <h2 class="section-title">Três frentes que trabalham juntas para <em>trazer clientes</em>.</h2>
-                <p class="section-text">O que une as três é o método: decisões baseadas em dados, aplicadas ao canal
-                    certo para o seu objetivo.</p>
             </div>
 
             <div class="servicos-grid">
-
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card-glow"></div>
                     <span class="service-index">01</span>
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M3 3v18h18" />
-                            <path d="M7 15l4-5 3 3 5-7" />
-                            <path d="M15 6h4v4" />
+                            <path d="M3 3v18h18M7 15l4-5 3 3 5-7M15 6h4v4" />
                         </svg>
                     </div>
                     <h3>Marketing Digital</h3>
-                    <p>Campanhas de tráfego, funis e estratégias de aquisição desenhadas para gerar clientes de forma
-                        previsível.</p>
+                    <p>Campanhas de tráfego e funis desenhados para gerar clientes de forma previsível.</p>
                 </article>
 
                 <article class="service-card reveal" data-reveal>
@@ -276,8 +193,7 @@
                         </svg>
                     </div>
                     <h3>Social Media</h3>
-                    <p>Planejamento de conteúdo, identidade visual e gestão completa de perfis para fortalecer sua
-                        marca.</p>
+                    <p>Conteúdo, identidade visual e gestão completa de perfis para fortalecer sua marca.</p>
                 </article>
 
                 <article class="service-card reveal" data-reveal>
@@ -287,194 +203,115 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect x="3" y="4" width="18" height="16" rx="2.5" />
-                            <path d="M3 9h18" />
-                            <path d="M10 13l-2 2 2 2M14 13l2 2-2 2" />
+                            <path d="M3 9h18M10 13l-2 2 2 2M14 13l2 2-2 2" />
                         </svg>
                     </div>
                     <h3>Web Design</h3>
-                    <p>Sites institucionais, landing pages e plataformas de alta performance, feitas para converter
-                        visitas em vendas.</p>
+                    <p>Sites e landing pages de alta performance, feitos para converter visitas em vendas.</p>
                 </article>
-
-            </div>
-            <div class="section-cta reveal" data-reveal>
-                <a href="#contato" class="btn btn-primary">Quero meu orçamento <svg class="btn-icon" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
-                <a href="#portfolio" class="btn btn-secondary">Ver meus projetos <svg class="btn-icon"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
             </div>
         </div>
     </section>
 
-    <!-- A VERDADE INCÔMODA — onde o digital costuma vazar -->
+    <!-- A VERDADE INCÔMODA -->
     <section class="momento" id="momento">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">A verdade incômoda</span>
                 <h2 class="section-title">Quando o digital não vende, o prejuízo chega <em>aos poucos</em>.</h2>
-                <p class="section-text">Você investe em conteúdo, site e anúncio para levar gente até o seu negócio. O
-                    problema costuma estar no que acontece depois que a pessoa chega.</p>
-            </div>
-
-            <div class="leak-card reveal" data-reveal>
-                <span class="leak-num">4</span>
-                <div class="leak-text">
-                    <strong>Pontos onde o digital de um negócio costuma deixar clientes escaparem.</strong>
-                    <span>Veja se algum deles parece com o seu momento:</span>
-                </div>
+                <p class="section-text">Algum destes pontos parece com o seu momento?</p>
             </div>
 
             <div class="momento-grid">
                 <div class="momento-item reveal" data-reveal>
-                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M3 7l6 6 4-4 8 8" />
-                            <path d="M15 17h6v-6" />
-                        </svg></span>
                     <p>Você posta toda semana, mas as <strong>vendas não aparecem</strong>.</p>
                 </div>
                 <div class="momento-item reveal" data-reveal>
-                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2.5" />
-                            <path d="M3 9h18" />
-                            <path d="M9.5 13.5l5 5M14.5 13.5l-5 5" />
-                        </svg></span>
-                    <p>Seu site existe, mas <strong>quase ninguém entra em contato</strong> por ele.</p>
+                    <p>Seu site existe, mas <strong>quase ninguém entra em contato</strong>.</p>
                 </div>
                 <div class="momento-item reveal" data-reveal>
-                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9" />
-                            <path d="M12 7v10M9.5 9.8h3.6a1.7 1.7 0 010 3.4h-2.6a1.7 1.7 0 000 3.4h3.9" />
-                        </svg></span>
                     <p>Você investe em anúncios sem saber <strong>o que realmente volta</strong>.</p>
                 </div>
                 <div class="momento-item reveal" data-reveal>
-                    <span class="momento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M10 14a4 4 0 005.7 0l2.6-2.6a4 4 0 00-5.7-5.7l-1 1" />
-                            <path d="M14 10a4 4 0 00-5.7 0l-2.6 2.6a4 4 0 005.7 5.7l1-1" />
-                            <path d="M4 4l16 16" />
-                        </svg></span>
                     <p>Site, redes e marketing funcionam <strong>cada um por conta própria</strong>.</p>
                 </div>
             </div>
 
             <div class="momento-bridge reveal" data-reveal>
                 <p>Se você se identificou com pelo menos um, <strong>vale uma conversa comigo.</strong></p>
-                <a href="#contato" class="btn btn-primary">Quero resolver isso <svg class="btn-icon" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
+                <a href="#contato" class="btn btn-primary">Quero resolver isso <svg class="btn-icon" aria-hidden="true">
+                        <use href="#i-arrow" />
                     </svg></a>
             </div>
         </div>
     </section>
 
-    <!-- MÉTODO — as 4 etapas -->
+    <!-- MÉTODO -->
     <section class="processo" id="metodo">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">Método</span>
                 <h2 class="section-title">Aqui nada é no improviso. <em>Cada etapa tem um motivo</em>.</h2>
-                <p class="section-text">Eu não faço só algo bonito. Cada projeto segue uma sequência de decisões
-                    baseadas em dados, não em gosto e não em fórmulas genéricas.</p>
             </div>
 
             <div class="timeline">
                 <div class="timeline-line"><span class="timeline-line-fill"></span></div>
-
-                <div class="timeline-item reveal" data-reveal>
-                    <span class="timeline-number">01</span>
+                <div class="timeline-item reveal" data-reveal><span class="timeline-number">01</span>
                     <h3>Planejamento</h3>
-                    <p>Diagnóstico completo do negócio, do mercado e dos objetivos de crescimento.</p>
+                    <p>Diagnóstico do negócio, do mercado e dos objetivos.</p>
                 </div>
-
-                <div class="timeline-item reveal" data-reveal>
-                    <span class="timeline-number">02</span>
+                <div class="timeline-item reveal" data-reveal><span class="timeline-number">02</span>
                     <h3>Estratégia</h3>
-                    <p>Definição de canais, posicionamento e metas claras de curto e longo prazo.</p>
+                    <p>Canais, posicionamento e metas claras.</p>
                 </div>
-
-                <div class="timeline-item reveal" data-reveal>
-                    <span class="timeline-number">03</span>
+                <div class="timeline-item reveal" data-reveal><span class="timeline-number">03</span>
                     <h3>Execução</h3>
-                    <p>Produção de conteúdo, campanhas e desenvolvimento com padrão de qualidade premium.</p>
+                    <p>Conteúdo, campanhas e site com padrão premium.</p>
                 </div>
-
-                <div class="timeline-item reveal" data-reveal>
-                    <span class="timeline-number">04</span>
+                <div class="timeline-item reveal" data-reveal><span class="timeline-number">04</span>
                     <h3>Crescimento</h3>
-                    <p>Análise de resultados, otimização contínua e escala sustentável.</p>
+                    <p>Análise de resultados e otimização contínua.</p>
                 </div>
-            </div>
-            <div class="section-cta reveal" data-reveal>
-                <a href="#contato" class="btn btn-primary">Quero esse método no meu negócio <svg class="btn-icon"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
             </div>
         </div>
     </section>
 
-    <!-- COMPROMISSO — o que você recebe, sem risco e com o próximo passo -->
+    <!-- COMPROMISSO -->
     <section class="compromisso" id="compromisso">
         <div class="container comp-grid">
             <div class="comp-text reveal" data-reveal>
                 <span class="section-label">Compromisso</span>
                 <h2 class="section-title">Você sabe o que está contratando. <em>Antes, durante e depois</em>.</h2>
-                <p class="section-text">Cada proposta é montada de acordo com o escopo, sem tabela fixa e sem letras
-                    miúdas. Se o projeto não fizer sentido para o seu momento, eu te digo.</p>
-                <p class="section-text">Fechando pagando no PIX, você ganha <strong>10% de desconto</strong> com o cupom
-                    <b class="comp-code">GS10</b>.</p>
+                <p class="section-text">Cada proposta é montada de acordo com o escopo, sem letras miúdas. Pagando no
+                    PIX, você ganha <strong>10% de desconto</strong> com o cupom <b class="comp-code">GS10</b>.</p>
                 <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
                     target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp <svg class="btn-icon"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
+                        aria-hidden="true">
+                        <use href="#i-arrow" />
                     </svg></a>
             </div>
 
             <div class="comp-cards reveal" data-reveal>
-                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
-                    </svg><span>Diagnóstico do negócio, do mercado e dos objetivos.</span></div>
-                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
-                    </svg><span>Plano estratégico com canais, posicionamento e metas claras.</span></div>
-                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
-                    </svg><span>Acompanhamento direto comigo, sem intermediários.</span></div>
-                <div class="comp-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M5 12.5l4.5 4.5L19 7.5" />
+                <div class="comp-card"><svg aria-hidden="true">
+                        <use href="#i-check" />
+                    </svg><span>Diagnóstico do negócio e dos objetivos.</span></div>
+                <div class="comp-card"><svg aria-hidden="true">
+                        <use href="#i-check" />
+                    </svg><span>Plano com canais, posicionamento e metas.</span></div>
+                <div class="comp-card"><svg aria-hidden="true">
+                        <use href="#i-check" />
+                    </svg><span>Acompanhamento direto comigo.</span></div>
+                <div class="comp-card"><svg aria-hidden="true">
+                        <use href="#i-check" />
                     </svg><span>Resultados analisados e ajustes contínuos.</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SOBRE — por que confiar em mim -->
+    <!-- SOBRE -->
     <section class="quem-sou" id="sobre">
         <div class="container quem-sou-grid">
-
             <figure class="quem-foto reveal" data-reveal>
-                <!-- ⚠ Troque pelo nome da sua foto (vertical, ao menos 900px de largura) -->
                 <img src="img/foto-profissional.jpeg" alt="Gabriel Gomes" loading="lazy" decoding="async"
                     onerror="this.style.display='none'">
                 <figcaption class="quem-foto-caption">
@@ -485,94 +322,63 @@
 
             <div class="quem-texto reveal" data-reveal>
                 <span class="section-label">Por que confiar em mim</span>
-                <h2 class="section-title">
-                    Gabriel Gomes<br> <em>Web site e marketing</em>
-                </h2>
+                <h2 class="section-title">Gabriel Gomes<br> <em>Web site e marketing</em></h2>
 
-                <!-- ⚠ Ajuste os textos e números abaixo para a sua história real -->
-                <p class="section-text">
-                    Olá! Sou o Gabriel Gomes. Trabalho para resolver um problema
-                    recorrente: empresas investem em presença digital sem direção clara e sem retorno
-                    mensurável.
-                </p>
-                <p class="section-text">
-                    Reúno marketing de performance, redes sociais e web design em um processo único.
-                    As decisões seguem método e dados, não fórmulas genéricas, e eu acompanho cada
-                    projeto de perto, do diagnóstico à otimização.
-                </p>
+                <p class="section-text">Empresas investem em presença digital sem direção clara e sem retorno
+                    mensurável. Eu uno marketing, redes sociais e web design em um único processo, com decisões baseadas
+                    em dados e acompanhamento de perto, do diagnóstico à otimização.</p>
 
                 <div class="quem-chips">
                     <span class="is-main">Web design</span>
-                    <span>Sites institucionais</span>
                     <span>Landing pages</span>
-                    <span>Front-end</span>
                     <span>Marketing digital</span>
-                    <span>Campanhas de tráfego</span>
                     <span>Social media</span>
                     <span>Identidade visual</span>
-                    <span>Gestão de perfis</span>
                 </div>
 
                 <div class="quem-actions">
-                    <!-- ⚠ Salve os certificados em img/ (PNG ou JPG) e ajuste os nomes em href e data-cert-alt se precisar -->
                     <a href="img/Certificado-front-end.png" target="_blank" rel="noopener" class="btn btn-secondary"
-                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Front-End">
-                        Ver certificado Front-End <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-cert="Certificado de conclusão de Front-End">Certificado Front-End <svg class="btn-icon"
                             aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
+                            <use href="#i-arrow" />
                         </svg></a>
                     <a href="img/cerrtificado-marketing.png" target="_blank" rel="noopener" class="btn btn-secondary"
-                        data-modal-open="certModal" data-cert-alt="Certificado de conclusão de Marketing">
-                        Ver certificado Marketing <svg class="btn-icon" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-cert="Certificado de conclusão de Marketing">Certificado Marketing <svg class="btn-icon"
                             aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
+                            <use href="#i-arrow" />
                         </svg></a>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- ANTES E DEPOIS — AUDITORIA DE INSTAGRAM -->
+    <!-- ANTES E DEPOIS -->
     <section class="comparativo" id="prova">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">A prova real</span>
                 <h2 class="section-title">Ficou na dúvida? <em>Veja o antes e depois</em>.</h2>
-                <p class="section-text" style="max-width:600px">
-                    Arraste o controle abaixo para comparar um perfil real antes e depois
-                    da minha auditoria completa de redes sociais.
-                </p>
+                <p class="section-text" style="max-width:600px">Arraste o controle para comparar um perfil real antes e
+                    depois da minha auditoria de redes sociais.</p>
             </div>
 
             <div class="compare-slider reveal" data-reveal id="compareSlider">
                 <div class="compare-frame" id="compareFrame">
-
                     <div class="compare-panel compare-after">
                         <span class="compare-label label-after">Depois</span>
-                        <div class="compare-media">
-                            <img src="img/Depois.jpeg" alt="Print do perfil depois da auditoria" loading="lazy"
-                                decoding="async">
-                        </div>
+                        <div class="compare-media"><img src="img/Depois.jpeg" alt="Perfil depois da auditoria"
+                                loading="lazy" decoding="async"></div>
                     </div>
-
                     <div class="compare-panel compare-before" id="compareBefore">
                         <span class="compare-label label-before">Antes</span>
-                        <div class="compare-media">
-                            <img src="img/Antes.jpeg" alt="Print do perfil antes da auditoria" loading="lazy"
-                                decoding="async">
-                        </div>
+                        <div class="compare-media"><img src="img/Antes.jpeg" alt="Perfil antes da auditoria"
+                                loading="lazy" decoding="async"></div>
                     </div>
-
                 </div>
 
                 <div class="compare-handle" id="compareHandle" role="slider" tabindex="0"
-                    aria-label="Arraste para comparar o perfil antes e depois da auditoria" aria-valuemin="0"
-                    aria-valuemax="100" aria-valuenow="50">
+                    aria-label="Arraste para comparar o perfil antes e depois" aria-valuemin="0" aria-valuemax="100"
+                    aria-valuenow="50">
                     <span class="compare-handle-line"></span>
                     <span class="compare-handle-grip">
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -582,19 +388,15 @@
                     </span>
                 </div>
             </div>
-
-            <p class="compare-hint">← Arraste o controle para o lado →</p>
         </div>
     </section>
 
-    <!-- PORTFÓLIO — grade de projetos + cartão do próximo case -->
+    <!-- PORTFÓLIO -->
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">Portfólio</span>
                 <h2 class="section-title">Projetos que <em>falam por si</em></h2>
-                <p class="section-text">Confira alguns projetos desenvolvidos com muito amor e dedicação. Cada um é
-                    reflexo do empenho em cada detalhe.</p>
             </div>
 
             <div class="pf-grid">
@@ -603,19 +405,21 @@
                         <img src="img/projeto_1.png" alt="Projeto Fisioterapia" loading="lazy" decoding="async"
                             onerror="var c=this.closest('.pf-card');if(c)c.remove()">
                         <span class="pf-tag">Postagens</span>
-                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Fisioterapia"></a>
                     <div class="pf-body">
                         <h3>Fisioterapia</h3>
-                        <p>Posts para as redes sociais de uma clínica de fisioterapia.</p>
-                        <a class="pf-link"
-                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Fisioterapia%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M7 17L17 7" />
-                                    <path d="M8 7h9v9" />
-                                </svg></span></a>
+                        <p>Posts para as redes sociais de uma clínica.</p>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Fisioterapia%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
                     </div>
                 </article>
 
@@ -624,19 +428,21 @@
                         <img src="img/Site Personal Trainer.png" alt="Projeto Site Personal Trainer" loading="lazy"
                             decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
                         <span class="pf-tag">Web Design</span>
-                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Personal Trainer"></a>
                     <div class="pf-body">
-                        <h3>Site Personal Trainer</h3>
+                        <h3>Personal Trainer</h3>
                         <p>Site para um profissional de educação física.</p>
-                        <a class="pf-link"
-                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Site%20Personal%20Trainer%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M7 17L17 7" />
-                                    <path d="M8 7h9v9" />
-                                </svg></span></a>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Personal%20Trainer%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
                     </div>
                 </article>
 
@@ -645,80 +451,135 @@
                         <img src="img/Site Consultor de Imoves.png" alt="Projeto Site Consultor de Imóveis"
                             loading="lazy" decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
                         <span class="pf-tag">Web Design</span>
-                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Consultor de Imóveis"></a>
                     <div class="pf-body">
                         <h3>Consultor de Imóveis</h3>
                         <p>Site para um consultor de imóveis.</p>
-                        <a class="pf-link"
-                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Consultor%20de%20Im%C3%B3veis%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M7 17L17 7" />
-                                    <path d="M8 7h9v9" />
-                                </svg></span></a>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Consultor%20de%20Im%C3%B3veis%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
                     </div>
                 </article>
 
                 <article class="pf-card reveal" data-reveal>
+                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
                     <div class="pf-media">
-                        <img src="img/portfolio/projeto-04.jpg" alt="Projeto Lumen Arquitetura" loading="lazy"
+                        <img src="img/projeto-04.jpg" alt="Projeto Gestão de Redes Sociais" loading="lazy"
                             decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
                         <span class="pf-tag">Social Media</span>
-                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Gestão de Redes Sociais"></a>
                     <div class="pf-body">
-                        <h3>Lumen Arquitetura</h3>
-                        <p>Gestão de redes sociais, conteúdo e identidade.</p>
-                        <a class="pf-link"
-                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Lumen%20Arquitetura%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M7 17L17 7" />
-                                    <path d="M8 7h9v9" />
-                                </svg></span></a>
+                        <h3>Gestão de Redes Sociais</h3>
+                        <p>Conteúdo, identidade visual e gestão de perfil para uma marca local.</p>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Gest%C3%A3o%20de%20Redes%20Sociais%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
                     </div>
                 </article>
 
                 <article class="pf-card reveal" data-reveal>
+                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
                     <div class="pf-media">
-                        <img src="img/portfolio/projeto-05.jpg" alt="Projeto Nova Capital" loading="lazy"
+                        <img src="img/projeto-05.jpg" alt="Projeto Campanha de Marketing" loading="lazy"
                             decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
                         <span class="pf-tag">Marketing Digital</span>
-                        <span class="pf-index" aria-hidden="true"></span>
                     </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Campanha de Marketing"></a>
                     <div class="pf-body">
-                        <h3>Nova Capital</h3>
-                        <p>Estratégia e campanhas de marketing digital.</p>
-                        <a class="pf-link"
-                            href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Nova%20Capital%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                            target="_blank" rel="noopener">Quero algo assim <span class="pf-arrow"><svg class="btn-icon"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                    <path d="M7 17L17 7" />
-                                    <path d="M8 7h9v9" />
-                                </svg></span></a>
+                        <h3>Campanha de Marketing</h3>
+                        <p>Estratégia e anúncios para gerar clientes de forma previsível.</p>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Campanha%20de%20Marketing%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="pf-card reveal" data-reveal>
+                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
+                    <div class="pf-media">
+                        <img src="img/projeto-06.jpg" alt="Projeto Identidade Visual" loading="lazy" decoding="async"
+                            onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Identidade Visual</span>
+                    </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Identidade Visual"></a>
+                    <div class="pf-body">
+                        <h3>Identidade Visual</h3>
+                        <p>Logo, paleta e padrões de posts para uma marca ganhar consistência.</p>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Identidade%20Visual%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="pf-card reveal" data-reveal>
+                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
+                    <div class="pf-media">
+                        <img src="img/projeto-07.jpg" alt="Projeto Landing Page" loading="lazy" decoding="async"
+                            onerror="var c=this.closest('.pf-card');if(c)c.remove()">
+                        <span class="pf-tag">Web Design</span>
+                    </div>
+                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
+                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
+                        aria-label="Ver o site do projeto Landing Page"></a>
+                    <div class="pf-body">
+                        <h3>Landing Page</h3>
+                        <p>Página de captura focada em conversão, rápida e direta.</p>
+                        <div class="pf-link pf-actions">
+                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
+                                    <use href="#i-arrow" />
+                                </svg></span>
+                            <a class="pf-wa"
+                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Landing%20Page%20no%20seu%20site%20e%20quero%20algo%20parecido."
+                                target="_blank" rel="noopener">Quero algo assim</a>
+                        </div>
                     </div>
                 </article>
 
                 <aside class="pf-cta reveal" data-reveal>
                     <span class="section-label">O próximo case</span>
                     <h3>O seu negócio pode ser <em>o próximo</em>.</h3>
-                    <p>Me conte o que você precisa e eu te mostro o melhor caminho, sem compromisso.</p>
+                    <p>Me conte o que você precisa e eu te mostro o melhor caminho.</p>
                     <a href="#contato" class="btn btn-primary">Quero o meu orçamento <svg class="btn-icon"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M7 17L17 7" />
-                            <path d="M8 7h9v9" />
+                            aria-hidden="true">
+                            <use href="#i-arrow" />
                         </svg></a>
                 </aside>
             </div>
         </div>
     </section>
 
-    <!-- DEPOIMENTOS — cartões -->
+    <!-- DEPOIMENTOS -->
+    <!-- ⚠ Troque por depoimentos reais (nome, empresa e frase autorizados pelo cliente) -->
     <section class="depoimentos" id="depoimentos">
         <div class="container">
             <div class="section-head reveal" data-reveal>
@@ -738,15 +599,6 @@
                 </figure>
                 <figure class="depo-card reveal" data-reveal>
                     <span class="depo-mark" aria-hidden="true">“</span>
-                    <blockquote>Profissionalismo raro. Cada entrega parecia ter sido pensada exclusivamente para o nosso
-                        negócio.</blockquote>
-                    <figcaption>
-                        <span class="depo-avatar" aria-hidden="true">RT</span>
-                        <span><strong>Rafael Teixeira</strong><small>Vértice Coffee</small></span>
-                    </figcaption>
-                </figure>
-                <figure class="depo-card reveal" data-reveal>
-                    <span class="depo-mark" aria-hidden="true">“</span>
                     <blockquote>O novo site aumentou nossa taxa de conversão em mais de 40%. Resultado muito acima do
                         esperado.</blockquote>
                     <figcaption>
@@ -754,24 +606,6 @@
                         <span><strong>Camila Duarte</strong><small>Órbita Fit</small></span>
                     </figcaption>
                 </figure>
-                <figure class="depo-card reveal" data-reveal>
-                    <span class="depo-mark" aria-hidden="true">“</span>
-                    <blockquote>Extremamente atento aos detalhes. A parceria funciona como uma extensão do nosso próprio
-                        time de marketing.</blockquote>
-                    <figcaption>
-                        <span class="depo-avatar" aria-hidden="true">EL</span>
-                        <span><strong>Eduardo Lins</strong><small>Nova Capital</small></span>
-                    </figcaption>
-                </figure>
-            </div>
-
-            <div class="section-cta reveal" data-reveal>
-                <a href="#contato" class="btn btn-primary">Quero resultados assim <svg class="btn-icon"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
             </div>
         </div>
     </section>
@@ -782,123 +616,64 @@
             <div class="section-head reveal" data-reveal>
                 <span class="section-label">Dúvidas frequentes</span>
                 <h2 class="section-title">Antes de me chamar, <em>vale tirar as dúvidas</em>.</h2>
-                <p class="section-text">As perguntas mais comuns de quem está avaliando começar um projeto comigo.</p>
             </div>
 
             <div class="faq-list reveal" data-reveal>
-
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Para quem é o meu trabalho?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <button class="faq-question" aria-expanded="false"><span>Para quem é o meu trabalho?</span><svg
+                            class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" />
-                        </svg>
-                    </button>
+                        </svg></button>
                     <div class="faq-answer">
-                        <p>Para negócios que já têm operação rodando e sentem que faltou direção na presença
-                            digital — marketing, redes sociais e site funcionando cada um por conta própria, sem
-                            estratégia em comum.</p>
+                        <p>Para negócios que já têm operação rodando e sentem falta de direção na presença digital:
+                            marketing, redes e site funcionando cada um por conta própria.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Como funciona o processo depois do primeiro contato?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <button class="faq-question" aria-expanded="false"><span>Como funciona o processo depois do
+                            contato?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" />
-                        </svg>
-                    </button>
+                        </svg></button>
                     <div class="faq-answer">
-                        <p>Sigo as quatro etapas descritas em <a href="#metodo">Método</a>:
-                            planejamento, estratégia, execução e crescimento. Antes de qualquer entrega, entendo
-                            o momento do seu negócio para desenhar um plano sob medida — não um pacote genérico.</p>
+                        <p>Sigo as quatro etapas do <a href="#metodo">Método</a>. Antes de qualquer entrega, entendo o
+                            momento do seu negócio para desenhar um plano sob medida.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Quanto tempo leva para começar a ver resultado?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <button class="faq-question" aria-expanded="false"><span>Quanto tempo leva para ver
+                            resultado?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" />
-                        </svg>
-                    </button>
+                        </svg></button>
                     <div class="faq-answer">
-                        <p>Varia de acordo com o escopo — um site tem um prazo diferente de uma operação de
-                            redes sociais em regime contínuo, por exemplo. O cronograma é alinhado com você logo na
-                            proposta, antes do projeto começar.</p>
+                        <p>Depende do escopo: um site tem prazo diferente de uma gestão contínua de redes. O cronograma
+                            é combinado com você na proposta, antes de começar.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>O que está incluso no serviço?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <button class="faq-question" aria-expanded="false"><span>Como funciona o investimento e o
+                            pagamento?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" />
-                        </svg>
-                    </button>
+                        </svg></button>
                     <div class="faq-answer">
-                        <p>Depende da combinação de frentes contratadas — Marketing Digital, Social Media e/ou
-                            Web Design. Cada proposta detalha exatamente o que está incluso antes de você
-                            fechar, sem letras miúdas.</p>
+                        <p>O valor é definido pelo escopo, por isso não há tabela fixa. Tudo o que está incluso e as
+                            condições de pagamento ficam claros na proposta, antes de você fechar.</p>
                     </div>
                 </div>
-
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Como funciona o investimento e o pagamento?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <button class="faq-question" aria-expanded="false"><span>Existe suporte durante o
+                            projeto?</span><svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
                                 stroke-linecap="round" />
-                        </svg>
-                    </button>
+                        </svg></button>
                     <div class="faq-answer">
-                        <p>O investimento é definido conforme o escopo do seu projeto — por isso não trabalho
-                            com tabela fixa. As condições de pagamento são alinhadas junto com a proposta, de forma
-                            transparente.</p>
+                        <p>Sim. O acompanhamento é direto comigo em todas as etapas, e o escopo pode ser ajustado
+                            conforme o seu negócio muda.</p>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Existe suporte durante o projeto?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" />
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim. O acompanhamento é próximo e direto comigo, em
-                            todas as etapas — sem intermediários nem burocracia.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Posso ajustar o escopo depois de começar?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" />
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim. O processo é acompanhado de perto justamente para poder ser reavaliado conforme o
-                            momento do seu negócio muda — as decisões seguem dados, não um plano engessado.</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="section-cta reveal" data-reveal>
-                <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
-                    target="_blank" rel="noopener" class="btn btn-primary">Ainda com dúvidas? Chama no WhatsApp <svg
-                        class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
-                    </svg></a>
             </div>
         </div>
     </section>
@@ -910,46 +685,26 @@
 
         <div class="container cta-content reveal" data-reveal>
             <span class="section-label">Vamos começar</span>
-            <h2>Tem alguém procurando o que você vende agora. <em>O seu digital está pronto para receber essa
-                    pessoa?</em></h2>
+            <h2>Tem alguém procurando o que você vende agora. <em>O seu digital está pronto?</em></h2>
             <p>Me conte sobre o seu negócio no WhatsApp. Orçamento sem compromisso, atendimento direto comigo.</p>
-            <p class="cta-warning">Cada mês sem estratégia é mais um mês de clientes escolhendo o concorrente.</p>
 
             <div class="cta-buttons">
                 <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
                     target="_blank" rel="noopener" class="btn btn-primary">Quero meu orçamento no WhatsApp <svg
-                        class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
+                        class="btn-icon" aria-hidden="true">
+                        <use href="#i-arrow" />
                     </svg></a>
                 <a href="#portfolio" class="btn btn-secondary">Ou ver meus projetos <svg class="btn-icon"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path d="M7 17L17 7" />
-                        <path d="M8 7h9v9" />
+                        aria-hidden="true">
+                        <use href="#i-arrow" />
                     </svg></a>
             </div>
 
             <div class="cta-socials">
-                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener"><span><svg
-                            viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.7" />
-                            <path d="M8 10.5V16M8 7.8v.2M12 16v-5.5M12 13c0-1.5 1-2.5 2.3-2.5S16.5 11.4 16.5 13v3"
-                                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg></span>LinkedIn</a>
-                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"><span><svg
-                            viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7" />
-                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
-                            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
-                        </svg></span>Instagram</a>
-                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener"><span><svg
-                            viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-                        </svg></span>Behance</a>
+                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener">Behance</a>
             </div>
         </div>
     </section>
@@ -957,18 +712,9 @@
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-inner">
-            <span class="brand footer-brand">
-                <svg class="brand-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M11.5 9.5L4.5 16l7 6.5" />
-                    <path d="M20.5 9.5l7 6.5-7 6.5" />
-                    <path d="M17.8 7.2L14.2 24.8" />
-                </svg>
-                <span class="brand-text">
-                    <span class="brand-name">Gabriel Gomes</span>
-                    <span class="brand-sub">Web site e marketing</span>
-                </span>
-            </span>
+            <a href="#topo" class="footer-brand" aria-label="Gabriel Gomes — voltar ao topo"><img class="brand-logo"
+                    src="img/logo.png" alt="Gabriel Gomes — Web site e marketing" height="36"
+                    onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-name',textContent:'Gabriel Gomes'}))"></a>
             <p class="footer-tagline">Sites que vendem e marketing que traz clientes.</p>
         </div>
         <div class="footer-bottom">
@@ -990,33 +736,50 @@
         <span>WhatsApp</span>
     </a>
 
-    <!-- OFERTA PARA NOVOS CLIENTES (pop-up compacto) -->
-    <!-- ⚠ Edite aqui: porcentagem, cupom e regras. Lembre-se de honrar o que anunciar. -->
-    <aside class="promo" id="promo" role="dialog" aria-label="Oferta para novos clientes" aria-hidden="true">
-        <button class="promo-close" id="promoClose" aria-label="Fechar oferta">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
-            </svg>
-        </button>
-
-        <button class="promo-body" id="promoCopy" data-code="GS10" type="button">
-            <span class="promo-badge">10%<small>OFF</small></span>
-            <span class="promo-info">
-                <strong class="promo-title">Desconto no PIX</strong>
-                <span class="promo-sub"><span id="promoActionText">Copiar cupom <b>GS10</b></span></span>
-            </span>
-            <svg class="promo-copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8" />
-                <path d="M5 15V6a2 2 0 012-2h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-            </svg>
-        </button>
-
-        <a class="promo-cta" id="promoCta" target="_blank" rel="noopener"
-            href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Quero%20fechar%20meu%20projeto%20pagando%20no%20PIX%20com%20o%20cupom%20GS10.">
-            Usar no WhatsApp <span aria-hidden="true">→</span>
-        </a>
-    </aside>
-
+    <!-- MENU INFERIOR (celular) -->
+    <nav class="tabbar" aria-label="Navegação rápida">
+        <div class="tabbar-inner">
+            <a href="#topo" class="tab" aria-label="Início"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path class="f" d="M5 10.2L12 4l7 6.2V19a1 1 0 01-1 1H6a1 1 0 01-1-1z" />
+                        <path d="M3.5 11L12 3.5 20.5 11" />
+                        <path d="M9.5 20v-5a1 1 0 011-1h3a1 1 0 011 1v5" />
+                    </svg></span><span class="tab-label">Início</span></a>
+            <a href="#servicos" class="tab" aria-label="Serviços"><span class="tab-ico"><svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <rect class="f" x="4" y="4" width="6.5" height="6.5" rx="2" />
+                        <rect x="13.5" y="4" width="6.5" height="6.5" rx="2" />
+                        <rect x="4" y="13.5" width="6.5" height="6.5" rx="2" />
+                        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2" />
+                    </svg></span><span class="tab-label">Serviços</span></a>
+            <a class="tab-center"
+                href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
+                target="_blank" rel="noopener" aria-label="Pedir orçamento no WhatsApp">
+                <span class="tab-hex-wrap"><span class="tab-hex"><svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20.5 12a8.2 8.2 0 01-11.9 7.3L3.8 20.5l1.3-4.4A8.2 8.2 0 1120.5 12z" />
+                            <path d="M8.6 12h.01M12 12h.01M15.4 12h.01" stroke-width="2.6" />
+                        </svg></span></span>
+                <span class="tab-label">Orçamento</span>
+            </a>
+            <a href="#sobre" class="tab" aria-label="Sobre"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle class="f" cx="12" cy="8.2" r="3.7" />
+                        <path d="M4.8 20c.6-3.7 3.5-5.8 7.2-5.8s6.6 2.1 7.2 5.8" />
+                    </svg></span><span class="tab-label">Sobre</span></a>
+            <a href="#portfolio" class="tab" aria-label="Portfólio"><span class="tab-ico"><svg viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <rect class="f" x="3.5" y="4.5" width="17" height="15" rx="3" />
+                        <circle cx="9" cy="10" r="1.5" />
+                        <path d="M20.5 15.5l-4.6-4.4L7 19.5" />
+                    </svg></span><span class="tab-label">Portfólio</span></a>
+        </div>
+    </nav>
 
     <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1027,193 +790,16 @@
 
     <!-- POP-UP DO CERTIFICADO -->
     <div class="modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificado" aria-hidden="true">
-        <div class="modal-backdrop" data-modal-close></div>
+        <div class="modal-backdrop" data-close></div>
         <div class="modal-box">
-            <button class="modal-close" data-modal-close aria-label="Fechar certificado">
+            <button class="modal-close" data-close aria-label="Fechar certificado">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
                 </svg>
             </button>
-            <img src="" alt="" id="certModalImg" decoding="async">
+            <img src="" alt="" decoding="async">
         </div>
     </div>
-
-    <script>
-        (function () {
-            var buttons = document.querySelectorAll('[data-modal-open]');
-            if (!buttons.length) return;
-            var modal = document.getElementById(buttons[0].getAttribute('data-modal-open'));
-            var img = modal.querySelector('img');
-            var closeBtn = modal.querySelector('.modal-close');
-            var lastBtn = null;
-
-            function open(e) {
-                e.preventDefault();
-                lastBtn = e.currentTarget;
-                img.src = lastBtn.getAttribute('href');
-                img.alt = lastBtn.getAttribute('data-cert-alt') || '';
-                modal.classList.add('is-open');
-                modal.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('no-scroll');
-                closeBtn.focus();
-            }
-            function close() {
-                modal.classList.remove('is-open');
-                modal.setAttribute('aria-hidden', 'true');
-                document.body.classList.remove('no-scroll');
-                if (lastBtn) lastBtn.focus();
-            }
-
-            buttons.forEach(function (btn) { btn.addEventListener('click', open); });
-            modal.querySelectorAll('[data-modal-close]').forEach(function (el) {
-                el.addEventListener('click', close);
-            });
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
-            });
-        })();
-    </script>
-
-    <script>
-        (function () {
-            var promo = document.getElementById('promo');
-            if (!promo) return;
-            var closeBtn = document.getElementById('promoClose');
-            var copyBtn = document.getElementById('promoCopy');
-            var actionText = document.getElementById('promoActionText');
-            var KEY = 'gsPromoClosedV2';
-            var shown = false;
-
-            // ?promo=1 na URL força o pop-up a aparecer (útil para testar)
-            var force = /[?&]promo=1/.test(window.location.search);
-            function wasClosed() {
-                if (force) return false;
-                try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; }
-            }
-            function calm() { promo.classList.remove('is-attention'); }
-
-            function show() {
-                if (shown || wasClosed()) return;
-                shown = true;
-                promo.classList.add('is-visible', 'is-attention'); // entra "pulando" e repete o pulinho
-                promo.setAttribute('aria-hidden', 'false');
-            }
-            function hide() {
-                promo.classList.remove('is-visible', 'is-attention');
-                promo.setAttribute('aria-hidden', 'true');
-                try { sessionStorage.setItem(KEY, '1'); } catch (e) { }
-            }
-
-            // aparece conforme a pessoa desce o site (~30% da página);
-            // se ela demorar a rolar, aparece sozinho depois de 15s
-            window.addEventListener('scroll', function onScroll() {
-                var max = document.documentElement.scrollHeight - window.innerHeight;
-                if (max > 0 && window.scrollY / max > 0.3) {
-                    show();
-                    window.removeEventListener('scroll', onScroll);
-                }
-            }, { passive: true });
-            setTimeout(show, 15000);
-
-            promo.addEventListener('mouseenter', calm);
-            promo.addEventListener('touchstart', calm, { passive: true });
-
-            function copied() {
-                calm();
-                promo.classList.add('is-copied');
-                actionText.textContent = 'Cupom copiado!';
-            }
-            copyBtn.addEventListener('click', function () {
-                var code = copyBtn.getAttribute('data-code');
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(code).then(copied, copied);
-                } else {
-                    var t = document.createElement('textarea');
-                    t.value = code; document.body.appendChild(t); t.select();
-                    try { document.execCommand('copy'); } catch (e) { }
-                    document.body.removeChild(t);
-                    copied();
-                }
-            });
-            closeBtn.addEventListener('click', hide);
-        })();
-    </script>
-
-    <script>
-        // Holofote que segue o mouse nos cards (só em dispositivos com mouse)
-        (function () {
-            if (window.matchMedia('(hover: none)').matches) return;
-            document.querySelectorAll('.service-card, .dif-card').forEach(function (card) {
-                card.addEventListener('pointermove', function (e) {
-                    var r = card.getBoundingClientRect();
-                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-                });
-            });
-        })();
-    </script>
-
-    <script>
-        // Números das estatísticas contam de 0 até o valor quando aparecem na tela
-        (function () {
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            var els = document.querySelectorAll('.hero-stat strong, .quem-stat strong');
-            if (!els.length || !('IntersectionObserver' in window)) return;
-
-            function run(el) {
-                var m = el.textContent.trim().match(/^(\D*)(\d+(?:[.,]\d+)?)(\D*)$/);
-                if (!m) return;
-                var target = parseFloat(m[2].replace(',', '.')), dec = (m[2].split(/[.,]/)[1] || '').length;
-                var start = null, dur = 1400;
-                function tick(t) {
-                    if (!start) start = t;
-                    var p = Math.min((t - start) / dur, 1), e = 1 - Math.pow(1 - p, 3);
-                    el.textContent = m[1] + (target * e).toFixed(dec).replace('.', ',') + m[3];
-                    if (p < 1) requestAnimationFrame(tick); else el.textContent = m[1] + m[2] + m[3];
-                }
-                requestAnimationFrame(tick);
-            }
-
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (en) {
-                    if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
-                });
-            }, { threshold: 0.6 });
-            els.forEach(function (el) { io.observe(el); });
-        })();
-    </script>
-
-    <script>
-        // VSL: a seção só aparece se houver um link em data-video; o player carrega ao clicar
-        (function () {
-            var frame = document.getElementById('vslFrame');
-            if (!frame) return;
-            var url = (frame.getAttribute('data-video') || '').trim();
-            var section = frame.closest('section');
-            if (!url) return;                      // sem vídeo: seção continua oculta
-            section.hidden = false;
-
-            var poster = (frame.getAttribute('data-poster') || '').trim();
-            if (poster) frame.style.backgroundImage = 'url("' + poster + '")';
-
-            document.getElementById('vslPlay').addEventListener('click', function () {
-                var el;
-                if (/\.mp4(\?|$)/i.test(url)) {
-                    el = document.createElement('video');
-                    el.src = url; el.controls = true; el.autoplay = true; el.playsInline = true;
-                } else {
-                    el = document.createElement('iframe');
-                    el.src = url + (url.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1&rel=0';
-                    el.allow = 'autoplay; fullscreen; picture-in-picture';
-                    el.allowFullscreen = true;
-                    el.title = 'Vídeo de apresentação';
-                }
-                el.className = 'vsl-media';
-                frame.innerHTML = '';
-                frame.appendChild(el);
-            });
-        })();
-    </script>
 
     <script src="src/js/main.js"></script>
     <script src="src/js/animations.js"></script>
