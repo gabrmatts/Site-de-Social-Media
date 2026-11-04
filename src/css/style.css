@@ -3429,3 +3429,392 @@ html:not(.js) .trilha-parceiros {
 .tabbar {
     display: none
 }
+
+/* =====================================================================
+   TERCEIRA COR — laranja-queimado #E8743B (complementar ao azul, quente
+   como o creme). Usada só como destaque de AÇÃO: botões principais,
+   etiquetas do portfólio, cupom, barra de progresso e hovers.
+   Texto sobre o laranja é sempre azul-noite (contraste ~6,8:1).
+   ===================================================================== */
+:root {
+    --warm: #E8743B;
+    --warm-hi: #F29A66;
+    --warm-lo: #C85A25;
+    --on-warm: #0B1226
+}
+
+::selection {
+    background: var(--warm);
+    color: var(--on-warm)
+}
+
+.scroll-progress {
+    background: linear-gradient(90deg, #2B4593, var(--warm))
+}
+
+/* botões principais */
+.btn-primary,
+.cta .btn-primary {
+    background: linear-gradient(135deg, var(--warm-hi) 0%, var(--warm) 55%, var(--warm-lo) 100%);
+    color: var(--on-warm);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 10px 30px rgba(232, 116, 59, .35), 0 4px 12px rgba(0, 0, 0, .4)
+}
+
+.btn-primary:hover {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), 0 16px 44px rgba(232, 116, 59, .5), 0 4px 12px rgba(0, 0, 0, .4)
+}
+
+.nav-cta,
+.nav-cta:hover,
+.nav-cta.is-active {
+    background: linear-gradient(135deg, var(--warm-hi) 0%, var(--warm) 55%, var(--warm-lo) 100%);
+    color: var(--on-warm);
+    box-shadow: 0 8px 24px rgba(232, 116, 59, .35)
+}
+
+.btn-primary .btn-icon,
+.nav-cta .btn-icon {
+    background: rgba(11, 18, 38, .16);
+    color: var(--on-warm)
+}
+
+.btn-primary:hover .btn-icon,
+.nav-cta:hover .btn-icon {
+    background: var(--on-warm);
+    color: var(--warm-hi)
+}
+
+/* detalhes */
+.comp-code {
+    color: var(--warm-hi)
+}
+
+.pf-tag {
+    background: var(--warm);
+    color: var(--on-warm)
+}
+
+.pf-card:hover {
+    box-shadow: 0 28px 60px rgba(232, 116, 59, .28)
+}
+
+.pf-card:hover .pf-visit {
+    background: var(--warm);
+    color: var(--on-warm)
+}
+
+.pf-card:hover .pf-visit .btn-icon {
+    background: var(--on-warm);
+    color: var(--warm)
+}
+
+/* legenda da foto (Sobre): texto claro sobre a faixa escura */
+.quem-foto-caption {
+    background: rgba(8, 13, 30, .86)
+}
+
+.quem-foto-caption strong {
+    color: #F4F1DF
+}
+
+.quem-foto-caption span {
+    color: rgba(244, 241, 223, .82)
+}
+
+/* =====================================================================
+   REORGANIZAÇÃO — ícones (Bootstrap Icons), cabeçalhos centralizados,
+   menos espaço vazio, botões centralizados
+   ===================================================================== */
+:root {
+    --pad: 92px
+}
+
+.bi {
+    line-height: 1
+}
+
+.btn .bi {
+    font-size: 18px
+}
+
+/* cabeçalhos de seção centralizados e compactos */
+.section-head {
+    text-align: center;
+    margin-bottom: 40px
+}
+
+.section-head .section-text {
+    margin-inline: auto;
+    max-width: 560px
+}
+
+.section-head .section-label::after {
+    content: '';
+    width: 22px;
+    height: 1px;
+    background: linear-gradient(270deg, transparent, var(--text-blue))
+}
+
+.section-title {
+    max-width: 820px;
+    margin-inline: auto
+}
+
+.section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px
+}
+
+.hero {
+    padding-bottom: 96px
+}
+
+.footer {
+    padding-top: calc(56px + var(--sr))
+}
+
+.cta {
+    padding: 110px 0 100px
+}
+
+.momento-bridge {
+    margin-top: 36px
+}
+
+/* serviços */
+.service-icon {
+    display: grid;
+    place-items: center
+}
+
+.service-icon i {
+    font-size: 26px
+}
+
+/* momento: ícone + frase */
+.momento-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px
+}
+
+.momento-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: rgba(232, 116, 59, .12);
+    color: var(--warm-hi);
+    font-size: 22px
+}
+
+/* método: ícone no canto do card */
+.timeline-item {
+    position: relative
+}
+
+.tl-ico {
+    position: absolute;
+    top: 24px;
+    right: 22px;
+    font-size: 24px;
+    color: var(--text-blue);
+    opacity: .55
+}
+
+/* CTA final: pontos de confiança e redes com ícone */
+.cta-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 26px;
+    margin-top: 30px
+}
+
+.cta-points li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(244, 241, 223, .85)
+}
+
+.cta-points .bi {
+    color: var(--warm-hi);
+    font-size: 15px
+}
+
+.cta-socials {
+    margin-top: 34px;
+    gap: 28px
+}
+
+.cta-socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px
+}
+
+.cta-socials .bi {
+    font-size: 18px;
+    color: var(--warm-hi)
+}
+
+/* botões centralizados dentro de blocos de texto */
+.quem-actions,
+.comp-text .btn {
+    justify-content: flex-start
+}
+
+/* =====================================================================
+   Sem a seção de depoimentos: para manter a alternância claro/escuro,
+   o FAQ passa a ser painel ESCURO e o CTA final painel CLARO (creme)
+   ===================================================================== */
+.faq {
+    background: #0B1226;
+    color: #F4F1DF;
+    --ink: #F4F1DF;
+    --soft: #CBC9B3;
+    --faint: #9EA0A8;
+    --line: rgba(244, 241, 223, .09);
+    --line2: rgba(244, 241, 223, .2);
+    --text-blue: #E6E2C5;
+    --blue-soft: rgba(43, 69, 147, .14);
+    --blue-line: rgba(230, 226, 197, .35);
+    --grad-text: linear-gradient(110deg, #FFF6D6, #E6E2C5 50%, #9FB2EE);
+    --shadow: 0 24px 60px rgba(0, 0, 0, .5)
+}
+
+.faq .section-title {
+    background: linear-gradient(180deg, #F4F1DF 30%, #BFC3D6 140%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.faq .section-title em {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(43, 69, 147, .4))
+}
+
+.faq-item {
+    background: rgba(244, 241, 223, .04)
+}
+
+.faq-item.is-open {
+    background: linear-gradient(180deg, rgba(43, 69, 147, .22), rgba(244, 241, 223, .03))
+}
+
+.faq-question:hover {
+    color: #E6E2C5
+}
+
+.cta {
+    background: #E6E2C5;
+    color: #0B1226;
+    --ink: #0B1226;
+    --soft: #3E4A78;
+    --faint: #666B8E;
+    --line: rgba(0, 0, 0, .1);
+    --line2: rgba(0, 0, 0, .2);
+    --text-blue: #2B4593;
+    --grad-text: linear-gradient(110deg, #2B4593, #3F5CB5)
+}
+
+.cta .cta-watermark {
+    color: rgba(11, 18, 38, .05)
+}
+
+.cta .cta-glow {
+    background: radial-gradient(circle, rgba(232, 116, 59, .2), transparent 70%)
+}
+
+.cta h2 {
+    color: #0B1226
+}
+
+.cta h2 em {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: none
+}
+
+.cta p {
+    color: #3E4A78
+}
+
+.cta .btn-secondary {
+    background: rgba(11, 18, 38, .04);
+    border-color: rgba(11, 18, 38, .25);
+    color: #0B1226
+}
+
+.cta .btn-secondary .btn-icon {
+    background: rgba(11, 18, 38, .08)
+}
+
+.cta .btn-secondary:hover {
+    background: rgba(43, 69, 147, .1);
+    border-color: #2B4593
+}
+
+.cta .btn-secondary:hover .btn-icon {
+    background: #2B4593;
+    color: #F4F1DF
+}
+
+.cta-points li {
+    color: #3E4A78
+}
+
+.cta-points .bi,
+.cta-socials .bi {
+    color: #C85A25
+}
+
+.cta-socials a {
+    color: #3E4A78
+}
+
+.cta-socials a:hover {
+    color: #0B1226;
+    border-color: #2B4593
+}
+
+/* Compromisso: cartões mais compactos e alinhados (sem deslocar no toque) */
+.comp-cards {
+    gap: 12px
+}
+
+.comp-card {
+    padding: 18px 22px;
+    font-size: 16.5px;
+    gap: 16px
+}
+
+.comp-card svg {
+    width: 28px;
+    height: 28px
+}
+
+@media (hover:none) {
+    .comp-card:hover {
+        transform: none
+    }
+}
+
+/* portfólio com 8 cards: última linha com 2 + 1 + 1 */
+.pf-grid[data-count="8"] .pf-card:nth-child(7),
+.pf-grid[data-count="8"] .pf-card:nth-child(8) {
+    grid-column: span 1
+}

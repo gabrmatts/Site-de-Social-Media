@@ -244,7 +244,43 @@
     track.style.animationDuration = Math.max(24, items.length * 4) + 's';   // velocidade constante
   }
 
+  /* ---------- Dica única no botão de orçamento (celular) ---------- */
+  function initCtaTip() {
+    const cta = $('.tab-center');
+    const mobile = matchMedia('(max-width: 768px)');
+    const KEY = 'gg_cta_tip_seen';
+    if (!cta) return;
+    try { if (localStorage.getItem(KEY)) return; } catch (_) { /* segue sem lembrar */ }
+
+    let tip = null, hideTimer = 0;
+
+    function finish() {
+      clearTimeout(hideTimer);
+      document.removeEventListener('pointerdown', finish, true);
+      try { localStorage.setItem(KEY, '1'); } catch (_) { /* noop */ }
+      if (!tip) return;
+      const el = tip; tip = null;
+      el.classList.remove('is-visible');
+      setTimeout(() => el.remove(), 400);
+    }
+
+    function show() {
+      if (tip || !mobile.matches || document.hidden) return;
+      tip = document.createElement('div');
+      tip.className = 'tab-tip';
+      tip.setAttribute('role', 'status');
+      tip.textContent = 'Peça seu orçamento no WhatsApp';
+      cta.appendChild(tip);
+      requestAnimationFrame(() => tip && tip.classList.add('is-visible'));
+      hideTimer = setTimeout(finish, 5500);                       // some sozinho
+      document.addEventListener('pointerdown', finish, true);     // ou ao primeiro toque
+    }
+
+    setTimeout(show, 8000);                                       // aparece uma única vez
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initCtaTip();
     initMarquee();
     initPortfolio();
     initScrollState();
