@@ -1160,3 +1160,411 @@
         margin-top: 24px
     }
 }
+
+/* =====================================================================
+   CORREÇÃO DO PORTFÓLIO (tablet e celular)
+   Causa do bug: as regras de "span 2" da grade (que dependem do número de
+   projetos) tinham mais força que as regras do celular e criavam uma
+   2ª coluna invisível, empurrando os cards para fora da tela.
+   ===================================================================== */
+@media (max-width:1024px) {
+    .pf-grid[data-count] .pf-card:nth-child(n) {
+        grid-column: auto;
+        grid-row: auto
+    }
+
+    .pf-grid[data-count] .pf-card:nth-child(1) {
+        grid-column: 1/-1;
+        grid-row: span 2
+    }
+
+    .pf-grid[data-count] .pf-card:last-of-type:nth-child(even) {
+        grid-column: 1/-1
+    }
+}
+
+@media (max-width:640px),
+(hover:none) {
+
+    .pf-grid,
+    .pf-grid[data-count] {
+        grid-template-columns: minmax(0, 1fr);
+        grid-auto-rows: auto
+    }
+
+    .pf-grid[data-count] .pf-card:nth-child(n) {
+        grid-column: 1/-1;
+        grid-row: auto;
+        aspect-ratio: 1/1;
+        min-height: 0
+    }
+
+    /* degradê mais forte: o texto lê bem mesmo sobre prints de sites */
+    .pf-media::before,
+    .pf-card:hover .pf-media::before {
+        background: linear-gradient(to top, rgba(8, 13, 30, .97) 0, rgba(8, 13, 30, .82) 42%, rgba(8, 13, 30, .2) 78%, transparent 100%)
+    }
+}
+
+/* =====================================================================
+   CAPAS SEM CORTE
+   · 4 projetos: mantém 2×2 também no tablet
+   · celular: foto em cima (4:3, inteira) e texto embaixo, sobre fundo
+     liso — nada de texto por cima do mockup
+   ===================================================================== */
+@media (max-width:1024px) {
+    .pf-grid[data-count="4"] .pf-card:nth-child(n) {
+        grid-column: auto;
+        grid-row: auto;
+        aspect-ratio: 4/3
+    }
+}
+
+@media (max-width:640px),
+(hover:none) {
+    .pf-grid[data-count] .pf-card:nth-child(n) {
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        container-type: normal;
+        border-radius: 22px;
+        background: #0B1226
+    }
+
+    .pf-media {
+        position: relative;
+        inset: auto;
+        flex: none;
+        aspect-ratio: 4/3;
+        border-radius: 0
+    }
+
+    .pf-media::before,
+    .pf-card:hover .pf-media::before {
+        display: none
+    }
+
+    .pf-body {
+        position: relative;
+        z-index: 5;
+        pointer-events: auto;
+        padding: 16px 18px 20px;
+        background: #0B1226
+    }
+
+    .pf-body p {
+        display: block;
+        max-width: none
+    }
+
+    .pf-grid[data-count="4"] {
+        grid-template-columns: minmax(0, 1fr)
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 5.0 — cards claros: foto emoldurada em cima (4:3, inteira) e
+   texto embaixo; número em selo, "Ver site" sempre visível, hover com
+   elevação e zoom suave na foto. Mesmo modelo em computador, tablet e celular.
+   ===================================================================== */
+.portfolio .pf-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px
+}
+
+.portfolio .pf-grid[data-count="1"] {
+    grid-template-columns: minmax(0, 520px);
+    justify-content: center
+}
+
+.portfolio .pf-grid[data-count="2"],
+.portfolio .pf-grid[data-count="4"] {
+    grid-template-columns: repeat(2, 1fr)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    container-type: normal;
+    padding: 10px;
+    border: 1px solid rgba(11, 18, 38, .08);
+    border-radius: 26px;
+    background: #FBF8EE;
+    box-shadow: 0 10px 30px rgba(11, 18, 38, .08)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    background: #FBF8EE;
+    transform: translateY(-6px);
+    box-shadow: 0 26px 50px rgba(11, 18, 38, .16)
+}
+
+.portfolio .pf-media {
+    position: relative;
+    inset: auto;
+    flex: none;
+    aspect-ratio: 4/3;
+    border-radius: 18px
+}
+
+.portfolio .pf-media::before,
+.portfolio .pf-card:hover .pf-media::before {
+    display: none
+}
+
+.portfolio .pf-media::after {
+    top: 12px;
+    right: 12px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background: rgba(251, 248, 238, .92);
+    color: #0B1226;
+    text-shadow: none;
+    font-size: 11px;
+    letter-spacing: .08em
+}
+
+.portfolio .pf-tag {
+    top: 12px;
+    left: 12px
+}
+
+.portfolio .pf-body {
+    position: relative;
+    inset: auto;
+    z-index: 5;
+    gap: 6px;
+    padding: 18px 10px 8px;
+    background: none;
+    pointer-events: none
+}
+
+.portfolio .pf-body h3 {
+    color: var(--ink);
+    font-size: 22px
+}
+
+.portfolio .pf-body p {
+    display: block;
+    max-width: none;
+    margin: 0;
+    color: var(--soft);
+    font-size: 14.5px
+}
+
+.portfolio .pf-actions {
+    max-height: none;
+    opacity: 1;
+    transform: none;
+    overflow: visible;
+    padding-top: 12px
+}
+
+.portfolio .pf-visit {
+    background: #0B1226;
+    color: #F4F1DF
+}
+
+.portfolio .pf-visit .btn-icon {
+    background: var(--warm);
+    color: #0B1226
+}
+
+.portfolio .pf-card:hover .pf-visit {
+    background: var(--warm);
+    color: #0B1226
+}
+
+.portfolio .pf-card:hover .pf-visit .btn-icon {
+    background: #0B1226;
+    color: var(--warm)
+}
+
+.portfolio .pf-wa {
+    color: var(--ink);
+    border-color: rgba(11, 18, 38, .3)
+}
+
+.portfolio .pf-wa:hover {
+    border-color: var(--ink)
+}
+
+@media (max-width:1024px) {
+    .portfolio .pf-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (max-width:640px) {
+
+    .portfolio .pf-grid,
+    .portfolio .pf-grid[data-count] {
+        grid-template-columns: minmax(0, 1fr)
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 6.0 — editorial: foto grande sem moldura, sem caixas nem
+   sombras de card; número, título e descrição soltos no fundo, com
+   tipografia forte. No hover a foto escurece e surge um botão redondo ↗.
+   ===================================================================== */
+.portfolio .pf-grid {
+    gap: 48px 32px
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    background: none;
+    box-shadow: none;
+    transform: translateY(-4px)
+}
+
+/* foto */
+.portfolio .pf-media {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 22px 44px -20px rgba(11, 18, 38, .5)
+}
+
+.portfolio .pf-media img {
+    transition: transform 1s var(--ease), filter .6s var(--ease)
+}
+
+.portfolio .pf-card:hover .pf-media img {
+    transform: scale(1.05);
+    filter: brightness(.62)
+}
+
+.portfolio .pf-media::after {
+    display: none
+}
+
+/* botão redondo que surge no hover */
+.portfolio .pf-media::before,
+.portfolio .pf-card:hover .pf-media::before {
+    content: '↗';
+    display: grid;
+    place-items: center;
+    position: absolute;
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    width: 78px;
+    height: 78px;
+    margin: -39px 0 0 -39px;
+    border-radius: 50%;
+    background: #F4F1DF;
+    color: #0B1226;
+    font-size: 28px;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(.7);
+    pointer-events: none;
+    transition: opacity .45s var(--ease), transform .5s var(--ease)
+}
+
+.portfolio .pf-card:hover .pf-media::before {
+    opacity: 1;
+    transform: scale(1)
+}
+
+.portfolio .no-site .pf-media::before,
+.portfolio .no-site:hover .pf-media::before {
+    display: none
+}
+
+.portfolio .no-site:hover .pf-media img {
+    filter: none
+}
+
+/* etiqueta: selo de vidro */
+.portfolio .pf-tag {
+    top: 14px;
+    left: 14px;
+    padding: 6px 13px;
+    background: rgba(251, 248, 238, .82);
+    color: #0B1226;
+    border: 1px solid rgba(255, 255, 255, .55);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px)
+}
+
+/* texto solto, em estilo editorial */
+.portfolio .pf-body {
+    padding: 20px 2px 0;
+    gap: 8px
+}
+
+.portfolio .pf-body::before {
+    content: counter(pf, decimal-leading-zero);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--warm-lo)
+}
+
+.portfolio .pf-body h3 {
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -.03em
+}
+
+.portfolio .pf-body p {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 46ch
+}
+
+.portfolio .pf-visit {
+    display: none
+}
+
+.portfolio .pf-actions {
+    padding-top: 6px
+}
+
+.portfolio .pf-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+    border: 0;
+    border-bottom: 1.5px solid rgba(11, 18, 38, .25);
+    padding-bottom: 2px;
+    transition: border-color .3s var(--ease), gap .3s var(--ease)
+}
+
+.portfolio .pf-wa::after {
+    content: '→'
+}
+
+.portfolio .pf-wa:hover {
+    border-color: var(--warm);
+    gap: 10px
+}
+
+@media (max-width:640px) {
+    .portfolio .pf-grid {
+        gap: 40px
+    }
+
+    .portfolio .pf-media {
+        border-radius: 20px
+    }
+}

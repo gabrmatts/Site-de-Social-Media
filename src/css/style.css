@@ -3818,3 +3818,24 @@ html:not(.js) .trilha-parceiros {
 .pf-grid[data-count="8"] .pf-card:nth-child(8) {
     grid-column: span 1
 }
+
+/* capas em mockup: centralizadas e com fundo de apoio (caso o PNG tenha transparência) */
+.pf-media {
+    background: linear-gradient(160deg, #16213F, #0B1226)
+}
+
+.pf-media img.is-mockup {
+    object-position: 50% 50%
+}
+
+/* com 4 projetos: grade 2×2 com cards 4:3 (os mockups aparecem inteiros, sem card largo) */
+.pf-grid[data-count="4"] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto
+}
+
+.pf-grid[data-count="4"] .pf-card:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4/3
+}
