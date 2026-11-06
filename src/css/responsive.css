@@ -1568,3 +1568,615 @@
         border-radius: 20px
     }
 }
+
+/* =====================================================================
+   PORTFÓLIO 7.0 — cards escuros (azul-noite) com foto emoldurada em 4:3,
+   selos de vidro (etiqueta + número), título e descrição, e um rodapé do
+   card com "Quero algo assim" à esquerda e "Ver site" à direita.
+   Hover: borda e brilho laranja, a foto dá zoom e a seta gira.
+   ===================================================================== */
+.portfolio .pf-grid {
+    gap: 22px
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    padding: 10px;
+    border: 1px solid rgba(244, 241, 223, .1);
+    border-radius: 26px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #14204A, #0B1226);
+    box-shadow: 0 24px 50px -18px rgba(11, 18, 38, .55)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    background: linear-gradient(180deg, #14204A, #0B1226);
+    border-color: rgba(232, 116, 59, .55);
+    box-shadow: 0 30px 60px -16px rgba(232, 116, 59, .35);
+    transform: translateY(-6px)
+}
+
+.portfolio .pf-media {
+    border-radius: 18px;
+    box-shadow: none
+}
+
+.portfolio .pf-card:hover .pf-media img {
+    transform: scale(1.05);
+    filter: none
+}
+
+.portfolio .pf-media::before,
+.portfolio .pf-card:hover .pf-media::before,
+.portfolio .no-site .pf-media::before {
+    content: none;
+    display: none
+}
+
+.portfolio .pf-media::after {
+    display: block;
+    top: 14px;
+    right: 14px;
+    padding: 5px 11px;
+    border-radius: 100px;
+    background: rgba(11, 18, 38, .6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #F4F1DF;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-shadow: none
+}
+
+.portfolio .pf-body {
+    padding: 18px 12px 6px;
+    gap: 8px
+}
+
+.portfolio .pf-body::before {
+    content: none
+}
+
+.portfolio .pf-body h3 {
+    color: #F4F1DF;
+    font-size: clamp(22px, 2.2vw, 28px)
+}
+
+.portfolio .pf-body p {
+    color: #CBC9B3;
+    max-width: none
+}
+
+/* rodapé do card */
+.portfolio .pf-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(244, 241, 223, .1)
+}
+
+.portfolio .pf-wa {
+    order: 1;
+    color: #CBC9B3;
+    border-bottom: 1px solid rgba(244, 241, 223, .3)
+}
+
+.portfolio .pf-wa:hover {
+    color: #F4F1DF;
+    border-color: var(--warm)
+}
+
+.portfolio .pf-visit {
+    order: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    background: none;
+    color: #F4F1DF;
+    font-size: 13px;
+    font-weight: 700
+}
+
+.portfolio .pf-visit .btn-icon {
+    width: 34px;
+    height: 34px;
+    padding: 9px;
+    border-radius: 50%;
+    background: var(--warm);
+    color: #0B1226
+}
+
+.portfolio .pf-card:hover .pf-visit {
+    background: none;
+    color: #F4F1DF
+}
+
+.portfolio .pf-card:hover .pf-visit .btn-icon {
+    background: #F4F1DF;
+    color: #0B1226;
+    transform: rotate(45deg)
+}
+
+/* logo maior no topo do celular */
+@media (max-width:768px) {
+    .brand-logo {
+        height: 38px;
+        max-width: 210px
+    }
+
+    .navbar .navbar-inner {
+        padding: 8px 22px
+    }
+
+    .navbar.is-scrolled .navbar-inner {
+        padding: 6px 18px
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 8.0 — VITRINE: lista de projetos (esquerda) + prévia grande
+   (direita). Passe o mouse (ou toque) em um projeto: ele abre os detalhes
+   e a foto troca. No celular a prévia fica em cima e a lista embaixo.
+   (o JS monta isso a partir dos cards; sem JS, os cards continuam aparecendo)
+   ===================================================================== */
+.portfolio .pf-grid.is-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 36px
+}
+
+.portfolio .pf-grid.is-showcase>.pf-card {
+    display: none !important
+}
+
+.pf-show {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: start
+}
+
+/* lista */
+.pf-list {
+    border-top: 1px solid rgba(11, 18, 38, .16)
+}
+
+.pf-item {
+    border-bottom: 1px solid rgba(11, 18, 38, .16)
+}
+
+.pf-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 42px 1fr auto;
+    align-items: baseline;
+    gap: 6px 10px;
+    padding: 24px 0;
+    text-align: left;
+    color: rgba(11, 18, 38, .4);
+    transition: color .35s var(--ease)
+}
+
+.pf-head:hover {
+    color: rgba(11, 18, 38, .75)
+}
+
+.pf-num {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em
+}
+
+.pf-name {
+    font-size: clamp(24px, 2.8vw, 38px);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.08
+}
+
+.pf-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .8;
+    white-space: nowrap
+}
+
+.pf-item.is-active .pf-head {
+    color: #0B1226
+}
+
+.pf-item.is-active .pf-num {
+    color: var(--warm-lo)
+}
+
+.pf-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .55s var(--ease)
+}
+
+.pf-item.is-active .pf-detail {
+    grid-template-rows: 1fr
+}
+
+.pf-detail-in {
+    overflow: hidden;
+    min-height: 0;
+    padding-left: 52px
+}
+
+.pf-detail-in p {
+    max-width: 44ch;
+    color: #3E4A78;
+    font-size: 15.5px;
+    line-height: 1.65
+}
+
+.pf-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    padding: 16px 0 26px
+}
+
+.pf-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 100px;
+    background: #0B1226;
+    color: #F4F1DF;
+    font-size: 13.5px;
+    font-weight: 700;
+    transition: background .3s var(--ease), color .3s var(--ease)
+}
+
+.pf-open:hover {
+    background: var(--warm);
+    color: #0B1226
+}
+
+.pf-ask {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0B1226;
+    border-bottom: 1.5px solid rgba(11, 18, 38, .3);
+    padding-bottom: 2px;
+    transition: border-color .3s var(--ease)
+}
+
+.pf-ask:hover {
+    border-color: var(--warm)
+}
+
+/* prévia */
+.pf-stage {
+    position: sticky;
+    top: 110px
+}
+
+.pf-shot {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 28px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #16213F, #0B1226);
+    box-shadow: 0 34px 70px -26px rgba(11, 18, 38, .6)
+}
+
+.pf-shot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    opacity: 0;
+    transition: opacity .4s var(--ease)
+}
+
+.pf-shot img.is-mockup {
+    object-position: 50% 50%
+}
+
+.pf-shot-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    background: rgba(251, 248, 238, .85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #0B1226;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase
+}
+
+.pf-go {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: var(--warm);
+    color: #0B1226;
+    font-size: 24px;
+    box-shadow: 0 14px 30px rgba(232, 116, 59, .5);
+    transition: transform .4s var(--ease), background .3s var(--ease)
+}
+
+.pf-go:hover {
+    transform: rotate(45deg) scale(1.06);
+    background: #F4F1DF
+}
+
+.pf-go[hidden] {
+    display: none
+}
+
+@media (max-width:900px) {
+    .pf-show {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px
+    }
+
+    .pf-stage {
+        order: -1;
+        position: static
+    }
+
+    .pf-head {
+        padding: 20px 0
+    }
+
+    .pf-detail-in {
+        padding-left: 0
+    }
+
+    .pf-shot {
+        border-radius: 22px
+    }
+
+    .pf-go {
+        width: 54px;
+        height: 54px;
+        right: 12px;
+        bottom: 12px
+    }
+}
+
+/* =====================================================================
+   GALERIA EM POP-UP (portfólio) — imagens lado a lado; arraste/deslize
+   para o lado, use as setas, os pontos ou o teclado (← → Esc)
+   ===================================================================== */
+button.pf-open {
+    cursor: pointer
+}
+
+.gal {
+    position: fixed;
+    inset: 0;
+    z-index: 3500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--ease), visibility .35s var(--ease)
+}
+
+.gal.is-open {
+    opacity: 1;
+    visibility: visible
+}
+
+.gal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 13, 30, .9);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    cursor: zoom-out
+}
+
+.gal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #F4F1DF;
+    color: #0B1226;
+    font-size: 18px;
+    transition: transform .3s var(--ease), background .3s var(--ease)
+}
+
+.gal-close:hover {
+    background: var(--warm);
+    transform: rotate(90deg)
+}
+
+.gal-box {
+    position: relative;
+    z-index: 2;
+    width: min(980px, 100%);
+    transform: translateY(16px) scale(.97);
+    transition: transform .5s var(--ease)
+}
+
+.gal.is-open .gal-box {
+    transform: none
+}
+
+.gal-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 24px;
+    outline: none;
+    cursor: grab
+}
+
+.gal-track::-webkit-scrollbar {
+    display: none
+}
+
+.gal-track.is-grabbing {
+    cursor: grabbing
+}
+
+.gal-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    display: grid;
+    place-items: center;
+    margin: 0
+}
+
+.gal-slide img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100svh - 190px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .5)
+}
+
+.gal-nav {
+    position: absolute;
+    top: calc(50% - 40px);
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(244, 241, 223, .92);
+    color: #0B1226;
+    font-size: 20px;
+    transition: background .3s var(--ease), opacity .3s var(--ease), transform .3s var(--ease)
+}
+
+.gal-nav:hover:not(:disabled) {
+    background: var(--warm);
+    transform: scale(1.06)
+}
+
+.gal-nav:disabled {
+    opacity: .3;
+    cursor: default
+}
+
+.gal-prev {
+    left: 14px
+}
+
+.gal-next {
+    right: 14px
+}
+
+.gal-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    color: #F4F1DF;
+    font-size: 13.5px
+}
+
+.gal-title {
+    font-weight: 700
+}
+
+.gal-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(244, 241, 223, .6);
+    font-size: 12.5px
+}
+
+.gal-count {
+    font-weight: 700;
+    letter-spacing: .08em;
+    font-variant-numeric: tabular-nums
+}
+
+.gal-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px
+}
+
+.gal-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(244, 241, 223, .3);
+    transition: background .3s var(--ease), transform .3s var(--ease)
+}
+
+.gal-dot.is-active {
+    background: var(--warm);
+    transform: scale(1.35)
+}
+
+@media (hover:none) {
+    .gal-nav {
+        display: none
+    }
+
+    .gal-hint {
+        display: inline-flex
+    }
+}
+
+@media (max-width:640px) {
+    .gal {
+        padding: 14px
+    }
+
+    .gal-close {
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px
+    }
+
+    .gal-slide img {
+        max-height: calc(100svh - 170px);
+        border-radius: 16px
+    }
+
+    .gal-hint {
+        display: none
+    }
+}
