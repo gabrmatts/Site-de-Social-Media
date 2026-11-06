@@ -279,10 +279,197 @@
     setTimeout(show, 8000);                                       // aparece uma única vez
   }
 
+  /* ---------- Galeria em pop-up: arraste para o lado (ou use as setas) ---------- */
+  function openGallery(item) {
+    if (!item || !item.gallery) return;
+    let modal = $('#galModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'galModal'; modal.className = 'gal';
+      modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true'); modal.setAttribute('aria-hidden', 'true');
+      modal.innerHTML =
+        '<div class="gal-bg" data-gclose></div>' +
+        '<button type="button" class="gal-close" data-gclose aria-label="Fechar galeria"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
+        '<div class="gal-box">' +
+          '<div class="gal-track" tabindex="0"></div>' +
+          '<button type="button" class="gal-nav gal-prev" aria-label="Anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>' +
+          '<button type="button" class="gal-nav gal-next" aria-label="Próxima"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>' +
+          '<div class="gal-foot"><span class="gal-title"></span><span class="gal-hint"><i class="bi bi-arrow-left-right" aria-hidden="true"></i> arraste para o lado</span><span class="gal-count"></span></div>' +
+          '<div class="gal-dots"></div>' +
+        '</div>';
+      document.body.appendChild(modal);
+    }
+    const track = $('.gal-track', modal), dots = $('.gal-dots', modal), count = $('.gal-count', modal);
+    const prev = $('.gal-prev', modal), next = $('.gal-next', modal), closeBtn = $('.gal-close', modal);
+    const opener = document.activeElement;
+    let idx = 0;
+
+    $('.gal-title', modal).textContent = item.title;
+    track.innerHTML = item.gallery.map((src, i) =>
+      '<figure class="gal-slide"><img src="' + src + '" alt="' + item.title + ' — imagem ' + (i + 1) + '" draggable="false" decoding="async"></figure>').join('');
+
+    const slides = () => $$('.gal-slide', track);
+    const width = () => track.clientWidth || 1;
+    function refresh() {
+      const n = slides().length;
+      idx = Math.min(Math.max(Math.round(track.scrollLeft / width()), 0), Math.max(n - 1, 0));
+      count.textContent = n ? (idx + 1) + ' / ' + n : '';
+      dots.innerHTML = Array.from({ length: n }, (_, i) => '<button type="button" class="gal-dot' + (i === idx ? ' is-active' : '') + '" data-i="' + i + '" aria-label="Ir para a imagem ' + (i + 1) + '"></button>').join('');
+      prev.disabled = idx <= 0; next.disabled = idx >= n - 1;
+    }
+    const goTo = (i) => track.scrollTo({ left: i * width(), behavior: reduceMotion ? 'auto' : 'smooth' });
+
+    // imagem que não existe é ignorada
+    $$('img', track).forEach((img) => img.addEventListener('error', () => { img.closest('.gal-slide').remove(); refresh(); }));
+
+    let raf = 0;
+    track.onscroll = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; refresh(); }); };
+    prev.onclick = () => goTo(idx - 1);
+    next.onclick = () => goTo(idx + 1);
+    dots.onclick = (e) => { const d = e.target.closest('.gal-dot'); if (d) goTo(+d.dataset.i); };
+
+    // arrastar com o mouse (no celular o toque já rola nativamente)
+    let down = false, startX = 0, startLeft = 0, moved = false;
+    track.onpointerdown = (e) => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      track.style.scrollSnapType = 'none'; track.classList.add('is-grabbing');
+      try { track.setPointerCapture(e.pointerId); } catch (_) { /* noop */ }
+    };
+    track.onpointermove = (e) => { if (!down) return; const dx = e.clientX - startX; if (Math.abs(dx) > 3) moved = true; track.scrollLeft = startLeft - dx; };
+    const endDrag = () => {
+      if (!down) return;
+      down = false; track.classList.remove('is-grabbing');
+      track.style.scrollSnapType = '';
+      goTo(Math.round(track.scrollLeft / width()));
+    };
+    track.onpointerup = endDrag; track.onpointercancel = endDrag;
+
+    function close() {
+      modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true');
+      lockScroll(false);
+      document.removeEventListener('keydown', onKey);
+      if (opener && opener.focus) opener.focus();
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') { goTo(idx - 1); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { goTo(idx + 1); e.preventDefault(); }
+      else if (e.key === 'Tab') {
+        const f = [closeBtn, prev, next].filter((b) => !b.disabled);
+        const i = f.indexOf(document.activeElement);
+        e.preventDefault();
+        f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+      }
+    }
+    $$('[data-gclose]', modal).forEach((el) => { el.onclick = close; });
+
+    track.scrollLeft = 0; refresh();
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false');
+    lockScroll(true);
+    document.addEventListener('keydown', onKey);
+    closeBtn.focus();
+  }
+
+  /* ---------- Portfólio: vitrine interativa (lista + prévia grande) ---------- */
+  function initShowcase() {
+    const grid = $('.pf-grid');
+    if (!grid || !$('.pf-card', grid)) return;
+    const fine = matchMedia('(hover: hover) and (pointer: fine)');
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const show = document.createElement('div');
+    show.className = 'pf-show';
+    grid.prepend(show);
+    grid.classList.add('is-showcase');
+    $$('.pf-media img', grid).forEach((i) => { i.loading = 'eager'; });   // detecta logo cedo as imagens que faltam
+
+    let items = [], active = 0, swapTimer = 0;
+
+    const read = () => $$('.pf-card', grid).map((c) => {
+      const img = $('.pf-media img', c), st = $('.pf-stretch', c), wa = $('.pf-wa', c);
+      return {
+        src: img ? (img.currentSrc || img.src) : '', alt: img ? img.alt : '',
+        mock: !!(img && img.classList.contains('is-mockup')),
+        title: $('h3', c).textContent, desc: ($('p', c) || {}).textContent || '', tag: ($('.pf-tag', c) || {}).textContent || '',
+        site: st && !/seu-link/i.test(st.href) ? st.href : '', wa: wa ? wa.href : '',
+        gallery: (() => { try { return c.dataset.gallery ? JSON.parse(c.dataset.gallery) : null; } catch (_) { return null; } })()
+      };
+    });
+
+    function paint() {
+      const it = items[active], img = $('.pf-shot img', show), go = $('.pf-go', show), tag = $('.pf-shot-tag', show);
+      if (!it || !img) return;
+      img.style.opacity = 0;
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(() => {
+        img.src = it.src; img.alt = it.alt || it.title;
+        img.classList.toggle('is-mockup', it.mock);
+        img.style.opacity = 1;
+      }, 160);
+      tag.textContent = it.tag;
+      go.hidden = !(it.site || it.gallery);
+      delete go.dataset.gal;
+      if (it.site) {
+        go.href = it.site; go.target = '_blank';
+        go.innerHTML = '<i class="bi bi-arrow-up-right" aria-hidden="true"></i>';
+        go.setAttribute('aria-label', 'Ver o site do projeto ' + it.title);
+      } else if (it.gallery) {
+        go.href = '#'; go.removeAttribute('target'); go.dataset.gal = active;
+        go.innerHTML = '<i class="bi bi-images" aria-hidden="true"></i>';
+        go.setAttribute('aria-label', 'Abrir a galeria do projeto ' + it.title);
+      }
+    }
+
+    function build() {
+      items = read();
+      if (!items.length) { show.innerHTML = ''; return; }
+      active = Math.min(active, items.length - 1);
+      show.innerHTML =
+        '<ul class="pf-list">' + items.map((it, i) =>
+          '<li class="pf-item' + (i === active ? ' is-active' : '') + '">' +
+            '<button type="button" class="pf-head" data-i="' + i + '" aria-expanded="' + (i === active) + '">' +
+              '<span class="pf-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+              '<span class="pf-name">' + esc(it.title) + '</span><span class="pf-cat">' + esc(it.tag) + '</span></button>' +
+            '<div class="pf-detail"><div class="pf-detail-in"><p>' + esc(it.desc) + '</p><div class="pf-links">' +
+              (it.gallery ? '<button type="button" class="pf-open pf-gal" data-i="' + i + '">Ver galeria <i class="bi bi-images" aria-hidden="true"></i></button>' : '') +
+              (it.site ? '<a class="pf-open" href="' + esc(it.site) + '" target="_blank" rel="noopener">Ver site <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>' : '') +
+              (it.wa ? '<a class="pf-ask" href="' + esc(it.wa) + '" target="_blank" rel="noopener">Quero algo assim</a>' : '') +
+            '</div></div></div></li>').join('') + '</ul>' +
+        '<div class="pf-stage"><div class="pf-shot"><img src="" alt="" decoding="async"><span class="pf-shot-tag"></span>' +
+          '<a class="pf-go" href="#" target="_blank" rel="noopener" hidden><i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div></div>';
+      paint();
+    }
+
+    function setActive(i) {
+      if (i === active) return;
+      active = i;
+      $$('.pf-item', show).forEach((li, k) => {
+        li.classList.toggle('is-active', k === i);
+        $('.pf-head', li).setAttribute('aria-expanded', k === i);
+      });
+      paint();
+    }
+
+    show.addEventListener('click', (e) => {
+      const g = e.target.closest('.pf-gal');
+      if (g) { openGallery(items[+g.dataset.i]); return; }
+      const go = e.target.closest('.pf-go');
+      if (go && go.dataset.gal !== undefined) { e.preventDefault(); openGallery(items[+go.dataset.gal]); return; }
+      const b = e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i);
+    });
+    show.addEventListener('focusin', (e) => { const b = e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i); });
+    show.addEventListener('mouseover', (e) => { const b = fine.matches && e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i); });
+
+    build();
+    let t = 0;
+    new MutationObserver(() => { clearTimeout(t); t = setTimeout(build, 150); }).observe(grid, { childList: true });  // cards sem imagem somem
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initCtaTip();
     initMarquee();
     initPortfolio();
+    initShowcase();
     initScrollState();
     initActiveNav();
     initMobileMenu();

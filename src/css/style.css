@@ -3839,3 +3839,14 @@ html:not(.js) .trilha-parceiros {
     grid-row: auto;
     aspect-ratio: 4/3
 }
+
+/* sua logo em tamanho de destaque (como na referência) */
+.brand-logo {
+    height: 44px;
+    max-width: 230px
+}
+
+.footer .brand-logo {
+    height: 56px;
+    max-width: 260px
+}
