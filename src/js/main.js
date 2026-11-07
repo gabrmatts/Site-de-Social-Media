@@ -244,41 +244,6 @@
     track.style.animationDuration = Math.max(24, items.length * 4) + 's';   // velocidade constante
   }
 
-  /* ---------- Dica única no botão de orçamento (celular) ---------- */
-  function initCtaTip() {
-    const cta = $('.tab-center');
-    const mobile = matchMedia('(max-width: 768px)');
-    const KEY = 'gg_cta_tip_seen';
-    if (!cta) return;
-    try { if (localStorage.getItem(KEY)) return; } catch (_) { /* segue sem lembrar */ }
-
-    let tip = null, hideTimer = 0;
-
-    function finish() {
-      clearTimeout(hideTimer);
-      document.removeEventListener('pointerdown', finish, true);
-      try { localStorage.setItem(KEY, '1'); } catch (_) { /* noop */ }
-      if (!tip) return;
-      const el = tip; tip = null;
-      el.classList.remove('is-visible');
-      setTimeout(() => el.remove(), 400);
-    }
-
-    function show() {
-      if (tip || !mobile.matches || document.hidden) return;
-      tip = document.createElement('div');
-      tip.className = 'tab-tip';
-      tip.setAttribute('role', 'status');
-      tip.textContent = 'Peça seu orçamento no WhatsApp';
-      cta.appendChild(tip);
-      requestAnimationFrame(() => tip && tip.classList.add('is-visible'));
-      hideTimer = setTimeout(finish, 5500);                       // some sozinho
-      document.addEventListener('pointerdown', finish, true);     // ou ao primeiro toque
-    }
-
-    setTimeout(show, 8000);                                       // aparece uma única vez
-  }
-
   /* ---------- Galeria em pop-up: arraste para o lado (ou use as setas) ---------- */
   function openGallery(item) {
     if (!item || !item.gallery) return;
@@ -329,14 +294,14 @@
     dots.onclick = (e) => { const d = e.target.closest('.gal-dot'); if (d) goTo(+d.dataset.i); };
 
     // arrastar com o mouse (no celular o toque já rola nativamente)
-    let down = false, startX = 0, startLeft = 0, moved = false;
+    let down = false, startX = 0, startLeft = 0;
     track.onpointerdown = (e) => {
       if (e.pointerType !== 'mouse') return;
-      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      down = true; startX = e.clientX; startLeft = track.scrollLeft;
       track.style.scrollSnapType = 'none'; track.classList.add('is-grabbing');
       try { track.setPointerCapture(e.pointerId); } catch (_) { /* noop */ }
     };
-    track.onpointermove = (e) => { if (!down) return; const dx = e.clientX - startX; if (Math.abs(dx) > 3) moved = true; track.scrollLeft = startLeft - dx; };
+    track.onpointermove = (e) => { if (down) track.scrollLeft = startLeft - (e.clientX - startX); };
     const endDrag = () => {
       if (!down) return;
       down = false; track.classList.remove('is-grabbing');
@@ -371,105 +336,26 @@
     closeBtn.focus();
   }
 
-  /* ---------- Portfólio: vitrine interativa (lista + prévia grande) ---------- */
-  function initShowcase() {
+  /* ---------- Portfólio: cards empilhados + galeria ---------- */
+  function initPortfolioLayout() {
     const grid = $('.pf-grid');
-    if (!grid || !$('.pf-card', grid)) return;
-    const fine = matchMedia('(hover: hover) and (pointer: fine)');
-    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const show = document.createElement('div');
-    show.className = 'pf-show';
-    grid.prepend(show);
-    grid.classList.add('is-showcase');
-    $$('.pf-media img', grid).forEach((i) => { i.loading = 'eager'; });   // detecta logo cedo as imagens que faltam
+    if (!grid) return;
+    $$('.pf-media img', grid).forEach((i) => { i.loading = 'eager'; });       // imagens que faltam somem logo
+    const cta = $('.pf-cta', grid);
+    if (cta) grid.after(cta);                                                  // o cartão final fica fora da pilha
 
-    let items = [], active = 0, swapTimer = 0;
-
-    const read = () => $$('.pf-card', grid).map((c) => {
-      const img = $('.pf-media img', c), st = $('.pf-stretch', c), wa = $('.pf-wa', c);
-      return {
-        src: img ? (img.currentSrc || img.src) : '', alt: img ? img.alt : '',
-        mock: !!(img && img.classList.contains('is-mockup')),
-        title: $('h3', c).textContent, desc: ($('p', c) || {}).textContent || '', tag: ($('.pf-tag', c) || {}).textContent || '',
-        site: st && !/seu-link/i.test(st.href) ? st.href : '', wa: wa ? wa.href : '',
-        gallery: (() => { try { return c.dataset.gallery ? JSON.parse(c.dataset.gallery) : null; } catch (_) { return null; } })()
-      };
+    // card/botão com galeria: abre o pop-up
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('.pf-galopen'); if (!el) return;
+      const card = el.closest('.pf-card'); if (!card) return;
+      try { openGallery({ title: $('h3', card).textContent, gallery: JSON.parse(card.dataset.gallery) }); } catch (_) { /* sem galeria */ }
     });
-
-    function paint() {
-      const it = items[active], img = $('.pf-shot img', show), go = $('.pf-go', show), tag = $('.pf-shot-tag', show);
-      if (!it || !img) return;
-      img.style.opacity = 0;
-      clearTimeout(swapTimer);
-      swapTimer = setTimeout(() => {
-        img.src = it.src; img.alt = it.alt || it.title;
-        img.classList.toggle('is-mockup', it.mock);
-        img.style.opacity = 1;
-      }, 160);
-      tag.textContent = it.tag;
-      go.hidden = !(it.site || it.gallery);
-      delete go.dataset.gal;
-      if (it.site) {
-        go.href = it.site; go.target = '_blank';
-        go.innerHTML = '<i class="bi bi-arrow-up-right" aria-hidden="true"></i>';
-        go.setAttribute('aria-label', 'Ver o site do projeto ' + it.title);
-      } else if (it.gallery) {
-        go.href = '#'; go.removeAttribute('target'); go.dataset.gal = active;
-        go.innerHTML = '<i class="bi bi-images" aria-hidden="true"></i>';
-        go.setAttribute('aria-label', 'Abrir a galeria do projeto ' + it.title);
-      }
-    }
-
-    function build() {
-      items = read();
-      if (!items.length) { show.innerHTML = ''; return; }
-      active = Math.min(active, items.length - 1);
-      show.innerHTML =
-        '<ul class="pf-list">' + items.map((it, i) =>
-          '<li class="pf-item' + (i === active ? ' is-active' : '') + '">' +
-            '<button type="button" class="pf-head" data-i="' + i + '" aria-expanded="' + (i === active) + '">' +
-              '<span class="pf-num">' + String(i + 1).padStart(2, '0') + '</span>' +
-              '<span class="pf-name">' + esc(it.title) + '</span><span class="pf-cat">' + esc(it.tag) + '</span></button>' +
-            '<div class="pf-detail"><div class="pf-detail-in"><p>' + esc(it.desc) + '</p><div class="pf-links">' +
-              (it.gallery ? '<button type="button" class="pf-open pf-gal" data-i="' + i + '">Ver galeria <i class="bi bi-images" aria-hidden="true"></i></button>' : '') +
-              (it.site ? '<a class="pf-open" href="' + esc(it.site) + '" target="_blank" rel="noopener">Ver site <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>' : '') +
-              (it.wa ? '<a class="pf-ask" href="' + esc(it.wa) + '" target="_blank" rel="noopener">Quero algo assim</a>' : '') +
-            '</div></div></div></li>').join('') + '</ul>' +
-        '<div class="pf-stage"><div class="pf-shot"><img src="" alt="" decoding="async"><span class="pf-shot-tag"></span>' +
-          '<a class="pf-go" href="#" target="_blank" rel="noopener" hidden><i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div></div>';
-      paint();
-    }
-
-    function setActive(i) {
-      if (i === active) return;
-      active = i;
-      $$('.pf-item', show).forEach((li, k) => {
-        li.classList.toggle('is-active', k === i);
-        $('.pf-head', li).setAttribute('aria-expanded', k === i);
-      });
-      paint();
-    }
-
-    show.addEventListener('click', (e) => {
-      const g = e.target.closest('.pf-gal');
-      if (g) { openGallery(items[+g.dataset.i]); return; }
-      const go = e.target.closest('.pf-go');
-      if (go && go.dataset.gal !== undefined) { e.preventDefault(); openGallery(items[+go.dataset.gal]); return; }
-      const b = e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i);
-    });
-    show.addEventListener('focusin', (e) => { const b = e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i); });
-    show.addEventListener('mouseover', (e) => { const b = fine.matches && e.target.closest('.pf-head'); if (b) setActive(+b.dataset.i); });
-
-    build();
-    let t = 0;
-    new MutationObserver(() => { clearTimeout(t); t = setTimeout(build, 150); }).observe(grid, { childList: true });  // cards sem imagem somem
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    initCtaTip();
     initMarquee();
     initPortfolio();
-    initShowcase();
+    initPortfolioLayout();
     initScrollState();
     initActiveNav();
     initMobileMenu();

@@ -791,288 +791,6 @@
     }
 }
 
-/* =====================================================================
-   MENU INFERIOR 11.0 (celular) — fiel à referência: barra creme de ponta
-   a ponta com cantos superiores bem arredondados, hexágono em degradê que
-   sai da barra, ícone ativo colorido e "home indicator" embaixo.
-   Ordem: Início · Serviços · [Orçamento] · Sobre · Portfólio
-   ===================================================================== */
-@media (max-width:768px) {
-
-    .navbar-toggle,
-    .navbar-menu,
-    .nav-backdrop,
-    .wa-float,
-    .back-to-top {
-        display: none !important
-    }
-
-    .navbar .navbar-inner {
-        justify-content: center
-    }
-
-    .navbar-logo {
-        margin-left: 0
-    }
-
-    .tabbar {
-        display: block;
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 990;
-        pointer-events: none
-    }
-
-    .tabbar-inner {
-        position: relative;
-        pointer-events: auto;
-        display: flex;
-        align-items: stretch;
-        height: calc(72px + env(safe-area-inset-bottom));
-        padding: 0 8px calc(6px + env(safe-area-inset-bottom));
-        background: #FBF8EE;
-        border-radius: 30px 30px 0 0;
-        box-shadow: 0 -8px 30px rgba(0, 0, 0, .28)
-    }
-
-    .tab {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        color: #8B90A8;
-        -webkit-tap-highlight-color: transparent;
-        transition: color .3s var(--ease)
-    }
-
-    .tab-ico {
-        display: grid;
-        place-items: center;
-        width: 26px;
-        height: 26px
-    }
-
-    .tab svg {
-        width: 25px;
-        height: 25px;
-        stroke-width: 1.5;
-        transition: transform .35s var(--ease)
-    }
-
-    .tab .f {
-        fill: currentColor;
-        fill-opacity: 0;
-        transition: fill-opacity .35s var(--ease)
-    }
-
-    .tab-label {
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: .02em;
-        line-height: 1;
-        white-space: nowrap
-    }
-
-    .tab.is-active {
-        color: #2B4593
-    }
-
-    .tab.is-active .f {
-        fill-opacity: .9
-    }
-
-    .tab.is-active .tab-label {
-        font-weight: 700
-    }
-
-    .tab:active svg {
-        transform: scale(.9)
-    }
-
-    /* hexágono em degradê saindo da barra */
-    .tab-center {
-        position: relative;
-        flex: 0 0 92px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        padding-bottom: 7px;
-        -webkit-tap-highlight-color: transparent
-    }
-
-    .tab-hex-wrap {
-        position: absolute;
-        left: 50%;
-        top: -34px;
-        width: 64px;
-        height: 72px;
-        margin-left: -32px;
-        filter: drop-shadow(0 12px 16px rgba(43, 69, 147, .38));
-        transition: transform .35s var(--ease)
-    }
-
-    .tab-hex {
-        display: grid;
-        place-items: center;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-        background: linear-gradient(160deg, #7FD0C4 0%, #6C8EF0 55%, #2B4593 120%)
-    }
-
-    .tab-hex svg {
-        width: 30px;
-        height: 30px;
-        stroke-width: 1.8
-    }
-
-    .tab-center .tab-label {
-        color: #2B4593;
-        font-weight: 700
-    }
-
-    .tab-center:active .tab-hex-wrap {
-        transform: scale(.94)
-    }
-
-    .footer {
-        padding-bottom: calc(92px + env(safe-area-inset-bottom))
-    }
-
-    html {
-        scroll-padding-bottom: 96px
-    }
-}
-
-/* dica única sobre o botão de orçamento */
-@media (max-width:768px) {
-    .tab-tip {
-        position: absolute;
-        left: 50%;
-        bottom: calc(100% + 42px);
-        z-index: 3;
-        white-space: nowrap;
-        pointer-events: none;
-        padding: 10px 15px;
-        border-radius: 14px;
-        background: #0B1226;
-        color: #F4F1DF;
-        font-size: 12.5px;
-        font-weight: 600;
-        letter-spacing: .01em;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, .4);
-        opacity: 0;
-        transform: translate(-50%, 8px) scale(.96);
-        transition: opacity .4s var(--ease), transform .4s var(--ease)
-    }
-
-    .tab-tip::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 100%;
-        width: 12px;
-        height: 12px;
-        margin: -6px 0 0 -6px;
-        background: #0B1226;
-        transform: rotate(45deg);
-        border-radius: 0 0 3px 0
-    }
-
-    .tab-tip.is-visible {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(1)
-    }
-}
-
-/* menu inferior: o botão de orçamento usa o laranja de ação (igual aos botões do site) */
-@media (max-width:768px) {
-    .tab-hex {
-        background: linear-gradient(160deg, var(--warm-hi) 0%, var(--warm) 58%, var(--warm-lo) 120%);
-        color: var(--on-warm)
-    }
-
-    .tab-hex-wrap {
-        filter: drop-shadow(0 12px 16px rgba(232, 116, 59, .45))
-    }
-
-    .tab-center .tab-label {
-        color: #B4501F
-    }
-}
-
-/* =====================================================================
-   TOPO NO CELULAR — pílula compacta que abraça a marca (em vez de uma
-   faixa larga e vazia), com ponto de destaque e acabamento em vidro.
-   Encolhe um pouco ao rolar. Com a sua logo (img/logo.png), ela aparece
-   no lugar do texto no mesmo formato.
-   ===================================================================== */
-@media (max-width:768px) {
-    .navbar {
-        padding: calc(14px + env(safe-area-inset-top)) 0 0
-    }
-
-    .navbar.is-scrolled {
-        padding: calc(8px + env(safe-area-inset-top)) 0 0
-    }
-
-    .navbar .navbar-inner {
-        width: fit-content;
-        max-width: calc(100% - 28px);
-        margin-inline: auto;
-        padding: 12px 24px;
-        justify-content: center;
-        transition: padding .5s var(--ease)
-    }
-
-    .navbar.is-scrolled .navbar-inner {
-        padding: 9px 20px
-    }
-
-    .navbar-inner::before {
-        background: linear-gradient(180deg, rgba(244, 241, 223, .1), rgba(244, 241, 223, .03)), rgba(11, 18, 38, .62);
-        border-color: rgba(244, 241, 223, .16);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(244, 241, 223, .1)
-    }
-
-    .navbar-logo {
-        margin: 0;
-        display: flex;
-        align-items: center
-    }
-
-    .brand-name {
-        display: inline-flex;
-        align-items: center;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: .26em;
-        color: #F4F1DF
-    }
-
-    .brand-name::before {
-        content: '';
-        flex-shrink: 0;
-        width: 6px;
-        height: 6px;
-        margin-right: 11px;
-        border-radius: 50%;
-        background: var(--warm);
-        box-shadow: 0 0 10px var(--warm)
-    }
-
-    .brand-logo {
-        height: 28px;
-        max-width: 150px
-    }
-}
 
 /* reorganização: espaçamentos menores e botões centralizados */
 @media (max-width:1024px) {
@@ -1701,21 +1419,6 @@
     transform: rotate(45deg)
 }
 
-/* logo maior no topo do celular */
-@media (max-width:768px) {
-    .brand-logo {
-        height: 38px;
-        max-width: 210px
-    }
-
-    .navbar .navbar-inner {
-        padding: 8px 22px
-    }
-
-    .navbar.is-scrolled .navbar-inner {
-        padding: 6px 18px
-    }
-}
 
 /* =====================================================================
    PORTFÓLIO 8.0 — VITRINE: lista de projetos (esquerda) + prévia grande
@@ -2178,5 +1881,629 @@ button.pf-open {
 
     .gal-hint {
         display: none
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 9.0 — computador/tablet: grade de cards centralizada
+   celular: carrossel (deslize para o lado) com pontos e o próximo card
+   aparecendo na borda. Cards escuros, foto 4:3 inteira + texto embaixo.
+   ===================================================================== */
+.portfolio {
+    --cp: 28px
+}
+
+.portfolio .pf-grid[data-count] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    flex: 0 0 calc((100% - 44px) / 3);
+    min-width: 0
+}
+
+.portfolio .pf-grid[data-count="1"] .pf-card:nth-child(n) {
+    flex-basis: min(100%, 520px)
+}
+
+.portfolio .pf-grid[data-count="2"] .pf-card:nth-child(n),
+.portfolio .pf-grid[data-count="4"] .pf-card:nth-child(n) {
+    flex-basis: calc((100% - 22px) / 2)
+}
+
+.portfolio .pf-cta {
+    margin-top: 22px
+}
+
+.pf-dots {
+    display: none
+}
+
+/* botões dentro do card (galeria) */
+.pf-body button {
+    pointer-events: auto;
+    cursor: pointer
+}
+
+button.pf-stretch {
+    border: 0;
+    background: none;
+    padding: 0;
+    cursor: pointer
+}
+
+@media (max-width:1024px) {
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        flex-basis: calc((100% - 22px) / 2)
+    }
+}
+
+@media (max-width:700px) {
+    .portfolio .pf-grid[data-count] {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin-inline: calc(-1 * var(--cp));
+        padding: 4px var(--cp) 14px;
+        scroll-padding-inline: var(--cp)
+    }
+
+    .portfolio .pf-grid[data-count]::-webkit-scrollbar {
+        display: none
+    }
+
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        flex: 0 0 84%;
+        scroll-snap-align: start
+    }
+
+    .pf-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 6px
+    }
+
+    .pf-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(11, 18, 38, .25);
+        transition: width .35s var(--ease), background .3s var(--ease)
+    }
+
+    .pf-dot.is-active {
+        width: 24px;
+        border-radius: 8px;
+        background: var(--warm-lo)
+    }
+}
+
+@media (max-width:480px) {
+    .portfolio {
+        --cp: 20px
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 10.0 — cards premium: borda em degradê fino, selo "Projeto 01",
+   título maior, rodapé com botão circular laranja; no celular o card em
+   foco fica em destaque e os vizinhos recuam (profundidade), com contador
+   e barra de progresso no lugar dos pontinhos.
+   ===================================================================== */
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    padding: 12px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background: linear-gradient(180deg, #14204A, #0B1226 75%) padding-box, linear-gradient(160deg, rgba(244, 241, 223, .38), rgba(244, 241, 223, .05) 38%, rgba(232, 116, 59, .3)) border-box;
+    box-shadow: 0 30px 60px -24px rgba(11, 18, 38, .7)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    background: linear-gradient(180deg, #14204A, #0B1226 75%) padding-box, linear-gradient(160deg, rgba(244, 241, 223, .5), rgba(232, 116, 59, .5) 55%, rgba(232, 116, 59, .2)) border-box;
+    border-color: transparent;
+    box-shadow: 0 34px 70px -22px rgba(232, 116, 59, .4);
+    transform: translateY(-6px)
+}
+
+.portfolio .pf-media {
+    border-radius: 22px;
+    outline: 1px solid rgba(244, 241, 223, .1);
+    outline-offset: -1px
+}
+
+/* texto */
+.portfolio .pf-body {
+    padding: 20px 12px 8px;
+    gap: 8px
+}
+
+.portfolio .pf-body::before {
+    content: 'Projeto ' counter(pf, decimal-leading-zero);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--warm-hi)
+}
+
+.portfolio .pf-body h3 {
+    font-size: clamp(24px, 2.3vw, 30px);
+    letter-spacing: -.03em
+}
+
+.portfolio .pf-body p {
+    color: #AEB4CC;
+    font-size: 14.5px;
+    line-height: 1.6
+}
+
+/* rodapé: ação secundária discreta + botão circular */
+.portfolio .pf-actions {
+    margin-top: 12px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(244, 241, 223, .09)
+}
+
+.portfolio .pf-wa {
+    border: 0;
+    padding: 0;
+    color: #AEB4CC;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 8px
+}
+
+.portfolio .pf-wa::after {
+    content: '→';
+    transition: transform .3s var(--ease)
+}
+
+.portfolio .pf-wa:hover {
+    color: #F4F1DF
+}
+
+.portfolio .pf-wa:hover::after {
+    transform: translateX(4px)
+}
+
+.portfolio .pf-visit {
+    gap: 12px;
+    font-size: 13px
+}
+
+.portfolio .pf-visit .btn-icon {
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    background: var(--warm);
+    color: #0B1226;
+    box-shadow: 0 10px 22px rgba(232, 116, 59, .35)
+}
+
+/* celular: contador + barra de progresso e profundidade entre os cards */
+@media (max-width:700px) {
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        flex-basis: 82%;
+        transition: transform .5s var(--ease), opacity .5s var(--ease), box-shadow .5s var(--ease);
+        transform: scale(.95);
+        opacity: .72
+    }
+
+    .portfolio .pf-grid[data-count] .pf-card.is-current:nth-child(n) {
+        transform: none;
+        opacity: 1
+    }
+
+    .pf-dots {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 8px 4px 0
+    }
+
+    .pf-count {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        color: #0B1226;
+        font-variant-numeric: tabular-nums
+    }
+
+    .pf-count b {
+        font-size: 15px
+    }
+
+    .pf-bar {
+        position: relative;
+        flex: 1;
+        height: 3px;
+        border-radius: 3px;
+        background: rgba(11, 18, 38, .14);
+        overflow: hidden
+    }
+
+    .pf-bar i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        border-radius: 3px;
+        background: var(--warm-lo);
+        transition: width .45s var(--ease)
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 11.0 — versão limpa: card liso azul-noite, sem borda em
+   degradê, sem rótulos extras e sem linhas. Foto + etiqueta, título,
+   uma linha de descrição e um botão circular discreto. O laranja só
+   aparece no hover.
+   ===================================================================== */
+.portfolio .pf-grid[data-count] {
+    gap: 20px
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    padding: 10px;
+    border: 0;
+    border-radius: 28px;
+    background: #0E1530;
+    box-shadow: 0 22px 44px -22px rgba(11, 18, 38, .55)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    background: #0E1530;
+    border: 0;
+    transform: translateY(-5px);
+    box-shadow: 0 30px 56px -22px rgba(11, 18, 38, .65)
+}
+
+.portfolio .pf-media {
+    border-radius: 20px;
+    outline: 0
+}
+
+.portfolio .pf-media::after {
+    display: none
+}
+
+/* sem selo de número */
+.portfolio .pf-tag {
+    top: 12px;
+    left: 12px;
+    font-size: 10px;
+    padding: 6px 12px
+}
+
+.portfolio .pf-body {
+    padding: 18px 8px 4px;
+    gap: 6px
+}
+
+.portfolio .pf-body::before {
+    content: none
+}
+
+/* sem "Projeto 01" */
+.portfolio .pf-body h3 {
+    font-size: clamp(21px, 2vw, 25px);
+    font-weight: 600;
+    letter-spacing: -.02em
+}
+
+.portfolio .pf-body p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #A9AFC6
+}
+
+/* rodapé sem linha: texto discreto à esquerda, botão circular à direita */
+.portfolio .pf-actions {
+    margin-top: 14px;
+    padding-top: 0;
+    border-top: 0
+}
+
+.portfolio .pf-wa {
+    font-size: 13px;
+    font-weight: 500;
+    color: #A9AFC6
+}
+
+.portfolio .pf-wa:hover {
+    color: #F4F1DF
+}
+
+.portfolio .pf-visit {
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600
+}
+
+.portfolio .pf-visit .btn-icon {
+    width: 40px;
+    height: 40px;
+    padding: 11px;
+    background: #F4F1DF;
+    color: #0B1226;
+    box-shadow: none
+}
+
+.portfolio .pf-card:hover .pf-visit .btn-icon {
+    background: var(--warm);
+    color: #0B1226;
+    transform: rotate(45deg)
+}
+
+/* celular: carrossel simples, sem efeito de profundidade */
+@media (max-width:700px) {
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        flex-basis: 84%;
+        transform: none;
+        opacity: 1
+    }
+
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+        transform: none
+    }
+}
+
+/* =====================================================================
+   PORTFÓLIO 12.0 — "PILHA": cada projeto é um painel grande que gruda no
+   topo enquanto você rola e o próximo desliza por cima, deixando uma
+   borda de cada card anterior visível (efeito de baralho). Sem carrossel,
+   sem grade: um projeto por vez, foto inteira + legenda enxuta.
+   ===================================================================== */
+.portfolio {
+    overflow: visible
+}
+
+.pf-dots {
+    display: none !important
+}
+
+.portfolio .pf-grid[data-count] {
+    display: block;
+    overflow: visible;
+    scroll-snap-type: none;
+    margin-inline: 0;
+    padding: 0 0 8px;
+    scroll-padding: 0;
+    gap: 0
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+    position: sticky;
+    top: calc(92px + var(--i, 0) * 14px);
+    display: block;
+    flex: none;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #0E1530;
+    transform: none;
+    opacity: 1;
+    box-shadow: 0 -16px 36px -12px rgba(0, 0, 0, .35), 0 34px 60px -30px rgba(11, 18, 38, .65)
+}
+
+.portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
+    transform: none;
+    background: #0E1530
+}
+
+.pf-card:nth-child(1) {
+    --i: 0
+}
+
+.pf-card:nth-child(2) {
+    --i: 1
+}
+
+.pf-card:nth-child(3) {
+    --i: 2
+}
+
+.pf-card:nth-child(4) {
+    --i: 3
+}
+
+.pf-card:nth-child(5) {
+    --i: 4
+}
+
+.pf-card:nth-child(6) {
+    --i: 5
+}
+
+.pf-card:nth-child(7) {
+    --i: 6
+}
+
+.pf-card:nth-child(8) {
+    --i: 7
+}
+
+.pf-card:nth-child(9) {
+    --i: 8
+}
+
+/* foto de ponta a ponta */
+.portfolio .pf-media {
+    position: relative;
+    aspect-ratio: 16/10;
+    border-radius: 0;
+    outline: 0;
+    box-shadow: none
+}
+
+.portfolio .pf-card:hover .pf-media img {
+    transform: scale(1.04)
+}
+
+.portfolio .pf-tag {
+    top: 16px;
+    left: 16px
+}
+
+.portfolio .pf-media::after {
+    display: block;
+    top: 16px;
+    right: 16px
+}
+
+/* legenda enxuta: título + uma linha; ações na base */
+.portfolio .pf-body {
+    padding: 20px 24px 22px;
+    gap: 4px
+}
+
+.portfolio .pf-body h3 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 600;
+    letter-spacing: -.02em
+}
+
+.portfolio .pf-body p {
+    display: block;
+    max-width: 60ch;
+    font-size: 14.5px;
+    color: #A9AFC6;
+    -webkit-line-clamp: unset
+}
+
+.portfolio .pf-actions {
+    margin-top: 14px;
+    padding-top: 0;
+    border-top: 0
+}
+
+@media (max-width:900px) {
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        top: calc(84px + var(--i, 0) * 12px);
+        border-radius: 26px;
+        margin-bottom: 28px
+    }
+
+    .portfolio .pf-media {
+        aspect-ratio: 4/3
+    }
+
+    .portfolio .pf-body {
+        padding: 18px 18px 20px
+    }
+}
+
+@media (max-width:700px) {
+    .portfolio .pf-grid[data-count] {
+        flex-wrap: nowrap;
+        margin-inline: 0;
+        padding: 0 0 8px;
+        overflow: visible
+    }
+
+    .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
+        flex: none
+    }
+}
+
+/* menu do topo no celular: padrão do site (logo à esquerda, botão do menu à direita, gaveta lateral) */
+@media (max-width:768px) {
+    .navbar .navbar-inner {
+        width: calc(100% - 28px);
+        max-width: none;
+        margin-inline: auto;
+        padding: 8px 8px 8px 18px;
+        justify-content: space-between
+    }
+
+    .navbar.is-scrolled .navbar-inner {
+        padding: 6px 6px 6px 16px
+    }
+
+    .navbar-toggle {
+        display: flex
+    }
+
+    .navbar-logo {
+        margin: 0
+    }
+
+    .brand-logo {
+        height: 34px;
+        max-width: 190px
+    }
+}
+
+/* menu lateral com TODAS as seções, na ordem da página */
+@media (max-width:768px) {
+    .nav-links .nav-extra {
+        display: flex
+    }
+
+    .navbar-menu {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-top: 104px
+    }
+
+    .navbar-menu .nav-link:not(.nav-cta) {
+        font-size: 21px;
+        padding: 11px 0
+    }
+
+    .navbar-menu .nav-link:not(.nav-cta)::before {
+        font-size: 12px
+    }
+
+    .navbar-menu .nav-cta {
+        margin-top: 20px
+    }
+
+    .navbar-menu.is-open .nav-link:nth-child(8) {
+        transition-delay: .54s
+    }
+
+    .navbar-menu.is-open .nav-link:nth-child(9) {
+        transition-delay: .58s
+    }
+}
+
+/* refinamento geral — celular */
+@media (max-width:768px) {
+    .section-title {
+        font-size: clamp(28px, 8vw, 38px)
+    }
+
+    .servicos-grid,
+    .timeline {
+        gap: 14px
+    }
+
+    .servicos .service-card,
+    .processo .timeline-item {
+        border-radius: 22px
+    }
+
+    .section-label {
+        font-size: 11px;
+        letter-spacing: .2em
     }
 }
