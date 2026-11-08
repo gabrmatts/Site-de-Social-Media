@@ -110,7 +110,7 @@
         counter-reset: nav;
         transform: translateX(100%);
         transition: transform .5s var(--ease);
-        background: radial-gradient(ellipse 90% 34% at 100% 0, rgba(43, 69, 147, .22), transparent 70%), rgba(0, 0, 0, .98);
+        background: radial-gradient(ellipse 90% 34% at 100% 0, rgba(22, 88, 123, .22), transparent 70%), rgba(0, 0, 0, .98);
         backdrop-filter: blur(26px);
         -webkit-backdrop-filter: blur(26px);
         border-left: 1px solid var(--line2);
@@ -547,7 +547,7 @@
     }
 
     .hero-vignette {
-        background: linear-gradient(to bottom, rgba(11, 18, 38, .2), rgba(11, 18, 38, .85) 55%, #0B1226 100%)
+        background: linear-gradient(to bottom, rgba(10, 53, 80, .2), rgba(10, 53, 80, .85) 55%, #0A3550 100%)
     }
 
     .hero-title {
@@ -920,7 +920,7 @@
     /* degradê mais forte: o texto lê bem mesmo sobre prints de sites */
     .pf-media::before,
     .pf-card:hover .pf-media::before {
-        background: linear-gradient(to top, rgba(8, 13, 30, .97) 0, rgba(8, 13, 30, .82) 42%, rgba(8, 13, 30, .2) 78%, transparent 100%)
+        background: linear-gradient(to top, rgba(6, 34, 50, .97) 0, rgba(6, 34, 50, .82) 42%, rgba(6, 34, 50, .2) 78%, transparent 100%)
     }
 }
 
@@ -946,7 +946,7 @@
         flex-direction: column;
         container-type: normal;
         border-radius: 22px;
-        background: #0B1226
+        background: #0A3550
     }
 
     .pf-media {
@@ -967,7 +967,7 @@
         z-index: 5;
         pointer-events: auto;
         padding: 16px 18px 20px;
-        background: #0B1226
+        background: #0A3550
     }
 
     .pf-body p {
@@ -1010,16 +1010,16 @@
     flex-direction: column;
     container-type: normal;
     padding: 10px;
-    border: 1px solid rgba(11, 18, 38, .08);
+    border: 1px solid rgba(10, 53, 80, .08);
     border-radius: 26px;
-    background: #FBF8EE;
-    box-shadow: 0 10px 30px rgba(11, 18, 38, .08)
+    background: #FBF7EC;
+    box-shadow: 0 10px 30px rgba(10, 53, 80, .08)
 }
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
-    background: #FBF8EE;
+    background: #FBF7EC;
     transform: translateY(-6px);
-    box-shadow: 0 26px 50px rgba(11, 18, 38, .16)
+    box-shadow: 0 26px 50px rgba(10, 53, 80, .16)
 }
 
 .portfolio .pf-media {
@@ -1041,7 +1041,7 @@
     padding: 5px 10px;
     border-radius: 100px;
     background: rgba(251, 248, 238, .92);
-    color: #0B1226;
+    color: #0A3550;
     text-shadow: none;
     font-size: 11px;
     letter-spacing: .08em
@@ -1084,28 +1084,28 @@
 }
 
 .portfolio .pf-visit {
-    background: #0B1226;
-    color: #F4F1DF
+    background: #0A3550;
+    color: #F5EEDD
 }
 
 .portfolio .pf-visit .btn-icon {
     background: var(--warm);
-    color: #0B1226
+    color: #0A3550
 }
 
 .portfolio .pf-card:hover .pf-visit {
     background: var(--warm);
-    color: #0B1226
+    color: #0A3550
 }
 
 .portfolio .pf-card:hover .pf-visit .btn-icon {
-    background: #0B1226;
+    background: #0A3550;
     color: var(--warm)
 }
 
 .portfolio .pf-wa {
     color: var(--ink);
-    border-color: rgba(11, 18, 38, .3)
+    border-color: rgba(10, 53, 80, .3)
 }
 
 .portfolio .pf-wa:hover {
@@ -1154,7 +1154,7 @@
 .portfolio .pf-media {
     border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 22px 44px -20px rgba(11, 18, 38, .5)
+    box-shadow: 0 22px 44px -20px rgba(10, 53, 80, .5)
 }
 
 .portfolio .pf-media img {
@@ -1185,8 +1185,8 @@
     height: 78px;
     margin: -39px 0 0 -39px;
     border-radius: 50%;
-    background: #F4F1DF;
-    color: #0B1226;
+    background: #F5EEDD;
+    color: #0A3550;
     font-size: 28px;
     line-height: 1;
     opacity: 0;
@@ -1215,7 +1215,7 @@
     left: 14px;
     padding: 6px 13px;
     background: rgba(251, 248, 238, .82);
-    color: #0B1226;
+    color: #0A3550;
     border: 1px solid rgba(255, 255, 255, .55);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px)
@@ -1263,7 +1263,7 @@
     font-weight: 700;
     color: var(--ink);
     border: 0;
-    border-bottom: 1.5px solid rgba(11, 18, 38, .25);
+    border-bottom: 1.5px solid rgba(10, 53, 80, .25);
     padding-bottom: 2px;
     transition: border-color .3s var(--ease), gap .3s var(--ease)
 }
@@ -1299,15 +1299,15 @@
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n) {
     padding: 10px;
-    border: 1px solid rgba(244, 241, 223, .1);
+    border: 1px solid rgba(245, 238, 221, .1);
     border-radius: 26px;
     overflow: hidden;
-    background: linear-gradient(180deg, #14204A, #0B1226);
-    box-shadow: 0 24px 50px -18px rgba(11, 18, 38, .55)
+    background: linear-gradient(180deg, #145070, #0A3550);
+    box-shadow: 0 24px 50px -18px rgba(10, 53, 80, .55)
 }
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
-    background: linear-gradient(180deg, #14204A, #0B1226);
+    background: linear-gradient(180deg, #145070, #0A3550);
     border-color: rgba(232, 116, 59, .55);
     box-shadow: 0 30px 60px -16px rgba(232, 116, 59, .35);
     transform: translateY(-6px)
@@ -1336,10 +1336,10 @@
     right: 14px;
     padding: 5px 11px;
     border-radius: 100px;
-    background: rgba(11, 18, 38, .6);
+    background: rgba(10, 53, 80, .6);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    color: #F4F1DF;
+    color: #F5EEDD;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .1em;
@@ -1356,12 +1356,12 @@
 }
 
 .portfolio .pf-body h3 {
-    color: #F4F1DF;
+    color: #F5EEDD;
     font-size: clamp(22px, 2.2vw, 28px)
 }
 
 .portfolio .pf-body p {
-    color: #CBC9B3;
+    color: #D3DDDD;
     max-width: none
 }
 
@@ -1373,17 +1373,17 @@
     gap: 14px;
     margin-top: 10px;
     padding-top: 14px;
-    border-top: 1px solid rgba(244, 241, 223, .1)
+    border-top: 1px solid rgba(245, 238, 221, .1)
 }
 
 .portfolio .pf-wa {
     order: 1;
-    color: #CBC9B3;
-    border-bottom: 1px solid rgba(244, 241, 223, .3)
+    color: #D3DDDD;
+    border-bottom: 1px solid rgba(245, 238, 221, .3)
 }
 
 .portfolio .pf-wa:hover {
-    color: #F4F1DF;
+    color: #F5EEDD;
     border-color: var(--warm)
 }
 
@@ -1394,7 +1394,7 @@
     gap: 10px;
     padding: 0;
     background: none;
-    color: #F4F1DF;
+    color: #F5EEDD;
     font-size: 13px;
     font-weight: 700
 }
@@ -1405,17 +1405,17 @@
     padding: 9px;
     border-radius: 50%;
     background: var(--warm);
-    color: #0B1226
+    color: #0A3550
 }
 
 .portfolio .pf-card:hover .pf-visit {
     background: none;
-    color: #F4F1DF
+    color: #F5EEDD
 }
 
 .portfolio .pf-card:hover .pf-visit .btn-icon {
-    background: #F4F1DF;
-    color: #0B1226;
+    background: #F5EEDD;
+    color: #0A3550;
     transform: rotate(45deg)
 }
 
@@ -1445,11 +1445,11 @@
 
 /* lista */
 .pf-list {
-    border-top: 1px solid rgba(11, 18, 38, .16)
+    border-top: 1px solid rgba(10, 53, 80, .16)
 }
 
 .pf-item {
-    border-bottom: 1px solid rgba(11, 18, 38, .16)
+    border-bottom: 1px solid rgba(10, 53, 80, .16)
 }
 
 .pf-head {
@@ -1460,12 +1460,12 @@
     gap: 6px 10px;
     padding: 24px 0;
     text-align: left;
-    color: rgba(11, 18, 38, .4);
+    color: rgba(10, 53, 80, .4);
     transition: color .35s var(--ease)
 }
 
 .pf-head:hover {
-    color: rgba(11, 18, 38, .75)
+    color: rgba(10, 53, 80, .75)
 }
 
 .pf-num {
@@ -1491,7 +1491,7 @@
 }
 
 .pf-item.is-active .pf-head {
-    color: #0B1226
+    color: #0A3550
 }
 
 .pf-item.is-active .pf-num {
@@ -1516,7 +1516,7 @@
 
 .pf-detail-in p {
     max-width: 44ch;
-    color: #3E4A78;
+    color: #3D6378;
     font-size: 15.5px;
     line-height: 1.65
 }
@@ -1535,8 +1535,8 @@
     gap: 8px;
     padding: 11px 18px;
     border-radius: 100px;
-    background: #0B1226;
-    color: #F4F1DF;
+    background: #0A3550;
+    color: #F5EEDD;
     font-size: 13.5px;
     font-weight: 700;
     transition: background .3s var(--ease), color .3s var(--ease)
@@ -1544,14 +1544,14 @@
 
 .pf-open:hover {
     background: var(--warm);
-    color: #0B1226
+    color: #0A3550
 }
 
 .pf-ask {
     font-size: 13.5px;
     font-weight: 700;
-    color: #0B1226;
-    border-bottom: 1.5px solid rgba(11, 18, 38, .3);
+    color: #0A3550;
+    border-bottom: 1.5px solid rgba(10, 53, 80, .3);
     padding-bottom: 2px;
     transition: border-color .3s var(--ease)
 }
@@ -1571,8 +1571,8 @@
     aspect-ratio: 4/3;
     border-radius: 28px;
     overflow: hidden;
-    background: linear-gradient(160deg, #16213F, #0B1226);
-    box-shadow: 0 34px 70px -26px rgba(11, 18, 38, .6)
+    background: linear-gradient(160deg, #0F4666, #0A3550);
+    box-shadow: 0 34px 70px -26px rgba(10, 53, 80, .6)
 }
 
 .pf-shot img {
@@ -1599,7 +1599,7 @@
     background: rgba(251, 248, 238, .85);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    color: #0B1226;
+    color: #0A3550;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .1em;
@@ -1616,7 +1616,7 @@
     height: 62px;
     border-radius: 50%;
     background: var(--warm);
-    color: #0B1226;
+    color: #0A3550;
     font-size: 24px;
     box-shadow: 0 14px 30px rgba(232, 116, 59, .5);
     transition: transform .4s var(--ease), background .3s var(--ease)
@@ -1624,7 +1624,7 @@
 
 .pf-go:hover {
     transform: rotate(45deg) scale(1.06);
-    background: #F4F1DF
+    background: #F5EEDD
 }
 
 .pf-go[hidden] {
@@ -1691,7 +1691,7 @@ button.pf-open {
 .gal-bg {
     position: absolute;
     inset: 0;
-    background: rgba(8, 13, 30, .9);
+    background: rgba(6, 34, 50, .9);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     cursor: zoom-out
@@ -1707,8 +1707,8 @@ button.pf-open {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: #F4F1DF;
-    color: #0B1226;
+    background: #F5EEDD;
+    color: #0A3550;
     font-size: 18px;
     transition: transform .3s var(--ease), background .3s var(--ease)
 }
@@ -1780,8 +1780,8 @@ button.pf-open {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: rgba(244, 241, 223, .92);
-    color: #0B1226;
+    background: rgba(245, 238, 221, .92);
+    color: #0A3550;
     font-size: 20px;
     transition: background .3s var(--ease), opacity .3s var(--ease), transform .3s var(--ease)
 }
@@ -1810,7 +1810,7 @@ button.pf-open {
     justify-content: space-between;
     gap: 12px;
     margin-top: 16px;
-    color: #F4F1DF;
+    color: #F5EEDD;
     font-size: 13.5px
 }
 
@@ -1822,7 +1822,7 @@ button.pf-open {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    color: rgba(244, 241, 223, .6);
+    color: rgba(245, 238, 221, .6);
     font-size: 12.5px
 }
 
@@ -1843,7 +1843,7 @@ button.pf-open {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: rgba(244, 241, 223, .3);
+    background: rgba(245, 238, 221, .3);
     transition: background .3s var(--ease), transform .3s var(--ease)
 }
 
@@ -1976,7 +1976,7 @@ button.pf-stretch {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: rgba(11, 18, 38, .25);
+        background: rgba(10, 53, 80, .25);
         transition: width .35s var(--ease), background .3s var(--ease)
     }
 
@@ -2003,12 +2003,12 @@ button.pf-stretch {
     padding: 12px;
     border: 1px solid transparent;
     border-radius: 30px;
-    background: linear-gradient(180deg, #14204A, #0B1226 75%) padding-box, linear-gradient(160deg, rgba(244, 241, 223, .38), rgba(244, 241, 223, .05) 38%, rgba(232, 116, 59, .3)) border-box;
-    box-shadow: 0 30px 60px -24px rgba(11, 18, 38, .7)
+    background: linear-gradient(180deg, #145070, #0A3550 75%) padding-box, linear-gradient(160deg, rgba(245, 238, 221, .38), rgba(245, 238, 221, .05) 38%, rgba(232, 116, 59, .3)) border-box;
+    box-shadow: 0 30px 60px -24px rgba(10, 53, 80, .7)
 }
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
-    background: linear-gradient(180deg, #14204A, #0B1226 75%) padding-box, linear-gradient(160deg, rgba(244, 241, 223, .5), rgba(232, 116, 59, .5) 55%, rgba(232, 116, 59, .2)) border-box;
+    background: linear-gradient(180deg, #145070, #0A3550 75%) padding-box, linear-gradient(160deg, rgba(245, 238, 221, .5), rgba(232, 116, 59, .5) 55%, rgba(232, 116, 59, .2)) border-box;
     border-color: transparent;
     box-shadow: 0 34px 70px -22px rgba(232, 116, 59, .4);
     transform: translateY(-6px)
@@ -2016,7 +2016,7 @@ button.pf-stretch {
 
 .portfolio .pf-media {
     border-radius: 22px;
-    outline: 1px solid rgba(244, 241, 223, .1);
+    outline: 1px solid rgba(245, 238, 221, .1);
     outline-offset: -1px
 }
 
@@ -2041,7 +2041,7 @@ button.pf-stretch {
 }
 
 .portfolio .pf-body p {
-    color: #AEB4CC;
+    color: #A5C2D1;
     font-size: 14.5px;
     line-height: 1.6
 }
@@ -2050,13 +2050,13 @@ button.pf-stretch {
 .portfolio .pf-actions {
     margin-top: 12px;
     padding-top: 16px;
-    border-top: 1px solid rgba(244, 241, 223, .09)
+    border-top: 1px solid rgba(245, 238, 221, .09)
 }
 
 .portfolio .pf-wa {
     border: 0;
     padding: 0;
-    color: #AEB4CC;
+    color: #A5C2D1;
     font-size: 13px;
     font-weight: 600;
     gap: 8px
@@ -2068,7 +2068,7 @@ button.pf-stretch {
 }
 
 .portfolio .pf-wa:hover {
-    color: #F4F1DF
+    color: #F5EEDD
 }
 
 .portfolio .pf-wa:hover::after {
@@ -2085,7 +2085,7 @@ button.pf-stretch {
     height: 44px;
     padding: 12px;
     background: var(--warm);
-    color: #0B1226;
+    color: #0A3550;
     box-shadow: 0 10px 22px rgba(232, 116, 59, .35)
 }
 
@@ -2114,7 +2114,7 @@ button.pf-stretch {
         font-size: 12.5px;
         font-weight: 700;
         letter-spacing: .08em;
-        color: #0B1226;
+        color: #0A3550;
         font-variant-numeric: tabular-nums
     }
 
@@ -2127,7 +2127,7 @@ button.pf-stretch {
         flex: 1;
         height: 3px;
         border-radius: 3px;
-        background: rgba(11, 18, 38, .14);
+        background: rgba(10, 53, 80, .14);
         overflow: hidden
     }
 
@@ -2157,15 +2157,15 @@ button.pf-stretch {
     padding: 10px;
     border: 0;
     border-radius: 28px;
-    background: #0E1530;
-    box-shadow: 0 22px 44px -22px rgba(11, 18, 38, .55)
+    background: #0C3E5A;
+    box-shadow: 0 22px 44px -22px rgba(10, 53, 80, .55)
 }
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
-    background: #0E1530;
+    background: #0C3E5A;
     border: 0;
     transform: translateY(-5px);
-    box-shadow: 0 30px 56px -22px rgba(11, 18, 38, .65)
+    box-shadow: 0 30px 56px -22px rgba(10, 53, 80, .65)
 }
 
 .portfolio .pf-media {
@@ -2208,7 +2208,7 @@ button.pf-stretch {
     overflow: hidden;
     font-size: 14px;
     line-height: 1.55;
-    color: #A9AFC6
+    color: #A5C2D1
 }
 
 /* rodapé sem linha: texto discreto à esquerda, botão circular à direita */
@@ -2221,11 +2221,11 @@ button.pf-stretch {
 .portfolio .pf-wa {
     font-size: 13px;
     font-weight: 500;
-    color: #A9AFC6
+    color: #A5C2D1
 }
 
 .portfolio .pf-wa:hover {
-    color: #F4F1DF
+    color: #F5EEDD
 }
 
 .portfolio .pf-visit {
@@ -2238,14 +2238,14 @@ button.pf-stretch {
     width: 40px;
     height: 40px;
     padding: 11px;
-    background: #F4F1DF;
-    color: #0B1226;
+    background: #F5EEDD;
+    color: #0A3550;
     box-shadow: none
 }
 
 .portfolio .pf-card:hover .pf-visit .btn-icon {
     background: var(--warm);
-    color: #0B1226;
+    color: #0A3550;
     transform: rotate(45deg)
 }
 
@@ -2298,15 +2298,15 @@ button.pf-stretch {
     border: 0;
     border-radius: 30px;
     overflow: hidden;
-    background: #0E1530;
+    background: #0C3E5A;
     transform: none;
     opacity: 1;
-    box-shadow: 0 -16px 36px -12px rgba(0, 0, 0, .35), 0 34px 60px -30px rgba(11, 18, 38, .65)
+    box-shadow: 0 -16px 36px -12px rgba(0, 0, 0, .35), 0 34px 60px -30px rgba(10, 53, 80, .65)
 }
 
 .portfolio .pf-grid[data-count] .pf-card:nth-child(n):hover {
     transform: none;
-    background: #0E1530
+    background: #0C3E5A
 }
 
 .pf-card:nth-child(1) {
@@ -2385,7 +2385,7 @@ button.pf-stretch {
     display: block;
     max-width: 60ch;
     font-size: 14.5px;
-    color: #A9AFC6;
+    color: #A5C2D1;
     -webkit-line-clamp: unset
 }
 
@@ -2505,5 +2505,89 @@ button.pf-stretch {
     .section-label {
         font-size: 11px;
         letter-spacing: .2em
+    }
+}
+
+/* =====================================================================
+   MENU DO CELULAR 4.0 — barra compacta de cantos suaves, botão de menu
+   em Merino e gaveta clara (Merino) com texto Venice Blue; sem laranja.
+   ===================================================================== */
+@media (max-width:768px) {
+    .navbar .navbar-inner {
+        width: calc(100% - 24px);
+        padding: 7px 7px 7px 18px;
+        justify-content: space-between
+    }
+
+    .navbar.is-scrolled .navbar-inner {
+        padding: 6px 6px 6px 16px
+    }
+
+    .navbar-inner::before {
+        border-radius: 22px;
+        border-color: rgba(245, 238, 221, .16);
+        background: linear-gradient(180deg, rgba(245, 238, 221, .1), rgba(245, 238, 221, .03)), rgba(10, 53, 80, .74)
+    }
+
+    .brand-logo {
+        height: 32px;
+        max-width: 170px
+    }
+
+    /* botão do menu */
+    .navbar-toggle {
+        width: 46px;
+        height: 46px;
+        padding: 15px 13px;
+        border: 0;
+        border-radius: 15px;
+        background: #F5EEDD
+    }
+
+    .navbar-toggle:hover,
+    .navbar-toggle.is-open {
+        background: #F5EEDD
+    }
+
+    .navbar-toggle span {
+        background: #0A3550
+    }
+
+    /* gaveta clara */
+    .navbar-menu {
+        background: #F5EEDD;
+        border-left: 0;
+        box-shadow: -30px 0 80px rgba(0, 0, 0, .45)
+    }
+
+    .navbar-menu .nav-link:not(.nav-cta) {
+        color: #0A3550;
+        border-bottom-color: rgba(10, 53, 80, .12)
+    }
+
+    .navbar-menu .nav-link:not(.nav-cta)::before {
+        color: #16587B
+    }
+
+    .navbar-menu .nav-link.is-active:not(.nav-cta) {
+        color: #16587B
+    }
+
+    .navbar-menu::after {
+        color: #5E8498
+    }
+
+    .navbar-menu .nav-cta,
+    .navbar-menu .nav-cta:hover,
+    .navbar-menu .nav-cta.is-active {
+        background: #16587B;
+        color: #F5EEDD;
+        box-shadow: 0 14px 28px -12px rgba(22, 88, 123, .6)
+    }
+
+    .navbar-menu .nav-cta .btn-icon,
+    .navbar-menu .nav-cta:hover .btn-icon {
+        background: rgba(245, 238, 221, .2);
+        color: #F5EEDD
     }
 }
