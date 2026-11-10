@@ -2591,3 +2591,97 @@ button.pf-stretch {
         color: #F5EEDD
     }
 }
+
+/* desempenho — celular: sem vidro no topo (fixo e repintado a cada rolagem) */
+@media (max-width:768px) {
+    .navbar-inner::before {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: rgba(10, 53, 80, .92)
+    }
+}
+
+/* rodapé e FAQ — tablet e celular */
+@media (max-width:900px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 32px
+    }
+
+    .footer-about {
+        grid-column: 1/-1
+    }
+}
+
+@media (max-width:560px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 36px
+    }
+
+    .footer-bottom {
+        padding: 20px 0 24px
+    }
+
+    .footer-bottom-in {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-right: 72px
+    }
+}
+
+@media (max-width:560px) {
+    .footer-bottom-in {
+        align-items: center;
+        padding-right: 0;
+        text-align: center
+    }
+}
+
+/* =====================================================================
+   CORREÇÃO DO RODAPÉ (tablet e celular)
+   · as colunas não passam mais da largura da tela (min-width:0)
+   · a marca ocupa a linha de cima, centralizada; navegação e contato
+     ficam lado a lado embaixo
+   ===================================================================== */
+@media (max-width:900px) {
+    .footer .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px 24px;
+        padding-bottom: 40px
+    }
+
+    .footer .footer-grid>* {
+        min-width: 0
+    }
+
+    .footer .footer-about {
+        grid-column: 1/-1;
+        align-items: center;
+        text-align: center
+    }
+
+    .footer .footer-about .footer-brand {
+        margin-inline: auto
+    }
+
+    .footer .footer-about .footer-tagline {
+        max-width: 340px;
+        margin-inline: auto
+    }
+}
+
+@media (max-width:560px) {
+    .footer .footer-bottom {
+        padding: 20px 16px 24px
+    }
+
+    .footer .footer-bottom-in {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-right: 0;
+        text-align: center
+    }
+}
