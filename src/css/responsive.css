@@ -2591,3 +2591,12 @@ button.pf-stretch {
         color: #F5EEDD
     }
 }
+
+/* desempenho — celular: sem vidro no topo (fixo e repintado a cada rolagem) */
+@media (max-width:768px) {
+    .navbar-inner::before {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background: rgba(10, 53, 80, .92)
+    }
+}

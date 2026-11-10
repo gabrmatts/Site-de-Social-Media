@@ -21,11 +21,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <link rel="preload" as="style"
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+    </noscript>
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="stylesheet" href="src/css/responsive.css">
 </head>
@@ -46,6 +48,80 @@
             <path d="M11.5 9.5L4.5 16l7 6.5M20.5 9.5l7 6.5-7 6.5M17.8 7.2L14.2 24.8" fill="none" stroke="currentColor"
                 stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
         </symbol>
+        <symbol id="ic-arrow-left-right" viewBox="0 0 24 24">
+            <path d="M4 8h16M16 4l4 4-4 4M20 16H4M8 12l-4 4 4 4" />
+        </symbol>
+        <symbol id="ic-behance" viewBox="0 0 24 24">
+            <path fill="currentColor" stroke="none"
+                d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+        </symbol>
+        <symbol id="ic-bullseye" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="5" />
+            <circle cx="12" cy="12" r="1.2" fill="currentColor" />
+        </symbol>
+        <symbol id="ic-cash-coin" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v10M9.5 9.6h3.3a1.7 1.7 0 010 3.4h-2.6a1.7 1.7 0 000 3.4H14.6" />
+        </symbol>
+        <symbol id="ic-chat-heart" viewBox="0 0 24 24">
+            <path d="M20.5 12a8.2 8.2 0 01-11.9 7.3L3.8 20.5l1.3-4.4A8.2 8.2 0 1120.5 12z" />
+            <path d="M12 15.2s-3-1.7-3-3.9a1.7 1.7 0 013-1 1.7 1.7 0 013 1c0 2.2-3 3.9-3 3.9z" />
+        </symbol>
+        <symbol id="ic-check-circle-fill" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+            <path d="M7.6 12.4l3 3 5.8-6.2" stroke="#0A3550" />
+        </symbol>
+        <symbol id="ic-chevron-left" viewBox="0 0 24 24">
+            <path d="M15 5l-7 7 7 7" />
+        </symbol>
+        <symbol id="ic-chevron-right" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+        </symbol>
+        <symbol id="ic-graph-up-arrow" viewBox="0 0 24 24">
+            <path d="M3 17l6-6 4 4 8-8" />
+            <path d="M15 7h6v6" />
+        </symbol>
+        <symbol id="ic-instagram" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+        </symbol>
+        <symbol id="ic-lightning-charge" viewBox="0 0 24 24">
+            <path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z" />
+        </symbol>
+        <symbol id="ic-linkedin" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3" />
+            <path d="M8 10.5V16M8 7.8v.2M12 16v-5.5M12 13c0-1.5 1-2.5 2.3-2.5S16.5 11.4 16.5 13v3" />
+        </symbol>
+        <symbol id="ic-megaphone" viewBox="0 0 24 24">
+            <path d="M4 10v4h3l7 4V6L7 10H4z" />
+            <path d="M17.5 9.5a3.5 3.5 0 010 5" />
+        </symbol>
+        <symbol id="ic-puzzle" viewBox="0 0 24 24">
+            <path d="M10 4a2 2 0 114 0v2h4v4h-2a2 2 0 100 4h2v4h-4v-2a2 2 0 10-4 0v2H6v-4H4a2 2 0 110-4h2V6h4V4z" />
+        </symbol>
+        <symbol id="ic-search" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.6-3.6" />
+        </symbol>
+        <symbol id="ic-whatsapp" viewBox="0 0 24 24">
+            <path
+                d="M21 12c0 4.97-4.03 9-9 9-1.6 0-3.1-.42-4.4-1.15L3 21l1.3-3.9A8.96 8.96 0 013 12c0-4.97 4.03-9 9-9s9 4.03 9 9z" />
+            <path
+                d="M9 10.5c.4 1.6 1.9 3.1 3.5 3.5l1-1 1.6.7v1.1c-.5.9-1.6 1.2-2.7.9-2.4-.7-4.4-2.7-5.1-5.1-.3-1.1 0-2.2.9-2.7h1.1l.7 1.6z" />
+        </symbol>
+        <symbol id="ic-window-desktop" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="12" rx="2" />
+            <path d="M8 20h8M12 16v4" />
+        </symbol>
+        <symbol id="ic-window-x" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <path d="M3 9h18M10 13l4 4M14 13l-4 4" />
+        </symbol>
+        <symbol id="ic-x-lg" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" />
+        </symbol>
     </svg>
 
     <a href="#topo" class="skip-link">Pular para o conteúdo</a>
@@ -56,8 +132,8 @@
     <header class="navbar" id="navbar">
         <div class="container navbar-inner">
             <a href="#topo" class="navbar-logo" aria-label="Gabriel Gomes — início">
-                <img class="brand-logo" src="img/logo-the-gomes-branco.png" alt="Gabriel Gomes — Web site e marketing"
-                    height="36"
+                <img class="brand-logo" fetchpriority="high" decoding="async" src="img/logo-the-gomes-branco.png"
+                    alt="Gabriel Gomes — Web site e marketing" height="36"
                     onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-name',textContent:'Gabriel Gomes'}))">
             </a>
 
@@ -176,21 +252,27 @@
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card-glow"></div>
                     <span class="service-index">01</span>
-                    <div class="service-icon"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i></div>
+                    <div class="service-icon"><svg class="ic bi" aria-hidden="true">
+                            <use href="#ic-graph-up-arrow" />
+                        </svg></div>
                     <h3>Marketing Digital</h3>
                     <p>Campanhas e funis planejados para alcançar quem tem interesse no que você oferece.</p>
                 </article>
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card-glow"></div>
                     <span class="service-index">02</span>
-                    <div class="service-icon"><i class="bi bi-chat-heart" aria-hidden="true"></i></div>
+                    <div class="service-icon"><svg class="ic bi" aria-hidden="true">
+                            <use href="#ic-chat-heart" />
+                        </svg></div>
                     <h3>Social Media</h3>
                     <p>Conteúdo, identidade visual e gestão de perfil para fortalecer a sua marca.</p>
                 </article>
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card-glow"></div>
                     <span class="service-index">03</span>
-                    <div class="service-icon"><i class="bi bi-window-desktop" aria-hidden="true"></i></div>
+                    <div class="service-icon"><svg class="ic bi" aria-hidden="true">
+                            <use href="#ic-window-desktop" />
+                        </svg></div>
                     <h3>Web Design</h3>
                     <p>Sites rápidos e bem desenhados, pensados para transformar visitas em contatos.</p>
                 </article>
@@ -209,20 +291,28 @@
             </div>
 
             <div class="momento-grid">
-                <div class="momento-item reveal" data-reveal><span class="momento-icon"><i class="bi bi-megaphone"
-                            aria-hidden="true"></i></span>
+                <div class="momento-item reveal" data-reveal><span class="momento-icon"><svg class="ic bi"
+                            aria-hidden="true">
+                            <use href="#ic-megaphone" />
+                        </svg></span>
                     <p>Você posta toda semana, mas as <strong>vendas não aparecem</strong>.</p>
                 </div>
-                <div class="momento-item reveal" data-reveal><span class="momento-icon"><i class="bi bi-window-x"
-                            aria-hidden="true"></i></span>
+                <div class="momento-item reveal" data-reveal><span class="momento-icon"><svg class="ic bi"
+                            aria-hidden="true">
+                            <use href="#ic-window-x" />
+                        </svg></span>
                     <p>Seu site existe, mas <strong>quase ninguém entra em contato</strong>.</p>
                 </div>
-                <div class="momento-item reveal" data-reveal><span class="momento-icon"><i class="bi bi-cash-coin"
-                            aria-hidden="true"></i></span>
+                <div class="momento-item reveal" data-reveal><span class="momento-icon"><svg class="ic bi"
+                            aria-hidden="true">
+                            <use href="#ic-cash-coin" />
+                        </svg></span>
                     <p>Você investe em anúncios sem saber <strong>o que realmente volta</strong>.</p>
                 </div>
-                <div class="momento-item reveal" data-reveal><span class="momento-icon"><i class="bi bi-puzzle"
-                            aria-hidden="true"></i></span>
+                <div class="momento-item reveal" data-reveal><span class="momento-icon"><svg class="ic bi"
+                            aria-hidden="true">
+                            <use href="#ic-puzzle" />
+                        </svg></span>
                     <p>Site, redes e marketing funcionam <strong>cada um por conta própria</strong>.</p>
                 </div>
             </div>
@@ -244,23 +334,27 @@
 
             <div class="timeline">
                 <div class="timeline-line"><span class="timeline-line-fill"></span></div>
-                <div class="timeline-item reveal" data-reveal><i class="bi bi-search tl-ico"
-                        aria-hidden="true"></i><span class="timeline-number">01</span>
+                <div class="timeline-item reveal" data-reveal><svg class="ic bi tl-ico" aria-hidden="true">
+                        <use href="#ic-search" />
+                    </svg><span class="timeline-number">01</span>
                     <h3>Planejamento</h3>
                     <p>Diagnóstico do negócio, do mercado e dos objetivos.</p>
                 </div>
-                <div class="timeline-item reveal" data-reveal><i class="bi bi-bullseye tl-ico"
-                        aria-hidden="true"></i><span class="timeline-number">02</span>
+                <div class="timeline-item reveal" data-reveal><svg class="ic bi tl-ico" aria-hidden="true">
+                        <use href="#ic-bullseye" />
+                    </svg><span class="timeline-number">02</span>
                     <h3>Estratégia</h3>
                     <p>Canais, posicionamento e metas claras.</p>
                 </div>
-                <div class="timeline-item reveal" data-reveal><i class="bi bi-lightning-charge tl-ico"
-                        aria-hidden="true"></i><span class="timeline-number">03</span>
+                <div class="timeline-item reveal" data-reveal><svg class="ic bi tl-ico" aria-hidden="true">
+                        <use href="#ic-lightning-charge" />
+                    </svg><span class="timeline-number">03</span>
                     <h3>Execução</h3>
                     <p>Conteúdo, campanhas e site feitos com cuidado em cada detalhe.</p>
                 </div>
-                <div class="timeline-item reveal" data-reveal><i class="bi bi-graph-up-arrow tl-ico"
-                        aria-hidden="true"></i><span class="timeline-number">04</span>
+                <div class="timeline-item reveal" data-reveal><svg class="ic bi tl-ico" aria-hidden="true">
+                        <use href="#ic-graph-up-arrow" />
+                    </svg><span class="timeline-number">04</span>
                     <h3>Crescimento</h3>
                     <p>Análise de resultados e otimização contínua.</p>
                 </div>
@@ -506,102 +600,7 @@
                     </div>
                 </article>
 
-                <article class="pf-card reveal" data-reveal>
-                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
-                    <div class="pf-media">
-                        <img src="img/projeto-04.jpg" alt="Projeto Gestão de Redes Sociais" loading="lazy"
-                            decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
-                        <span class="pf-tag">Social Media</span>
-                    </div>
-                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
-                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
-                        aria-label="Ver o site do projeto Gestão de Redes Sociais"></a>
-                    <div class="pf-body">
-                        <h3>Gestão de Redes Sociais</h3>
-                        <p>Conteúdo, identidade visual e gestão de perfil para uma marca local.</p>
-                        <div class="pf-link pf-actions">
-                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                            <a class="pf-wa"
-                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Gest%C3%A3o%20de%20Redes%20Sociais%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                                target="_blank" rel="noopener">Quero algo assim</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" data-reveal>
-                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
-                    <div class="pf-media">
-                        <img src="img/projeto-05.jpg" alt="Projeto Campanha de Marketing" loading="lazy"
-                            decoding="async" onerror="var c=this.closest('.pf-card');if(c)c.remove()">
-                        <span class="pf-tag">Marketing Digital</span>
-                    </div>
-                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
-                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
-                        aria-label="Ver o site do projeto Campanha de Marketing"></a>
-                    <div class="pf-body">
-                        <h3>Campanha de Marketing</h3>
-                        <p>Estratégia e anúncios planejados com método e metas claras.</p>
-                        <div class="pf-link pf-actions">
-                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                            <a class="pf-wa"
-                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Campanha%20de%20Marketing%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                                target="_blank" rel="noopener">Quero algo assim</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" data-reveal>
-                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
-                    <div class="pf-media">
-                        <img src="img/projeto-06.jpg" alt="Projeto Identidade Visual" loading="lazy" decoding="async"
-                            onerror="var c=this.closest('.pf-card');if(c)c.remove()">
-                        <span class="pf-tag">Identidade Visual</span>
-                    </div>
-                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
-                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
-                        aria-label="Ver o site do projeto Identidade Visual"></a>
-                    <div class="pf-body">
-                        <h3>Identidade Visual</h3>
-                        <p>Logo, paleta e padrões de posts para uma marca ganhar consistência.</p>
-                        <div class="pf-link pf-actions">
-                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                            <a class="pf-wa"
-                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Identidade%20Visual%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                                target="_blank" rel="noopener">Quero algo assim</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pf-card reveal" data-reveal>
-                    <!-- ⚠ Troque título, descrição, imagem e link pelo seu projeto real -->
-                    <div class="pf-media">
-                        <img src="img/projeto-07.jpg" alt="Projeto Landing Page" loading="lazy" decoding="async"
-                            onerror="var c=this.closest('.pf-card');if(c)c.remove()">
-                        <span class="pf-tag">Web Design</span>
-                    </div>
-                    <!-- ⚠ Troque SEU-LINK-AQUI pelo site do cliente (ex.: https://cliente.com.br). Sem link, o card não é clicável. -->
-                    <a class="pf-stretch" href="https://SEU-LINK-AQUI" target="_blank" rel="noopener"
-                        aria-label="Ver o site do projeto Landing Page"></a>
-                    <div class="pf-body">
-                        <h3>Landing Page</h3>
-                        <p>Página de captura focada em conversão, rápida e direta.</p>
-                        <div class="pf-link pf-actions">
-                            <span class="pf-visit">Ver site <svg class="btn-icon" aria-hidden="true">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                            <a class="pf-wa"
-                                href="https://wa.me/5591989385425?text=Ol%C3%A1%21%20Vi%20o%20projeto%20Landing%20Page%20no%20seu%20site%20e%20quero%20algo%20parecido."
-                                target="_blank" rel="noopener">Quero algo assim</a>
-                        </div>
-                    </div>
-                </article>
-
+                <!-- Para adicionar um projeto: copie um <article class="pf-card"> acima e troque imagem, título, descrição e link. -->
                 <aside class="pf-cta reveal" data-reveal>
                     <span class="section-label">O próximo case</span>
                     <h3>O seu negócio pode ser <em>o próximo</em>.</h3>
@@ -693,26 +692,38 @@
 
             <div class="cta-buttons">
                 <a href="https://wa.me/5591989385425?text=Ol%C3%A1!%20Vim%20pelo%20seu%20site%20e%20quero%20um%20or%C3%A7amento."
-                    target="_blank" rel="noopener" class="btn btn-primary"><i class="bi bi-whatsapp"
-                        aria-hidden="true"></i> Quero meu orçamento no WhatsApp <svg class="btn-icon"
-                        aria-hidden="true">
+                    target="_blank" rel="noopener" class="btn btn-primary"><svg class="ic bi" aria-hidden="true">
+                        <use href="#ic-whatsapp" />
+                    </svg> Quero meu orçamento no WhatsApp <svg class="btn-icon" aria-hidden="true">
                         <use href="#i-arrow" />
                     </svg></a>
             </div>
 
             <ul class="cta-points">
-                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Orçamento sem compromisso</li>
-                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Atendimento direto comigo</li>
-                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Proposta detalhada antes de fechar</li>
+                <li><svg class="ic bi" aria-hidden="true">
+                        <use href="#ic-check-circle-fill" />
+                    </svg>Orçamento sem compromisso</li>
+                <li><svg class="ic bi" aria-hidden="true">
+                        <use href="#ic-check-circle-fill" />
+                    </svg>Atendimento direto comigo</li>
+                <li><svg class="ic bi" aria-hidden="true">
+                        <use href="#ic-check-circle-fill" />
+                    </svg>Proposta detalhada antes de fechar</li>
             </ul>
 
             <div class="cta-socials">
-                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener"><i
-                        class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a>
-                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"><i
-                        class="bi bi-instagram" aria-hidden="true"></i>Instagram</a>
-                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener"><i class="bi bi-behance"
-                        aria-hidden="true"></i>Behance</a>
+                <a href="https://www.linkedin.com/in/gabriel-gomes-4352b3227" target="_blank" rel="noopener"><svg
+                        class="ic bi" aria-hidden="true">
+                        <use href="#ic-linkedin" />
+                    </svg>LinkedIn</a>
+                <a href="https://www.instagram.com/gabrielgomes.social/" target="_blank" rel="noopener"><svg
+                        class="ic bi" aria-hidden="true">
+                        <use href="#ic-instagram" />
+                    </svg>Instagram</a>
+                <a href="https://www.behance.net/gabr_gomes" target="_blank" rel="noopener"><svg class="ic bi"
+                        aria-hidden="true">
+                        <use href="#ic-behance" />
+                    </svg>Behance</a>
             </div>
         </div>
     </section>
@@ -722,7 +733,8 @@
     <footer class="footer">
         <div class="container footer-inner">
             <a href="#topo" class="footer-brand" aria-label="Gabriel Gomes — voltar ao topo"><img class="brand-logo"
-                    src="img/logo-the-gomes-branco.png" alt="Gabriel Gomes — Web site e marketing" height="36"
+                    loading="lazy" decoding="async" src="img/logo-the-gomes-branco.png"
+                    alt="Gabriel Gomes — Web site e marketing" height="36"
                     onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-name',textContent:'Gabriel Gomes'}))"></a>
             <p class="footer-tagline">Sites e marketing para o seu negócio crescer com método.</p>
         </div>
@@ -765,8 +777,8 @@
         </div>
     </div>
 
-    <script src="src/js/main.js"></script>
-    <script src="src/js/animations.js"></script>
+    <script src="src/js/main.js" defer></script>
+    <script src="src/js/animations.js" defer></script>
 </body>
 
 </html>

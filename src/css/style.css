@@ -4122,3 +4122,157 @@ body::after {
     background: #84B3CE;
     box-shadow: 0 0 10px #84B3CE
 }
+
+/* =====================================================================
+   DESEMPENHO (Lighthouse) — hero aparece sem esperar o JavaScript,
+   seções fora da tela só são desenhadas quando necessárias e efeitos
+   pesados são reduzidos no celular
+   ===================================================================== */
+/* o conteúdo do topo (e o LCP) não depende mais do JS para ficar visível */
+.hero .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    will-change: auto;
+    animation: heroIn .7s var(--ease) both
+}
+
+.hero .hero-subtitle {
+    animation-delay: .08s
+}
+
+.hero .hero-actions {
+    animation-delay: .16s
+}
+
+.hero .hero-clients {
+    animation-delay: .26s
+}
+
+@keyframes heroIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px)
+    }
+}
+
+/* seções abaixo da dobra: renderização sob demanda */
+.momento,
+.processo,
+.compromisso,
+.comparativo,
+.faq,
+.cta {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 640px
+}
+
+@media (max-width:768px) {
+
+    body::after,
+    .hero-noise,
+    .hero-rays {
+        display: none
+    }
+
+    /* grão em tela cheia e raios borrados são caros no celular */
+    .hero-mesh i {
+        filter: blur(46px)
+    }
+
+    .hero-dust span:nth-child(n+5) {
+        display: none
+    }
+}
+
+@media (prefers-reduced-data:reduce) {
+
+    body::after,
+    .hero-noise,
+    .hero-rays,
+    .hero-mesh,
+    .hero-dust {
+        display: none
+    }
+}
+
+/* =====================================================================
+   DESEMPENHO 2 — ícones em SVG inline (sem biblioteca externa) e menos
+   trabalho de pintura durante a rolagem
+   ===================================================================== */
+.ic {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: -.125em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+.service-icon .ic {
+    width: 26px;
+    height: 26px
+}
+
+.tl-ico {
+    width: 24px;
+    height: 24px
+}
+
+/* barra de progresso: anima só transform (não força layout) */
+.scroll-progress {
+    width: 100% !important;
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform
+}
+
+/* manchas do hero: gradiente já é suave, então sem blur nem blend (os dois repintam o tempo todo) */
+.hero-mesh i {
+    filter: none !important;
+    mix-blend-mode: normal;
+    border-radius: 50%;
+    will-change: transform;
+    animation: meshMove 24s ease-in-out infinite alternate
+}
+
+@keyframes meshMove {
+    to {
+        transform: translate(-46px, 36px) scale(1.1)
+    }
+}
+
+.hero-rays {
+    filter: none
+}
+
+/* nada de grão em tela cheia, nem blur no reveal */
+body::after {
+    display: none
+}
+
+.reveal,
+.reveal.is-visible {
+    filter: none !important
+}
+
+/* vidro: só onde compensa */
+.btn-secondary,
+.hero-stats {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none
+}
+
+.navbar-inner::before {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px)
+}
+
+.trilha-parceiros {
+    will-change: transform
+}

@@ -15,7 +15,13 @@
   function initScrollState() {
     const navbar = $('#navbar'), toTop = $('#backToTop'), bar = $('#scrollProgress');
     if (!navbar && !toTop && !bar) return;
-    let ticking = false, lastY = 0;
+    let ticking = false, lastY = 0, maxScroll = 0;
+    // a altura total é lida só quando muda (ler a cada rolagem força o navegador a recalcular o layout)
+    const measure = () => { maxScroll = document.documentElement.scrollHeight - window.innerHeight; };
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('load', measure);
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
     if (navbar) navbar.addEventListener('focusin', () => navbar.classList.remove('is-hidden'));
 
     const update = () => {
@@ -28,8 +34,7 @@
       }
       if (toTop) toTop.classList.toggle('is-visible', y > 600);
       if (bar) {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+        bar.style.transform = 'scaleX(' + (maxScroll > 0 ? Math.min(1, y / maxScroll) : 0) + ')';
       }
       ticking = false;
     };
@@ -254,12 +259,12 @@
       modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true'); modal.setAttribute('aria-hidden', 'true');
       modal.innerHTML =
         '<div class="gal-bg" data-gclose></div>' +
-        '<button type="button" class="gal-close" data-gclose aria-label="Fechar galeria"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
+        '<button type="button" class="gal-close" data-gclose aria-label="Fechar galeria"><svg class="ic bi" aria-hidden="true"><use href="#ic-x-lg"/></svg></button>' +
         '<div class="gal-box">' +
           '<div class="gal-track" tabindex="0"></div>' +
-          '<button type="button" class="gal-nav gal-prev" aria-label="Anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>' +
-          '<button type="button" class="gal-nav gal-next" aria-label="Próxima"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>' +
-          '<div class="gal-foot"><span class="gal-title"></span><span class="gal-hint"><i class="bi bi-arrow-left-right" aria-hidden="true"></i> arraste para o lado</span><span class="gal-count"></span></div>' +
+          '<button type="button" class="gal-nav gal-prev" aria-label="Anterior"><svg class="ic bi" aria-hidden="true"><use href="#ic-chevron-left"/></svg></button>' +
+          '<button type="button" class="gal-nav gal-next" aria-label="Próxima"><svg class="ic bi" aria-hidden="true"><use href="#ic-chevron-right"/></svg></button>' +
+          '<div class="gal-foot"><span class="gal-title"></span><span class="gal-hint"><svg class="ic bi" aria-hidden="true"><use href="#ic-arrow-left-right"/></svg> arraste para o lado</span><span class="gal-count"></span></div>' +
           '<div class="gal-dots"></div>' +
         '</div>';
       document.body.appendChild(modal);
@@ -340,7 +345,6 @@
   function initPortfolioLayout() {
     const grid = $('.pf-grid');
     if (!grid) return;
-    $$('.pf-media img', grid).forEach((i) => { i.loading = 'eager'; });       // imagens que faltam somem logo
     const cta = $('.pf-cta', grid);
     if (cta) grid.after(cta);                                                  // o cartão final fica fora da pilha
 
